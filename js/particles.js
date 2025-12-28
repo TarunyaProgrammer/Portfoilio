@@ -16,13 +16,15 @@ export class ParticleSystem {
     this.canvas.style.height = "100%";
     this.canvas.style.zIndex = "-1"; // Behind everything
     this.canvas.style.pointerEvents = "none";
+
+    // Luxe Radial Gradient (Black -> Charcoal)
     this.canvas.style.background =
-      "radial-gradient(circle at center, #141922 0%, #0F1217 100%)"; // Deep Charcoal
+      "radial-gradient(circle at top, #1A1A1D 0%, #0B0B0D 100%)";
 
     document.body.prepend(this.canvas);
 
     this.particles = [];
-    this.particleCount = 100; // number of particles
+    this.particleCount = 80; // Reduced count for minimalism
     this.resize();
 
     window.addEventListener("resize", () => this.resize());
@@ -41,10 +43,10 @@ export class ParticleSystem {
       this.particles.push({
         x: Math.random() * this.canvas.width,
         y: Math.random() * this.canvas.height,
-        size: Math.random() * 2,
-        speedX: (Math.random() - 0.5) * 0.2, // Drift slowly
-        speedY: (Math.random() - 0.5) * 0.2,
-        alpha: Math.random() * 0.5 + 0.1,
+        size: Math.random() * 1.5, // Smaller, finer particles
+        speedX: (Math.random() - 0.5) * 0.1, // Even slower
+        speedY: (Math.random() - 0.5) * 0.1,
+        alpha: Math.random() * 0.3 + 0.05, // Faint
       });
     }
   }
@@ -52,7 +54,7 @@ export class ParticleSystem {
   animate() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    this.ctx.fillStyle = "#5AA2FF"; // Calm Azure Dust
+    this.ctx.fillStyle = "#FFFFFF"; // Pure White Dust
 
     this.particles.forEach((p) => {
       p.x += p.speedX;
@@ -64,9 +66,9 @@ export class ParticleSystem {
       if (p.y < 0) p.y = this.canvas.height;
       if (p.y > this.canvas.height) p.y = 0;
 
-      // Twinkle effect
-      const alpha = p.alpha + (Math.random() - 0.5) * 0.05;
-      this.ctx.globalAlpha = Math.max(0.1, Math.min(0.8, alpha));
+      // Subtle Pulse
+      const alpha = p.alpha + (Math.random() - 0.5) * 0.02;
+      this.ctx.globalAlpha = Math.max(0.05, Math.min(0.4, alpha));
 
       this.ctx.beginPath();
       this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);

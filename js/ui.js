@@ -26,16 +26,16 @@ export class UIModule {
    */
   updateStatus(isScrollingEnabled) {
     if (isScrollingEnabled) {
-      if (this.statusText.innerText !== "Scroll Enabled") {
-        this.statusCard.className = "status-active";
-        this.statusIcon.innerText = "🟢";
-        this.statusText.innerText = "Scroll Enabled";
+      if (this.statusText.innerText !== "Scroll Active") {
+        this.statusIcon.innerText = "⚪"; // White circle
+        this.statusText.innerText = "Scroll Active";
+        this.statusText.style.color = "#FFFFFF";
       }
     } else {
-      if (this.statusText.innerText !== "Pinch to Activate") {
-        this.statusCard.className = "status-inactive";
-        this.statusIcon.innerText = "🔴";
-        this.statusText.innerText = "Pinch to Activate";
+      if (this.statusText.innerText !== "Pinch to Scroll") {
+        this.statusIcon.innerText = "○"; // Empty circle
+        this.statusText.innerText = "Pinch to Scroll";
+        this.statusText.style.color = "#8A8A93"; // Muted text
       }
     }
   }
@@ -58,8 +58,8 @@ export class UIModule {
     const screenX = (1 - x) * this.canvas.width;
     const screenY = y * this.canvas.height;
 
-    // Draw Zone Lines
-    this.ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
+    // Draw Zone Lines (Extremely subtle)
+    this.ctx.strokeStyle = "rgba(255, 255, 255, 0.05)";
     this.ctx.lineWidth = 1;
 
     // Top Line (20%)
@@ -76,14 +76,16 @@ export class UIModule {
 
     // Cursor
     this.ctx.beginPath();
-    this.ctx.arc(screenX, screenY, isPinching ? 15 : 10, 0, 2 * Math.PI);
-    this.ctx.fillStyle = isPinching ? "#5AA2FF" : "#ffffff"; // Calm Azure
+    this.ctx.arc(screenX, screenY, isPinching ? 12 : 6, 0, 2 * Math.PI);
+    this.ctx.fillStyle = isPinching ? "#FFFFFF" : "rgba(255, 255, 255, 0.5)";
     this.ctx.fill();
 
-    // Add a glow effect
-    this.ctx.shadowBlur = 15;
-    this.ctx.shadowColor = isPinching ? "#5AA2FF" : "#ffffff";
-    this.ctx.stroke();
-    this.ctx.shadowBlur = 0; // Reset
+    // Add a gentle white glow on pinch
+    if (isPinching) {
+      this.ctx.shadowBlur = 20;
+      this.ctx.shadowColor = "rgba(255, 255, 255, 0.3)";
+      this.ctx.stroke();
+      this.ctx.shadowBlur = 0; // Reset
+    }
   }
 }
