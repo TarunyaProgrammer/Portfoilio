@@ -17,7 +17,7 @@ export class ParticleSystem {
     this.canvas.style.zIndex = "-1"; // Behind everything
     this.canvas.style.pointerEvents = "none";
     this.canvas.style.background =
-      "radial-gradient(circle at center, #0B1020 0%, #05080F 100%)"; // Deep Space Gradient
+      "radial-gradient(circle at center, #141922 0%, #0F1217 100%)"; // Deep Charcoal
 
     document.body.prepend(this.canvas);
 
@@ -52,7 +52,7 @@ export class ParticleSystem {
   animate() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    this.ctx.fillStyle = "#00F5FF"; // Neon Cyan Dust
+    this.ctx.fillStyle = "#5AA2FF"; // Calm Azure Dust
 
     this.particles.forEach((p) => {
       p.x += p.speedX;

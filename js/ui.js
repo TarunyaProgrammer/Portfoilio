@@ -77,12 +77,12 @@ export class UIModule {
     // Cursor
     this.ctx.beginPath();
     this.ctx.arc(screenX, screenY, isPinching ? 15 : 10, 0, 2 * Math.PI);
-    this.ctx.fillStyle = isPinching ? "#00F5FF" : "#ffffff";
+    this.ctx.fillStyle = isPinching ? "#5AA2FF" : "#ffffff"; // Calm Azure
     this.ctx.fill();
 
     // Add a glow effect
     this.ctx.shadowBlur = 15;
-    this.ctx.shadowColor = isPinching ? "#00F5FF" : "#ffffff";
+    this.ctx.shadowColor = isPinching ? "#5AA2FF" : "#ffffff";
     this.ctx.stroke();
     this.ctx.shadowBlur = 0; // Reset
   }

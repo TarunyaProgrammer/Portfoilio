@@ -10,8 +10,6 @@ export function initAnimations() {
     console.log("Airfolio: Living Experience Initialized");
 
     // --- 1. HERO: The Awakening (Text Scramble) ---
-    const heroTl = gsap.timeline();
-
     // Scramble Name
     gsap.to(".scramble-text", {
       duration: 2,
@@ -21,7 +19,8 @@ export function initAnimations() {
       },
       ease: "none",
       onStart: () => {
-        document.querySelector(".scramble-text").innerHTML = "INIT_SYSTEM...";
+        const el = document.querySelector(".scramble-text");
+        if (el) el.innerHTML = "INIT_SYSTEM...";
       },
     });
 
@@ -48,32 +47,7 @@ export function initAnimations() {
 
     // --- 3. SKILLS: Orbit System ---
     const planets = document.querySelectorAll(".skill-planet");
-    const radius = 250; // Distance from core
-
-    planets.forEach((planet, index) => {
-      const total = planets.length;
-      const angle = (index / total) * Math.PI * 2;
-      const speed = parseFloat(planet.dataset.speed) || 1;
-
-      // Random start position
-      gsap.set(planet, {
-        x: Math.cos(angle) * radius,
-        y: Math.sin(angle) * radius,
-      });
-
-      // continuous orbit
-      gsap.to(planet, {
-        duration: 20 / speed,
-        rotation: 360,
-        transformOrigin: `${-Math.cos(angle) * radius}px ${
-          -Math.sin(angle) * radius
-        }px`, // Complex math for GSAP rotation origin relative to center?
-        // Simpler approach: Animate the angle in a custom object and update x/y
-        repeat: -1,
-        ease: "none",
-        // This is a bit tricky with pure CSS rotation. Let's use a motion path proxy approach simpler for reliability.
-      });
-    });
+    const radius = 350; // INCREASED RADIUS FOR LAYOUT FIX
 
     // Re-implementing Orbit using a timeline and simple circular path motion
     planets.forEach((planet, i) => {
@@ -85,12 +59,10 @@ export function initAnimations() {
 
       gsap.to(obj, {
         val: angle + Math.PI * 2,
-        duration: 15 + Math.random() * 10,
+        duration: 25 + Math.random() * 10, // Slower orbit for calm feel
         repeat: -1,
         ease: "none",
         onUpdate: () => {
-          const cx = 0;
-          const cy = 0;
           planet.style.transform = `translate(${
             Math.cos(obj.val) * radius
           }px, ${Math.sin(obj.val) * radius}px)`;
@@ -134,6 +106,8 @@ export function initAnimations() {
 
     // --- 6. MAGNETIC BUTTONS (Mouse Interaction) ---
     const magBtns = document.querySelectorAll(".magnetic-btn");
+    const cursor = document.getElementById("custom-cursor");
+
     magBtns.forEach((btn) => {
       btn.addEventListener("mousemove", (e) => {
         const rect = btn.getBoundingClientRect();
@@ -147,7 +121,7 @@ export function initAnimations() {
         });
 
         // Expand cursor
-        document.getElementById("custom-cursor").classList.add("magnet-active");
+        if (cursor) cursor.classList.add("magnet-active");
       });
 
       btn.addEventListener("mouseleave", () => {
@@ -157,9 +131,7 @@ export function initAnimations() {
           duration: 0.5,
           ease: "elastic.out(1, 0.3)",
         });
-        document
-          .getElementById("custom-cursor")
-          .classList.remove("magnet-active");
+        if (cursor) cursor.classList.remove("magnet-active");
       });
     });
 
