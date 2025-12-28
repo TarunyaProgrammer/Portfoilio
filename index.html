@@ -18,6 +18,8 @@
     <!-- GSAP for Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <!-- Text Plugin Added -->
 
     <!-- MediaPipe Hands -->
     <script
@@ -40,6 +42,7 @@
   <body>
     <!-- UI Overlay Layer (Canvas + Status) -->
     <div id="ui-layer">
+      <div id="custom-cursor"></div>
       <canvas id="gesture-canvas"></canvas>
       <div id="status-card" class="status-inactive">
         <div class="webcam-bubble">
@@ -52,218 +55,185 @@
       </div>
     </div>
 
+    <!-- MAIN SCROLL CONTAINER -->
     <main>
-      <!-- Hero Section -->
+      <!-- Hero Section: The Awakening -->
       <section class="section hero" id="home">
         <div class="hero-content">
-          <h1 class="hero-title">
-            <div class="line">Tarunya</div>
-            <div class="line"><span class="highlight">Kesharwani</span></div>
-          </h1>
-          <p class="hero-subtitle">
+          <h1 class="hero-title scramble-text">Tarunya<br />Kesharwani</h1>
+          <p class="hero-subtitle typewriter-text">
             Software Developer (Web & Auto) // Open Source Enthusiast
           </p>
-          <p class="hero-motto">
+          <div class="glow-separator"></div>
+          <p class="hero-motto fade-in">
             "Learning Fast. Building Bold. Growing Every Day."
           </p>
         </div>
         <div class="scroll-hint">
           <div class="mouse"></div>
-          <p>Gesture or Scroll</p>
+          <p>Conduct The Story</p>
+          <!-- Copy Update -->
         </div>
       </section>
 
-      <!-- About Section -->
+      <!-- About Section: Curiosity Engine -->
       <section class="section about" id="about">
         <div class="container split-layout">
-          <div class="text-side">
-            <h2 class="section-title">About Me</h2>
-            <p class="lead">CSE (AI) Student @ Newton School of Technology</p>
-            <p>
-              I got into tech because I was curious. Now, I build web apps that
-              feel smooth and automate the boring stuff with Python.
+          <div class="text-side glass-card p-large">
+            <!-- Wrapped in card -->
+            <h2 class="section-title">The Curiosity Engine</h2>
+            <p class="lead">
+              "I didn’t choose tech. Curiosity dragged me into it."
             </p>
-            <p><strong>Motto:</strong> Learn → Build → Repeat.</p>
+            <p>
+              It started with "How does this work?" and turned into "How can I
+              make this better?" Now, I build web apps that feel smooth and
+              automate the boring stuff with Python.
+            </p>
 
             <div class="badge-container">
-              <div class="glass-badge">
-                Social Winter of Code (Season 6) Contributor
+              <div class="glass-badge magnetic-btn">
+                Social Winter of Code Contributor
               </div>
             </div>
           </div>
           <div class="image-side">
-            <div class="glass-card portrait-card">
+            <div class="glass-card portrait-card 3d-tilt">
               <img
                 src="assets/profile.jpg"
                 alt="Tarunya Kesharwani"
-                style="
-                  width: 100%;
-                  height: 100%;
-                  object-fit: cover;
-                  opacity: 0.9;
-                "
+                class="profile-img"
               />
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Skills Section -->
+      <!-- Skills Section: The Power Core -->
       <section class="section skills" id="skills">
-        <div class="container">
-          <h2 class="section-title center">Tech DNA</h2>
-          <div class="skills-grid">
-            <div class="skill-card">
-              <h3>Languages</h3>
-              <p>JavaScript, Python, HTML/CSS</p>
-            </div>
-            <div class="skill-card">
-              <h3>Frontend</h3>
-              <p>React.js, PWA, Chrome Ext</p>
-            </div>
-            <div class="skill-card">
-              <h3>Backend</h3>
-              <p>Node.js, Firebase</p>
-            </div>
-            <div class="skill-card">
-              <h3>Tools</h3>
-              <p>Git, GitHub, Figma</p>
-            </div>
-            <div class="skill-card">
-              <h3>Core</h3>
-              <p>Automation, Problem Solving</p>
-            </div>
-            <div class="skill-card">
-              <h3>Design</h3>
-              <p>Canva, GIMP</p>
-            </div>
+        <div class="container relative-container">
+          <h2 class="section-title center">Power Core</h2>
+          <!-- Orbit System -->
+          <div class="orbit-system">
+            <div class="core-center">CORE</div>
+            <!-- Skills will be absolutely positioned GSAP logic -->
+            <div class="skill-planet" data-speed="0.5">JavaScript</div>
+            <div class="skill-planet" data-speed="0.7">Python</div>
+            <div class="skill-planet" data-speed="0.9">React</div>
+            <div class="skill-planet" data-speed="0.6">Node.js</div>
+            <div class="skill-planet" data-speed="0.8">Firebase</div>
+            <div class="skill-planet" data-speed="0.4">Figma</div>
+            <div class="skill-planet" data-speed="1.1">Git</div>
+            <div class="skill-planet" data-speed="1.0">AI / ML</div>
           </div>
         </div>
       </section>
 
-      <!-- Projects Section (Horizontal Scroll) -->
+      <!-- Projects Section: Creation Chamber -->
       <section class="section projects" id="projects">
-        <div class="projects-wrapper">
+        <div class="projects-wrapper tunnel-effect">
           <div class="project-track">
             <div class="project-intro">
-              <h2>Builder<br />Mode</h2>
+              <h2>Creation<br />Chamber</h2>
               <p>Selected Works</p>
-              <p>← Scroll →</p>
+              <p class="blink">SYSTEM ONLINE</p>
             </div>
 
-            <div class="project-card">
-              <div
-                class="project-video"
-                style="background: linear-gradient(135deg, #ffd700, #ffa500)"
-              ></div>
-              <div class="project-info">
+            <div class="project-card terminal-style">
+              <div class="terminal-header">🔴 🟡 🟢 Budgettt_v1.0</div>
+              <div class="project-content">
                 <h3>Budgettt</h3>
                 <p>Offline Expense Tracker (PWA + IndexedDB)</p>
+                <div class="tech-stack">JS • PWA • Firebase</div>
               </div>
             </div>
 
-            <div class="project-card">
-              <div
-                class="project-video"
-                style="background: linear-gradient(135deg, #00c853, #69f0ae)"
-              ></div>
-              <div class="project-info">
+            <div class="project-card terminal-style">
+              <div class="terminal-header">🔴 🟡 🟢 NutriMinds_AI</div>
+              <div class="project-content">
                 <h3>NutriMinds</h3>
                 <p>FoodLens - AI Calorie Tracker (React)</p>
+                <div class="tech-stack">React • AI • Health</div>
               </div>
             </div>
 
-            <div class="project-card">
-              <div
-                class="project-video"
-                style="background: linear-gradient(135deg, #6200ea, #b388ff)"
-              ></div>
-              <div class="project-info">
+            <div class="project-card terminal-style">
+              <div class="terminal-header">🔴 🟡 🟢 Mindbridge_RAG</div>
+              <div class="project-content">
                 <h3>Mindbridge</h3>
                 <p>Mental Wellness Platform (RAG Chatbot)</p>
+                <div class="tech-stack">RAG • Vector DB • AI</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Experience Section -->
+      <!-- Experience: Reality Check -->
       <section class="section experience" id="experience">
         <div class="container">
-          <h2 class="section-title">Experience</h2>
+          <h2 class="section-title">Reality Check</h2>
           <div class="timeline">
             <div class="timeline-line"></div>
-            <div class="timeline-item">
+            <div class="timeline-item pulse-trigger">
               <div class="year">Sep - Nov 2025</div>
               <div class="role">Damru Fest 2025</div>
-              <div class="company">
-                Competition Crew Member @ Rishihood University
-              </div>
-              <p style="color: #888; margin-top: 0.5rem">
-                Coordinated inter-college competitions & event operations.
-              </p>
+              <div class="company pulse-text">Competition Crew Member</div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Education Section -->
+      <!-- Education: Upgrade Path -->
       <section class="section education" id="education">
         <div class="container">
-          <h2 class="section-title">Education</h2>
-          <div class="timeline">
-            <div class="timeline-line"></div>
-            <div class="timeline-item">
-              <div class="year">2025 - 2029</div>
-              <div class="role">B.Tech CS (AI)</div>
-              <div class="company">
-                Newton School of Technology / Rishihood Univ
-              </div>
+          <h2 class="section-title">System Upgrades</h2>
+          <div class="card-stack">
+            <div class="stack-card">
+              <h3>B.Tech CS (AI)</h3>
+              <p>Newton School of Technology</p>
+              <span class="year">2025 - 2029</span>
             </div>
-            <div class="timeline-item">
-              <div class="year">Certificate</div>
-              <div class="role">Entrepreneurship</div>
-              <div class="company">
-                MIT Sloan School of Management (Grade: A+)
-              </div>
+            <div class="stack-card">
+              <h3>Entrepreneurship</h3>
+              <p>MIT Sloan School of Management</p>
+              <span class="year">Certificate (A+)</span>
             </div>
-            <div class="timeline-item">
-              <div class="year">Class XII</div>
-              <div class="role">CS 85% / Maths 80%</div>
-              <div class="company">Royal Senior Secondary School</div>
-            </div>
-            <div class="timeline-item">
-              <div class="year">Class X</div>
-              <div class="role">94.6%</div>
-              <div class="company">Kendriya Vidyalaya</div>
+            <div class="stack-card">
+              <h3>Secondary School</h3>
+              <p>Royal Senior Secondary / KV</p>
+              <span class="year">CS 85% / Maths 80%</span>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Contact Section -->
+      <!-- Contact: The Invitation -->
       <section class="section contact" id="contact">
         <div class="container center">
-          <h2 class="huge-text">
-            Let's build<br />something <span class="highlight">unreal</span>.
+          <p class="fade-quote">"Everything begins with an idea."</p>
+          <h2 class="huge-text neon-flicker">
+            Let's build<br />the <span class="highlight">Future</span>.
           </h2>
           <div class="links-row">
             <a
               href="https://github.com/TarunyaProgrammer"
               target="_blank"
-              class="cta-button"
+              class="cta-button magnetic-btn"
               >GitHub</a
             >
             <a
               href="https://www.linkedin.com/in/tarunyakesharwani/"
               target="_blank"
-              class="cta-button"
+              class="cta-button magnetic-btn"
               >LinkedIn</a
             >
           </div>
         </div>
         <footer>
-          <p>Airfolio © 2025 Tarunya Kesharwani. Built with AirScroll.</p>
+          <p>
+            Airfolio © 2025 Tarunya Kesharwani. <span class="blink">_</span>
+          </p>
         </footer>
       </section>
     </main>
