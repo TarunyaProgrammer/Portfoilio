@@ -10,7 +10,6 @@ export function initAnimations() {
     console.log("Airfolio: Living Experience Initialized");
 
     // --- 1. HERO: The Awakening (Text Scramble) ---
-    // Scramble Name
     gsap.to(".scramble-text", {
       duration: 2,
       text: {
@@ -24,7 +23,6 @@ export function initAnimations() {
       },
     });
 
-    // Typewriter Subtitle
     gsap.to(".typewriter-text", {
       duration: 1.5,
       text: "Software Developer (Web & Auto) // Open Source Enthusiast",
@@ -45,27 +43,36 @@ export function initAnimations() {
       },
     });
 
-    // --- 3. SKILLS: Orbit System ---
+    // --- 3. SKILLS: Orbit System (Responsive & Dynamic) ---
     const planets = document.querySelectorAll(".skill-planet");
-    const radius = 350; // INCREASED RADIUS FOR LAYOUT FIX
+    const orbitSystem = document.querySelector(".orbit-system");
 
-    // Re-implementing Orbit using a timeline and simple circular path motion
+    let radius = 350; // Default fallback
+
+    function updateOrbitRadius() {
+      if (orbitSystem) {
+        // Use 45% of the container width (keeping it inside the 50% radius border)
+        radius = (orbitSystem.offsetWidth / 2) * 0.9;
+      }
+    }
+    updateOrbitRadius();
+    window.addEventListener("resize", updateOrbitRadius);
+
     planets.forEach((planet, i) => {
-      // Distribute them initially
+      // Distribute them evenly
       const angle = (i / planets.length) * Math.PI * 2;
-
-      // We animate a 'val' from 0 to 2PI
       let obj = { val: angle };
 
       gsap.to(obj, {
         val: angle + Math.PI * 2,
-        duration: 25 + Math.random() * 10, // Slower orbit for calm feel
+        duration: 25 + Math.random() * 10,
         repeat: -1,
         ease: "none",
         onUpdate: () => {
-          planet.style.transform = `translate(${
-            Math.cos(obj.val) * radius
-          }px, ${Math.sin(obj.val) * radius}px)`;
+          const x = Math.cos(obj.val) * radius;
+          const y = Math.sin(obj.val) * radius;
+          // KEY FIX: xPercent/yPercent handles the centering offset (-50%)
+          gsap.set(planet, { x: x, y: y, xPercent: -50, yPercent: -50 });
         },
       });
     });
@@ -73,6 +80,7 @@ export function initAnimations() {
     // --- 4. PROJECTS: Creation Chamber (Tunnel) ---
     const track = document.querySelector(".project-track");
     const wrapper = document.querySelector(".projects-wrapper");
+
     if (track && wrapper) {
       const getScrollAmount = () => -(track.scrollWidth - window.innerWidth);
 
@@ -115,12 +123,11 @@ export function initAnimations() {
         const y = e.clientY - rect.top - rect.height / 2;
 
         gsap.to(btn, {
-          x: x * 0.3, // Magnetic strength
+          x: x * 0.3,
           y: y * 0.3,
           duration: 0.3,
         });
 
-        // Expand cursor
         if (cursor) cursor.classList.add("magnet-active");
       });
 
