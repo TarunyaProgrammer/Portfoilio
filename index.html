@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Airfolio | Tarunya Kesharwani</title>
+
+    <!-- Fonts: Space Grotesk (Headers) + Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@300;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- MediaPipe Hands -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <!-- UI Overlay Layer (Canvas + Status) -->
+    <div id="ui-layer">
+      <canvas id="gesture-canvas"></canvas>
+      <div id="status-card" class="status-inactive">
+        <div class="webcam-bubble">
+          <video id="input-video" playsinline muted autoplay></video>
+        </div>
+        <div class="status-info">
+          <span id="status-icon">🔴</span>
+          <span id="status-text">Pinch to Scroll</span>
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="section hero" id="home">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            <div class="line">Tarunya</div>
+            <div class="line"><span class="highlight">Kesharwani</span></div>
+          </h1>
+          <p class="hero-subtitle">
+            Software Developer (Web & Auto) // Open Source Enthusiast
+          </p>
+          <p class="hero-motto">
+            "Learning Fast. Building Bold. Growing Every Day."
+          </p>
+        </div>
+        <div class="scroll-hint">
+          <div class="mouse"></div>
+          <p>Gesture or Scroll</p>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section class="section about" id="about">
+        <div class="container split-layout">
+          <div class="text-side">
+            <h2 class="section-title">About Me</h2>
+            <p class="lead">CSE (AI) Student @ Newton School of Technology</p>
+            <p>
+              I got into tech because I was curious. Now, I build web apps that
+              feel smooth and automate the boring stuff with Python.
+            </p>
+            <p><strong>Motto:</strong> Learn → Build → Repeat.</p>
+
+            <div class="badge-container">
+              <div class="glass-badge">
+                Social Winter of Code (Season 6) Contributor
+              </div>
+            </div>
+          </div>
+          <div class="image-side">
+            <div class="glass-card portrait-card">
+              <img
+                src="assets/profile.jpg"
+                alt="Tarunya Kesharwani"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  opacity: 0.9;
+                "
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills Section -->
+      <section class="section skills" id="skills">
+        <div class="container">
+          <h2 class="section-title center">Tech DNA</h2>
+          <div class="skills-grid">
+            <div class="skill-card">
+              <h3>Languages</h3>
+              <p>JavaScript, Python, HTML/CSS</p>
+            </div>
+            <div class="skill-card">
+              <h3>Frontend</h3>
+              <p>React.js, PWA, Chrome Ext</p>
+            </div>
+            <div class="skill-card">
+              <h3>Backend</h3>
+              <p>Node.js, Firebase</p>
+            </div>
+            <div class="skill-card">
+              <h3>Tools</h3>
+              <p>Git, GitHub, Figma</p>
+            </div>
+            <div class="skill-card">
+              <h3>Core</h3>
+              <p>Automation, Problem Solving</p>
+            </div>
+            <div class="skill-card">
+              <h3>Design</h3>
+              <p>Canva, GIMP</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section (Horizontal Scroll) -->
+      <section class="section projects" id="projects">
+        <div class="projects-wrapper">
+          <div class="project-track">
+            <div class="project-intro">
+              <h2>Builder<br />Mode</h2>
+              <p>Selected Works</p>
+              <p>← Scroll →</p>
+            </div>
+
+            <div class="project-card">
+              <div
+                class="project-video"
+                style="background: linear-gradient(135deg, #ffd700, #ffa500)"
+              ></div>
+              <div class="project-info">
+                <h3>Budgettt</h3>
+                <p>Offline Expense Tracker (PWA + IndexedDB)</p>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div
+                class="project-video"
+                style="background: linear-gradient(135deg, #00c853, #69f0ae)"
+              ></div>
+              <div class="project-info">
+                <h3>NutriMinds</h3>
+                <p>FoodLens - AI Calorie Tracker (React)</p>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div
+                class="project-video"
+                style="background: linear-gradient(135deg, #6200ea, #b388ff)"
+              ></div>
+              <div class="project-info">
+                <h3>Mindbridge</h3>
+                <p>Mental Wellness Platform (RAG Chatbot)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience Section -->
+      <section class="section experience" id="experience">
+        <div class="container">
+          <h2 class="section-title">Experience</h2>
+          <div class="timeline">
+            <div class="timeline-line"></div>
+            <div class="timeline-item">
+              <div class="year">Sep - Nov 2025</div>
+              <div class="role">Damru Fest 2025</div>
+              <div class="company">
+                Competition Crew Member @ Rishihood University
+              </div>
+              <p style="color: #888; margin-top: 0.5rem">
+                Coordinated inter-college competitions & event operations.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Education Section -->
+      <section class="section education" id="education">
+        <div class="container">
+          <h2 class="section-title">Education</h2>
+          <div class="timeline">
+            <div class="timeline-line"></div>
+            <div class="timeline-item">
+              <div class="year">2025 - 2029</div>
+              <div class="role">B.Tech CS (AI)</div>
+              <div class="company">
+                Newton School of Technology / Rishihood Univ
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="year">Certificate</div>
+              <div class="role">Entrepreneurship</div>
+              <div class="company">
+                MIT Sloan School of Management (Grade: A+)
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="year">Class XII</div>
+              <div class="role">CS 85% / Maths 80%</div>
+              <div class="company">Royal Senior Secondary School</div>
+            </div>
+            <div class="timeline-item">
+              <div class="year">Class X</div>
+              <div class="role">94.6%</div>
+              <div class="company">Kendriya Vidyalaya</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section class="section contact" id="contact">
+        <div class="container center">
+          <h2 class="huge-text">
+            Let's build<br />something <span class="highlight">unreal</span>.
+          </h2>
+          <div class="links-row">
+            <a
+              href="https://github.com/TarunyaProgrammer"
+              target="_blank"
+              class="cta-button"
+              >GitHub</a
+            >
+            <a
+              href="https://www.linkedin.com/in/tarunyakesharwani/"
+              target="_blank"
+              class="cta-button"
+              >LinkedIn</a
+            >
+          </div>
+        </div>
+        <footer>
+          <p>Airfolio © 2025 Tarunya Kesharwani. Built with AirScroll.</p>
+        </footer>
+      </section>
+    </main>
+
+    <!-- App Scripts -->
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
