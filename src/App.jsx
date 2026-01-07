@@ -18,6 +18,7 @@ import ThinkingArticle from "./pages/ThinkingArticle";
 import Connect from "./pages/Connect";
 
 import PageContainer from "./components/PageContainer/PageContainer";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 
 const Nav = () => (
   <nav
@@ -130,6 +131,7 @@ function App() {
   return (
     <ReactLenis root options={{ lerp: 0.08 }}>
       <Router>
+        <ScrollToTop />
         <Nav />
         <AnimatedRoutes />
       </Router>
