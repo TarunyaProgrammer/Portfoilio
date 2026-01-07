@@ -6,7 +6,7 @@ const OpenSource = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="pt-48 min-h-screen bg-bg"
+      className="min-h-screen bg-bg"
     >
       <div className="container mx-auto px-6 max-w-4xl">
         <h1 className="text-6xl font-heading font-bold mb-8">Open Source</h1>

@@ -12,7 +12,7 @@ const SystemDetail = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen bg-bg pt-48 pb-20"
+      className="min-h-screen bg-bg pb-20"
     >
       <div className="container mx-auto px-6">
         <Link

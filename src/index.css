@@ -11,6 +11,10 @@
     @apply bg-bg text-text font-body antialiased selection:bg-neon selection:text-bg;
   }
 
+  :root {
+    --nav-height: 80px;
+  }
+
   h1,
   h2,
   h3,

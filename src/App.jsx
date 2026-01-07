@@ -17,8 +17,13 @@ import OpenSource from "./pages/OpenSource";
 import ThinkingArticle from "./pages/ThinkingArticle";
 import Connect from "./pages/Connect";
 
+import PageContainer from "./components/PageContainer/PageContainer";
+
 const Nav = () => (
-  <nav className="fixed top-0 left-0 right-0 z-50 p-6 flex justify-between items-center bg-bg/80 backdrop-blur-md border-b border-[#1f2330]">
+  <nav
+    style={{ height: "var(--nav-height)" }}
+    className="fixed top-0 left-0 right-0 z-50 px-6 flex justify-between items-center bg-bg/80 backdrop-blur-md border-b border-[#1f2330]"
+  >
     <div>
       <Link
         to="/"
@@ -59,13 +64,63 @@ const AnimatedRoutes = () => {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Home />} />
-        <Route path="/systems" element={<SystemsPage />} />
-        <Route path="/systems/:slug" element={<SystemDetail />} />
-        <Route path="/labs" element={<LabsPage />} />
-        <Route path="/open-source" element={<OpenSource />} />
-        <Route path="/thinking/:slug" element={<ThinkingArticle />} />
-        <Route path="/connect" element={<Connect />} />
+        <Route
+          path="/"
+          element={
+            <PageContainer noPadding>
+              <Home />
+            </PageContainer>
+          }
+        />
+        <Route
+          path="/systems"
+          element={
+            <PageContainer>
+              <SystemsPage />
+            </PageContainer>
+          }
+        />
+        <Route
+          path="/systems/:slug"
+          element={
+            <PageContainer>
+              <SystemDetail />
+            </PageContainer>
+          }
+        />
+        <Route
+          path="/labs"
+          element={
+            <PageContainer>
+              <LabsPage />
+            </PageContainer>
+          }
+        />
+        <Route
+          path="/open-source"
+          element={
+            <PageContainer>
+              <OpenSource />
+            </PageContainer>
+          }
+        />
+        <Route
+          path="/thinking/:slug"
+          element={
+            <PageContainer noPadding>
+              {/* ThinkingArticle has its own custom layout/hero */}
+              <ThinkingArticle />
+            </PageContainer>
+          }
+        />
+        <Route
+          path="/connect"
+          element={
+            <PageContainer>
+              <Connect />
+            </PageContainer>
+          }
+        />
       </Routes>
     </AnimatePresence>
   );
