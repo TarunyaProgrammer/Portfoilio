@@ -87,14 +87,14 @@ const Hero = () => {
             },
             move: {
               enable: true,
-              speed: 0.5,
+              speed: 0.2, // Slower for calm feel
               direction: "none",
               random: false,
               straight: false,
               outModes: { default: "bounce" },
             },
-            number: { density: { enable: true, area: 800 }, value: 40 },
-            opacity: { value: 0.2 },
+            number: { density: { enable: true, area: 800 }, value: 30 }, // Fewer particles
+            opacity: { value: 0.15 },
             shape: { type: "circle" },
             size: { value: { min: 1, max: 2 } },
           },
@@ -117,18 +117,20 @@ const Hero = () => {
               initial={{ transform: "scale(0.96)" }}
               animate={{ transform: "scale(1)" }}
               transition={{ duration: 1.2, ease: [0.2, 0.8, 0.2, 1] }}
-              className="text-6xl md:text-8xl lg:text-[7rem] font-heading font-bold leading-[0.9] tracking-tighter text-text mb-8"
+              className="text-5xl md:text-7xl lg:text-[6rem] font-heading font-bold leading-[1.1] tracking-tighter text-text mb-8"
             >
-              PORTFOLIO <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon to-sysblue">
-                SYSTEMS
-              </span>
+              Building calm, <br />
+              <span className="text-neon text-neon-glow">
+                intelligent systems
+              </span>{" "}
+              <br />
+              for real-world problems.
             </motion.h1>
           </div>
 
-          <p className="text-lg md:text-xl text-gray-400 max-w-lg mb-10 leading-relaxed">
-            Engineering precision meets diverse aesthetics. Exploring the
-            intersection of rigorous architecture and fluid user experience.
+          <p className="text-lg md:text-xl text-gray-400 max-w-xl mb-12 leading-relaxed">
+            I design privacy-first, AI-powered interfaces and offline-capable
+            products that simplify complex workflows.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
@@ -151,7 +153,7 @@ const Hero = () => {
           </div>
         </motion.div>
 
-        {/* Visual/Orb */}
+        {/* Visual/Image */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -159,15 +161,25 @@ const Hero = () => {
           style={{
             y: y2,
             x: useTransform(mouseX, [0, 1], [-20, 20]),
-            rotate: useTransform(mouseY, [0, 1], [-10, 10]),
+            rotate: useTransform(mouseY, [0, 1], [-5, 5]),
           }}
           className="relative hidden lg:flex justify-center items-center"
         >
-          <div className="w-[400px] h-[400px] rounded-full bg-gradient-to-br from-neon/10 to-sysblue/10 backdrop-blur-3xl border border-white/5 shadow-[0_0_100px_rgba(200,255,0,0.1)] relative overflow-hidden group">
-            <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-20 mix-blend-overlay"></div>
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] bg-neon/20 rounded-full blur-[50px] animate-pulse"></div>
-            <div className="absolute inset-0 border border-neon/20 rounded-full scale-90 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-700 ease-out"></div>
+          <div className="w-[450px] h-[550px] relative z-10 rounded-2xl overflow-hidden border border-white/10 group">
+            <div className="absolute inset-0 bg-gradient-to-tr from-neon/20 to-sysblue/20 mix-blend-overlay z-20 transition-opacity duration-500 opacity-50 group-hover:opacity-0"></div>
+            <img
+              src="/ME.png"
+              alt="Tarunya"
+              className="w-full h-full object-cover filter grayscale contrast-125 brightness-90 group-hover:grayscale-0 group-hover:contrast-100 transition-all duration-700 ease-out"
+            />
+            {/* Glitch/Tech Overlays */}
+            <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-20 mix-blend-overlay z-30 pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-bg to-transparent z-20"></div>
           </div>
+
+          {/* Glowing Backdrops */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-neon/10 rounded-full blur-[80px] -z-10 animate-pulse-slow"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] border border-neon/20 rounded-full -z-10 scale-110 opacity-20"></div>
         </motion.div>
       </div>
     </section>

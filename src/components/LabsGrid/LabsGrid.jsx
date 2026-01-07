@@ -9,9 +9,9 @@ const LabsGrid = () => {
   }));
 
   return (
-    <section className="py-24 bg-bg border-t border-white/5">
+    <section className="section-spacing bg-bg border-t border-white/5">
       <div className="container mx-auto px-6">
-        <div className="flex items-center justify-between mb-12">
+        <div className="flex items-center justify-between mb-16">
           <h2 className="text-3xl font-heading font-bold text-text">
             Labs{" "}
             <span className="text-sm font-mono text-gray-500 font-normal">
@@ -20,7 +20,7 @@ const LabsGrid = () => {
           </h2>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {labs.map((lab, i) => (
             <motion.div
               key={lab.id}
@@ -29,7 +29,7 @@ const LabsGrid = () => {
               viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
               whileHover={{ scale: 0.98, filter: "hue-rotate(90deg)" }}
-              className="aspect-square bg-grid/20 border border-white/5 rounded-lg flex flex-col items-center justify-center cursor-pointer group hover:bg-grid/40 transition-colors relative overflow-hidden"
+              className="aspect-square glass-panel rounded-lg flex flex-col items-center justify-center cursor-pointer group hover:bg-grid/40 transition-colors relative overflow-hidden"
             >
               <span className="font-mono text-xs text-neon mb-2 opacity-50 text-center">
                 {lab.type}

@@ -7,7 +7,7 @@ const Connect = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="pt-32 min-h-screen bg-bg"
+      className="pt-48 min-h-screen bg-bg"
     >
       <div className="container mx-auto px-6 mb-12 text-center">
         <h1 className="text-6xl font-heading font-bold mb-4">Uplink</h1>

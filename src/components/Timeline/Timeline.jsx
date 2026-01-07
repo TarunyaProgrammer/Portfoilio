@@ -4,20 +4,24 @@ import { useRef } from "react";
 const years = [
   {
     year: "2026",
-    title: "Senior Engineer, Google",
-    desc: "Leading agentic coding initiatives.",
+    title: "Open Source & AI Systems",
+    desc: "Building AI automation tools and preparing for GSoC.",
+  },
+  {
+    year: "2025",
+    title: "React, PWAs & Privacy-first Products",
+    desc: "Built Budgettt and PaperLess systems.",
   },
   {
     year: "2024",
-    title: "Full Stack Arch, Startup",
-    desc: "Scaled from 0 to 1M users.",
+    title: "Frontend Foundations",
+    desc: "Learned HTML, CSS, JS, transitioned to React.",
   },
   {
     year: "2023",
-    title: "Research Lab, MIT",
-    desc: "Distributed systems performance analysis.",
+    title: "First Code",
+    desc: "Wrote my first Hello World program.",
   },
-  { year: "2021", title: "Hello World", desc: "First commit." },
 ];
 
 const Timeline = () => {
@@ -32,10 +36,10 @@ const Timeline = () => {
   return (
     <section
       ref={containerRef}
-      className="py-32 bg-bg relative overflow-hidden"
+      className="section-spacing bg-bg relative overflow-hidden"
     >
-      <div className="container mx-auto px-6 relative z-10 flex flex-col md:flex-row gap-12 md:gap-24">
-        <div className="md:w-1/3 text-right hidden md:block">
+      <div className="container mx-auto px-6 relative z-10 flex flex-col md:flex-row gap-12 md:gap-32">
+        <div className="md:w-1/3 text-left hidden md:block">
           <h2 className="text-4xl font-heading font-bold text-text sticky top-32">
             Career
             <br />
@@ -47,10 +51,10 @@ const Timeline = () => {
           {/* Vertical Line */}
           <motion.div
             style={{ scaleY, originY: 0 }}
-            className="absolute left-0 md:left-[-1px] top-0 bottom-0 w-[2px] bg-neon/30"
+            className="absolute left-0 md:left-[-1px] top-0 bottom-0 w-[2px] bg-gradient-to-b from-neon/50 to-transparent"
           />
 
-          <div className="space-y-24">
+          <div className="space-y-32">
             {years.map((item, i) => (
               <TimelineItem key={i} item={item} index={i} />
             ))}
