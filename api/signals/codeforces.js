@@ -14,24 +14,40 @@ export default async function handler(req, res) {
 
     const user = userData.result[0];
 
-    // 2. Fetch User Status (for solved count & contests)
-    // Limiting to last 50 submissions to be lightweight, or we can just skip exact solved count if too heavy
-    // For 'Total Solved', we genuinely need all submissions or a scraping approach. 
-    // To keep it fast/lightweight, we might just use rating/rank/maxRating from user info
-    // and maybe last contest activity.
+    // 2. Fetch User Status (for solved count)
+    // Fetching last 2000 submissions should be sufficient for most active users to get a good estimate, 
+    // or fetch all if needed. CF API usually handles full history fine.
+    const statusRes = await fetch(
+      `https://codeforces.com/api/user.status?handle=${HANDLE}&from=1&count=2000`
+    );
+    const statusData = await statusRes.json();
     
-    // Let's grab rating history for 'last contest'
+    let uniqueSolved = 0;
+    
+    if (statusData.status === "OK") {
+        const solved = new Set();
+        statusData.result.forEach(submission => {
+            if (submission.verdict === "OK") {
+                // Unique problem identifier: contestId + index (e.g., 123A)
+                solved.add(`${submission.problem.contestId}${submission.problem.index}`);
+            }
+        });
+        uniqueSolved = solved.size;
+    }
+
+    // 3. Fetch Rating History (for contests & last active)
     const ratingRes = await fetch(`https://codeforces.com/api/user.rating?handle=${HANDLE}`);
     const ratingData = await ratingRes.json();
     
     let lastContest = null;
     let totalContests = 0;
 
-    if (ratingData.status === "OK" && ratingData.result.length > 0) {
+    if (ratingData.status === "OK") {
         const history = ratingData.result;
         totalContests = history.length;
-        // Last contest time (seconds to ms)
-        lastContest = new Date(history[history.length - 1].ratingUpdateTimeSeconds * 1000).toISOString();
+        if (history.length > 0) {
+            lastContest = new Date(history[history.length - 1].ratingUpdateTimeSeconds * 1000).toISOString();
+        }
     }
 
     res.status(200).json({
@@ -41,6 +57,7 @@ export default async function handler(req, res) {
       rank: user.rank || "unrated",
       maxRank: user.maxRank || "unrated",
       totalContests,
+      uniqueSolved,
       lastContest,
       avatar: user.titlePhoto
     });

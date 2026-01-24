@@ -176,6 +176,9 @@ const Hero = () => {
               alt="Tarunya"
               className="w-full h-full object-cover filter grayscale contrast-125 brightness-90 group-hover:grayscale-0 group-hover:contrast-100 transition-all duration-700 ease-out"
             />
+            {/* Image Fade/Mask for top-right blend */}
+             <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-bg via-bg/50 to-transparent z-20 pointer-events-none"></div>
+
             {/* Glitch/Tech Overlays */}
             <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-20 mix-blend-overlay z-30 pointer-events-none"></div>
             <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-bg to-transparent z-20"></div>
