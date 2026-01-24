@@ -1,76 +1,115 @@
-# Tarunya Systems
+# <div align="center">TARUNYA SYSTEMS</div>
 
-A high-performance, production-ready System-Design Portfolio built with React, Vite, and Tailwind CSS.
+<div align="center">
+  <br />
+    <a href="https://portfoilio-v2.vercel.app" target="_blank">
+      <img src="https://img.shields.io/badge/Status-Online-brightgreen?style=for-the-badge&logo=vercel" alt="Online" />
+    </a>
+    <img src="https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey?style=for-the-badge" alt="License" />
+    <img src="https://img.shields.io/badge/Framework-React-blue?style=for-the-badge&logo=react" alt="React" />
+    <img src="https://img.shields.io/badge/Build-Vite-646CFF?style=for-the-badge&logo=vite" alt="Vite" />
+  <br />
+</div>
 
-## Live Demo
+<div align="center">
+  <h3>SYSTEM ARCHITECTURE & ENGINEERING PRECISION</h3>
+  <p>A high-performance, production-ready System-Design Portfolio built for the modern web. <br /> Designed with a "terminal-chic" aesthetic, prioritizing accessibility, performance, and responsive motion.</p>
+</div>
 
-[Link to Live Demo](https://portfoilio-v2.vercel.app)
+<br />
 
-## Philosophy
+## ⚡ System Status
 
-Designed to showcase system architecture and engineering precision. The UI reflects a "terminal-chic" aesthetic, prioritizing accessibility, performance, and responsive motion.
+> **OPERATIONAL**: All systems normal.
+>
+> [![Netlify Status](https://api.netlify.com/api/v1/badges/b5b63750-8438-4306-96b6-324021200232/deploy-status)](https://app.netlify.com/sites/visionary-vacherin-562725/deploys)
 
-## Built With
+[**INITIATE SEQUENCE: VIEW LIVE DEMO**](https://portfoilio-v2.vercel.app)
 
-- **React**: Component-based UI library
-- **Vite**: Next-generation frontend tooling
-- **Tailwind CSS**: Utility-first CSS framework
-- **Framer Motion**: Production-ready animation library
-- **Lenis**: Smooth scrolling
-- **tsParticles**: Lightweight particle engine
+---
 
-## Design System
+## 🏗 Architecture & Tech Stack
 
-- **Colors**: Deep space contrast with neon lime accents (`#c8ff00`)
-- **Typography**: `Clash Display` (Display), `Inter` (Body), `JetBrains Mono` (Code)
-- **Motion**: Precision-tuned ease curves `cubic-bezier(0.2, 0.8, 0.2, 1)`
+This system is engineered using a cutting-edge stack to ensure maximum efficiency and performance.
 
-## Architecture
+| Core Module | Technology | Purpose |
+| :--- | :--- | :--- |
+| **Engine** | `React 18` | Component-based UI Architecture |
+| **Bundler** | `Vite` | Next-generation frontend tooling & HMR |
+| **Styling** | `Tailwind CSS` | Utility-first, atomic CSS framework |
+| **Motion** | `Framer Motion` | Production-ready declarative animations |
+| **Physics** | `tsParticles` | Lightweight particle engine for visual FX |
+| **Scrolling** | `Lenis` | Smooth, inertia-based scrolling interface |
+| **Routing** | `React Router 6` | Client-side routing with lazy loading |
 
-The application uses a modular component structure:
+---
 
-- `src/components`: Reusable UI blocks (Hero, SystemsGrid, etc.)
-- `src/pages`: Route views lazily loaded for performance
-- `src/styles`: Global styles and strict token mapping
+## 💠 Design Philosophy
 
-## Local Setup
+- **Visual Language**: Deep space contrast with neon lime accents (`#c8ff00`)
+- **Typography**:
+  - `Clash Display` (Display Headers)
+  - `Inter` (Body Text)
+  - `JetBrains Mono` (Code & Data)
+- **Kinetic Physics**: Precision-tuned ease curves `cubic-bezier(0.2, 0.8, 0.2, 1)` for fluid interaction.
 
+---
+
+## 🛠 Local Deployment Protocol
+
+Follow these commands to clone and initialize the system locally.
+
+### 1. Clone Repository
 ```bash
-# Clone the repository
 git clone https://github.com/TarunyaProgrammer/Portfoilio.git
-
-# Navigate to project directory
 cd Portfoilio
+```
 
-# Install dependencies
+### 2. Install Dependencies
+```bash
 npm install
+```
 
-# Run development server
+### 3. Initialize Dev Server
+```bash
 npm run dev
 ```
 
-## Accessibility
+> The system will come online at `http://localhost:5173`
 
-- Semantic HTML5 structure
-- Keyboard navigable interactive elements with visible focus rings
-- Proper ARIA attributes for dynamic content
-- High contrast compliant colors
+---
 
-## Deploy
-
-Deployed seamlessly via Vercel.
+## 📂 Project Structure
 
 ```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Deploy to Preview
-vercel
-
-# Deploy to Production
-vercel --prod
+/src
+├── components/   # Reusable UI blocks (Hero, SystemsGrid, etc.)
+├── pages/        # Route views (Lazy loaded)
+├── styles/       # Global styles & strict token mapping
+└── assets/       # Static assets & media
 ```
 
-## Contact
+---
 
-Tarunya Ksh - [Connect via Terminal UI](/connect)
+## 🔒 License
+
+**© 2024 Tarunya Ksh. All Rights Reserved.**
+
+This project is licensed under the **Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International Public License (CC BY-NC-ND 4.0)**.
+
+You are free to:
+- **Share** — copy and redistribute the material in any medium or format.
+
+Under the following terms:
+- **Attribution** — You must give appropriate credit, provide a link to the license, and indicate if changes were made.
+- **NonCommercial** — You may not use the material for commercial purposes.
+- **NoDerivatives** — If you remix, transform, or build upon the material, you may not distribute the modified material.
+
+[View Full License](LICENSE)
+
+---
+
+<div align="center">
+  <p>End of Transmission</p>
+  <sub>Engineered by Tarunya Ksh</sub>
+</div>
