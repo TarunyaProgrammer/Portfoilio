@@ -2,7 +2,7 @@
 
 <div align="center">
   <br />
-    <a href="https://portfoilio-v2.vercel.app" target="_blank">
+    <a href="https://tarunyaportfolio.vercel.app/" target="_blank">
       <img src="https://img.shields.io/badge/Status-Online-brightgreen?style=for-the-badge&logo=vercel" alt="Online" />
     </a>
     <img src="https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey?style=for-the-badge" alt="License" />
@@ -28,7 +28,7 @@
 
 > **OPERATIONAL**: All systems normal.
 
-[**INITIATE SEQUENCE: VIEW LIVE DEMO**](https://portfoilio-v2.vercel.app)
+[**INITIATE SEQUENCE: VIEW LIVE DEMO**](https://tarunyaportfolio.vercel.app/)
 
 ---
 
