@@ -11,6 +11,12 @@
   <br />
 </div>
 
+<br />
+
+<div align="center">
+  <img src="public/hero-img.png" alt="Tarunya Systems Hero" width="800" style="border-radius: 8px;" />
+</div>
+
 <div align="center">
   <h3>SYSTEM ARCHITECTURE & ENGINEERING PRECISION</h3>
   <p>A high-performance, production-ready System-Design Portfolio built for the modern web. <br /> Designed with a "terminal-chic" aesthetic, prioritizing accessibility, performance, and responsive motion.</p>
@@ -21,8 +27,6 @@
 ## ⚡ System Status
 
 > **OPERATIONAL**: All systems normal.
->
-> [![Netlify Status](https://api.netlify.com/api/v1/badges/b5b63750-8438-4306-96b6-324021200232/deploy-status)](https://app.netlify.com/sites/visionary-vacherin-562725/deploys)
 
 [**INITIATE SEQUENCE: VIEW LIVE DEMO**](https://portfoilio-v2.vercel.app)
 
