@@ -3,11 +3,13 @@ import SystemsGrid from "../components/SystemsGrid/SystemsGrid";
 import LabsGrid from "../components/LabsGrid/LabsGrid";
 import Timeline from "../components/Timeline/Timeline";
 import ConnectTerminal from "../components/ConnectTerminal/ConnectTerminal";
+import Signals from "../components/Signals/Signals";
 
 const Home = () => {
   return (
     <main className="w-full bg-bg min-h-screen">
       <Hero />
+      <Signals />
       <SystemsGrid />
       <LabsGrid />
       <Timeline />

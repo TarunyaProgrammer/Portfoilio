@@ -4,7 +4,7 @@ const PageContainer = ({ children, noPadding = false }) => {
   return (
     <div
       style={{
-        paddingTop: noPadding ? 0 : "var(--nav-height)",
+        paddingTop: noPadding ? 0 : "calc(var(--nav-height) + 2rem)",
         minHeight: "100vh",
       }}
       className="bg-bg"
