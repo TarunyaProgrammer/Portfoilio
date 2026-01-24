@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
   motion,
   useScroll,
@@ -9,6 +10,8 @@ import {
 import { useCallback, useState } from "react";
 import { loadFull } from "tsparticles";
 import Particles from "react-tsparticles";
+
+const MotionLink = motion(Link);
 
 const Hero = () => {
   const particlesInit = useCallback(async (engine) => {
@@ -134,22 +137,23 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <motion.a
+            <MotionLink
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              href="/systems"
-              className="px-8 py-4 bg-transparent border border-neon text-neon font-mono text-sm tracking-widest uppercase hover:bg-neon hover:text-bg transition-colors duration-300"
+              to="/systems"
+              className="px-8 py-4 bg-transparent border border-neon text-neon font-mono text-sm tracking-widest uppercase hover:bg-neon hover:text-bg transition-colors duration-300 block text-center"
             >
               Explore Systems
-            </motion.a>
-            <motion.a
+            </MotionLink>
+            <MotionLink
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              href="/connect"
-              className="px-8 py-4 bg-grid/50 border border-transparent text-text font-mono text-sm tracking-widest uppercase hover:bg-grid hover:border-gray-600 transition-all duration-300"
+              to="/connect"
+              className="px-8 py-4 bg-grid/50 border border-transparent text-text font-mono text-sm tracking-widest uppercase hover:bg-grid hover:border-gray-600 transition-all duration-300 block text-center"
             >
               Terminal Access
-            </motion.a>
+            </MotionLink>
+
           </div>
         </motion.div>
 
