@@ -7,6 +7,8 @@ import { engageOptions } from "../data/engage";
 // Extracted for testability & cleaner main component
 const ContactForm = ({ selectedOption, onSubmitSuccess }) => {
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [summary, setSummary] = useState("");
   const [status, setStatus] = useState("idle"); // idle, sending, sent, error
   const inputRef = useRef(null);
@@ -22,7 +24,7 @@ const ContactForm = ({ selectedOption, onSubmitSuccess }) => {
     e.preventDefault();
     if (status === "sending") return;
 
-    if (name.trim().length < 2 || summary.trim().length < 10) {
+    if (name.trim().length < 2 || summary.trim().length < 10 || !email.includes("@")) {
       // Form validation handles visual cues, this is a safety check
       return;
     }
@@ -35,6 +37,8 @@ const ContactForm = ({ selectedOption, onSubmitSuccess }) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: name.trim(),
+          email: email.trim(),
+          phone: phone.trim(),
           summary: summary.trim(),
           projectTitle: selectedOption.title,
         }),
@@ -46,9 +50,10 @@ const ContactForm = ({ selectedOption, onSubmitSuccess }) => {
       }
 
       setName("");
+      setEmail("");
+      setPhone("");
       setSummary("");
       setStatus("sent");
-      // Optional: notify parent or keep local state
       
     } catch (err) {
       console.error("Contact submission error:", err);
@@ -95,13 +100,13 @@ const ContactForm = ({ selectedOption, onSubmitSuccess }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6" aria-busy={status === "sending"}>
+    <form onSubmit={handleSubmit} className="space-y-4" aria-busy={status === "sending"}>
       <div>
         <label 
           htmlFor="name-input"
           className="block text-xs font-mono text-gray-500 mb-2"
         >
-          IDENTITY / NAME
+          IDENTITY / NAME <span className="text-neon">*</span>
         </label>
         <input
           id="name-input"
@@ -119,12 +124,55 @@ const ContactForm = ({ selectedOption, onSubmitSuccess }) => {
           aria-invalid={name.length > 0 && name.length < 2}
         />
       </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label 
+            htmlFor="email-input"
+            className="block text-xs font-mono text-gray-500 mb-2"
+          >
+            EMAIL ADDRESS <span className="text-neon">*</span>
+          </label>
+          <input
+            id="email-input"
+            type="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            disabled={status === "sending"}
+            className={`w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-white focus:outline-none focus:border-neon transition-colors placeholder:text-gray-700 invalid:border-red-500/50 ${
+              status === "sending" ? "opacity-60 cursor-not-allowed" : ""
+            }`}
+            placeholder="john@example.com"
+          />
+        </div>
+        <div>
+          <label 
+            htmlFor="phone-input"
+            className="block text-xs font-mono text-gray-500 mb-2"
+          >
+            PHONE (OPTIONAL)
+          </label>
+          <input
+            id="phone-input"
+            type="tel"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            disabled={status === "sending"}
+            className={`w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-white focus:outline-none focus:border-neon transition-colors placeholder:text-gray-700 ${
+              status === "sending" ? "opacity-60 cursor-not-allowed" : ""
+            }`}
+            placeholder="+1 (555) 000-0000"
+          />
+        </div>
+      </div>
+
       <div>
         <label 
           htmlFor="summary-input"
           className="block text-xs font-mono text-gray-500 mb-2"
         >
-          BRIEFING
+          BRIEFING <span className="text-neon">*</span>
         </label>
         <textarea
           id="summary-input"
@@ -142,7 +190,7 @@ const ContactForm = ({ selectedOption, onSubmitSuccess }) => {
         />
       </div>
 
-      <div className="pt-6" aria-live="polite">
+      <div className="pt-4" aria-live="polite">
         {status === "error" && (
           <div className="mb-4 p-3 bg-red-500/10 border border-red-500/20 rounded text-red-200 text-sm">
             <span className="font-bold">TRANSMISSION FAILED</span> — Something went wrong. 
