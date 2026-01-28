@@ -4,13 +4,188 @@ import { useLocation, Link } from "react-router-dom";
 import EngageCard from "../components/EngageCard";
 import { engageOptions } from "../data/engage";
 
+// Extracted for testability & cleaner main component
+const ContactForm = ({ selectedOption, onSubmitSuccess }) => {
+  const [name, setName] = useState("");
+  const [summary, setSummary] = useState("");
+  const [status, setStatus] = useState("idle"); // idle, sending, sent, error
+  const inputRef = useRef(null);
+
+  // Focus name input on mount
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (status === "sending") return;
+
+    if (name.trim().length < 2 || summary.trim().length < 10) {
+      // Form validation handles visual cues, this is a safety check
+      return;
+    }
+
+    setStatus("sending");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name.trim(),
+          summary: summary.trim(),
+          projectTitle: selectedOption.title,
+        }),
+      });
+
+      if (!res.ok) {
+        setStatus("error");
+        return;
+      }
+
+      setName("");
+      setSummary("");
+      setStatus("sent");
+      // Optional: notify parent or keep local state
+      
+    } catch (err) {
+      console.error("Contact submission error:", err);
+      setStatus("error");
+    }
+  };
+
+  if (status === "sent") {
+    return (
+      <div 
+        role="status" 
+        aria-live="polite" 
+        className="flex-1 flex flex-col items-center justify-center text-center animate-in fade-in duration-500"
+      >
+        <div className="w-16 h-16 rounded-full border border-neon flex items-center justify-center mb-6">
+          <svg
+            className="w-8 h-8 text-neon"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+        </div>
+        <h4 className="text-2xl font-bold text-white mb-2">
+          MESSAGE QUEUED
+        </h4>
+        <p className="text-gray-400">
+          Transmission received. I will analyze your request and respond shortly.
+        </p>
+        <button 
+          onClick={() => setStatus('idle')}
+          className="mt-8 text-xs font-mono text-neon hover:underline underline-offset-4"
+        >
+          SEND ANOTHER MESSAGE
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-6" aria-busy={status === "sending"}>
+      <div>
+        <label 
+          htmlFor="name-input"
+          className="block text-xs font-mono text-gray-500 mb-2"
+        >
+          IDENTITY / NAME
+        </label>
+        <input
+          id="name-input"
+          ref={inputRef}
+          type="text"
+          required
+          minLength={2}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          disabled={status === "sending"}
+          className={`w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-white focus:outline-none focus:border-neon transition-colors placeholder:text-gray-700 invalid:border-red-500/50 ${
+            status === "sending" ? "opacity-60 cursor-not-allowed" : ""
+          }`}
+          placeholder="John Doe"
+          aria-invalid={name.length > 0 && name.length < 2}
+        />
+      </div>
+      <div>
+        <label 
+          htmlFor="summary-input"
+          className="block text-xs font-mono text-gray-500 mb-2"
+        >
+          BRIEFING
+        </label>
+        <textarea
+          id="summary-input"
+          required
+          minLength={10}
+          rows={4}
+          value={summary}
+          onChange={(e) => setSummary(e.target.value)}
+          disabled={status === "sending"}
+          className={`w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-white focus:outline-none focus:border-neon transition-colors placeholder:text-gray-700 resize-none invalid:border-red-500/50 ${
+            status === "sending" ? "opacity-60 cursor-not-allowed" : ""
+          }`}
+          placeholder="Briefly describe your project requirements..."
+          aria-invalid={summary.length > 0 && summary.length < 10}
+        />
+      </div>
+
+      <div className="pt-6" aria-live="polite">
+        {status === "error" && (
+          <div className="mb-4 p-3 bg-red-500/10 border border-red-500/20 rounded text-red-200 text-sm">
+            <span className="font-bold">TRANSMISSION FAILED</span> — Something went wrong. 
+            <br/>You can email me directly below.
+          </div>
+        )}
+        
+        <button
+          type="submit"
+          disabled={status === "sending"}
+          aria-disabled={status === "sending"}
+          className={`w-full bg-neon text-black font-bold py-4 rounded hover:bg-white transition-colors uppercase tracking-wider text-sm flex items-center justify-center gap-2 ${
+             status === "sending" ? "opacity-70 pointer-events-none" : ""
+          }`}
+        >
+          {status === "sending" ? (
+             <>
+               <span className="w-2 h-2 bg-black rounded-full animate-pulse"></span>
+               TRANSMITTING...
+             </>
+          ) : (
+            "INITIATE CONTACT"
+          )}
+        </button>
+      </div>
+      
+      <div className="text-center pt-4">
+          <p className="text-xs text-gray-600">
+              Or email directly at{" "}
+              <a href="mailto:tarunya.programmer@gmail.com" className="text-gray-400 hover:text-neon transition-colors">
+                  tarunya.programmer@gmail.com
+              </a>
+          </p>
+      </div>
+    </form>
+  );
+};
+
 const Engage = () => {
   const [selectedOption, setSelectedOption] = useState(null);
-  const [formData, setFormData] = useState({ name: "", summary: "" });
-  const [formState, setFormState] = useState("idle"); // idle, sending, sent, error
   const location = useLocation();
   const gridRef = useRef(null);
-  const firstCardRef = useRef(null);
+  const lastFocusedCard = useRef(null);
 
   // Auto-scroll to grid if hash is #what
   useEffect(() => {
@@ -24,31 +199,29 @@ const Engage = () => {
     }
   }, [location]);
 
-  const handleCardClick = (option) => {
+  // Handle Esc to close
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === "Escape" && selectedOption) {
+        closePanel();
+      }
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, [selectedOption]);
+
+  const handleCardClick = (option, e) => {
+    // Store the button that triggered the opening to restore focus later
+    lastFocusedCard.current = e.currentTarget;
     setSelectedOption(option);
-    setFormState("idle");
   };
 
   const closePanel = () => {
     setSelectedOption(null);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (formData.name.length < 2 || formData.summary.length < 10) return;
-
-    setFormState("sending");
-    
-    // Simulate API call
-    setTimeout(() => {
-      setFormState("sent");
-      // Reset after 3 seconds
-      setTimeout(() => {
-        closePanel();
-        setFormData({ name: "", summary: "" });
-        setFormState("idle");
-      }, 3000);
-    }, 1500);
+    // Restore focus to the card that opened the panel
+    if (lastFocusedCard.current) {
+      setTimeout(() => lastFocusedCard.current.focus(), 100);
+    }
   };
 
   return (
@@ -94,7 +267,18 @@ const Engage = () => {
           <EngageCard
             key={option.id}
             option={option}
-            onClick={handleCardClick}
+            onClick={(opt) => {
+                // We wrap this to pass the event object if EngageCard supports it, 
+                // but EngageCard onClick prop signature might just trigger with option.
+                // Fixing EngageCard to pass event is ideal, but here we can find the button via DOM if needed
+                // For now assuming EngageCard isn't passing 'e' directly, we'll direct-click handle it or
+                // update EngageCard.
+                // Let's assume standard behavior for now but we might need to patch EngageCard
+                // to pass the event.
+                // Actually, let's fix EngageCard to pass event up or just capture activeElement
+                lastFocusedCard.current = document.activeElement; 
+                setSelectedOption(opt);
+            }}
             isSelected={selectedOption?.id === option.id}
           />
         ))}
@@ -118,6 +302,7 @@ const Engage = () => {
             <motion.div
               role="dialog"
               aria-modal="true"
+              aria-labelledby="panel-title"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
@@ -131,14 +316,15 @@ const Engage = () => {
                   </h2>
                   <button
                     onClick={closePanel}
-                    className="text-gray-500 hover:text-white transition-colors"
+                    className="text-gray-500 hover:text-white transition-colors text-sm font-mono tracking-wider"
+                    aria-label="Close panel"
                   >
                     CLOSE [ESC]
                   </button>
                 </div>
 
                 <div className="mb-12">
-                  <h3 className="text-3xl font-heading font-bold text-white mb-2">
+                  <h3 id="panel-title" className="text-3xl font-heading font-bold text-white mb-2">
                     {selectedOption.title}
                   </h3>
                   <p className="text-gray-400 leading-relaxed mb-6">
@@ -154,87 +340,7 @@ const Engage = () => {
                   </div>
                 </div>
 
-                {formState === "sent" ? (
-                  <div className="flex-1 flex flex-col items-center justify-center text-center">
-                    <div className="w-16 h-16 rounded-full border border-neon flex items-center justify-center mb-6">
-                      <svg
-                        className="w-8 h-8 text-neon"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                    </div>
-                    <h4 className="text-2xl font-bold text-white mb-2">
-                      Transmission Received
-                    </h4>
-                    <p className="text-gray-400">
-                      I will analyze your request and respond shortly.
-                    </p>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div>
-                      <label className="block text-xs font-mono text-gray-500 mb-2">
-                        IDENTITY / NAME
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        minLength={2}
-                        value={formData.name}
-                        onChange={(e) =>
-                          setFormData({ ...formData, name: e.target.value })
-                        }
-                        className="w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-white focus:outline-none focus:border-neon transition-colors placeholder:text-gray-700"
-                        placeholder="John Doe"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-mono text-gray-500 mb-2">
-                        BRIEFING
-                      </label>
-                      <textarea
-                        required
-                        minLength={10}
-                        rows={4}
-                        value={formData.summary}
-                        onChange={(e) =>
-                          setFormData({ ...formData, summary: e.target.value })
-                        }
-                        className="w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-white focus:outline-none focus:border-neon transition-colors placeholder:text-gray-700 resize-none"
-                        placeholder="Briefly describe your project requirements..."
-                      />
-                    </div>
-
-                    <div className="pt-6">
-                      <button
-                        type="submit"
-                        disabled={formState === "sending"}
-                        className="w-full bg-neon text-black font-bold py-4 rounded hover:bg-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wider text-sm"
-                      >
-                        {formState === "sending"
-                          ? "Transmitting..."
-                          : "Initiate Contact"}
-                      </button>
-                    </div>
-                    
-                    <div className="text-center pt-4">
-                        <p className="text-xs text-gray-600">
-                            Or email directly at{" "}
-                            <a href="mailto:tarunya.programmer@gmail.com" className="text-gray-400 hover:text-neon transition-colors">
-                                tarunya.programmer@gmail.com
-                            </a>
-                        </p>
-                    </div>
-                  </form>
-                )}
+                <ContactForm selectedOption={selectedOption} />
               </div>
             </motion.div>
           </>
