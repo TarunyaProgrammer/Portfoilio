@@ -97,7 +97,7 @@ npm run dev
 
 ## 🔒 License
 
-**© 2024 Tarunya Ksh. All Rights Reserved.**
+**© 2024 - Present | Tarunya Ksh. All Rights Reserved.**
 
 This project is licensed under the **Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International Public License (CC BY-NC-ND 4.0)**.
 
