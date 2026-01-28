@@ -136,25 +136,35 @@ const Hero = () => {
             products that simplify complex workflows.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-4 flex-wrap">
+            <MotionLink
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              to="/engage#what"
+              className="px-8 py-4 bg-neon text-black font-bold font-mono text-sm tracking-widest uppercase hover:bg-white transition-colors duration-300 block text-center shadow-[0_0_20px_rgba(200,255,0,0.3)] hover:shadow-[0_0_30px_rgba(200,255,0,0.5)]"
+            >
+              Start a Project
+            </MotionLink>
+            
             <MotionLink
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               to="/systems"
-              className="px-8 py-4 bg-transparent border border-neon text-neon font-mono text-sm tracking-widest uppercase hover:bg-neon hover:text-bg transition-colors duration-300 block text-center"
+              className="px-8 py-4 bg-transparent border border-neon text-neon font-mono text-sm tracking-widest uppercase hover:bg-neon/10 transition-colors duration-300 block text-center"
             >
               Explore Systems
             </MotionLink>
+            
             <MotionLink
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               to="/connect"
-              className="px-8 py-4 bg-grid/50 border border-transparent text-text font-mono text-sm tracking-widest uppercase hover:bg-grid hover:border-gray-600 transition-all duration-300 block text-center"
+              className="px-8 py-4 bg-grid/50 border border-transparent text-gray-400 font-mono text-sm tracking-widest uppercase hover:bg-grid hover:text-white hover:border-white/20 transition-all duration-300 block text-center"
             >
-              Terminal Access
+              Terminal
             </MotionLink>
-
           </div>
+
         </motion.div>
 
         {/* Visual/Image */}

@@ -1,3 +1,4 @@
+import React from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -16,6 +17,7 @@ import LabsPage from "./pages/LabsPage";
 import OpenSource from "./pages/OpenSource";
 import ThinkingArticle from "./pages/ThinkingArticle";
 import Connect from "./pages/Connect";
+const Engage = React.lazy(() => import("./pages/Engage"));
 
 import PageContainer from "./components/PageContainer/PageContainer";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
@@ -119,6 +121,16 @@ const AnimatedRoutes = () => {
           element={
             <PageContainer>
               <Connect />
+            </PageContainer>
+          }
+        />
+        <Route
+          path="/engage"
+          element={
+            <PageContainer>
+              <React.Suspense fallback={<div className="h-screen w-full bg-bg flex items-center justify-center text-neon">INITIALIZING...</div>}>
+                <Engage />
+              </React.Suspense>
             </PageContainer>
           }
         />

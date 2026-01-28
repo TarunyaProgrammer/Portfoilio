@@ -21,7 +21,7 @@ const ConnectTerminal = () => {
           break;
         case "email":
           response = "Opening mail client... (tarunyak.10@gmail.com)";
-          window.location.href = "mailto:tarunyak.10@gmail.com";
+          window.location.href = "mailto:tarunya.programmer@gmail.com";
           break;
         case "github":
           response = "Opening GitHub...";

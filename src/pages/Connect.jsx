@@ -22,7 +22,7 @@ const Connect = () => {
       <div className="container mx-auto px-6 mt-12 text-center">
         <div className="flex justify-center gap-8 font-mono text-sm">
           <a
-            href="mailto:tarunya@example.com"
+            href="mailto:tarunya.programmer@gmail.com"
             className="text-gray-400 hover:text-neon transition-colors"
           >
             EMAIL

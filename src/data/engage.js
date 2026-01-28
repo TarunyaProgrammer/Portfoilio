@@ -1,0 +1,42 @@
+export const engageOptions = [
+  {
+    id: "startup-stack",
+    title: "Startup Website / Landing Page",
+    description: "High-performance, conversion-focused landing pages.",
+    stack: "React, Tailwind, Framer Motion, Vite",
+    outcome: "A premium, fast-loading site that converts visitors.",
+    cta: "Launch Site",
+  },
+  {
+    id: "bug-fixes",
+    title: "Bug Fixes & Performance",
+    description: "Diagnose and resolve critical rendering or logic issues.",
+    stack: "React Profiler, Chrome DevTools, optimization",
+    outcome: "Stable application with improved Core Web Vitals.",
+    cta: "Fix Issues",
+  },
+  {
+    id: "figma-react",
+    title: "Figma → React",
+    description: "Pixel-perfect implementation of existing designs.",
+    stack: "HTML5, CSS3, React, Responsive Design",
+    outcome: "Exact code replication of your design system.",
+    cta: "Convert Design",
+  },
+  {
+    id: "deployment",
+    title: "Docker + VPS Deployment",
+    description: "Containerize and deploy applications to private servers.",
+    stack: "Docker, Nginx, Linux, CI/CD",
+    outcome: "Self-hosted, scalable, and secure infrastructure.",
+    cta: "Deploy App",
+  },
+  {
+    id: "custom-systems",
+    title: "Custom / Advanced Systems",
+    description: "Complex dashboards, internal tools, or SaaS MVPs.",
+    stack: "Full Stack, API Integration, State Management",
+    outcome: "Robust software tailored to specific business needs.",
+    cta: "Build System",
+  },
+];
