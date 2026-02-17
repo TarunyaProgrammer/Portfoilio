@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useLocation, Link } from "react-router-dom";
 import EngageCard from "../components/EngageCard";
 import { engageOptions } from "../data/engage";
+import useDocumentSEO from "../hooks/useDocumentSEO";
 
 // Extracted for testability & cleaner main component
 const ContactForm = ({ selectedOption, onSubmitSuccess }) => {
@@ -24,7 +25,11 @@ const ContactForm = ({ selectedOption, onSubmitSuccess }) => {
     e.preventDefault();
     if (status === "sending") return;
 
-    if (name.trim().length < 2 || summary.trim().length < 10 || !email.includes("@")) {
+    if (
+      name.trim().length < 2 ||
+      summary.trim().length < 10 ||
+      !email.includes("@")
+    ) {
       // Form validation handles visual cues, this is a safety check
       return;
     }
@@ -54,7 +59,6 @@ const ContactForm = ({ selectedOption, onSubmitSuccess }) => {
       setPhone("");
       setSummary("");
       setStatus("sent");
-      
     } catch (err) {
       console.error("Contact submission error:", err);
       setStatus("error");
@@ -63,9 +67,9 @@ const ContactForm = ({ selectedOption, onSubmitSuccess }) => {
 
   if (status === "sent") {
     return (
-      <div 
-        role="status" 
-        aria-live="polite" 
+      <div
+        role="status"
+        aria-live="polite"
         className="flex-1 flex flex-col items-center justify-center text-center animate-in fade-in duration-500"
       >
         <div className="w-16 h-16 rounded-full border border-neon flex items-center justify-center mb-6">
@@ -83,14 +87,13 @@ const ContactForm = ({ selectedOption, onSubmitSuccess }) => {
             />
           </svg>
         </div>
-        <h4 className="text-2xl font-bold text-white mb-2">
-          MESSAGE QUEUED
-        </h4>
+        <h4 className="text-2xl font-bold text-white mb-2">MESSAGE QUEUED</h4>
         <p className="text-gray-400">
-          Transmission received. I will analyze your request and respond shortly.
+          Transmission received. I will analyze your request and respond
+          shortly.
         </p>
-        <button 
-          onClick={() => setStatus('idle')}
+        <button
+          onClick={() => setStatus("idle")}
           className="mt-8 text-xs font-mono text-neon hover:underline underline-offset-4"
         >
           SEND ANOTHER MESSAGE
@@ -100,9 +103,13 @@ const ContactForm = ({ selectedOption, onSubmitSuccess }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4" aria-busy={status === "sending"}>
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-4"
+      aria-busy={status === "sending"}
+    >
       <div>
-        <label 
+        <label
           htmlFor="name-input"
           className="block text-xs font-mono text-gray-500 mb-2"
         >
@@ -127,7 +134,7 @@ const ContactForm = ({ selectedOption, onSubmitSuccess }) => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label 
+          <label
             htmlFor="email-input"
             className="block text-xs font-mono text-gray-500 mb-2"
           >
@@ -147,7 +154,7 @@ const ContactForm = ({ selectedOption, onSubmitSuccess }) => {
           />
         </div>
         <div>
-          <label 
+          <label
             htmlFor="phone-input"
             className="block text-xs font-mono text-gray-500 mb-2"
           >
@@ -168,7 +175,7 @@ const ContactForm = ({ selectedOption, onSubmitSuccess }) => {
       </div>
 
       <div>
-        <label 
+        <label
           htmlFor="summary-input"
           className="block text-xs font-mono text-gray-500 mb-2"
         >
@@ -193,43 +200,54 @@ const ContactForm = ({ selectedOption, onSubmitSuccess }) => {
       <div className="pt-4" aria-live="polite">
         {status === "error" && (
           <div className="mb-4 p-3 bg-red-500/10 border border-red-500/20 rounded text-red-200 text-sm">
-            <span className="font-bold">TRANSMISSION FAILED</span> — Something went wrong. 
-            <br/>You can email me directly below.
+            <span className="font-bold">TRANSMISSION FAILED</span> — Something
+            went wrong.
+            <br />
+            You can email me directly below.
           </div>
         )}
-        
+
         <button
           type="submit"
           disabled={status === "sending"}
           aria-disabled={status === "sending"}
           className={`w-full bg-neon text-black font-bold py-4 rounded hover:bg-white transition-colors uppercase tracking-wider text-sm flex items-center justify-center gap-2 ${
-             status === "sending" ? "opacity-70 pointer-events-none" : ""
+            status === "sending" ? "opacity-70 pointer-events-none" : ""
           }`}
         >
           {status === "sending" ? (
-             <>
-               <span className="w-2 h-2 bg-black rounded-full animate-pulse"></span>
-               TRANSMITTING...
-             </>
+            <>
+              <span className="w-2 h-2 bg-black rounded-full animate-pulse"></span>
+              TRANSMITTING...
+            </>
           ) : (
             "INITIATE CONTACT"
           )}
         </button>
       </div>
-      
+
       <div className="text-center pt-4">
-          <p className="text-xs text-gray-600">
-              Or email directly at{" "}
-              <a href="mailto:tarunya.programmer@gmail.com" className="text-gray-400 hover:text-neon transition-colors">
-                  tarunya.programmer@gmail.com
-              </a>
-          </p>
+        <p className="text-xs text-gray-600">
+          Or email directly at{" "}
+          <a
+            href="mailto:tarunya.programmer@gmail.com"
+            className="text-gray-400 hover:text-neon transition-colors"
+          >
+            tarunya.programmer@gmail.com
+          </a>
+        </p>
       </div>
     </form>
   );
 };
 
 const Engage = () => {
+  useDocumentSEO({
+    title: "Engage",
+    description:
+      "Hire Tarunya Kesharwani — startup landing pages, bug fixes, Figma-to-React, Docker deployments, and custom SaaS systems. Production-ready web engineering.",
+  });
+
   const [selectedOption, setSelectedOption] = useState(null);
   const location = useLocation();
   const gridRef = useRef(null);
@@ -295,13 +313,16 @@ const Engage = () => {
           From design &rarr; React &rarr; Docker &rarr; deployment.
         </motion.p>
         <motion.div
-           initial={{ opacity: 0 }}
-           animate={{ opacity: 1 }}
-           transition={{ delay: 0.5 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
         >
-             <Link to="/" className="text-xs text-gray-500 hover:text-white transition-colors underline underline-offset-4">
-                &larr; Back to profile
-            </Link>
+          <Link
+            to="/"
+            className="text-xs text-gray-500 hover:text-white transition-colors underline underline-offset-4"
+          >
+            &larr; Back to profile
+          </Link>
         </motion.div>
       </section>
 
@@ -316,16 +337,16 @@ const Engage = () => {
             key={option.id}
             option={option}
             onClick={(opt) => {
-                // We wrap this to pass the event object if EngageCard supports it, 
-                // but EngageCard onClick prop signature might just trigger with option.
-                // Fixing EngageCard to pass event is ideal, but here we can find the button via DOM if needed
-                // For now assuming EngageCard isn't passing 'e' directly, we'll direct-click handle it or
-                // update EngageCard.
-                // Let's assume standard behavior for now but we might need to patch EngageCard
-                // to pass the event.
-                // Actually, let's fix EngageCard to pass event up or just capture activeElement
-                lastFocusedCard.current = document.activeElement; 
-                setSelectedOption(opt);
+              // We wrap this to pass the event object if EngageCard supports it,
+              // but EngageCard onClick prop signature might just trigger with option.
+              // Fixing EngageCard to pass event is ideal, but here we can find the button via DOM if needed
+              // For now assuming EngageCard isn't passing 'e' directly, we'll direct-click handle it or
+              // update EngageCard.
+              // Let's assume standard behavior for now but we might need to patch EngageCard
+              // to pass the event.
+              // Actually, let's fix EngageCard to pass event up or just capture activeElement
+              lastFocusedCard.current = document.activeElement;
+              setSelectedOption(opt);
             }}
             isSelected={selectedOption?.id === option.id}
           />
@@ -372,7 +393,10 @@ const Engage = () => {
                 </div>
 
                 <div className="mb-12">
-                  <h3 id="panel-title" className="text-3xl font-heading font-bold text-white mb-2">
+                  <h3
+                    id="panel-title"
+                    className="text-3xl font-heading font-bold text-white mb-2"
+                  >
                     {selectedOption.title}
                   </h3>
                   <p className="text-gray-400 leading-relaxed mb-6">

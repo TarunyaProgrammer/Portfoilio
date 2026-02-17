@@ -1,11 +1,17 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import useDocumentSEO from "../hooks/useDocumentSEO";
 
 const SystemDetail = () => {
   const { slug } = useParams();
+  const prettyName = slug
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (c) => c.toUpperCase());
 
-  // In a real app, fetch data based on slug.
-  // For demo, we just display static content matching the theme.
+  useDocumentSEO({
+    title: prettyName,
+    description: `Architecture overview, performance metrics, and tech-stack breakdown for ${prettyName} — a system built by Tarunya Kesharwani.`,
+  });
 
   return (
     <motion.section
@@ -75,7 +81,7 @@ const SystemDetail = () => {
                     >
                       {t}
                     </span>
-                  )
+                  ),
                 )}
               </div>
             </div>

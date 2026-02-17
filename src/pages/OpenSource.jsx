@@ -1,6 +1,13 @@
 import { motion } from "framer-motion";
+import useDocumentSEO from "../hooks/useDocumentSEO";
 
 const OpenSource = () => {
+  useDocumentSEO({
+    title: "Open Source",
+    description:
+      "Tarunya's open-source contributions — distributed locking libraries, particle animation systems, and a learning log of explorations in AI, Rust, and systems design.",
+  });
+
   return (
     <motion.div
       initial={{ opacity: 0 }}

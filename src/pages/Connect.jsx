@@ -1,7 +1,14 @@
 import { motion } from "framer-motion";
 import ConnectTerminal from "../components/ConnectTerminal/ConnectTerminal";
+import useDocumentSEO from "../hooks/useDocumentSEO";
 
 const Connect = () => {
+  useDocumentSEO({
+    title: "Connect",
+    description:
+      "Get in touch with Tarunya Kesharwani — available for consulting, architectural reviews, and collaborative engineering. Reach out via email, GitHub, or LinkedIn.",
+  });
+
   return (
     <motion.div
       initial={{ opacity: 0 }}

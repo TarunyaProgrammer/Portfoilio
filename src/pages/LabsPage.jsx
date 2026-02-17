@@ -1,7 +1,14 @@
 import LabsGrid from "../components/LabsGrid/LabsGrid";
 import { motion } from "framer-motion";
+import useDocumentSEO from "../hooks/useDocumentSEO";
 
 const LabsPage = () => {
+  useDocumentSEO({
+    title: "Laboratory",
+    description:
+      "Experimental R&D prototypes — smart expense categorization, habit analytics, AI note summarization, offline-first SaaS patterns, and more. Caution: unstable.",
+  });
+
   return (
     <motion.div
       initial={{ opacity: 0 }}

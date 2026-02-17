@@ -1,7 +1,14 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import useDocumentSEO from "../hooks/useDocumentSEO";
 
 const ThinkingArticle = () => {
+  useDocumentSEO({
+    title: "The Future of Systems",
+    description:
+      "A long-form essay on why the next generation of systems will be calmer, not louder — exploring inference latency, localized caching, and the philosophical shift from microservices to colocated intelligence.",
+  });
+
   return (
     <article className="min-h-screen bg-bg relative overflow-x-hidden selection:bg-neon selection:text-black">
       {/* Navigation */}

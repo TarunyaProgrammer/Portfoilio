@@ -1,0 +1,19 @@
+# ═══════════════════════════════════════════════════════════
+#  Tarunya Systems — robots.txt
+#  https://tarunyaportfolio.vercel.app
+# ═══════════════════════════════════════════════════════════
+
+# Allow all search engines full access
+User-agent: *
+Allow: /
+
+# Sitemap location (for Google Search Console & other crawlers)
+Sitemap: https://tarunyaportfolio.vercel.app/sitemap.xml
+
+# Specifically welcome Googlebot
+User-agent: Googlebot
+Allow: /
+
+# Welcome Bingbot
+User-agent: Bingbot
+Allow: /

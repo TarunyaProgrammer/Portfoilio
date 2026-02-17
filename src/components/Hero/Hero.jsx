@@ -145,7 +145,7 @@ const Hero = () => {
             >
               Start a Project
             </MotionLink>
-            
+
             <MotionLink
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -154,7 +154,7 @@ const Hero = () => {
             >
               Explore Systems
             </MotionLink>
-            
+
             <MotionLink
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -164,7 +164,6 @@ const Hero = () => {
               Terminal
             </MotionLink>
           </div>
-
         </motion.div>
 
         {/* Visual/Image */}
@@ -183,11 +182,11 @@ const Hero = () => {
             <div className="absolute inset-0 bg-gradient-to-tr from-neon/20 to-sysblue/20 mix-blend-overlay z-20 transition-opacity duration-500 opacity-50 group-hover:opacity-0"></div>
             <img
               src="/ME.png"
-              alt="Tarunya"
+              alt="Tarunya Kesharwani — Full-Stack Engineer and Systems Architect"
               className="w-full h-full object-cover filter grayscale contrast-125 brightness-90 group-hover:grayscale-0 group-hover:contrast-100 transition-all duration-700 ease-out"
             />
             {/* Image Fade/Mask for top-right blend */}
-             <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-bg via-bg/50 to-transparent z-20 pointer-events-none"></div>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-bg via-bg/50 to-transparent z-20 pointer-events-none"></div>
 
             {/* Glitch/Tech Overlays */}
             <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-20 mix-blend-overlay z-30 pointer-events-none"></div>

@@ -1,7 +1,14 @@
 import SystemsGrid from "../components/SystemsGrid/SystemsGrid";
 import { motion } from "framer-motion";
+import useDocumentSEO from "../hooks/useDocumentSEO";
 
 const SystemsPage = () => {
+  useDocumentSEO({
+    title: "Systems Registry",
+    description:
+      "Explore Tarunya's engineered solutions — AI proposal builders, habit trackers, fintech wallets, weather platforms, and more. Full architecture docs and tech-stack breakdowns.",
+  });
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
