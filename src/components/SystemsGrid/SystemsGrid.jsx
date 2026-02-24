@@ -2,14 +2,18 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import SystemCard from "../SystemCard/SystemCard";
 
-const SystemsGrid = ({ limit = Infinity, showViewAll = true }) => {
+const SystemsGrid = ({
+  limit = Infinity,
+  showViewAll = true,
+  type = "all",
+}) => {
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchRepos = async () => {
       try {
-        const response = await fetch("/api/github/repos");
+        const response = await fetch(`/api/github/repos?type=${type}`);
         if (!response.ok) throw new Error("Failed to fetch repos");
         const data = await response.json();
 

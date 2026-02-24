@@ -1,53 +1,119 @@
 export default async function handler(req, res) {
-  // Cache for 1 hour, stale-while-revalidate for background updates
+  const { type } = req.query; // 'pinned' or 'all'
+  const isPinnedRequest = type === "pinned";
+
   res.setHeader("Cache-Control", "s-maxage=3600, stale-while-revalidate");
 
   const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
   const USERNAME = "TarunyaProgrammer";
 
-  try {
-    const headers = GITHUB_TOKEN
-      ? {
-          Authorization: `token ${GITHUB_TOKEN}`,
-          Accept: "application/vnd.github.v3+json",
+  if (!GITHUB_TOKEN) {
+    return res.status(500).json({ error: "GITHUB_TOKEN not configured" });
+  }
+
+  // GraphQL Query for Pinned Items or All Repos
+  const query = isPinnedRequest
+    ? `
+      query {
+        user(login: "${USERNAME}") {
+          pinnedItems(first: 12, types: REPOSITORY) {
+            nodes {
+              ... on Repository {
+                name
+                description
+                stargazerCount
+                forkCount
+                url
+                homepageUrl
+                pushedAt
+                repositoryTopics(first: 10) {
+                  nodes {
+                    topic {
+                      name
+                    }
+                  }
+                }
+                languages(first: 1, orderBy: {field: SIZE, direction: DESC}) {
+                  nodes {
+                    name
+                  }
+                }
+              }
+            }
+          }
         }
-      : { Accept: "application/vnd.github.v3+json" };
+      }
+    `
+    : `
+      query {
+        user(login: "${USERNAME}") {
+          repositories(first: 100, orderBy: {field: PUSHED_AT, direction: DESC}, privacy: PUBLIC, isFork: false) {
+            nodes {
+              name
+              description
+              stargazerCount
+              forkCount
+              url
+              homepageUrl
+              pushedAt
+              repositoryTopics(first: 10) {
+                nodes {
+                  topic {
+                    name
+                  }
+                }
+              }
+              languages(first: 1, orderBy: {field: SIZE, direction: DESC}) {
+                nodes {
+                  name
+                }
+              }
+            }
+          }
+        }
+      }
+    `;
 
-    const response = await fetch(
-      `https://api.github.com/users/${USERNAME}/repos?per_page=100&sort=updated&direction=desc`,
-      { headers },
-    );
+  try {
+    const response = await fetch("https://api.github.com/graphql", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${GITHUB_TOKEN}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ query }),
+    });
 
-    if (!response.ok) {
-      throw new Error(`GitHub API failed with status ${response.status}`);
+    const result = await response.json();
+
+    if (result.errors) {
+      console.error("GraphQL Errors:", result.errors);
+      throw new Error("GitHub GraphQL API failed");
     }
 
-    const repos = await response.json();
+    const nodes = isPinnedRequest
+      ? result.data.user.pinnedItems.nodes
+      : result.data.user.repositories.nodes;
 
-    // Filter out forks if you only want your original work
-    const myRepos = repos.filter((repo) => !repo.fork);
-
-    // Map to a clean structure for the frontend
-    const cleanedRepos = myRepos.map((repo) => ({
-      id: repo.id,
+    const cleanedRepos = nodes.map((repo, index) => ({
+      id: index + 1,
       name: repo.name,
       title: repo.name
         .replace(/-/g, " ")
         .replace(/\b\w/g, (c) => c.toUpperCase()),
       description: repo.description,
-      stars: repo.stargazers_count,
-      forks: repo.forks_count,
-      topics: repo.topics || [],
-      url: repo.html_url,
-      updatedAt: repo.pushed_at,
-      homepage: repo.homepage,
-      language: repo.language,
-      size: repo.size,
+      stars: repo.stargazerCount,
+      forks: repo.forkCount,
+      topics: repo.repositoryTopics.nodes.map((n) => n.topic.name),
+      url: repo.url,
+      updatedAt: repo.pushedAt,
+      homepage: repo.homepageUrl,
+      language: repo.languages.nodes[0]?.name || "Code",
     }));
 
     res.status(200).json(cleanedRepos);
   } catch (error) {
     console.error("GitHub Repos Error:", error);
-    res.status(500).json({ error: "Failed to fetch repositories" });
+    res.status(500).json({ error: "Failed to fetch repositories via GraphQL" });
   }
 }
