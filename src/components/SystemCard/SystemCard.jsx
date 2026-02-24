@@ -63,9 +63,16 @@ const SystemCard = ({ system, index }) => {
             </motion.p>
           </div>
 
-          <span className="text-xs font-mono text-gray-500/50 shrink-0 ml-4">
-            0{system.id}
-          </span>
+          <div className="flex items-center gap-3 shrink-0 ml-4">
+            {system.isFork && (
+              <span className="text-[10px] font-mono px-2 py-0.5 bg-sysblue/20 text-sysblue border border-sysblue/30 rounded uppercase tracking-tighter">
+                Fork
+              </span>
+            )}
+            <span className="text-xs font-mono text-gray-500/50">
+              0{system.id}
+            </span>
+          </div>
         </div>
 
         {/* Collapsed View Tech Stack */}

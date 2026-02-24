@@ -21,6 +21,7 @@ export default async function handler(req, res) {
               ... on Repository {
                 name
                 description
+                isFork
                 stargazerCount
                 forkCount
                 url
@@ -47,10 +48,11 @@ export default async function handler(req, res) {
     : `
       query {
         user(login: "${USERNAME}") {
-          repositories(first: 100, orderBy: {field: PUSHED_AT, direction: DESC}, privacy: PUBLIC, isFork: false) {
+          repositories(first: 100, orderBy: {field: PUSHED_AT, direction: DESC}, privacy: PUBLIC) {
             nodes {
               name
               description
+              isFork
               stargazerCount
               forkCount
               url
@@ -102,6 +104,7 @@ export default async function handler(req, res) {
         .replace(/-/g, " ")
         .replace(/\b\w/g, (c) => c.toUpperCase()),
       description: repo.description,
+      isFork: repo.isFork,
       stars: repo.stargazerCount,
       forks: repo.forkCount,
       topics: repo.repositoryTopics.nodes.map((n) => n.topic.name),
