@@ -17,6 +17,7 @@ import LabsPage from "./pages/LabsPage";
 import OpenSource from "./pages/OpenSource";
 import ThinkingArticle from "./pages/ThinkingArticle";
 import Connect from "./pages/Connect";
+import ResumePage from "./pages/ResumePage";
 const Engage = React.lazy(() => import("./pages/Engage"));
 
 import PageContainer from "./components/PageContainer/PageContainer";
@@ -44,6 +45,7 @@ const Nav = () => {
     { to: "/labs", label: "LABS" },
     { to: "/open-source", label: "OPEN SOURCE" },
     { to: "/thinking/future-of-systems", label: "THINKING" },
+    { to: "/resume", label: "RESUME" },
   ];
 
   return (
@@ -214,6 +216,14 @@ const AnimatedRoutes = () => {
           element={
             <PageContainer>
               <Connect />
+            </PageContainer>
+          }
+        />
+        <Route
+          path="/resume"
+          element={
+            <PageContainer>
+              <ResumePage />
             </PageContainer>
           }
         />

@@ -163,6 +163,27 @@ const Hero = () => {
             >
               Terminal
             </MotionLink>
+
+            <MotionLink
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              to="/resume"
+              className="flex items-center justify-center gap-2 px-8 py-4 bg-transparent border border-white/20 text-gray-400 font-mono text-sm tracking-widest uppercase hover:border-neon/50 hover:text-neon transition-all duration-300"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                className="w-4 h-4 shrink-0"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M4.5 2A1.5 1.5 0 003 3.5v13A1.5 1.5 0 004.5 18h11a1.5 1.5 0 001.5-1.5V7.621a1.5 1.5 0 00-.44-1.06l-4.12-4.122A1.5 1.5 0 0011.378 2H4.5zm2.25 8.5a.75.75 0 000 1.5h6.5a.75.75 0 000-1.5h-6.5zm0 3a.75.75 0 000 1.5h6.5a.75.75 0 000-1.5h-6.5zm0-6a.75.75 0 000 1.5h3.5a.75.75 0 000-1.5h-3.5z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              View Resume
+            </MotionLink>
           </div>
         </motion.div>
 
