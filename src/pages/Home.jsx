@@ -17,7 +17,7 @@ const Home = () => {
     <main className="w-full bg-bg min-h-screen">
       <Hero />
       <Signals />
-      <SystemsGrid />
+      <SystemsGrid limit={12} />
       <LabsGrid />
       <Timeline />
       <ConnectTerminal />

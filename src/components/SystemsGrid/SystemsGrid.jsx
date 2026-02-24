@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import SystemCard from "../SystemCard/SystemCard";
 
-const SystemsGrid = () => {
+const SystemsGrid = ({ limit = Infinity, showViewAll = true }) => {
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -78,12 +78,14 @@ const SystemsGrid = () => {
               / ARCHITECTURE / ENGINEERING / SCALE
             </p>
           </div>
-          <a
-            href="/systems"
-            className="hidden md:block text-neon font-mono hover:underline decoration-neon underline-offset-4 text-sm"
-          >
-            VIEW ALL MODULES &rarr;
-          </a>
+          {showViewAll && (
+            <a
+              href="/systems"
+              className="hidden md:block text-neon font-mono hover:underline decoration-neon underline-offset-4 text-sm"
+            >
+              VIEW ALL MODULES &rarr;
+            </a>
+          )}
         </motion.div>
 
         {loading ? (
@@ -97,20 +99,22 @@ const SystemsGrid = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {repos.slice(0, 12).map((system, index) => (
+            {repos.slice(0, limit).map((system, index) => (
               <SystemCard key={system.id} system={system} index={index} />
             ))}
           </div>
         )}
 
-        <div className="mt-12 text-center md:hidden">
-          <a
-            href="/systems"
-            className="text-neon font-mono hover:underline decoration-neon underline-offset-4"
-          >
-            View All Modules -&gt;
-          </a>
-        </div>
+        {showViewAll && (
+          <div className="mt-12 text-center md:hidden">
+            <a
+              href="/systems"
+              className="text-neon font-mono hover:underline decoration-neon underline-offset-4"
+            >
+              View All Modules -&gt;
+            </a>
+          </div>
+        )}
       </div>
     </section>
   );

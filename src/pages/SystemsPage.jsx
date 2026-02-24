@@ -25,7 +25,7 @@ const SystemsPage = () => {
           architecture patterns, performance metrics, and technological choices.
         </p>
       </div>
-      <SystemsGrid />
+      <SystemsGrid showViewAll={false} />
     </motion.div>
   );
 };
