@@ -120,7 +120,7 @@ Reply to: ${safeEmail}
 
     await transporter.sendMail({
       from: `"Tarunya Systems" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_USER,
+      to: 'tarunyaprogrammer@gmail.com',
       replyTo: safeEmail, // Critical: replies go to client
       subject: `🚀 New Startup Inquiry — ${safeProjectTitle} | ${safeName}`,
       text: textContent,

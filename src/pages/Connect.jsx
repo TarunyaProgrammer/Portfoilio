@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
-import ConnectTerminal from "../components/ConnectTerminal/ConnectTerminal";
+import ConnectTerminal from "../components/ConnectTerminal.jsx";
 import useDocumentSEO from "../hooks/useDocumentSEO";
 
 const Connect = () => {
   useDocumentSEO({
-    title: "Connect",
+    title: "Connect — Tarunya Kesharwani",
     description:
-      "Get in touch with Tarunya Kesharwani — available for consulting, architectural reviews, and collaborative engineering. Reach out via email, GitHub, or LinkedIn.",
+      "Establish a connection for architectural reviews, consulting, or collaborative engineering initiatives.",
   });
 
   return (
@@ -14,40 +14,24 @@ const Connect = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen bg-bg"
+      className="min-h-screen bg-white pt-32 md:pt-48"
     >
-      <div className="container mx-auto px-6 mb-12 text-center">
-        <h1 className="text-6xl font-heading font-bold mb-4">Uplink</h1>
-        <p className="text-gray-400 max-w-xl mx-auto">
-          Establish a secure connection. Available for consulting, architectural
-          reviews, and collaborative engineering.
+      <div className="container mx-auto px-8 mb-24">
+        <div className="text-[10px] font-bold text-black/30 uppercase tracking-[0.5em] mb-4">
+          secure channel
+        </div>
+        <h1 className="text-6xl md:text-9xl font-bold text-black leading-none mb-8 tracking-tighter">
+          Establish <br />
+          <span className="italic font-normal opacity-20">Connection</span>
+        </h1>
+        <p className="text-black/60 font-medium text-xl max-w-2xl leading-relaxed">
+          Available for technical consultation, architectural reviews, and 
+          ambitious collaborative ventures. Please use the inquiry sheet below 
+          to initiate correspondence.
         </p>
       </div>
 
       <ConnectTerminal />
-
-      <div className="container mx-auto px-6 mt-12 text-center">
-        <div className="flex justify-center gap-8 font-mono text-sm">
-          <a
-            href="mailto:tarunya.programmer@gmail.com"
-            className="text-gray-400 hover:text-neon transition-colors"
-          >
-            EMAIL
-          </a>
-          <a
-            href="https://github.com/TarunyaProgrammer"
-            className="text-gray-400 hover:text-neon transition-colors"
-          >
-            GITHUB
-          </a>
-          <a
-            href="https://linkedin.com/in/tarunya"
-            className="text-gray-400 hover:text-neon transition-colors"
-          >
-            LINKEDIN
-          </a>
-        </div>
-      </div>
     </motion.div>
   );
 };

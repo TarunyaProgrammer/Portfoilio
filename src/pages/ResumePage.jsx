@@ -4,70 +4,68 @@ import useDocumentSEO from "../hooks/useDocumentSEO";
 
 const ResumePage = () => {
   useDocumentSEO({
-    title: "Resume — Tarunya Kesharwani",
+    title: "Curriculum Vitae — Tarunya Kesharwani",
     description:
-      "View and download the resume of Tarunya Kesharwani, Full-Stack Engineer & Systems Architect.",
+      "A comprehensive record of systems built, technical contributions, and professional experience.",
   });
 
   const [isHovering, setIsHovering] = useState(false);
   const [iframeLoaded, setIframeLoaded] = useState(false);
 
   return (
-    <main className="w-full bg-bg min-h-screen pt-8 pb-24 px-6">
-      <div className="max-w-5xl mx-auto">
+    <main className="w-full bg-white min-h-screen pt-32 md:pt-48 pb-32 px-8">
+      <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="mb-16"
+          transition={{ duration: 0.8, ease: [0.2, 0.8, 0.2, 1] }}
+          className="mb-24 text-center md:text-left"
         >
-          <p className="font-mono text-neon text-xs tracking-[0.3em] uppercase mb-4">
-            // credentials
-          </p>
-          <h1 className="text-5xl md:text-7xl font-heading font-bold tracking-tighter text-white leading-tight mb-6">
-            My <span className="text-neon text-neon-glow">Resume</span>
+          <div className="text-[10px] font-bold text-black/30 uppercase tracking-[0.5em] mb-4">
+            professional record
+          </div>
+          <h1 className="text-6xl md:text-9xl font-bold text-black leading-none mb-8 tracking-tighter">
+            Curriculum <br />
+            <span className="italic font-normal opacity-20">Vitae</span>
           </h1>
-          <p className="text-gray-400 text-lg max-w-xl leading-relaxed">
-            A snapshot of systems built, skills acquired, and contributions
-            made. Download or view it directly below.
+          <p className="text-black/60 font-medium text-xl max-w-2xl leading-relaxed">
+            A comprehensive record of system architecture, engineering initiatives, 
+            and technical contributions in the digital space.
           </p>
         </motion.div>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-12 items-start">
-          {/* PDF Preview — left col */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-24 items-start">
+          {/* PDF Preview */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
+            transition={{ duration: 1, delay: 0.2 }}
           >
             <div
-              className="relative rounded-2xl overflow-hidden border border-white/10 group cursor-pointer"
-              style={{ aspectRatio: "8.5 / 11", maxHeight: "80vh" }}
+              className="relative bg-white border border-black/10 shadow-2xl overflow-hidden group cursor-pointer"
+              style={{ aspectRatio: "1 / 1.414" }}
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
             >
               {/* Loading skeleton */}
               {!iframeLoaded && (
-                <div className="absolute inset-0 bg-[#10121e] flex items-center justify-center z-10">
+                <div className="absolute inset-0 bg-black/5 flex items-center justify-center z-10">
                   <div className="flex flex-col items-center gap-4">
-                    <div className="w-8 h-8 border-2 border-neon border-t-transparent rounded-full animate-spin" />
-                    <p className="font-mono text-xs text-gray-500 tracking-widest">
-                      LOADING RESUME...
+                    <div className="w-10 h-10 border-2 border-black border-t-transparent rounded-full animate-spin" />
+                    <p className="text-[10px] font-bold text-black/30 tracking-widest uppercase">
+                      Document Syncing
                     </p>
                   </div>
                 </div>
               )}
 
-              {/* Neon glow border on hover */}
-              <div className="absolute inset-0 rounded-2xl border border-neon/0 group-hover:border-neon/40 transition-all duration-500 z-20 pointer-events-none shadow-[0_0_0px_rgba(200,255,0,0)] group-hover:shadow-[0_0_40px_rgba(200,255,0,0.1)]" />
-
               {/* PDF iframe */}
               <iframe
                 src="/Resume.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
                 title="Tarunya Kesharwani Resume"
-                className="w-full h-full border-0 bg-[#10121e]"
+                className="w-full h-full border-0 bg-white"
                 onLoad={() => setIframeLoaded(true)}
               />
 
@@ -78,83 +76,49 @@ const ResumePage = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: 0.25 }}
-                    className="absolute inset-0 bg-bg/80 backdrop-blur-sm z-30 flex flex-col items-center justify-center gap-5"
+                    className="absolute inset-0 bg-white/90 backdrop-blur-sm z-30 flex flex-col items-center justify-center gap-8"
                   >
-                    {/* PDF Icon */}
-                    <motion.div
-                      initial={{ scale: 0.8, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      transition={{ delay: 0.05 }}
-                      className="w-16 h-16 rounded-full border border-neon/40 bg-neon/10 flex items-center justify-center"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        className="w-8 h-8 text-neon"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
-                        />
-                      </svg>
-                    </motion.div>
-
                     <motion.a
                       href="/Resume.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
-                      initial={{ y: 10, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 0.1 }}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="px-8 py-3 bg-neon text-black font-bold font-mono text-sm tracking-widest uppercase hover:bg-white transition-colors duration-300 shadow-[0_0_20px_rgba(200,255,0,0.4)]"
+                      className="px-12 py-5 bg-black text-white font-bold text-lg uppercase tracking-widest hover:bg-black/90 transition-all"
                     >
-                      View Full PDF
+                      Open Document
                     </motion.a>
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
-
-            {/* Subtle caption */}
-            <p className="font-mono text-xs text-gray-600 mt-3 text-center tracking-widest">
-              HOVER TO OPEN · SCROLL TO BROWSE
-            </p>
           </motion.div>
 
           {/* Right Col — Info + Action buttons */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-            className="flex flex-col gap-6 lg:sticky lg:top-28"
+            transition={{ duration: 1, delay: 0.4 }}
+            className="space-y-12 lg:sticky lg:top-32"
           >
             {/* Stats / Tags */}
-            <div className="border border-white/10 rounded-xl p-6 bg-white/[0.02]">
-              <p className="font-mono text-xs text-neon tracking-[0.25em] uppercase mb-4">
-                Quick Facts
+            <div className="border-t border-black/10 pt-8">
+              <p className="text-[10px] font-bold text-black/30 uppercase tracking-[0.4em] mb-6">
+                Core Competencies
               </p>
-              <ul className="space-y-3">
+              <ul className="space-y-6">
                 {[
                   ["Role", "Full-Stack Engineer"],
-                  ["Focus", "Systems & AI-Powered Products"],
-                  ["Stack", "React · Node · Python · Docker"],
-                  ["Open to", "Full-time & Contract"],
+                  ["Specialization", "System Architecture & AI"],
+                  ["Primary Stack", "React & Node.js Ecosystem"],
+                  ["Availability", "Consultation & Projects"],
                 ].map(([label, value]) => (
                   <li
                     key={label}
-                    className="flex justify-between items-start gap-4"
+                    className="flex flex-col gap-1"
                   >
-                    <span className="font-mono text-xs text-gray-500 uppercase tracking-wider shrink-0">
+                    <span className="text-[10px] font-bold text-black/40 uppercase tracking-wider">
                       {label}
                     </span>
-                    <span className="font-mono text-xs text-gray-300 text-right">
+                    <span className="text-xl font-bold text-black tracking-tight">
                       {value}
                     </span>
                   </li>
@@ -163,99 +127,36 @@ const ResumePage = () => {
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-col gap-3">
-              {/* View Full PDF */}
-              <motion.a
+            <div className="flex flex-col gap-4">
+              <a
                 href="/Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.02, x: 4 }}
-                whileTap={{ scale: 0.97 }}
-                className="flex items-center justify-between px-6 py-4 bg-neon text-black font-bold font-mono text-sm tracking-widest uppercase hover:bg-white transition-colors duration-300 shadow-[0_0_20px_rgba(200,255,0,0.25)] hover:shadow-[0_0_30px_rgba(200,255,0,0.5)]"
+                className="flex items-center justify-between px-8 py-6 bg-black text-white font-bold text-lg uppercase tracking-widest hover:bg-black/90 transition-all"
               >
-                <span className="flex items-center gap-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    className="w-4 h-4"
-                  >
-                    <path d="M10 12.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" />
-                    <path
-                      fillRule="evenodd"
-                      d="M.664 10.59a1.651 1.651 0 010-1.186A10.004 10.004 0 0110 3c4.257 0 7.893 2.66 9.336 6.41.147.381.146.804 0 1.186A10.004 10.004 0 0110 17c-4.257 0-7.893-2.66-9.336-6.41z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  View Full PDF
-                </span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  className="w-4 h-4 shrink-0"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                    clipRule="evenodd"
-                  />
+                View PDF
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </motion.a>
+              </a>
 
-              {/* Download PDF */}
-              <motion.a
+              <a
                 href="/Resume.pdf"
                 download="Tarunya_Kesharwani_Resume.pdf"
-                whileHover={{ scale: 1.02, x: 4 }}
-                whileTap={{ scale: 0.97 }}
-                className="flex items-center justify-between px-6 py-4 bg-transparent border border-neon text-neon font-mono text-sm tracking-widest uppercase hover:bg-neon/10 transition-colors duration-300"
+                className="flex items-center justify-between px-8 py-6 border-2 border-black text-black font-bold text-lg uppercase tracking-widest hover:bg-black hover:text-white transition-all"
               >
-                <span className="flex items-center gap-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    className="w-4 h-4"
-                  >
-                    <path d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z" />
-                    <path d="M3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z" />
-                  </svg>
-                  Download PDF
-                </span>
-                <span className="text-gray-500 text-xs font-mono">PDF</span>
-              </motion.a>
-
-              {/* Divider */}
-              <div className="border-t border-white/10 my-1" />
-
-              {/* Connect CTA */}
-              <motion.a
-                href="/connect"
-                whileHover={{ scale: 1.02, x: 4 }}
-                whileTap={{ scale: 0.97 }}
-                className="flex items-center justify-between px-6 py-4 bg-white/[0.03] border border-white/10 text-gray-400 font-mono text-sm tracking-widest uppercase hover:bg-white/[0.06] hover:text-white hover:border-white/20 transition-all duration-300"
-              >
-                <span>Let's Work Together</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  className="w-4 h-4 shrink-0"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                    clipRule="evenodd"
-                  />
+                Download
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
-              </motion.a>
+              </a>
             </div>
 
-            {/* Last Updated note */}
-            <p className="font-mono text-xs text-gray-600 tracking-widest text-center">
-              LAST UPDATED · FEB 2026
-            </p>
+            <div className="border-t border-black/10 pt-8">
+              <p className="text-[10px] font-bold text-black/20 uppercase tracking-[0.5em] text-center">
+                Last updated &middot; February 2026
+              </p>
+            </div>
           </motion.div>
         </div>
       </div>

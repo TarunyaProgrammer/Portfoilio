@@ -1,12 +1,12 @@
-import LabsGrid from "../components/LabsGrid/LabsGrid";
+import LabsGrid from "../components/LabsGrid.jsx";
 import { motion } from "framer-motion";
 import useDocumentSEO from "../hooks/useDocumentSEO";
 
 const LabsPage = () => {
   useDocumentSEO({
-    title: "Laboratory",
+    title: "The Laboratory — Tarunya Kesharwani",
     description:
-      "Experimental R&D prototypes — smart expense categorization, habit analytics, AI note summarization, offline-first SaaS patterns, and more. Caution: unstable.",
+      "Experimental interface designs, micro-interactions, and technical prototypes exploring the boundaries of code.",
   });
 
   return (
@@ -14,17 +14,23 @@ const LabsPage = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen bg-bg"
+      className="min-h-screen bg-white pt-32 md:pt-48"
     >
-      <div className="container mx-auto px-6 mb-12">
-        <h1 className="text-6xl font-heading font-bold mb-4">Laboratory</h1>
-        <p className="text-gray-400 max-w-xl">
-          Experimental interface designs, micro-interactions, and unfinished
-          prototypes.
-          <b> Caution: Unstable.</b>
+      <div className="container mx-auto px-8 mb-24">
+        <div className="text-[10px] font-bold text-black/30 uppercase tracking-[0.5em] mb-4">
+          experimental R&D
+        </div>
+        <h1 className="text-6xl md:text-9xl font-bold text-black leading-none mb-8 tracking-tighter">
+          The <br />
+          <span className="italic font-normal opacity-20">Laboratory</span>
+        </h1>
+        <p className="text-black/60 text-xl font-medium max-w-2xl leading-relaxed">
+          A collection of experimental interface designs, procedural 
+          animations, and technical prototypes. This is a space for 
+          unfettered inquiry into the boundaries of digital experience.
         </p>
       </div>
-      <LabsGrid />
+      <LabsGrid hideTitle={true} />
     </motion.div>
   );
 };

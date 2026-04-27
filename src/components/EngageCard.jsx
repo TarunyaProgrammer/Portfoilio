@@ -8,42 +8,43 @@ const EngageCard = ({ option, onClick, isSelected }) => {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      whileHover={{ y: -4 }}
+      whileHover={{ y: -8 }}
       whileTap={{ scale: 0.98 }}
       aria-expanded={isSelected}
-      className={`relative w-full text-left bg-grid/10 border p-6 rounded-xl transition-all duration-300 group ${
-        isSelected
-          ? "border-neon bg-neon/5 ring-1 ring-neon/20 z-10"
-          : "border-white/5 hover:border-neon/50 hover:bg-grid/30"
+      className={`relative w-full text-left p-12 transition-all duration-700 bg-white border border-black/5 shadow-xl hover:shadow-2xl group ${
+        isSelected ? "ring-2 ring-accent" : ""
       }`}
     >
-      <div className="flex flex-col h-full justify-between gap-4">
+      <div className="flex flex-col h-full justify-between gap-12">
         <div>
+          <div className="text-[10px] font-bold text-accent/40 mb-4 uppercase tracking-[0.4em]">
+            service module
+          </div>
           <h3
-            className={`font-heading font-bold text-xl mb-2 transition-colors duration-300 ${
-              isSelected ? "text-neon" : "text-white group-hover:text-neon"
+            className={`font-heading font-black text-3xl mb-6 transition-all duration-700 leading-none ${
+              isSelected ? "italic text-accent" : "text-text group-hover:italic"
             }`}
           >
             {option.title}
           </h3>
-          <p className="text-gray-400 font-light text-sm leading-relaxed mb-4">
+          <p className="text-text/60 font-body text-lg leading-relaxed mb-8">
             {option.description}
           </p>
-          <div className="font-mono text-[10px] text-gray-500 uppercase tracking-wider">
+          <div className="text-[10px] font-bold text-text/30 uppercase tracking-widest">
             {option.stack}
           </div>
         </div>
 
-        <div className="pt-4 border-t border-white/5 flex items-center justify-between">
-          <span className="text-xs text-gray-300 font-mono">
+        <div className="pt-8 border-t border-black/5 flex flex-col gap-4">
+          <span className="text-sm italic font-body text-text/50">
             {option.outcome}
           </span>
           <span
-            className={`text-xs font-mono tracking-widest uppercase transition-colors duration-300 ${
-              isSelected ? "text-neon" : "text-gray-500 group-hover:text-neon"
+            className={`text-xs font-black tracking-widest uppercase transition-colors duration-700 underline underline-offset-8 ${
+              isSelected ? "text-accent" : "text-text/30 group-hover:text-text"
             }`}
           >
-            {option.cta} &rarr;
+            {option.cta}
           </span>
         </div>
       </div>

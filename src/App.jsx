@@ -8,6 +8,10 @@ import {
 } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { ReactLenis } from "lenis/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 // Pages
 import Home from "./pages/Home";
@@ -20,8 +24,11 @@ import Connect from "./pages/Connect";
 import ResumePage from "./pages/ResumePage";
 const Engage = React.lazy(() => import("./pages/Engage"));
 
-import PageContainer from "./components/PageContainer/PageContainer";
-import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
+import PageContainer from "./components/PageContainer.jsx";
+import ScrollToTop from "./components/ScrollToTop.jsx";
+import Footer from "./components/Footer.jsx";
+import CustomCursor from "./components/CustomCursor.jsx";
+import Magnetic from "./components/Magnetic.jsx";
 
 const Nav = () => {
   const [menuOpen, setMenuOpen] = React.useState(false);
@@ -40,68 +47,92 @@ const Nav = () => {
     };
   }, [menuOpen]);
 
-  const navLinks = [
-    { to: "/systems", label: "SYSTEMS" },
-    { to: "/labs", label: "LABS" },
-    { to: "/open-source", label: "OPEN SOURCE" },
-    { to: "/thinking/future-of-systems", label: "THINKING" },
-    { to: "/resume", label: "RESUME" },
+    const navLinks = [
+    { to: "/", label: "About" },
+    { to: "/systems", label: "Portfolio" },
+    { to: "/labs", label: "Laboratory" },
+    { to: "/open-source", label: "OSS" },
+    { to: "/resume", label: "Resume" },
   ];
 
   return (
     <>
       <nav
         style={{ height: "var(--nav-height)" }}
-        className="fixed top-0 left-0 right-0 z-50 px-6 flex justify-between items-center bg-bg/80 backdrop-blur-md border-b border-[#1f2330]"
+        className="fixed top-0 left-0 right-0 z-50 px-8 md:px-16 flex justify-between items-center bg-white/90 backdrop-blur-md"
       >
-        <div>
+        <div className="flex items-center gap-16">
           <Link
             to="/"
-            className="text-2xl font-bold font-heading text-white tracking-tighter"
+            className="flex flex-col group relative"
           >
-            Tarunya <span className="text-neon">Systems</span>
+            <span 
+              style={{ fontFamily: "'Pinyon Script', cursive" }}
+              className="text-4xl text-black group-hover:scale-105 transition-transform duration-500 lowercase leading-none"
+            >
+              Tarunya
+            </span>
+            <span className="text-[9px] font-bold text-black/20 uppercase tracking-[0.3em] mt-0.5 group-hover:text-black transition-colors">
+              Systems Architect
+            </span>
           </Link>
+          <div className="hidden md:flex gap-10 font-bold text-[11px] tracking-[0.1em] items-center">
+            {navLinks.map((link) => (
+              <Magnetic key={link.to}>
+                <Link
+                  to={link.to}
+                  className="text-black/40 hover:text-black transition-all hover:tracking-[0.2em] duration-500 uppercase px-4 py-2"
+                >
+                  {link.label}
+                </Link>
+              </Magnetic>
+            ))}
+          </div>
         </div>
 
-        {/* Desktop links */}
-        <div className="hidden md:flex gap-8 font-mono text-sm text-gray-300 items-center">
-          {navLinks.map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              className="hover:text-neon transition-colors"
-            >
-              {link.label}
-            </Link>
-          ))}
-          <Link
-            to="/connect"
-            className="text-neon border border-neon px-6 py-2 rounded-full hover:bg-neon hover:text-black transition-all"
+        <div>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
-            CONNECT
-          </Link>
+            <Link
+              to="/connect"
+              className="text-sm font-bold border-b-2 border-black pb-1 hover:pb-2 transition-all flex items-center gap-2 group"
+            >
+              Book A Call
+              <motion.svg 
+                animate={{ x: [0, 5, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                className="w-4 h-4" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </motion.svg>
+            </Link>
+          </motion.div>
         </div>
 
         {/* Mobile hamburger button */}
         <button
           onClick={() => setMenuOpen((prev) => !prev)}
-          className="md:hidden relative w-32 h-32 flex flex-col justify-center items-center gap-[5px] z-50 cursor-pointer"
+          className="md:hidden relative w-10 h-10 flex flex-col justify-center items-center gap-[6px] z-50"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={menuOpen}
         >
           <span
-            className={`block w-6 h-[2px] bg-white transition-all duration-300 origin-center ${
-              menuOpen ? "rotate-45 translate-y-[7px]" : ""
+            className={`block w-6 h-[1.5px] bg-black transition-all duration-500 ${
+              menuOpen ? "rotate-45 translate-y-[7.5px]" : ""
             }`}
           />
           <span
-            className={`block w-6 h-[2px] bg-white transition-all duration-300 ${
-              menuOpen ? "opacity-0 scale-x-0" : ""
+            className={`block w-6 h-[1.5px] bg-black transition-all duration-500 ${
+              menuOpen ? "opacity-0" : ""
             }`}
           />
           <span
-            className={`block w-6 h-[2px] bg-white transition-all duration-300 origin-center ${
-              menuOpen ? "-rotate-45 -translate-y-[7px]" : ""
+            className={`block w-6 h-[1.5px] bg-black transition-all duration-500 ${
+              menuOpen ? "-rotate-45 -translate-y-[7.5px]" : ""
             }`}
           />
         </button>
@@ -111,24 +142,26 @@ const Nav = () => {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            className="fixed inset-0 z-40 bg-bg/95 backdrop-blur-xl md:hidden flex flex-col items-center justify-center"
-            style={{ paddingTop: "var(--nav-height)" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6, ease: [0.2, 0.8, 0.2, 1] }}
+            className="fixed inset-0 z-40 bg-white md:hidden flex flex-col px-12 pt-48"
           >
-            <div className="flex flex-col items-center gap-48 font-mono text-lg text-gray-300">
+            <div className="text-[10px] font-bold text-black/30 uppercase tracking-[0.5em] mb-12">
+              navigation
+            </div>
+            <div className="flex flex-col items-start gap-8 text-6xl text-black leading-none tracking-tighter">
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.to}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.06 }}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.2 + i * 0.1, duration: 0.8 }}
                 >
                   <Link
                     to={link.to}
-                    className="hover:text-neon transition-colors tracking-widest text-xl"
+                    className="font-bold hover:italic transition-all"
                     onClick={() => setMenuOpen(false)}
                   >
                     {link.label}
@@ -136,18 +169,23 @@ const Nav = () => {
                 </motion.div>
               ))}
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: navLinks.length * 0.06 }}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2 + navLinks.length * 0.1, duration: 0.8 }}
+                className="mt-12 w-full"
               >
                 <Link
                   to="/connect"
-                  className="text-neon border border-neon px-32 py-12 rounded-full hover:bg-neon hover:text-black transition-all tracking-widest text-xl"
+                  className="block w-full text-center py-6 bg-black text-white font-bold text-2xl uppercase tracking-widest"
                   onClick={() => setMenuOpen(false)}
                 >
-                  CONNECT
+                  Connect
                 </Link>
               </motion.div>
+            </div>
+            
+            <div className="mt-auto mb-12 text-[10px] font-bold text-black/20 uppercase tracking-[0.5em] text-center">
+              &copy; 2026 Tarunya
             </div>
           </motion.div>
         )}
@@ -233,8 +271,8 @@ const AnimatedRoutes = () => {
             <PageContainer>
               <React.Suspense
                 fallback={
-                  <div className="h-screen w-full bg-bg flex items-center justify-center text-neon">
-                    INITIALIZING...
+                  <div className="h-screen w-full bg-bg flex items-center justify-center text-text font-heading text-2xl italic">
+                    Loading Story...
                   </div>
                 }
               >
@@ -253,8 +291,10 @@ function App() {
     <ReactLenis root options={{ lerp: 0.08 }}>
       <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <ScrollToTop />
+        <CustomCursor />
         <Nav />
         <AnimatedRoutes />
+        <Footer />
       </Router>
     </ReactLenis>
   );

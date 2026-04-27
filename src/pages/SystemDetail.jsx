@@ -14,8 +14,8 @@ const SystemDetail = () => {
     .replace(/\b\w/g, (c) => c.toUpperCase());
 
   useDocumentSEO({
-    title: prettyName,
-    description: `Architecture overview, performance metrics, and tech-stack breakdown for ${prettyName} — a system built by Tarunya Kesharwani.`,
+    title: `${prettyName} — System Details`,
+    description: `Architecture overview, performance metrics, and tech-stack breakdown for ${prettyName}.`,
   });
 
   useEffect(() => {
@@ -39,11 +39,11 @@ const SystemDetail = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-bg flex items-center justify-center">
+      <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 border-4 border-neon border-t-transparent rounded-full animate-spin" />
-          <p className="font-mono text-neon tracking-widest uppercase">
-            Initializing Intelligence...
+          <div className="w-12 h-12 border-2 border-black border-t-transparent rounded-full animate-spin" />
+          <p className="text-[10px] font-bold text-black/30 tracking-[0.4em] uppercase">
+            Syncing System...
           </p>
         </div>
       </div>
@@ -52,19 +52,20 @@ const SystemDetail = () => {
 
   if (error || !data) {
     return (
-      <div className="min-h-screen bg-bg flex items-center justify-center p-6 text-center">
-        <div>
-          <h1 className="text-3xl font-heading mb-4 text-white">
-            System Offline
+      <div className="min-h-screen bg-white flex items-center justify-center p-8 text-center">
+        <div className="max-w-md">
+          <div className="text-[10px] font-bold text-black/30 uppercase tracking-[0.5em] mb-4">offline</div>
+          <h1 className="text-5xl font-bold text-black mb-8 tracking-tighter">
+            System Unavailable
           </h1>
-          <p className="text-gray-400 mb-8">
-            {error || "Project not found in the registry."}
+          <p className="text-black/60 font-medium text-lg mb-12 leading-relaxed">
+            {error || "This module could not be located in the current archive."}
           </p>
           <Link
             to="/systems"
-            className="text-neon border border-neon px-8 py-3 rounded hover:bg-neon hover:text-black transition-all font-mono uppercase tracking-widest text-sm"
+            className="inline-block px-12 py-4 bg-black text-white font-bold uppercase tracking-widest hover:bg-black/90 transition-all"
           >
-            Return to Registry
+            Return to Archive
           </Link>
         </div>
       </div>
@@ -76,31 +77,31 @@ const SystemDetail = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen bg-bg pb-20"
+      className="min-h-screen bg-white pt-32 md:pt-48 pb-32"
     >
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-8">
         <Link
           to="/systems"
-          className="text-neon font-mono mb-8 inline-block hover:underline"
+          className="text-[10px] font-bold tracking-[0.3em] uppercase mb-16 inline-block border-b border-black/10 pb-1 hover:border-black transition-all"
         >
-          &larr; Back to Registry
+          &larr; Back to Archive
         </Link>
 
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-          <div>
-            <p className="font-mono text-xs text-gray-500 tracking-[0.3em] uppercase mb-4">
-              // system.module.{data.name.toLowerCase()}
-            </p>
-            <h1 className="text-5xl md:text-7xl font-heading font-bold capitalize text-white">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-12 mb-32">
+          <div className="max-w-4xl">
+            <div className="text-[10px] font-bold text-black/30 uppercase tracking-[0.5em] mb-4">
+              system overview
+            </div>
+            <h1 className="text-6xl md:text-9xl font-bold capitalize text-black leading-none tracking-tighter">
               {data.name.replace(/-/g, " ")}
             </h1>
           </div>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-4">
             <a
               href={data.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-2 bg-neon text-black font-bold font-mono text-xs tracking-widest uppercase hover:bg-white transition-all"
+              className="px-8 py-4 bg-black text-white font-bold text-sm tracking-widest uppercase hover:bg-black/80 transition-all"
             >
               Source Code
             </a>
@@ -109,95 +110,78 @@ const SystemDetail = () => {
                 href={data.homepage}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-2 border border-neon text-neon font-bold font-mono text-xs tracking-widest uppercase hover:bg-neon/10 transition-all"
+                className="px-8 py-4 border-2 border-black text-black font-bold text-sm tracking-widest uppercase hover:bg-black hover:text-white transition-all"
               >
-                Live Demo
+                Live Preview
               </a>
             )}
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          <div className="lg:col-span-2 space-y-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-24">
+          <div className="lg:col-span-2">
             {/* README Content */}
-            <div className="bg-grid/10 p-8 rounded-panel border border-white/5 prose-style">
-              <h2 className="text-2xl font-bold mb-8 text-sysblue font-heading tracking-tight">
-                Project Documentation
-              </h2>
+            <article className="prose-editorial">
               <div
-                className="github-readme text-gray-300 leading-relaxed overflow-hidden"
+                className="github-readme"
                 dangerouslySetInnerHTML={{ __html: data.readmeHtml }}
               />
-            </div>
+            </article>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-16">
             {/* Stats Card */}
-            <div className="p-6 bg-grid/20 border border-white/5 rounded-panel">
-              <h3 className="font-mono text-xs text-gray-500 mb-6 uppercase tracking-[0.2em]">
-                Telemetry
+            <div className="border-t border-black/10 pt-8">
+              <h3 className="text-[10px] font-bold text-black/30 mb-8 uppercase tracking-[0.4em]">
+                System Telemetry
               </h3>
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-2 gap-12">
                 <div>
-                  <div className="text-2xl font-bold text-white">
+                  <div className="text-4xl font-bold text-black tracking-tighter">
                     {data.stars}
                   </div>
-                  <div className="text-[10px] text-gray-500 uppercase tracking-widest">
-                    Stars
+                  <div className="text-[10px] font-bold text-black/40 uppercase tracking-widest mt-1">
+                    Stargazers
                   </div>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-white">
+                  <div className="text-4xl font-bold text-black tracking-tighter">
                     {data.forks}
                   </div>
-                  <div className="text-[10px] text-gray-500 uppercase tracking-widest">
-                    Forks
+                  <div className="text-[10px] font-bold text-black/40 uppercase tracking-widest mt-1">
+                    Distributions
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Languages Card */}
-            <div className="p-6 border border-white/10 rounded-lg">
-              <h3 className="font-mono text-xs text-gray-500 mb-6 uppercase tracking-[0.2em]">
-                Tech Stack Breakdown
+            {/* Tech Stack */}
+            <div className="border-t border-black/10 pt-8">
+              <h3 className="text-[10px] font-bold text-black/30 mb-8 uppercase tracking-[0.4em]">
+                Architecture Distribution
               </h3>
-              <div className="space-y-4">
-                {Object.entries(data.languages).map(([name, bytes]) => (
-                  <div key={name}>
-                    <div className="flex justify-between text-xs font-mono mb-1">
-                      <span className="text-gray-300">{name}</span>
-                      <span className="text-gray-500">
-                        {Math.round(
-                          (bytes /
-                            Object.values(data.languages).reduce(
-                              (a, b) => a + b,
-                              0,
-                            )) *
-                            100,
-                        )}
-                        %
+              <div className="space-y-8">
+                {Object.entries(data.languages).map(([name, bytes]) => {
+                  const percentage = Math.round(
+                    (bytes / Object.values(data.languages).reduce((a, b) => a + b, 0)) * 100
+                  );
+                  return (
+                    <div key={name} className="flex justify-between items-baseline border-b border-black/5 pb-4">
+                      <span className="text-lg font-bold text-black tracking-tight">{name}</span>
+                      <span className="text-sm font-medium italic text-black/40">
+                        {percentage}%
                       </span>
                     </div>
-                    <div className="w-full h-1 bg-white/5 rounded-full overflow-hidden">
-                      <div
-                        className="h-full bg-neon shadow-[0_0_10px_rgba(200,255,0,0.5)]"
-                        style={{
-                          width: `${(bytes / Object.values(data.languages).reduce((a, b) => a + b, 0)) * 100}%`,
-                          backgroundColor: getLangColor(name),
-                        }}
-                      />
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
-              <div className="flex flex-wrap gap-2 mt-8">
+              <div className="flex flex-wrap gap-x-6 gap-y-3 mt-12">
                 {data.topics.map((t) => (
                   <span
                     key={t}
-                    className="px-2 py-1 bg-white/5 border border-white/10 rounded text-[10px] font-mono text-gray-400"
+                    className="text-[10px] font-bold text-black/30 uppercase tracking-widest"
                   >
-                    #{t}
+                    &middot; {t}
                   </span>
                 ))}
               </div>
@@ -210,41 +194,30 @@ const SystemDetail = () => {
         dangerouslySetInnerHTML={{
           __html: `
         .github-readme h1, .github-readme h2, .github-readme h3 {
-          margin-top: 2rem;
-          margin-bottom: 1rem;
-          font-weight: bold;
-          color: white;
+          font-family: 'Inter', sans-serif;
+          margin-top: 4rem;
+          margin-bottom: 1.5rem;
+          font-weight: 800;
+          color: #000;
+          line-height: 1.1;
+          letter-spacing: -0.04em;
         }
-        .github-readme h1 { font-size: 2.25rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; }
-        .github-readme h2 { font-size: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.3rem; }
-        .github-readme p { margin-bottom: 1rem; }
-        .github-readme ul, .github-readme ol { margin-bottom: 1rem; padding-left: 1.5rem; list-style-type: disc; }
-        .github-readme li { margin-bottom: 0.5rem; }
-        .github-readme code { background: rgba(255,255,255,0.1); padding: 0.2rem 0.4rem; rounded: 4px; font-family: monospace; font-size: 0.875rem; }
-        .github-readme pre { background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; overflow-x: auto; border: 1px solid rgba(255,255,255,0.05); }
-        .github-readme img { max-width: 100%; border-radius: 8px; margin: 2rem 0; }
-        .github-readme a { color: #c8ff00; text-decoration: underline; }
+        .github-readme h1 { font-size: 3.5rem; border-bottom: 2px solid #000; padding-bottom: 1rem; }
+        .github-readme h2 { font-size: 2.25rem; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 0.5rem; }
+        .github-readme h3 { font-size: 1.5rem; }
+        .github-readme p { font-family: 'Inter', sans-serif; font-size: 1.125rem; line-height: 1.8; color: #333; margin-bottom: 2rem; }
+        .github-readme ul, .github-readme ol { margin-bottom: 2rem; padding-left: 2rem; list-style-type: square; }
+        .github-readme li { font-family: 'Inter', sans-serif; font-size: 1.125rem; color: #444; margin-bottom: 0.75rem; }
+        .github-readme code { background: rgba(0,0,0,0.05); padding: 0.2rem 0.5rem; border-radius: 0; font-family: monospace; font-size: 0.9em; font-weight: 600; color: #000; }
+        .github-readme pre { background: #000; color: #fff; padding: 2rem; border-radius: 0; margin-bottom: 2.5rem; overflow-x: auto; }
+        .github-readme img { max-width: 100%; height: auto; border: 1px solid rgba(0,0,0,0.1); margin: 3rem 0; }
+        .github-readme a { color: #000; text-decoration: underline; text-underline-offset: 4px; font-weight: 700; }
+        .github-readme hr { border: 0; border-top: 1px solid rgba(0,0,0,0.1); margin: 4rem 0; }
       `,
         }}
       />
     </motion.section>
   );
-};
-
-const getLangColor = (lang) => {
-  const colors = {
-    JavaScript: "#f1e05a",
-    TypeScript: "#3178c6",
-    HTML: "#e34c26",
-    CSS: "#563d7c",
-    Python: "#3572A5",
-    Rust: "#dea584",
-    Java: "#b07219",
-    "C++": "#f34b7d",
-    Ruby: "#701516",
-    Go: "#00ADD8",
-  };
-  return colors[lang] || "#c8ff00";
 };
 
 export default SystemDetail;

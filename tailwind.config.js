@@ -4,16 +4,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: "#0b0d12",
-        text: "#f4f6fb",
-        grid: "#1f2330",
-        neon: "#c8ff00",
-        sysblue: "#7dd3fc",
-        signal: "#ff5470",
+        bg: "#FFFFFF",
+        text: "#000000",
+        grid: "#F2F2F2",
+        accent: "#000000",
       },
       fontFamily: {
-        heading: ["Clash Display", "Satoshi", "sans-serif"],
+        heading: ["Inter", "sans-serif"],
         body: ["Inter", "sans-serif"],
+        serif: ["Fraunces", "serif"],
+        script: ["Pinyon Script", "cursive"],
         mono: ["JetBrains Mono", "monospace"],
       },
       spacing: {
@@ -27,16 +27,11 @@ export default {
         64: "64px",
       },
       borderRadius: {
-        card: "8px",
-        panel: "20px",
+        card: "0px",
+        panel: "0px",
       },
       transitionTimingFunction: {
         "custom-ease": "cubic-bezier(0.2, 0.8, 0.2, 1)",
-      },
-      transitionDuration: {
-        short: "180ms",
-        base: "360ms",
-        long: "600ms",
       },
     },
   },
