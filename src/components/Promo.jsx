@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Promo = () => {
   return (
@@ -27,23 +28,25 @@ const Promo = () => {
             Get a Strategic <br />
             System Architecture Review
           </h2>
-          <motion.button
-            whileHover="hover"
-            whileTap={{ scale: 0.98 }}
-            className="group relative px-12 py-6 bg-white overflow-hidden"
-          >
-            <motion.div
-              variants={{
-                hover: { x: "0%" }
-              }}
-              initial={{ x: "-101%" }}
-              transition={{ duration: 0.6, ease: [0.2, 0.8, 0.2, 1] }}
-              className="absolute inset-0 bg-zinc-200"
-            />
-            <span className="relative z-10 text-black font-bold text-lg uppercase tracking-[0.3em] group-hover:tracking-[0.5em] transition-all duration-500">
-              Request Consultation
-            </span>
-          </motion.button>
+          <Link to="/connect" className="inline-block">
+            <motion.button
+              whileHover="hover"
+              whileTap={{ scale: 0.98 }}
+              className="group relative px-12 py-6 bg-white overflow-hidden w-full h-full"
+            >
+              <motion.div
+                variants={{
+                  hover: { x: "0%" }
+                }}
+                initial={{ x: "-101%" }}
+                transition={{ duration: 0.6, ease: [0.2, 0.8, 0.2, 1] }}
+                className="absolute inset-0 bg-zinc-200"
+              />
+              <span className="relative z-10 text-black font-bold text-lg uppercase tracking-[0.3em] group-hover:tracking-[0.5em] transition-all duration-500">
+                Request Consultation
+              </span>
+            </motion.button>
+          </Link>
         </div>
       </motion.div>
     </section>

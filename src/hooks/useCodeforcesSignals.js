@@ -1,12 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 export const useCodeforcesSignals = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const hasFetched = useRef(false);
 
   useEffect(() => {
+    if (hasFetched.current) return;
+    hasFetched.current = true;
+
     const fetchSignals = async () => {
       try {
         let res = await axios.get("/api/signals/codeforces");
@@ -16,7 +20,7 @@ export const useCodeforcesSignals = () => {
         if (typeof signals === "string" && signals.includes("export default")) {
           console.warn("Local API returned source code. Falling back to direct Codeforces fetch.");
           try {
-            const handle = "TarunyaProgrammer";
+            const handle = "tarunya.programmer";
             const infoRes = await axios.get(`https://codeforces.com/api/user.info?handles=${handle}`);
             const statusRes = await axios.get(`https://codeforces.com/api/user.status?handle=${handle}`);
             

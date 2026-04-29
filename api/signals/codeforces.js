@@ -1,7 +1,7 @@
 export default async function handler(req, res) {
   res.setHeader("Cache-Control", "s-maxage=3600, stale-while-revalidate");
 
-  const HANDLE = "TarunyaProgrammer";
+  const HANDLE = "tarunya.programmer";
 
   try {
     // 1. Fetch User Info

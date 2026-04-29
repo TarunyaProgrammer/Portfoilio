@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
-    <section className="relative w-full min-h-screen bg-white flex items-center pt-32 overflow-hidden">
+    <section className="relative w-full min-h-screen bg-white flex items-start lg:items-center pt-40 pb-20 lg:pt-32 lg:pb-0 overflow-hidden">
       {/* Side Metadata (Vertical) */}
       <div className="absolute left-8 md:left-12 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-24 py-12">
         <span className="text-[10px] font-bold text-black/20 uppercase tracking-[0.5em] rotate-180 [writing-mode:vertical-lr]">
@@ -26,11 +26,11 @@ const Hero = () => {
             className="flex gap-16 mb-16"
           >
             <div>
-              <div className="text-5xl font-bold text-black leading-none mb-1">+200</div>
+              <div className="text-5xl font-bold text-black leading-none mb-1">+45</div>
               <div className="text-[10px] font-medium text-black/40 uppercase tracking-widest">Projects completed</div>
             </div>
             <div>
-              <div className="text-5xl font-bold text-black leading-none mb-1">+50</div>
+              <div className="text-5xl font-bold text-black leading-none mb-1">+30</div>
               <div className="text-[10px] font-medium text-black/40 uppercase tracking-widest">Inventions shipped</div>
             </div>
           </motion.div>
