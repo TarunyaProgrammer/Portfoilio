@@ -16,7 +16,7 @@ export const useGitHubProjects = () => {
         if (typeof data === "string" && data.includes("export default")) {
           console.warn("Local API returned source code. Falling back to direct GitHub fetch.");
           try {
-            const githubRes = await axios.get("https://api.github.com/users/tarunyaio/repos?per_page=100&sort=pushed&type=owner");
+            const githubRes = await axios.get("https://api.github.com/users/TarunyaProgrammer/repos?per_page=100&sort=pushed&type=owner");
             
             const PINNED_REPOS = [
               "GithubAnalyzer-PreGsocTask",
@@ -76,7 +76,7 @@ export const useGitHubProjects = () => {
                 year: "2026",
                 description: "High-performance distributed locking mechanism using Redis and Lua.",
                 stars: 1200,
-                url: "https://github.com/tarunyaio/distributed-locker",
+                url: "https://github.com/TarunyaProgrammer/distributed-locker",
                 image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2540&auto=format&fit=crop"
               },
               {
@@ -87,7 +87,7 @@ export const useGitHubProjects = () => {
                 year: "2025",
                 description: "Lightweight particle animation library for React.",
                 stars: 840,
-                url: "https://github.com/tarunyaio/react-particles-x",
+                url: "https://github.com/TarunyaProgrammer/react-particles-x",
                 image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2540&auto=format&fit=crop"
               }
             ];

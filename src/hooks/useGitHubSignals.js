@@ -16,8 +16,8 @@ export const useGitHubSignals = () => {
         if (typeof signals === "string" && signals.includes("export default")) {
           console.warn("Local API returned source code. Falling back to direct GitHub fetch.");
           try {
-            const githubRes = await axios.get("https://api.github.com/users/tarunyaio");
-            const reposRes = await axios.get("https://api.github.com/users/tarunyaio/repos?per_page=100");
+            const githubRes = await axios.get("https://api.github.com/users/TarunyaProgrammer");
+            const reposRes = await axios.get("https://api.github.com/users/TarunyaProgrammer/repos?per_page=100");
             
             signals = {
               totalRepos: githubRes.data.public_repos,

@@ -25,7 +25,7 @@ const About = () => {
               
               <div className="flex gap-8 pt-8">
                 <a 
-                  href="https://github.com/tarunyaio" 
+                  href="https://github.com/TarunyaProgrammer" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-xs font-bold uppercase tracking-[0.3em] border-b-2 border-black/5 hover:border-black pb-1 transition-all"

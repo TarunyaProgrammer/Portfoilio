@@ -54,7 +54,7 @@ const ConnectTerminal = () => {
 
   const socialLinks = [
     { label: "Email", href: "mailto:tarunyaprogrammer@gmail.com" },
-    { label: "GitHub", href: "https://github.com/tarunyaio/" },
+    { label: "GitHub", href: "https://github.com/TarunyaProgrammer/" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/tarunyakesharwani/" },
     { label: "X / Twitter", href: "https://x.com/TarunyaKesh" },
     { label: "Instagram", href: "https://www.instagram.com/heytarunya/" },

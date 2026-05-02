@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 async function debug() {
-  const USERNAME = 'tarunyaio';
+  const USERNAME = 'TarunyaProgrammer';
   console.log(`Checking GitHub for ${USERNAME}...`);
   try {
     const gh = await axios.get(`https://api.github.com/users/${USERNAME}`);

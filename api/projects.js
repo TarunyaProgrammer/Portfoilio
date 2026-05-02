@@ -2,7 +2,7 @@ export default async function handler(req, res) {
   res.setHeader("Cache-Control", "s-maxage=3600, stale-while-revalidate");
 
   const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
-  const USERNAME = "tarunyaio";
+  const USERNAME = "TarunyaProgrammer";
 
   try {
     const headers = GITHUB_TOKEN

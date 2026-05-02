@@ -48,7 +48,7 @@ const OpenSource = () => {
                 {repo.description}
               </p>
               <a
-                href="https://github.com/tarunyaio/"
+                href="https://github.com/TarunyaProgrammer/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[10px] font-bold uppercase tracking-widest border-b border-black pb-1 hover:pr-4 transition-all"
