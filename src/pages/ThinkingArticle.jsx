@@ -19,31 +19,31 @@ const ThinkingArticle = () => {
   });
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-[#0F0F0F] text-white/90 selection:bg-white selection:text-black font-sans overflow-x-hidden">
+    <div ref={containerRef} className="min-h-screen bg-[#121212] text-[#D1D1D1] selection:bg-white selection:text-black font-sans overflow-x-hidden">
       {/* Global Architectural HUD */}
       <div className="fixed inset-0 pointer-events-none z-50 border-[24px] border-black/20 md:border-[48px]">
         {/* Corners */}
-        <div className="absolute top-0 left-0 w-8 h-8 border-t border-l border-white/20" />
-        <div className="absolute top-0 right-0 w-8 h-8 border-t border-r border-white/20" />
-        <div className="absolute bottom-0 left-0 w-8 h-8 border-b border-l border-white/20" />
-        <div className="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-white/20" />
+        <div className="absolute top-0 left-0 w-8 h-8 border-t border-l border-white/10" />
+        <div className="absolute top-0 right-0 w-8 h-8 border-t border-r border-white/10" />
+        <div className="absolute bottom-0 left-0 w-8 h-8 border-b border-l border-white/10" />
+        <div className="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-white/10" />
         
         {/* Metadata HUD */}
         <div className="absolute top-12 left-12 flex flex-col gap-1 pointer-events-auto">
-          <Link to="/blogs" className="text-[9px] font-black uppercase tracking-[0.4em] text-white/40 hover:text-white transition-colors">
+          <Link to="/blogs" className="text-[9px] font-black uppercase tracking-[0.4em] text-white/30 hover:text-white transition-colors">
             &larr; Return to Core
           </Link>
         </div>
         
         <div className="absolute bottom-12 left-12 hidden md:block">
-          <div className="text-[9px] font-black uppercase tracking-[0.5em] text-white/20 flex flex-col gap-2">
+          <div className="text-[9px] font-black uppercase tracking-[0.5em] text-white/10 flex flex-col gap-2">
             <span>Archive ID: {post.id}</span>
             <span>Security: LVL_04</span>
           </div>
         </div>
 
         <div className="absolute top-1/2 right-4 -translate-y-1/2 rotate-180 [writing-mode:vertical-lr] hidden md:block">
-          <span className="text-[9px] font-black uppercase tracking-[0.6em] text-white/10 whitespace-nowrap">
+          <span className="text-[9px] font-black uppercase tracking-[0.6em] text-white/5 whitespace-nowrap">
             Systems Architecture & Engineering Log // 2026 Archive
           </span>
         </div>
@@ -62,13 +62,13 @@ const ThinkingArticle = () => {
                 transition={{ duration: 1.2, ease: [0.2, 0.8, 0.2, 1] }}
               >
                 <div className="flex items-center gap-6 mb-12">
-                   <span className="text-[10px] font-black uppercase tracking-[0.5em] text-white/40">{post.category}</span>
-                   <div className="w-12 h-[1px] bg-white/10"></div>
-                   <span className="text-[10px] font-black uppercase tracking-[0.5em] text-white/40">{post.date}</span>
+                   <span className="text-[10px] font-black uppercase tracking-[0.5em] text-white/30">{post.category}</span>
+                   <div className="w-12 h-[1px] bg-white/5"></div>
+                   <span className="text-[10px] font-black uppercase tracking-[0.5em] text-white/30">{post.date}</span>
                 </div>
-                <h1 className="text-4xl md:text-6xl lg:text-8xl font-black leading-[0.9] tracking-tighter uppercase">
+                <h1 className="text-4xl md:text-6xl lg:text-8xl font-black leading-[0.9] tracking-tighter uppercase text-white">
                   {post.title.split(" ").map((word, i) => (
-                    <span key={i} className={i % 2 !== 0 ? "italic font-light opacity-20" : ""}>
+                    <span key={i} className={i % 2 !== 0 ? "italic font-light opacity-10" : ""}>
                       {word}{" "}
                     </span>
                   ))}
@@ -80,7 +80,7 @@ const ThinkingArticle = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.8, duration: 1 }}
-                className="text-xl md:text-2xl text-white/30 font-medium leading-tight italic max-w-sm"
+                className="text-xl md:text-2xl text-white/20 font-medium leading-tight italic max-w-sm"
               >
                 {post.excerpt}
               </motion.p>
@@ -95,27 +95,33 @@ const ThinkingArticle = () => {
           <div className="hidden lg:block lg:col-span-2 lg:sticky lg:top-48 h-fit order-last">
              <div className="flex flex-col gap-16">
                 <div>
-                  <h4 className="text-[9px] font-black uppercase tracking-widest text-white/20 mb-6 underline decoration-white/10">Key Differentiator</h4>
-                  <p className="text-[11px] font-bold leading-relaxed text-white/40">
+                  <h4 className="text-[9px] font-black uppercase tracking-widest text-white/10 mb-6 underline decoration-white/5">Key Differentiator</h4>
+                  <p className="text-[11px] font-bold leading-relaxed text-white/30">
                     Articulating engineering maturity transitions clearly. Focus on validation, maintainability, and architecture awareness.
                   </p>
                 </div>
-                <div className="p-6 border border-white/5 bg-white/[0.02]">
-                  <h4 className="text-[9px] font-black uppercase tracking-widest text-white/20 mb-4">Verification</h4>
-                  <div className="text-[10px] font-black text-white/40 uppercase">Status: Deployed</div>
-                  <div className="text-[10px] font-black text-white/40 uppercase">Env: Production</div>
+                <div className="p-6 border border-white/5 bg-white/[0.01]">
+                  <h4 className="text-[9px] font-black uppercase tracking-widest text-white/10 mb-4">Verification</h4>
+                  <div className="text-[10px] font-black text-white/20 uppercase">Status: Deployed</div>
+                  <div className="text-[10px] font-black text-white/20 uppercase">Env: Production</div>
                 </div>
              </div>
           </div>
 
           {/* Center Column: The Content */}
           <div className="lg:col-span-8 lg:col-start-3 prose prose-invert prose-2xl max-w-none
-            prose-p:text-white/60 prose-p:font-medium prose-p:leading-[1.6] prose-p:mb-16
+            prose-p:text-white/60 prose-p:font-medium prose-p:leading-[1.7] prose-p:mb-16
             prose-headings:text-white prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter prose-headings:mt-32
-            prose-blockquote:border-white/10 prose-blockquote:bg-white/[0.02] prose-blockquote:p-12 prose-blockquote:text-3xl prose-blockquote:italic prose-blockquote:font-light prose-blockquote:tracking-tighter prose-blockquote:my-24
-            prose-img:w-[120%] prose-img:ml-[-10%] prose-img:border prose-img:border-white/10 prose-img:grayscale prose-img:hover:grayscale-0 transition-all duration-1000
-            prose-table:text-sm prose-table:border prose-table:border-white/5
-            prose-a:text-white prose-a:underline prose-a:decoration-white/20 hover:prose-a:decoration-white transition-all
+            prose-blockquote:border-white/5 prose-blockquote:bg-white/[0.01] prose-blockquote:p-12 prose-blockquote:text-3xl prose-blockquote:italic prose-blockquote:font-light prose-blockquote:tracking-tighter prose-blockquote:my-24 prose-blockquote:text-white/80
+            prose-img:w-[120%] prose-img:ml-[-10%] prose-img:border prose-img:border-white/5 prose-img:grayscale prose-img:hover:grayscale-0 transition-all duration-1000
+            prose-strong:text-white prose-strong:font-black
+            
+            prose-a:text-white prose-a:no-underline prose-a:font-black prose-a:border-b prose-a:border-white/20 hover:prose-a:border-white prose-a:transition-all prose-a:duration-500
+            
+            prose-table:text-sm prose-table:border-collapse prose-table:my-24
+            prose-thead:border-b-2 prose-thead:border-white/10 prose-th:text-white prose-th:uppercase prose-th:tracking-widest prose-th:py-6
+            prose-td:border-b prose-td:border-white/5 prose-td:py-6 prose-td:px-4
+            prose-tr:hover:bg-white/[0.02] transition-colors
           ">
             <div dangerouslySetInnerHTML={{ __html: post.content }} />
             
