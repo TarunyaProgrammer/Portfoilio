@@ -1,7 +1,8 @@
+import { memo } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-const SystemCard = ({ system, index }) => {
+const SystemCard = memo(({ system, index }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -16,6 +17,8 @@ const SystemCard = ({ system, index }) => {
             src={system.image || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop"}
             alt={system.title}
             loading="lazy"
+            width="1280"
+            height="720"
             className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
           />
           
@@ -56,6 +59,6 @@ const SystemCard = ({ system, index }) => {
       </Link>
     </motion.div>
   );
-};
+});
 
 export default SystemCard;
