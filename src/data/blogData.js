@@ -7,17 +7,55 @@ export const blogPosts = [
     excerpt: "The brutal reality of moving from 'code that works' to 'systems that scale'. A deep dive into the mindset shift required for professional engineering.",
     image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop", // Industrial Tech
     content: `
-      <p>I used to think that finishing a tutorial meant I knew how to build a system. I was wrong. Open source didn't just teach me how to code; it destroyed my naive understanding of what it means to be an engineer.</p>
+      <p>For a long time, I thought I was learning software engineering. I was building projects, watching tutorials, learning frameworks, and making things work locally. Honestly, that felt like progress. If the feature worked, I considered it good code.</p>
       
-      <h3>The Tutorial Trap</h3>
-      <p>Tutorials are designed to succeed. Real systems are designed to fail—and then recover. In my early days, I was obsessed with "getting it to work." But a brutal PR review on a validation bug changed everything. A senior maintainer didn't just ask for a fix; they asked about the architectural implications of my change.</p>
+      <p>That belief survived until I started contributing to open source. That was the first time my code was no longer just <em>my code</em>. Other developers had to review it, understand it, maintain it, and extend it. Suddenly, “it works” stopped being enough.</p>
+
+      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop" alt="Workspace" style="width:100%; height:400px; object-fit:cover; margin:40px 0; border:1px solid #eee;" />
+
+      <h3>The Illusion of Competence</h3>
+      <p>Most of my learning came from tutorials. Tutorials are useful for getting started, but they create a dangerous illusion of competence. They optimize for momentum and happy paths. Real engineering does not. Real engineering is messy. You inherit decisions, work with constraints, and design for future contributors. Tutorials rarely teach that.</p>
+
+      <h3>The "Working Code" Fallacy</h3>
+      <p>The first major shock was realizing that nobody cared that my feature “worked.” The reviews were about things I barely thought about before: validation, naming consistency, architecture, scalability, and maintainability. Working code can still be bad engineering.</p>
       
-      <blockquote>"Your code works, but it's weak. It's not maintainable. Explain the tradeoffs you made here."</blockquote>
-      
-      <h3>The Shift: From Coder to Architect</h3>
-      <p>That one comment shifted my entire trajectory. I realized that working code is the bare minimum. Engineering is about tradeoffs, contributor experience, and future-proofing. I had to learn the hard way that targeting the wrong branch or misunderstanding an established architecture isn't just a mistake—it's a lack of systemic awareness.</p>
-      
-      <p>I’ll probably write more about how different OSS organizations evaluate contributors and the specific mistakes I made during those early reviews, because each of those changed how I approach engineering.</p>
+      <div style="margin: 40px 0; overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; text-align: left;">
+          <thead>
+            <tr style="border-bottom: 2px solid #000;">
+              <th style="padding: 12px; font-weight: 900; text-transform: uppercase;">Coding</th>
+              <th style="padding: 12px; font-weight: 900; text-transform: uppercase;">Engineering</th>
+            </tr>
+          </thead>
+          <tbody style="font-weight: 500;">
+            <tr style="border-bottom: 1px solid #eee;">
+              <td style="padding: 12px;">Makes the feature work</td>
+              <td style="padding: 12px;">Makes the system sustainable</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+              <td style="padding: 12px;">Focuses on now</td>
+              <td style="padding: 12px;">Considers future contributors</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+              <td style="padding: 12px;">Optimizes for speed</td>
+              <td style="padding: 12px;">Balances speed with maintainability</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px;">Solves happy paths</td>
+              <td style="padding: 12px;">Handles edge cases</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop" alt="Code Review" style="width:100%; height:400px; object-fit:cover; margin:40px 0; border:1px solid #eee;" />
+
+      <h3>The Mindset Shift</h3>
+      <p>I stopped treating code as something written only for the machine. I started treating it as communication for other developers. Before implementing anything, I now spend more time asking: <em>“Will this still make sense six months later?”</em></p>
+
+      <p>I’ve shared more detailed parts of this technical transition on <a href="https://medium.com/@tarunyakesh" target="_blank" style="color:#000; font-weight:bold; text-decoration:underline;">Medium</a> and <a href="https://dev.to/tarunya" target="_blank" style="color:#000; font-weight:bold; text-decoration:underline;">Dev.to</a>. For more real-time discussions on engineering tradeoffs, you can find me on <a href="https://x.com/TarunyaKesh" target="_blank" style="color:#000; font-weight:bold; text-decoration:underline;">X</a> or connect on <a href="https://www.linkedin.com/in/tarunyakesharwani/" target="_blank" style="color:#000; font-weight:bold; text-decoration:underline;">LinkedIn</a>.</p>
+
+      <p>The biggest change wasn’t my resume—it was my standards.</p>
     `,
     isFeatured: true
   },
