@@ -134,6 +134,49 @@ const NotFound = () => {
         </div>
       </div>
 
+      {/* Right Side: 3D System Artifact */}
+      <div className="absolute right-[15%] top-1/2 -translate-y-1/2 hidden lg:block perspective-[1000px] z-20">
+        <motion.div
+          style={{
+            rotateX: useSpring(useMotionValue(0), { damping: 20, stiffness: 100 }),
+            rotateY: useSpring(useMotionValue(0), { damping: 20, stiffness: 100 }),
+          }}
+          onUpdate={(latest) => {
+            const rect = containerRef.current.getBoundingClientRect();
+            const centerX = rect.width * 0.75;
+            const centerY = rect.height / 2;
+            const dx = (mouseX.get() - centerX) / 10;
+            const dy = (mouseY.get() - centerY) / 10;
+            latest.rotateY = dx;
+            latest.rotateX = -dy;
+          }}
+          className="w-64 h-64 relative preserve-3d"
+        >
+          {/* Wireframe Cube Faces */}
+          {[
+            { rotateY: 0, translateZ: 128 },
+            { rotateY: 90, translateZ: 128 },
+            { rotateY: 180, translateZ: 128 },
+            { rotateY: 270, translateZ: 128 },
+            { rotateX: 90, translateZ: 128 },
+            { rotateX: -90, translateZ: 128 },
+          ].map((face, i) => (
+            <div
+              key={i}
+              className="absolute inset-0 border border-black/10 bg-white/5 backdrop-blur-[2px]"
+              style={{
+                transform: `rotateY(${face.rotateY || 0}deg) rotateX(${face.rotateX || 0}deg) translateZ(${face.translateZ}px)`,
+              }}
+            />
+          ))}
+          
+          {/* Core Core */}
+          <div className="absolute inset-[30%] bg-black/5 border border-black/20 flex items-center justify-center">
+             <div className="w-4 h-4 bg-black/10 rotate-45" />
+          </div>
+        </motion.div>
+      </div>
+
       {/* Massive 404 Watermark */}
       <div className="absolute right-[-10%] top-1/2 -translate-y-1/2 rotate-90 select-none pointer-events-none">
         <span className="text-[35rem] font-black text-black/[0.02] leading-none tracking-tighter">
