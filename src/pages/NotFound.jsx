@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { motion, useSpring, useMotionValue } from "framer-motion";
+import { motion, useSpring, useMotionValue, useTransform } from "framer-motion";
 
 const Dot = ({ x, y, mouseX, mouseY }) => {
   const dotX = useMotionValue(x);
@@ -46,10 +46,22 @@ const Dot = ({ x, y, mouseX, mouseY }) => {
 
 const NotFound = () => {
   const containerRef = useRef(null);
-  const mouseX = useMotionValue(-1000);
-  const mouseY = useMotionValue(-1000);
+  const mouseX = useMotionValue(typeof window !== 'undefined' ? window.innerWidth / 2 : 0);
+  const mouseY = useMotionValue(typeof window !== 'undefined' ? window.innerHeight / 2 : 0);
+
+  // Parallax and Rotation transforms
+  const rotateX = useTransform(mouseY, [0, 800], [20, -20]);
+  const rotateY = useTransform(mouseX, [0, 1200], [-20, 20]);
+  const transX = useTransform(mouseX, [0, 1200], [10, -10]);
+  const transY = useTransform(mouseY, [0, 800], [10, -10]);
+
+  const smoothRotateX = useSpring(rotateX, { damping: 20, stiffness: 100 });
+  const smoothRotateY = useSpring(rotateY, { damping: 20, stiffness: 100 });
+  const smoothTransX = useSpring(transX, { damping: 20, stiffness: 100 });
+  const smoothTransY = useSpring(transY, { damping: 20, stiffness: 100 });
 
   const handleMouseMove = (e) => {
+    if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
     mouseX.set(e.clientX - rect.left);
     mouseY.set(e.clientY - rect.top);
@@ -57,8 +69,8 @@ const NotFound = () => {
 
   const dots = [];
   const spacing = 40;
-  for (let x = 0; x < 1200; x += spacing) {
-    for (let y = 0; y < 800; y += spacing) {
+  for (let x = 0; x < 1400; x += spacing) {
+    for (let y = 0; y < 1000; y += spacing) {
       dots.push({ x, y });
     }
   }
@@ -138,17 +150,10 @@ const NotFound = () => {
       <div className="absolute right-[10%] lg:right-[15%] top-1/2 -translate-y-1/2 hidden md:block perspective-[2000px] z-20">
         <motion.div
           style={{
-            rotateX: useSpring(useMotionValue(0), { damping: 25, stiffness: 120 }),
-            rotateY: useSpring(useMotionValue(0), { damping: 25, stiffness: 120 }),
-          }}
-          onUpdate={(latest) => {
-            const rect = containerRef.current.getBoundingClientRect();
-            const centerX = rect.width * 0.75;
-            const centerY = rect.height / 2;
-            const dx = (mouseX.get() - centerX) / 15;
-            const dy = (mouseY.get() - centerY) / 15;
-            latest.rotateY = dx;
-            latest.rotateX = -dy;
+            rotateX: smoothRotateX,
+            rotateY: smoothRotateY,
+            x: smoothTransX,
+            y: smoothTransY,
           }}
           className="w-[30vw] h-[30vw] max-w-[500px] max-h-[500px] relative preserve-3d"
         >
