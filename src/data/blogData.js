@@ -14,7 +14,7 @@ export const blogPosts = [
       <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop" alt="Workspace" style="width:100%; height:400px; object-fit:cover; margin:40px 0; border:1px solid rgba(255,255,255,0.05);" />
 
       <h3>The Illusion of Competence</h3>
-      <p>Most of my learning came from tutorials. Tutorials are useful for getting started, but they create a dangerous illusion of competence. They optimize for momentum and happy paths. Real engineering does not. Real engineering is messy. You inherit decisions, work with constraints, and design for future contributors. Tutorials rarely teach that.</p>
+      <p style="margin-bottom: 60px;">Most of my learning came from tutorials. Tutorials are useful for getting started, but they create a dangerous illusion of competence. They optimize for momentum and happy paths. Real engineering does not. Real engineering is messy. You inherit decisions, work with constraints, and design for future contributors. Tutorials rarely teach that.</p>
 
       <h3>The "Working Code" Fallacy</h3>
       <p>The first major shock was realizing that nobody cared that my feature “worked.” The reviews were about things I barely thought about before: validation, naming consistency, architecture, scalability, and maintainability. Working code can still be bad engineering.</p>
