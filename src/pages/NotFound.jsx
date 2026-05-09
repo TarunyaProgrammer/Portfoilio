@@ -1,48 +1,79 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useSpring, useMotionValue } from "framer-motion";
 
-const NotFound = () => {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+const Dot = ({ x, y, mouseX, mouseY }) => {
+  const dotX = useMotionValue(x);
+  const dotY = useMotionValue(y);
+
+  const springConfig = { damping: 20, stiffness: 200 };
+  const springX = useSpring(dotX, springConfig);
+  const springY = useSpring(dotY, springConfig);
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+    const unsubscribeX = mouseX.on("change", (latestX) => {
+      const dx = x - latestX;
+      const dy = y - mouseY.get();
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      
+      if (distance < 150) {
+        const angle = Math.atan2(dy, dx);
+        const push = (150 - distance) * 0.5;
+        dotX.set(x + Math.cos(angle) * push);
+        dotY.set(y + Math.sin(angle) * push);
+      } else {
+        dotX.set(x);
+        dotY.set(y);
+      }
+    });
 
-  const gridRows = 12;
-  const gridCols = 24;
+    return () => unsubscribeX();
+  }, [x, y, mouseX, mouseY]);
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-white flex flex-col justify-center px-8 md:px-24 relative overflow-hidden selection:bg-white selection:text-black">
-      {/* Background Interactive Grid */}
-      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
-        <div 
-          className="grid gap-4 p-8"
-          style={{ 
-            gridTemplateColumns: `repeat(${gridCols}, 1fr)`,
-            gridTemplateRows: `repeat(${gridRows}, 1fr)`
-          }}
-        >
-          {Array.from({ length: gridRows * gridCols }).map((_, i) => {
-            const row = Math.floor(i / gridCols);
-            const col = i % gridCols;
-            
-            return (
-              <motion.div
-                key={i}
-                className="w-1.5 h-1.5 rounded-none bg-white"
-                animate={{
-                  opacity: Math.max(0.1, 1 - (Math.abs(col * 50 - mousePos.x / 20) + Math.abs(row * 50 - mousePos.y / 20)) / 100),
-                  scale: Math.max(0.5, 1.5 - (Math.abs(col * 50 - mousePos.x / 20) + Math.abs(row * 50 - mousePos.y / 20)) / 100)
-                }}
-              />
-            );
-          })}
-        </div>
+    <motion.div
+      style={{ 
+        position: "absolute",
+        left: springX,
+        top: springY,
+        width: 2,
+        height: 2,
+        backgroundColor: "rgba(0,0,0,0.1)",
+      }}
+    />
+  );
+};
+
+const NotFound = () => {
+  const containerRef = useRef(null);
+  const mouseX = useMotionValue(-1000);
+  const mouseY = useMotionValue(-1000);
+
+  const handleMouseMove = (e) => {
+    const rect = containerRef.current.getBoundingClientRect();
+    mouseX.set(e.clientX - rect.left);
+    mouseY.set(e.clientY - rect.top);
+  };
+
+  const dots = [];
+  const spacing = 40;
+  for (let x = 0; x < 1200; x += spacing) {
+    for (let y = 0; y < 800; y += spacing) {
+      dots.push({ x, y });
+    }
+  }
+
+  return (
+    <div 
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      className="min-h-screen bg-white text-black flex flex-col justify-center px-8 md:px-24 relative overflow-hidden selection:bg-black selection:text-white"
+    >
+      {/* Physics-based Dot Grid */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
+        {dots.map((dot, i) => (
+          <Dot key={i} x={dot.x} y={dot.y} mouseX={mouseX} mouseY={mouseY} />
+        ))}
       </div>
 
       <div className="relative z-10 max-w-4xl">
@@ -51,52 +82,70 @@ const NotFound = () => {
           animate={{ opacity: 1, x: 0 }}
           className="flex items-center gap-4 mb-12"
         >
-          <span className="w-2 h-2 bg-orange-500"></span>
-          <span className="text-[10px] font-black uppercase tracking-[0.5em] text-orange-500">System Error / 404</span>
+          <span className="w-12 h-[1px] bg-black/20"></span>
+          <span className="text-[10px] font-black uppercase tracking-[0.5em] text-black/40">Boundary Reached / 404</span>
         </motion.div>
 
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.2, 0.8, 0.2, 1] }}
-          className="text-6xl md:text-[8rem] font-black leading-[0.85] tracking-tighter uppercase mb-12"
+          transition={{ duration: 1.2, ease: [0.2, 0.8, 0.2, 1] }}
+          className="text-7xl md:text-[12rem] font-black leading-[0.8] tracking-tighter uppercase mb-16"
         >
-          These are not the <br />
-          <span className="italic opacity-30">droids</span> you are <br />
-          looking for...
+          System <br />
+          <span className="italic font-light opacity-10">Out of</span> <br />
+          Bounds
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 1 }}
-          className="text-xl md:text-2xl text-white/40 font-medium max-w-2xl leading-relaxed mb-16 tracking-tight"
+          className="text-xl md:text-3xl text-black/40 font-medium max-w-2xl leading-tight mb-20 tracking-tighter italic"
         >
-          The architectural path you followed does not exist in this archive. 
-          The system boundary has been reached. Please return to the core.
+          The architectural coordinates you provided do not resolve to any known module in this archive.
         </motion.p>
 
-        <div className="flex flex-wrap gap-8 items-center">
+        <div className="flex flex-wrap gap-12 items-center">
           <Link
             to="/"
-            className="bg-white text-black px-12 py-6 text-[10px] font-black uppercase tracking-widest hover:bg-orange-500 hover:text-white transition-all border border-white"
+            className="group relative inline-block bg-black text-white px-16 py-8 text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-black border border-black transition-all duration-700 overflow-hidden"
           >
-            Back to Home &rarr;
+            <span className="relative z-10">Return to Core &rarr;</span>
+            <motion.div 
+              initial={{ x: "-100%" }}
+              whileHover={{ x: "0%" }}
+              transition={{ duration: 0.5, ease: "circOut" }}
+              className="absolute inset-0 bg-white"
+            />
           </Link>
 
-          <nav className="flex gap-8">
-            <Link to="/systems" className="text-[10px] font-black uppercase tracking-widest text-white/20 hover:text-white transition-colors">Portfolio</Link>
-            <Link to="/labs" className="text-[10px] font-black uppercase tracking-widest text-white/20 hover:text-white transition-colors">Laboratory</Link>
-            <Link to="/blogs" className="text-[10px] font-black uppercase tracking-widest text-white/20 hover:text-white transition-colors">Thought Archive</Link>
+          <nav className="flex gap-10">
+            {['Portfolio', 'Laboratory', 'Blogs'].map((item) => (
+              <Link 
+                key={item}
+                to={`/${item.toLowerCase()}`} 
+                className="text-[10px] font-black uppercase tracking-widest text-black/20 hover:text-black transition-colors"
+              >
+                {item}
+              </Link>
+            ))}
           </nav>
         </div>
       </div>
 
-      {/* Side Watermark */}
-      <div className="absolute right-[-5%] bottom-[-5%] rotate-90 origin-bottom-right hidden lg:block">
-        <span className="text-[15rem] font-black text-white/[0.02] uppercase tracking-tighter leading-none select-none">
-          Tarunya Systems
+      {/* Massive 404 Watermark */}
+      <div className="absolute right-[-10%] top-1/2 -translate-y-1/2 rotate-90 select-none pointer-events-none">
+        <span className="text-[35rem] font-black text-black/[0.02] leading-none tracking-tighter">
+          404
         </span>
+      </div>
+      
+      {/* System Metadata Decor */}
+      <div className="absolute left-8 bottom-8 flex gap-12 items-center opacity-10 hidden md:flex">
+        <div className="text-[9px] font-black uppercase tracking-widest">Lat: 40.7128° N</div>
+        <div className="text-[9px] font-black uppercase tracking-widest">Lon: 74.0060° W</div>
+        <div className="text-[9px] font-black uppercase tracking-widest">Status: DIVERGENT</div>
       </div>
     </div>
   );
