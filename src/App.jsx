@@ -23,6 +23,7 @@ const ThinkingArticle = React.lazy(() => import("./pages/ThinkingArticle"));
 const Connect = React.lazy(() => import("./pages/Connect"));
 const ResumePage = React.lazy(() => import("./pages/ResumePage"));
 const Engage = React.lazy(() => import("./pages/Engage"));
+const NotFound = React.lazy(() => import("./pages/NotFound"));
 
 import PageContainer from "./components/PageContainer.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
@@ -279,6 +280,14 @@ const AnimatedRoutes = () => {
                 <Engage />
               </React.Suspense>
             </PageContainer>
+          }
+        />
+        <Route
+          path="*"
+          element={
+            <React.Suspense fallback={<div className="h-screen w-full bg-[#0A0A0A]"></div>}>
+              <NotFound />
+            </React.Suspense>
           }
         />
       </Routes>
