@@ -116,7 +116,7 @@ const ThinkingArticle = () => {
             prose-img:w-[120%] prose-img:ml-[-10%] prose-img:border prose-img:border-white/5 prose-img:grayscale prose-img:hover:grayscale-0 transition-all duration-1000
             prose-strong:text-white prose-strong:font-black
             
-            prose-a:text-white prose-a:no-underline prose-a:font-black prose-a:border-b prose-a:border-white/20 hover:prose-a:border-white prose-a:transition-all prose-a:duration-500
+            prose-a:text-white prose-a:underline prose-a:decoration-white/40 hover:prose-a:decoration-white prose-a:font-black prose-a:transition-all prose-a:duration-300
             
             prose-table:text-sm prose-table:border-collapse prose-table:my-24
             prose-thead:border-b-2 prose-thead:border-white/10 prose-th:text-white prose-th:uppercase prose-th:tracking-widest prose-th:py-6
