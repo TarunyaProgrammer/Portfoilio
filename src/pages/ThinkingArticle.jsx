@@ -44,42 +44,52 @@ const ThinkingArticle = () => {
   };
 
   return (
-    <article className="min-h-screen bg-white relative overflow-x-hidden selection:bg-black selection:text-white">
+    <article className="min-h-screen bg-white relative overflow-x-hidden selection:bg-black selection:text-white pb-32">
       {/* Inject JSON-LD */}
       <script type="application/ld+json">
         {JSON.stringify(jsonLd)}
       </script>
 
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 p-8 z-50">
+      <nav className="fixed top-0 left-0 right-0 p-8 z-50 bg-white/80 backdrop-blur-md border-b border-black/5 flex justify-between items-center">
         <Link
           to="/blogs"
-          className="text-[10px] font-bold tracking-[0.3em] uppercase text-black/40 hover:text-black transition-colors"
+          className="text-[10px] font-black tracking-[0.3em] uppercase text-black hover:italic transition-all"
         >
-          &larr; Return to Archive
+          &larr; Archive
         </Link>
+        <span className="text-[10px] font-black uppercase tracking-[0.4em] text-black/20">
+          Thinking Article / {post.id}
+        </span>
       </nav>
 
       {/* Hero Section */}
-      <section className="min-h-[70vh] flex flex-col justify-center items-center px-8 relative border-b border-black/5">
-        <div className="max-w-6xl mx-auto text-center z-10">
-          <div className="text-[10px] font-bold text-black/30 uppercase tracking-[0.5em] mb-8">
+      <section className="min-h-[80vh] flex flex-col justify-center px-8 md:px-24 pt-32 pb-24 border-b border-black/5">
+        <div className="max-w-6xl">
+          <div className="text-[10px] font-black text-black/30 uppercase tracking-[0.5em] mb-12">
             {post.category} / {post.date}
           </div>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: [0.2, 0.8, 0.2, 1] }}
-            className="text-5xl md:text-8xl lg:text-[10rem] font-bold text-black leading-[0.85] tracking-tighter mb-16"
+            className="text-6xl md:text-[8rem] lg:text-[10rem] font-black text-black leading-[0.85] tracking-tighter mb-16 uppercase"
           >
             {post.title}
           </motion.h1>
+
+          <motion.div
+            initial={{ opacity: 0, width: 0 }}
+            animate={{ opacity: 1, width: "100%" }}
+            transition={{ delay: 0.5, duration: 1.5 }}
+            className="h-[1px] bg-black/10 mb-16"
+          />
 
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 1.2 }}
-            className="text-xl md:text-3xl text-black/60 font-medium leading-relaxed max-w-3xl mx-auto italic"
+            className="text-xl md:text-4xl text-black/60 font-medium leading-tight max-w-4xl tracking-tighter italic"
           >
             {post.excerpt}
           </motion.p>
@@ -87,52 +97,54 @@ const ThinkingArticle = () => {
       </section>
 
       {/* Main Text Content */}
-      <section className="py-32 md:py-48 px-8">
-        <div className="max-w-3xl mx-auto">
-          {post.content.map((block, i) => (
-            <div key={i} className="mb-16">
-              {block.type === "paragraph" && (
-                <p className={`text-xl md:text-2xl text-black/70 font-medium leading-relaxed ${i === 0 ? 'first-letter:text-8xl first-letter:font-bold first-letter:float-left first-letter:mr-4 first-letter:mt-2 first-letter:tracking-tighter' : ''}`}>
-                  {block.text}
-                </p>
-              )}
-              {block.type === "quote" && (
-                <p className="text-xl md:text-2xl text-black/60 font-medium leading-relaxed italic border-l-4 border-black/5 pl-12 py-4">
-                  {block.text}
-                </p>
-              )}
-            </div>
-          ))}
+      <section className="py-24 md:py-32 px-8 md:px-24">
+        <div className="max-w-4xl">
+          <div 
+            className="prose prose-xl max-w-none prose-headings:text-black prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter prose-p:text-black/70 prose-p:font-medium prose-p:leading-relaxed prose-blockquote:border-black prose-blockquote:bg-black/5 prose-blockquote:p-8 prose-blockquote:not-italic prose-strong:text-black prose-img:border prose-img:border-black/5"
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          />
 
-          {/* Internal Linking Hub (SEO Booster) */}
-          <div className="mt-32 pt-16 border-t border-black/10">
-            <h3 className="text-[10px] font-bold text-black/30 uppercase tracking-[0.4em] mb-8">Related Intelligence</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <Link to="/systems" className="p-8 border border-black/5 hover:bg-black/5 transition-all group">
-                <span className="text-[9px] font-bold text-black/20 uppercase tracking-widest block mb-4">Case Study</span>
-                <span className="text-xl font-bold text-black group-hover:italic">Systems Portfolio &rarr;</span>
-              </Link>
-              <Link to="/labs" className="p-8 border border-black/5 hover:bg-black/5 transition-all group">
-                <span className="text-[9px] font-bold text-black/20 uppercase tracking-widest block mb-4">Experimental</span>
-                <span className="text-xl font-bold text-black group-hover:italic">Architectural Labs &rarr;</span>
-              </Link>
+          {/* Series Hub (Content Graph) */}
+          <div className="mt-32 pt-24 border-t-2 border-black">
+            <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-black/20 mb-12">Series Outlook</h4>
+            <p className="text-2xl md:text-4xl font-medium text-black/40 leading-[1.1] mb-20 italic tracking-tighter">
+              I’ll probably write more about how different OSS organizations evaluate contributors, 
+              what pre-GSoC contributions taught me, and why balancing college with open source work 
+              changed how I approach engineering.
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16">
+              {blogPosts.filter(p => p.id !== slug).slice(0, 2).map((otherPost) => (
+                <Link 
+                  key={otherPost.id} 
+                  to={`/thinking/${otherPost.id}`}
+                  className="group p-12 border border-black/10 hover:bg-black hover:text-white transition-all duration-700 flex flex-col justify-between aspect-square"
+                >
+                  <div>
+                    <span className="text-[9px] font-black uppercase tracking-widest opacity-20 block mb-6">Read Next &rarr;</span>
+                    <h5 className="text-3xl font-black leading-none group-hover:italic transition-all uppercase tracking-tighter">
+                      {otherPost.title}
+                    </h5>
+                  </div>
+                  <div className="text-[9px] font-black uppercase tracking-widest opacity-20">
+                    {otherPost.category}
+                  </div>
+                </Link>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-48 px-8 text-center border-t border-black/10">
-        <div className="max-w-4xl mx-auto">
-          <p className="text-3xl md:text-5xl font-bold text-black/30 leading-tight mb-24 italic tracking-tighter">
-            Technical writing is the highest leverage engineering activity. It forces clarity on the invisible architecture.
-          </p>
-          <div className="text-4xl font-bold italic text-black mb-12">TK.</div>
-          <div className="text-[10px] font-bold text-black/20 uppercase tracking-[0.5em]">
-            &copy; 2026 Engineering Thought Hub
-          </div>
-        </div>
-      </footer>
+      {/* Back to Top / Navigation */}
+      <div className="px-8 md:px-24 mt-24">
+        <Link 
+          to="/blogs" 
+          className="inline-block bg-black text-white px-12 py-6 text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-black border border-black transition-all"
+        >
+          Return to Archive
+        </Link>
+      </div>
     </article>
   );
 };
