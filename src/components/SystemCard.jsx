@@ -19,6 +19,7 @@ const SystemCard = memo(({ system, index }) => {
             loading="lazy"
             width="1280"
             height="720"
+            crossOrigin="anonymous"
             className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
           />
           
