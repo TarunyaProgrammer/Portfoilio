@@ -106,14 +106,15 @@ const Footer = () => {
       <div className="footer-wrapper">
         {/* ═══ LEFT CARD ═══ */}
         <div className="footer-left group">
-          <video className="footer-left-video" autoPlay muted loop playsInline preload="auto">
+          <video 
+            className="footer-left-video" 
+            autoPlay muted loop playsInline preload="auto"
+            crossOrigin="anonymous"
+          >
             <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260503_104800_bc43ae09-f494-43e3-97d7-2f8c1692cfd7.mp4" type="video/mp4" />
           </video>
           
           <div className="footer-logo flex items-center gap-4 relative z-10">
-            <div className="w-10 h-10 rounded-none bg-white/10 border border-white/20 flex items-center justify-center font-bold text-white text-lg backdrop-blur-md">
-              T
-            </div>
             <span 
               style={{ fontFamily: "'Pinyon Script', cursive" }}
               className="text-4xl text-white lowercase leading-none"
