@@ -18,7 +18,7 @@ const Home = React.lazy(() => import("./pages/Home"));
 const SystemsPage = React.lazy(() => import("./pages/SystemsPage"));
 const SystemDetail = React.lazy(() => import("./pages/SystemDetail"));
 const LabsPage = React.lazy(() => import("./pages/LabsPage"));
-const OpenSource = React.lazy(() => import("./pages/OpenSource"));
+const Blogs = React.lazy(() => import("./pages/Blogs"));
 const ThinkingArticle = React.lazy(() => import("./pages/ThinkingArticle"));
 const Connect = React.lazy(() => import("./pages/Connect"));
 const ResumePage = React.lazy(() => import("./pages/ResumePage"));
@@ -51,7 +51,7 @@ const Nav = () => {
     { to: "/", label: "About" },
     { to: "/systems", label: "Portfolio" },
     { to: "/labs", label: "Laboratory" },
-    { to: "/open-source", label: "OSS" },
+    { to: "/blogs", label: "Blogs" },
     { to: "/resume", label: "Resume" },
   ];
 
@@ -233,10 +233,10 @@ const AnimatedRoutes = () => {
           }
         />
         <Route
-          path="/open-source"
+          path="/blogs"
           element={
             <PageContainer>
-              <OpenSource />
+              <Blogs />
             </PageContainer>
           }
         />
