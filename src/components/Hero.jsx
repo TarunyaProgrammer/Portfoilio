@@ -119,8 +119,10 @@ const Hero = () => {
         >
           <div className="aspect-[4/5] overflow-hidden grayscale contrast-125">
             <img
-              src="/webme1.png"
+              src="/webme1.webp"
               alt="Portrait"
+              fetchpriority="high"
+              decoding="async"
               className="w-full h-full object-cover object-top scale-110"
             />
           </div>

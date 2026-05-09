@@ -47,6 +47,7 @@ const About = () => {
               <img 
                 src="/system-detail.png" 
                 alt="Architecture Detail" 
+                loading="lazy"
                 className="w-48 h-64 object-cover grayscale border border-black/5"
               />
             </div>
@@ -84,8 +85,9 @@ const About = () => {
               className="relative aspect-[3/4] grayscale group overflow-hidden"
             >
                <img 
-                src="/webme2.png" 
+                src="/webme2.webp" 
                 alt="Portrait Detail" 
+                loading="lazy"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
                />
                <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

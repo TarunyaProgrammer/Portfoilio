@@ -15,6 +15,7 @@ const SystemCard = ({ system, index }) => {
           <img
             src={system.image || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop"}
             alt={system.title}
+            loading="lazy"
             className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
           />
           
