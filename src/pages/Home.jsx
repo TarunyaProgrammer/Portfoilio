@@ -1,17 +1,19 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, lazy, Suspense } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import useDocumentSEO from "../hooks/useDocumentSEO";
 import Hero from "../components/Hero.jsx";
-import About from "../components/About.jsx";
-import SystemsGrid from "../components/SystemsGrid.jsx";
-import Journey from "../components/Journey.jsx";
-import Promo from "../components/Promo.jsx";
-import Insights from "../components/Insights.jsx";
 import Signals from "../components/Signals.jsx";
-import ConnectTerminal from "../components/ConnectTerminal.jsx";
-import ServicesSection from "../components/ServicesSection.jsx";
-import SkillsArchive from "../components/SkillsRegistry.jsx";
+
+// Lazy loaded components
+const About = lazy(() => import("../components/About.jsx"));
+const SystemsGrid = lazy(() => import("../components/SystemsGrid.jsx"));
+const Journey = lazy(() => import("../components/Journey.jsx"));
+const Promo = lazy(() => import("../components/Promo.jsx"));
+const Insights = lazy(() => import("../components/Insights.jsx"));
+const ConnectTerminal = lazy(() => import("../components/ConnectTerminal.jsx"));
+const ServicesSection = lazy(() => import("../components/ServicesSection.jsx"));
+const SkillsArchive = lazy(() => import("../components/SkillsRegistry.jsx"));
 
 const Home = () => {
   const containerRef = useRef(null);
@@ -48,7 +50,11 @@ const Home = () => {
       });
     });
 
-    // Reveal Sections on Scroll
+    // Reveal Sections on Scroll (Use a small delay to ensure lazy components are mounted)
+    const refreshScroll = () => {
+      ScrollTrigger.refresh();
+    };
+
     const sections = containerRef.current.querySelectorAll("section");
     sections.forEach((section) => {
       gsap.fromTo(section, 
@@ -80,8 +86,10 @@ const Home = () => {
       });
     });
 
+    window.addEventListener("load", refreshScroll);
     return () => {
       ScrollTrigger.getAll().forEach(t => t.kill());
+      window.removeEventListener("load", refreshScroll);
     };
   }, []);
 
@@ -106,14 +114,16 @@ const Home = () => {
           <Hero />
         </div>
         <Signals />
-        <About />
-        <SkillsArchive />
-        <SystemsGrid limit={6} />
-        <ServicesSection />
-        <Journey />
-        <Promo />
-        <Insights />
-        <ConnectTerminal />
+        <Suspense fallback={<div className="h-96 flex items-center justify-center text-[10px] font-bold uppercase tracking-widest text-black/20">Initialising System Modules...</div>}>
+          <About />
+          <SkillsArchive />
+          <SystemsGrid limit={6} />
+          <ServicesSection />
+          <Journey />
+          <Promo />
+          <Insights />
+          <ConnectTerminal />
+        </Suspense>
       </div>
     </main>
   );

@@ -13,20 +13,20 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Pages
-import Home from "./pages/Home";
-import SystemsPage from "./pages/SystemsPage";
-import SystemDetail from "./pages/SystemDetail";
-import LabsPage from "./pages/LabsPage";
-import OpenSource from "./pages/OpenSource";
-import ThinkingArticle from "./pages/ThinkingArticle";
-import Connect from "./pages/Connect";
-import ResumePage from "./pages/ResumePage";
+// Pages (Lazy Loaded)
+const Home = React.lazy(() => import("./pages/Home"));
+const SystemsPage = React.lazy(() => import("./pages/SystemsPage"));
+const SystemDetail = React.lazy(() => import("./pages/SystemDetail"));
+const LabsPage = React.lazy(() => import("./pages/LabsPage"));
+const OpenSource = React.lazy(() => import("./pages/OpenSource"));
+const ThinkingArticle = React.lazy(() => import("./pages/ThinkingArticle"));
+const Connect = React.lazy(() => import("./pages/Connect"));
+const ResumePage = React.lazy(() => import("./pages/ResumePage"));
 const Engage = React.lazy(() => import("./pages/Engage"));
 
 import PageContainer from "./components/PageContainer.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
-import Footer from "./components/Footer.jsx";
+const Footer = React.lazy(() => import("./components/Footer.jsx"));
 import CustomCursor from "./components/CustomCursor.jsx";
 import Magnetic from "./components/Magnetic.jsx";
 
@@ -293,8 +293,10 @@ function App() {
         <ScrollToTop />
         <CustomCursor />
         <Nav />
-        <AnimatedRoutes />
-        <Footer />
+        <React.Suspense fallback={<div className="h-screen w-full bg-white flex items-center justify-center text-[10px] font-bold uppercase tracking-widest text-black/20">Initialising Core...</div>}>
+          <AnimatedRoutes />
+          <Footer />
+        </React.Suspense>
       </Router>
     </ReactLenis>
   );
