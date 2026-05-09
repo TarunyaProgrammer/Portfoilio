@@ -313,7 +313,7 @@ function AppContent() {
       
       {/* Global Scroll Progress */}
       <motion.div 
-        className="fixed top-0 left-0 right-0 h-[1px] z-[9999] mix-blend-difference pointer-events-none"
+        className="fixed top-0 left-0 right-0 h-1 z-[9999] mix-blend-difference pointer-events-none"
       >
         <motion.div 
           className="h-full bg-white origin-left"
