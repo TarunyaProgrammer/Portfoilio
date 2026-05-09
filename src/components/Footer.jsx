@@ -207,7 +207,7 @@ const Footer = () => {
 
       {/* ═══ WATERMARK ═══ */}
       <div className="footer-watermark" aria-hidden="true">
-        <svg ref={svgRef} id="watermarkSvg" width="100%" height="auto" className="block overflow-visible">
+        <svg ref={svgRef} id="watermarkSvg" width="100%" className="block overflow-visible">
           <text 
             ref={textRef} 
             id="watermarkText" 
