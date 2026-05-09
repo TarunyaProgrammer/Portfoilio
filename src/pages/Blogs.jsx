@@ -21,12 +21,20 @@ const Blogs = () => {
       className="min-h-screen bg-[#F8F9FA] pt-32 md:pt-40 pb-20 selection:bg-black selection:text-white"
     >
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
-        <div className="flex justify-between items-end mb-12">
-          <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-black uppercase">
-            Blog
-          </h1>
-          <Link to="/blogs" className="hidden md:flex items-center gap-4 bg-[#EDEDED] px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-all duration-500">
-            Read Our Blog &rarr;
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-8">
+          <div className="relative">
+            <span className="text-[10px] font-black text-black/20 uppercase tracking-[0.8em] block mb-4 ml-2">
+              Engineering Hub . 2026
+            </span>
+            <h1 className="text-7xl md:text-9xl font-black tracking-tighter text-black uppercase leading-[0.8]">
+               The <br />
+               <span className="text-transparent bg-clip-text bg-gradient-to-r from-black to-black/20">Thought</span> <br />
+               <span className="italic font-normal opacity-10">Archive.</span>
+            </h1>
+          </div>
+          <Link to="/blogs" className="flex items-center gap-4 bg-white border border-black/5 shadow-sm px-10 py-5 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-all duration-700 group">
+            <span>Access All Articles</span>
+            <span className="group-hover:translate-x-2 transition-transform">&rarr;</span>
           </Link>
         </div>
 
@@ -35,31 +43,36 @@ const Blogs = () => {
           
           {/* ═══ LEFT COLUMN (Featured) ═══ */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="md:col-span-5 h-full"
           >
-            <Link to={`/thinking/${featuredPost.id}`} className="group relative block h-[500px] md:h-[800px] overflow-hidden rounded-[3rem] bg-black">
+            <Link to={`/thinking/${featuredPost.id}`} className="group relative block h-[500px] md:h-[850px] overflow-hidden rounded-[4rem] bg-black">
               <img 
                 src={featuredPost.image} 
                 alt={featuredPost.title} 
-                className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-[1.5s]"
+                className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-[2s]"
               />
               {/* Emoji Badge */}
-              <div className="absolute top-8 left-8 w-14 h-14 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-2xl">
+              <div className="absolute top-10 left-10 w-16 h-16 bg-white/10 backdrop-blur-xl rounded-full flex items-center justify-center text-3xl shadow-2xl border border-white/20">
                 🔥
               </div>
               
-              {/* Overlay Content */}
-              <div className="absolute bottom-0 left-0 right-0 p-12 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
-                <div className="bg-white rounded-[2rem] p-8 md:p-12 w-full md:w-[120%] -ml-4 md:-ml-24 shadow-2xl">
-                   <div className="flex gap-4 text-[10px] font-bold uppercase tracking-widest text-black/40 mb-4">
+              {/* Overlay Content with CUSTOM WAVE */}
+              <div className="absolute bottom-0 left-0 right-0">
+                {/* SVG WAVE MASK */}
+                <svg viewBox="0 0 500 150" preserveAspectRatio="none" className="w-full h-24 -mb-1 fill-white">
+                  <path d="M0,150 L500,150 L500,50 C400,100 350,0 250,50 C150,100 100,0 0,50 Z" />
+                </svg>
+                
+                <div className="bg-white px-12 pb-16 pt-2">
+                   <div className="flex gap-4 text-[10px] font-black uppercase tracking-widest text-black/30 mb-6">
                       <span>Category . {featuredPost.category}</span>
                       <span>|</span>
                       <span>{featuredPost.date}</span>
                    </div>
-                   <h2 className="text-3xl md:text-4xl font-black text-black leading-tight group-hover:italic transition-all">
+                   <h2 className="text-4xl md:text-5xl font-black text-black leading-[0.95] tracking-tighter uppercase group-hover:italic transition-all">
                       {featuredPost.title}
                    </h2>
                 </div>
