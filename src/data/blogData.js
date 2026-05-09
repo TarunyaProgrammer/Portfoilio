@@ -11,7 +11,7 @@ export const blogPosts = [
       
       <p>That belief survived until I started contributing to open source. That was the first time my code was no longer just <em>my code</em>. Other developers had to review it, understand it, maintain it, and extend it. Suddenly, “it works” stopped being enough.</p>
 
-      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop" alt="Workspace" style="width:100%; height:400px; object-fit:cover; margin:40px 0; border:1px solid #eee;" />
+      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop" alt="Workspace" style="width:100%; height:400px; object-fit:cover; margin:40px 0; border:1px solid rgba(255,255,255,0.05);" />
 
       <h3>The Illusion of Competence</h3>
       <p>Most of my learning came from tutorials. Tutorials are useful for getting started, but they create a dangerous illusion of competence. They optimize for momentum and happy paths. Real engineering does not. Real engineering is messy. You inherit decisions, work with constraints, and design for future contributors. Tutorials rarely teach that.</p>
@@ -22,21 +22,21 @@ export const blogPosts = [
       <div style="margin: 40px 0; overflow-x: auto;">
         <table style="width: 100%; border-collapse: collapse; font-size: 14px; text-align: left;">
           <thead>
-            <tr style="border-bottom: 2px solid #000;">
+            <tr style="border-bottom: 2px solid rgba(255,255,255,0.1);">
               <th style="padding: 12px; font-weight: 900; text-transform: uppercase;">Coding</th>
               <th style="padding: 12px; font-weight: 900; text-transform: uppercase;">Engineering</th>
             </tr>
           </thead>
           <tbody style="font-weight: 500;">
-            <tr style="border-bottom: 1px solid #eee;">
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
               <td style="padding: 12px;">Makes the feature work</td>
               <td style="padding: 12px;">Makes the system sustainable</td>
             </tr>
-            <tr style="border-bottom: 1px solid #eee;">
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
               <td style="padding: 12px;">Focuses on now</td>
               <td style="padding: 12px;">Considers future contributors</td>
             </tr>
-            <tr style="border-bottom: 1px solid #eee;">
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
               <td style="padding: 12px;">Optimizes for speed</td>
               <td style="padding: 12px;">Balances speed with maintainability</td>
             </tr>
@@ -48,12 +48,12 @@ export const blogPosts = [
         </table>
       </div>
 
-      <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop" alt="Code Review" style="width:100%; height:400px; object-fit:cover; margin:40px 0; border:1px solid #eee;" />
+      <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop" alt="Code Review" style="width:100%; height:400px; object-fit:cover; margin:40px 0; border:1px solid rgba(255,255,255,0.05);" />
 
       <h3>The Mindset Shift</h3>
       <p>I stopped treating code as something written only for the machine. I started treating it as communication for other developers. Before implementing anything, I now spend more time asking: <em>“Will this still make sense six months later?”</em></p>
 
-      <p>I’ve shared more detailed parts of this technical transition on <a href="https://medium.com/@tarunyakesh" target="_blank" style="color:#000; font-weight:bold; text-decoration:underline;">Medium</a> and <a href="https://dev.to/tarunya" target="_blank" style="color:#000; font-weight:bold; text-decoration:underline;">Dev.to</a>. For more real-time discussions on engineering tradeoffs, you can find me on <a href="https://x.com/TarunyaKesh" target="_blank" style="color:#000; font-weight:bold; text-decoration:underline;">X</a> or connect on <a href="https://www.linkedin.com/in/tarunyakesharwani/" target="_blank" style="color:#000; font-weight:bold; text-decoration:underline;">LinkedIn</a>.</p>
+      <p>I’ve shared more detailed parts of this technical transition on <a href="https://medium.com/@tarunyakesh" target="_blank" style="font-weight:bold;">Medium</a> and <a href="https://dev.to/tarunya" target="_blank" style="font-weight:bold;">Dev.to</a>. For more real-time discussions on engineering tradeoffs, you can find me on <a href="https://x.com/TarunyaKesh" target="_blank" style="font-weight:bold;">X</a> or connect on <a href="https://www.linkedin.com/in/tarunyakesharwani/" target="_blank" style="font-weight:bold;">LinkedIn</a>.</p>
 
       <p>The biggest change wasn’t my resume—it was my standards.</p>
     `,
