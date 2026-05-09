@@ -9,17 +9,6 @@ const ThinkingArticle = () => {
   const post = blogPosts.find((p) => p.id === slug);
   const containerRef = useRef(null);
   
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
-
-  const scrollWidth = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
-
   if (!post) {
     return <Navigate to="/blogs" replace />;
   }
@@ -31,16 +20,6 @@ const ThinkingArticle = () => {
 
   return (
     <div ref={containerRef} className="min-h-screen bg-[#0F0F0F] text-white/90 selection:bg-white selection:text-black font-sans overflow-x-hidden">
-      {/* Top Progress Scanner */}
-      <motion.div 
-        className="fixed top-0 left-0 right-0 h-[1px] bg-white/20 z-[100]"
-      >
-        <motion.div 
-          className="h-full bg-white origin-left"
-          style={{ scaleX: scrollWidth }}
-        />
-      </motion.div>
-
       {/* Global Architectural HUD */}
       <div className="fixed inset-0 pointer-events-none z-50 border-[24px] border-black/20 md:border-[48px]">
         {/* Corners */}

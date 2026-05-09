@@ -298,11 +298,29 @@ const AnimatedRoutes = () => {
 function AppContent() {
   const location = useLocation();
   const isThinkingPage = location.pathname.startsWith("/thinking/");
+  
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   return (
     <>
       <ScrollToTop />
       <CustomCursor />
+      
+      {/* Global Scroll Progress */}
+      <motion.div 
+        className="fixed top-0 left-0 right-0 h-[1px] z-[9999] mix-blend-difference pointer-events-none"
+      >
+        <motion.div 
+          className="h-full bg-white origin-left"
+          style={{ scaleX }}
+        />
+      </motion.div>
+
       {!isThinkingPage && <Nav />}
       <React.Suspense fallback={<div className="h-screen w-full bg-white flex items-center justify-center text-[10px] font-bold uppercase tracking-widest text-black/20">Initialising Core...</div>}>
         <AnimatedRoutes />
