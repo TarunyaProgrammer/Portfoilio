@@ -135,51 +135,71 @@ const NotFound = () => {
       </div>
 
       {/* Right Side: 3D System Artifact */}
-      <div className="absolute right-[15%] top-1/2 -translate-y-1/2 hidden lg:block perspective-[1000px] z-20">
+      <div className="absolute right-[10%] lg:right-[15%] top-1/2 -translate-y-1/2 hidden md:block perspective-[2000px] z-20">
         <motion.div
           style={{
-            rotateX: useSpring(useMotionValue(0), { damping: 20, stiffness: 100 }),
-            rotateY: useSpring(useMotionValue(0), { damping: 20, stiffness: 100 }),
+            rotateX: useSpring(useMotionValue(0), { damping: 25, stiffness: 120 }),
+            rotateY: useSpring(useMotionValue(0), { damping: 25, stiffness: 120 }),
           }}
           onUpdate={(latest) => {
             const rect = containerRef.current.getBoundingClientRect();
             const centerX = rect.width * 0.75;
             const centerY = rect.height / 2;
-            const dx = (mouseX.get() - centerX) / 10;
-            const dy = (mouseY.get() - centerY) / 10;
+            const dx = (mouseX.get() - centerX) / 15;
+            const dy = (mouseY.get() - centerY) / 15;
             latest.rotateY = dx;
             latest.rotateX = -dy;
           }}
-          className="w-64 h-64 relative preserve-3d"
+          className="w-[30vw] h-[30vw] max-w-[500px] max-h-[500px] relative preserve-3d"
         >
-          {/* Wireframe Cube Faces */}
+          {/* Wireframe Cube Faces - Outer */}
           {[
-            { rotateY: 0, translateZ: 128 },
-            { rotateY: 90, translateZ: 128 },
-            { rotateY: 180, translateZ: 128 },
-            { rotateY: 270, translateZ: 128 },
-            { rotateX: 90, translateZ: 128 },
-            { rotateX: -90, translateZ: 128 },
+            { rotateY: 0, translateZ: 200 },
+            { rotateY: 90, translateZ: 200 },
+            { rotateY: 180, translateZ: 200 },
+            { rotateY: 270, translateZ: 200 },
+            { rotateX: 90, translateZ: 200 },
+            { rotateX: -90, translateZ: 200 },
           ].map((face, i) => (
             <div
-              key={i}
-              className="absolute inset-0 border border-black/10 bg-white/5 backdrop-blur-[2px]"
+              key={`outer-${i}`}
+              className="absolute inset-0 border-[0.5px] border-black/10 bg-black/[0.01] backdrop-blur-[1px] flex items-center justify-center overflow-hidden"
+              style={{
+                transform: `rotateY(${face.rotateY || 0}deg) rotateX(${face.rotateX || 0}deg) translateZ(${face.translateZ}px)`,
+              }}
+            >
+              <div className="text-[8px] font-black uppercase tracking-widest opacity-5 rotate-45 select-none">
+                System Boundary // Archive Lost // 404 Error
+              </div>
+            </div>
+          ))}
+          
+          {/* Inner Core - Secondary Structure */}
+          {[
+            { rotateY: 45, translateZ: 100 },
+            { rotateY: 135, translateZ: 100 },
+            { rotateX: 45, translateZ: 100 },
+            { rotateX: -45, translateZ: 100 },
+          ].map((face, i) => (
+            <div
+              key={`inner-${i}`}
+              className="absolute inset-[25%] border-[1px] border-black/20 bg-black/5"
               style={{
                 transform: `rotateY(${face.rotateY || 0}deg) rotateX(${face.rotateX || 0}deg) translateZ(${face.translateZ}px)`,
               }}
             />
           ))}
-          
-          {/* Core Core */}
-          <div className="absolute inset-[30%] bg-black/5 border border-black/20 flex items-center justify-center">
-             <div className="w-4 h-4 bg-black/10 rotate-45" />
+
+          {/* Center Point */}
+          <div className="absolute inset-[45%] bg-black flex items-center justify-center">
+             <div className="w-4 h-4 bg-white/20 animate-pulse" />
           </div>
         </motion.div>
       </div>
 
       {/* Massive 404 Watermark */}
-      <div className="absolute right-[-10%] top-1/2 -translate-y-1/2 rotate-90 select-none pointer-events-none">
-        <span className="text-[35rem] font-black text-black/[0.02] leading-none tracking-tighter">
+      <div className="absolute right-[-15%] top-1/2 -translate-y-1/2 rotate-90 select-none pointer-events-none z-0">
+        <span className="text-[40rem] font-black text-black/[0.015] leading-none tracking-tighter">
           404
         </span>
       </div>
