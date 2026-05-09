@@ -87,7 +87,7 @@ const ThinkingArticle = () => {
                    <div className="w-12 h-[1px] bg-white/10"></div>
                    <span className="text-[10px] font-black uppercase tracking-[0.5em] text-white/40">{post.date}</span>
                 </div>
-                <h1 className="text-6xl md:text-[10rem] lg:text-[12rem] font-black leading-[0.8] tracking-tighter uppercase">
+                <h1 className="text-4xl md:text-6xl lg:text-8xl font-black leading-[0.9] tracking-tighter uppercase">
                   {post.title.split(" ").map((word, i) => (
                     <span key={i} className={i % 2 !== 0 ? "italic font-light opacity-20" : ""}>
                       {word}{" "}
