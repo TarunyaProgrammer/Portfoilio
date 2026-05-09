@@ -295,17 +295,28 @@ const AnimatedRoutes = () => {
   );
 };
 
+function AppContent() {
+  const location = useLocation();
+  const isThinkingPage = location.pathname.startsWith("/thinking/");
+
+  return (
+    <>
+      <ScrollToTop />
+      <CustomCursor />
+      {!isThinkingPage && <Nav />}
+      <React.Suspense fallback={<div className="h-screen w-full bg-white flex items-center justify-center text-[10px] font-bold uppercase tracking-widest text-black/20">Initialising Core...</div>}>
+        <AnimatedRoutes />
+        {!isThinkingPage && <Footer />}
+      </React.Suspense>
+    </>
+  );
+}
+
 function App() {
   return (
     <ReactLenis root options={{ lerp: 0.08 }}>
       <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-        <ScrollToTop />
-        <CustomCursor />
-        <Nav />
-        <React.Suspense fallback={<div className="h-screen w-full bg-white flex items-center justify-center text-[10px] font-bold uppercase tracking-widest text-black/20">Initialising Core...</div>}>
-          <AnimatedRoutes />
-          <Footer />
-        </React.Suspense>
+        <AppContent />
       </Router>
     </ReactLenis>
   );
