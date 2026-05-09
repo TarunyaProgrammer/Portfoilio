@@ -23,10 +23,7 @@ const Footer = () => {
       window.addEventListener("load", fitWatermark);
     }
     window.addEventListener("resize", fitWatermark);
-    
-    // Initial fit
     setTimeout(fitWatermark, 100);
-
     return () => {
       window.removeEventListener("load", fitWatermark);
       window.removeEventListener("resize", fitWatermark);
@@ -34,14 +31,14 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className="footer-section bg-white pt-24 pb-12 px-6 md:px-12 selection:bg-black selection:text-white overflow-hidden">
+    <footer className="footer-section bg-white pt-24 pb-12 px-6 md:px-12 selection:bg-black selection:text-white overflow-hidden border-t border-black/5">
       <style>{`
         .footer-wrapper {
-          max-width: 1150px;
+          max-width: 1200px;
           margin: 0 auto;
           display: grid;
-          grid-template-columns: 350px 1fr;
-          gap: 16px;
+          grid-template-columns: 380px 1fr;
+          gap: 20px;
           align-items: stretch;
         }
         @media (max-width: 860px) {
@@ -49,15 +46,15 @@ const Footer = () => {
         }
         .footer-left {
           position: relative;
-          min-height: 400px;
-          border-radius: 28px;
-          padding: 32px;
+          min-height: 450px;
+          border-radius: 40px;
+          padding: 40px;
           overflow: hidden;
-          background: #1e4fc0;
+          background: #000;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          box-shadow: 0 12px 40px rgba(21, 76, 189, 0.25);
+          box-shadow: 0 20px 50px rgba(0,0,0,0.1);
         }
         .footer-left-video {
           position: absolute;
@@ -67,34 +64,37 @@ const Footer = () => {
           object-fit: cover;
           z-index: 0;
           pointer-events: none;
+          opacity: 0.5;
+          filter: grayscale(1);
         }
         .footer-right {
-          background: #f0f1f5;
-          border-radius: 28px;
-          padding: 40px;
+          background: #F8F9FA;
+          border: 1px solid rgba(0,0,0,0.03);
+          border-radius: 40px;
+          padding: 48px;
           position: relative;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          box-shadow: 0 4px 20px rgba(0,0,0,0.04);
         }
         @media (max-width: 560px) {
-          .footer-right { padding: 24px; }
+          .footer-right { padding: 32px; }
         }
         .lucky-cube {
-          width: 96px;
-          height: 96px;
-          border-radius: 22px;
-          background: linear-gradient(135deg, #5b9ffb 0%, #1e5dd7 55%, #1448be 100%);
-          box-shadow: inset 3px 3px 8px rgba(255,255,255,0.35), inset -3px -3px 12px rgba(0,0,0,0.18), 8px 14px 28px rgba(20,72,200,0.35);
+          width: 80px;
+          height: 80px;
+          border-radius: 20px;
+          background: #000;
           display: flex;
           align-items: center;
           justify-content: center;
           transform: rotate(-10deg);
+          border: 1px solid rgba(255,255,255,0.1);
+          box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         .footer-watermark {
-          max-width: 1150px;
-          margin: -60px auto 0;
+          max-width: 1200px;
+          margin: -40px auto 0;
           pointer-events: none;
           user-select: none;
           position: relative;
@@ -105,34 +105,39 @@ const Footer = () => {
 
       <div className="footer-wrapper">
         {/* ═══ LEFT CARD ═══ */}
-        <div className="footer-left">
+        <div className="footer-left group">
           <video className="footer-left-video" autoPlay muted loop playsInline preload="auto">
             <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260503_104800_bc43ae09-f494-43e3-97d7-2f8c1692cfd7.mp4" type="video/mp4" />
           </video>
           
-          <div className="footer-logo flex items-center gap-2.5 relative z-10">
-            <div className="w-8 h-8 rounded-lg bg-white/15 border-[1.5px] border-white/85 flex items-center justify-center font-bold text-white text-base">
+          <div className="footer-logo flex items-center gap-4 relative z-10">
+            <div className="w-10 h-10 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center font-bold text-white text-lg backdrop-blur-md">
               T
             </div>
-            <span className="text-[22px] font-bold text-white tracking-tighter font-['DM_Sans']">Tarunya</span>
+            <span 
+              style={{ fontFamily: "'Pinyon Script', cursive" }}
+              className="text-4xl text-white lowercase leading-none"
+            >
+              Tarunya
+            </span>
           </div>
 
-          <div className="footer-tagline-container mt-auto mb-7 relative z-10">
-            <p className="text-[19px] text-white leading-[1.45] font-['DM_Sans']">
-              Smarter systems engineering,<br />
-              <span className="text-white/65">powered by intent.</span>
+          <div className="footer-tagline-container mt-auto mb-10 relative z-10">
+            <p className="text-2xl font-bold text-white leading-tight tracking-tighter uppercase font-['Inter']">
+              Smarter systems engineering, <br />
+              <span className="opacity-30 italic font-normal">powered by intent.</span>
             </p>
           </div>
 
           <div className="footer-social-row flex justify-between items-center relative z-10">
-             <span className="font-['Caveat'] text-[17px] font-semibold text-white/90 tracking-tight">Stay in touch!</span>
-             <div className="flex gap-2">
+             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/40">Keep Connection.</span>
+             <div className="flex gap-3">
                 {[
                   { name: 'Github', url: 'https://github.com/TarunyaProgrammer' },
                   { name: 'LinkedIn', url: 'https://www.linkedin.com/in/tarunyakesharwani' },
-                  { name: 'Twitter', url: '#' }
+                  { name: 'X', url: '#' }
                 ].map((s) => (
-                  <a key={s.name} href={s.url} target="_blank" rel="noreferrer" className="w-9 h-9 rounded-[9px] bg-[#0e1014] flex items-center justify-center text-white hover:bg-black hover:-translate-y-0.5 transition-all shadow-lg text-[10px] font-bold uppercase tracking-tighter">
+                  <a key={s.name} href={s.url} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 hover:-translate-y-1 transition-all duration-500 text-[10px] font-black">
                     {s.name[0]}
                   </a>
                 ))}
@@ -142,61 +147,55 @@ const Footer = () => {
 
         {/* ═══ RIGHT CARD ═══ */}
         <div className="footer-right">
-          {/* Floating Lucky Badge */}
-          <div className="absolute -top-9 right-10 z-10 flex flex-col gap-1.5 items-start">
-             <div className="lucky-cube">
-                <span className="text-[42px] font-bold text-white tracking-tighter rotate-[10deg] font-['DM_Sans']">T</span>
+          {/* Floating System Badge */}
+          <div className="absolute -top-10 right-12 z-10 flex flex-col gap-3 items-end">
+             <div className="lucky-cube group">
+                <span className="text-3xl font-black text-white tracking-tighter group-hover:italic transition-all">1.0</span>
              </div>
-             <div className="flex gap-1.5 items-center rotate-[-4deg] mt-1">
-                <svg className="w-[22px] h-[22px] text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M3 20 C 6 14, 10 9, 18 5" />
-                  <path d="M18 5 L 12 5" />
-                  <path d="M18 5 L 18 11" />
-                </svg>
-                <span className="font-['Caveat'] text-[20px] font-semibold text-gray-400 whitespace-nowrap">Feeling lucky?</span>
+             <div className="flex gap-3 items-center rotate-[-2deg] bg-white/80 backdrop-blur-md px-4 py-2 rounded-full border border-black/5 shadow-sm">
+                <span className="text-[10px] font-black text-black/40 uppercase tracking-widest">Architectural Index</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
              </div>
           </div>
 
           {/* Navigation Columns */}
-          <div className="flex flex-row gap-16 md:gap-[72px] pt-2">
+          <div className="flex flex-row gap-20 md:gap-32 pt-4">
              <div className="footer-col">
-                <h4 className="font-['Caveat'] text-2xl font-semibold italic text-gray-400 mb-[18px]">Navigation</h4>
-                <div className="flex flex-col gap-3.5">
-                   <Link to="/" className="text-sm font-bold text-gray-900 hover:text-blue-600 transition-colors font-['DM_Sans']">About</Link>
-                   <Link to="/systems" className="text-sm font-bold text-gray-900 hover:text-blue-600 transition-colors font-['DM_Sans']">Portfolio</Link>
-                   <Link to="/labs" className="text-sm font-bold text-gray-900 hover:text-blue-600 transition-colors font-['DM_Sans']">Laboratory</Link>
-                   <Link to="/blogs" className="text-sm font-bold text-gray-900 hover:text-blue-600 transition-colors font-['DM_Sans']">Blogs</Link>
-                   <Link to="/resume" className="text-sm font-bold text-gray-900 hover:text-blue-600 transition-colors font-['DM_Sans']">Resume</Link>
+                <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-black/20 mb-8">Navigation</h4>
+                <div className="flex flex-col gap-4">
+                   <Link to="/" className="text-base font-bold text-black hover:italic transition-all">About</Link>
+                   <Link to="/systems" className="text-base font-bold text-black hover:italic transition-all">Portfolio</Link>
+                   <Link to="/labs" className="text-base font-bold text-black hover:italic transition-all">Laboratory</Link>
+                   <Link to="/blogs" className="text-base font-bold text-black hover:italic transition-all">Blogs</Link>
                 </div>
              </div>
              <div className="footer-col">
-                <h4 className="font-['Caveat'] text-2xl font-semibold italic text-gray-400 mb-[18px]">Connect</h4>
-                <div className="flex flex-col gap-3.5">
-                   <a href="mailto:tarunyaprogrammer@gmail.com" className="text-sm font-bold text-gray-900 hover:text-blue-600 transition-colors font-['DM_Sans']">Email</a>
-                   <a href="#" className="text-sm font-bold text-gray-900 hover:text-blue-600 transition-colors font-['DM_Sans']">LinkedIn</a>
-                   <a href="#" className="text-sm font-bold text-gray-900 hover:text-blue-600 transition-colors font-['DM_Sans']">GitHub</a>
-                   <a href="#" className="text-sm font-bold text-gray-900 hover:text-blue-600 transition-colors font-['DM_Sans']">Twitter</a>
+                <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-black/20 mb-8">Connect</h4>
+                <div className="flex flex-col gap-4">
+                   <a href="mailto:tarunyaprogrammer@gmail.com" className="text-base font-bold text-black hover:italic transition-all underline decoration-black/5 underline-offset-4">Email</a>
+                   <a href="#" className="text-base font-bold text-black hover:italic transition-all">LinkedIn</a>
+                   <a href="#" className="text-base font-bold text-black hover:italic transition-all">GitHub</a>
                 </div>
              </div>
           </div>
 
           {/* Bottom Row */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between mt-12 gap-8">
-             <div className="text-[12.5px] font-medium text-gray-400 font-['DM_Sans']">
-                © 2026 Tarunya. All rights reserved.
+          <div className="flex flex-col md:flex-row md:items-end justify-between mt-20 gap-10">
+             <div className="text-[10px] font-black text-black/20 uppercase tracking-[0.3em]">
+                &copy; 2026 Tarunya Systems &middot; v1.0.42
              </div>
-             <div className="flex flex-col gap-3.5">
-                <h4 className="text-[15px] text-gray-500 leading-[1.45] font-['DM_Sans']">
+             <div className="flex flex-col gap-6 w-full md:w-[350px]">
+                <h4 className="text-sm font-bold text-black/40 leading-relaxed uppercase tracking-widest">
                   Systems move fast.<br />
-                  <strong className="block text-[19px] font-bold text-gray-900">Stay ahead with Tarunya.</strong>
+                  <span className="text-black text-xl font-black">Stay ahead with Tarunya.</span>
                 </h4>
-                <div className="w-[310px] bg-white border border-gray-200 rounded-xl p-1.5 flex shadow-sm">
+                <div className="bg-white border border-black/5 rounded-2xl p-2 flex shadow-sm focus-within:border-black transition-colors">
                    <input 
                     type="email" 
-                    placeholder="Enter email address" 
-                    className="flex-1 px-3.5 py-2.5 bg-transparent border-none text-[13.5px] text-gray-900 placeholder-gray-400 focus:outline-none font-['DM_Sans']"
+                    placeholder="Engineering updates..." 
+                    className="flex-1 px-4 py-3 bg-transparent border-none text-sm font-bold text-black placeholder-black/20 focus:outline-none"
                    />
-                   <button className="px-[22px] py-[11px] bg-[#111214] text-white text-[13.5px] font-semibold rounded-lg hover:bg-black shadow-lg transition-all">
+                   <button className="px-8 py-3 bg-black text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-black/80 transition-all">
                      Subscribe
                    </button>
                 </div>
@@ -206,7 +205,7 @@ const Footer = () => {
       </div>
 
       {/* ═══ WATERMARK ═══ */}
-      <div className="footer-watermark pointer-events-none select-none relative z-0 mt-[-60px]" aria-hidden="true">
+      <div className="footer-watermark" aria-hidden="true">
         <svg ref={svgRef} id="watermarkSvg" width="100%" height="auto" className="block overflow-visible">
           <text 
             ref={textRef} 
@@ -214,7 +213,7 @@ const Footer = () => {
             x="500" y="240" 
             textAnchor="middle" 
             fontSize="320"
-            className="font-['DM_Sans'] font-bold tracking-tighter fill-black/[0.04]"
+            className="font-['Inter'] font-black tracking-tighter fill-black/[0.03] uppercase"
           >
             Tarunya
           </text>
