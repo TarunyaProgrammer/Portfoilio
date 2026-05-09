@@ -14,17 +14,26 @@
     --font-script: "Pinyon Script", cursive;
   }
 
+  html,
   body {
     background-color: var(--bg);
     color: var(--text);
     font-family: var(--font-body);
     @apply antialiased;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none !important; /* Firefox */
+    -ms-overflow-style: none !important; /* IE and Edge */
   }
 
-  body::-webkit-scrollbar {
-    display: none; /* Chrome, Safari and Opera */
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  ::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+
+  * {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
   }
 
   ::selection {
