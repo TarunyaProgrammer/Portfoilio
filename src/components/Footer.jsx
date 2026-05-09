@@ -47,14 +47,14 @@ const Footer = () => {
         .footer-left {
           position: relative;
           min-height: 450px;
-          border-radius: 40px;
+          border-radius: 0;
           padding: 40px;
           overflow: hidden;
           background: #000;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+          border: 1px solid rgba(255,255,255,0.05);
         }
         .footer-left-video {
           position: absolute;
@@ -68,9 +68,9 @@ const Footer = () => {
           filter: grayscale(1);
         }
         .footer-right {
-          background: #F8F9FA;
-          border: 1px solid rgba(0,0,0,0.03);
-          border-radius: 40px;
+          background: #fff;
+          border: 1px solid rgba(0,0,0,0.1);
+          border-radius: 0;
           padding: 48px;
           position: relative;
           display: flex;
@@ -83,14 +83,14 @@ const Footer = () => {
         .lucky-cube {
           width: 80px;
           height: 80px;
-          border-radius: 20px;
+          border-radius: 0;
           background: #000;
           display: flex;
           align-items: center;
           justify-content: center;
           transform: rotate(-10deg);
           border: 1px solid rgba(255,255,255,0.1);
-          box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+          box-shadow: 20px 20px 60px rgba(0,0,0,0.2);
         }
         .footer-watermark {
           max-width: 1200px;
@@ -111,7 +111,7 @@ const Footer = () => {
           </video>
           
           <div className="footer-logo flex items-center gap-4 relative z-10">
-            <div className="w-10 h-10 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center font-bold text-white text-lg backdrop-blur-md">
+            <div className="w-10 h-10 rounded-none bg-white/10 border border-white/20 flex items-center justify-center font-bold text-white text-lg backdrop-blur-md">
               T
             </div>
             <span 
@@ -137,7 +137,7 @@ const Footer = () => {
                   { name: 'LinkedIn', url: 'https://www.linkedin.com/in/tarunyakesharwani' },
                   { name: 'X', url: '#' }
                 ].map((s) => (
-                  <a key={s.name} href={s.url} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 hover:-translate-y-1 transition-all duration-500 text-[10px] font-black">
+                  <a key={s.name} href={s.url} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-none bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 hover:-translate-y-1 transition-all duration-500 text-[10px] font-black">
                     {s.name[0]}
                   </a>
                 ))}
@@ -152,9 +152,9 @@ const Footer = () => {
              <div className="lucky-cube group">
                 <span className="text-3xl font-black text-white tracking-tighter group-hover:italic transition-all">1.0</span>
              </div>
-             <div className="flex gap-3 items-center rotate-[-2deg] bg-white/80 backdrop-blur-md px-4 py-2 rounded-full border border-black/5 shadow-sm">
+             <div className="flex gap-3 items-center rotate-[-2deg] bg-white border border-black/10 px-4 py-2 rounded-none shadow-xl">
                 <span className="text-[10px] font-black text-black/40 uppercase tracking-widest">Architectural Index</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                <span className="w-1.5 h-1.5 rounded-none bg-green-500 animate-pulse"></span>
              </div>
           </div>
 
@@ -189,13 +189,13 @@ const Footer = () => {
                   Systems move fast.<br />
                   <span className="text-black text-xl font-black">Stay ahead with Tarunya.</span>
                 </h4>
-                <div className="bg-white border border-black/5 rounded-2xl p-2 flex shadow-sm focus-within:border-black transition-colors">
+                <div className="bg-white border border-black p-2 flex shadow-sm focus-within:ring-2 ring-black transition-all rounded-none">
                    <input 
                     type="email" 
                     placeholder="Engineering updates..." 
                     className="flex-1 px-4 py-3 bg-transparent border-none text-sm font-bold text-black placeholder-black/20 focus:outline-none"
                    />
-                   <button className="px-8 py-3 bg-black text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-black/80 transition-all">
+                   <button className="px-8 py-3 bg-black text-white text-[10px] font-black uppercase tracking-widest rounded-none hover:bg-black/80 transition-all">
                      Subscribe
                    </button>
                 </div>

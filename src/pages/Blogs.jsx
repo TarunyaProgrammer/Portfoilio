@@ -32,7 +32,7 @@ const Blogs = () => {
                <span className="italic font-normal opacity-10">Archive.</span>
             </h1>
           </div>
-          <Link to="/blogs" className="flex items-center gap-4 bg-white border border-black/5 shadow-sm px-10 py-5 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-all duration-700 group">
+          <Link to="/blogs" className="flex items-center gap-4 bg-white border border-black px-10 py-5 rounded-none text-xs font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-all duration-700 group">
             <span>Access All Articles</span>
             <span className="group-hover:translate-x-2 transition-transform">&rarr;</span>
           </Link>
@@ -48,14 +48,14 @@ const Blogs = () => {
             transition={{ duration: 0.8 }}
             className="md:col-span-5 h-full"
           >
-            <Link to={`/thinking/${featuredPost.id}`} className="group relative block h-[500px] md:h-[850px] overflow-hidden rounded-[4rem] bg-black">
+            <Link to={`/thinking/${featuredPost.id}`} className="group relative block h-[500px] md:h-[850px] overflow-hidden rounded-none bg-black border border-black/10">
               <img 
                 src={featuredPost.image} 
                 alt={featuredPost.title} 
                 className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-[2s]"
               />
               {/* Emoji Badge */}
-              <div className="absolute top-10 left-10 w-16 h-16 bg-white/10 backdrop-blur-xl rounded-full flex items-center justify-center text-3xl shadow-2xl border border-white/20">
+              <div className="absolute top-10 left-10 w-16 h-16 bg-white/10 backdrop-blur-xl rounded-none flex items-center justify-center text-3xl shadow-2xl border border-white/20">
                 🔥
               </div>
               
@@ -85,11 +85,11 @@ const Blogs = () => {
             {/* Top Text Card */}
             <motion.div 
                whileHover={{ y: -5 }}
-               className="bg-[#D8F1A0] p-10 rounded-[3rem] relative overflow-hidden group"
+               className="bg-[#D8F1A0] p-10 rounded-none relative overflow-hidden group border border-black/5"
             >
                <div className="flex justify-between items-start mb-8">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-black/60">Category . {secondPost.category}</span>
-                  <div className="w-12 h-12 bg-black/5 rounded-full flex items-center justify-center text-xl group-hover:bg-black group-hover:text-white transition-all">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-black/60">Category . {secondPost.category}</span>
+                  <div className="w-12 h-12 bg-black/5 rounded-none flex items-center justify-center text-xl group-hover:bg-black group-hover:text-white transition-all">
                     ↗
                   </div>
                </div>
@@ -116,7 +116,7 @@ const Blogs = () => {
             {/* Bottom Media Card */}
             <motion.div 
                whileHover={{ scale: 0.98 }}
-               className="relative h-[400px] rounded-[3rem] overflow-hidden group"
+               className="relative h-[400px] rounded-none overflow-hidden group border border-black/10"
             >
                <img 
                 src={fourthPost.image} 
@@ -124,11 +124,11 @@ const Blogs = () => {
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1s]"
                />
                <div className="absolute inset-0 bg-black/20 flex flex-col justify-end p-10">
-                  <div className="w-16 h-16 bg-white/40 backdrop-blur-md rounded-full flex items-center justify-center text-white mb-6 mx-auto">
+                  <div className="w-16 h-16 bg-white/40 backdrop-blur-md rounded-none flex items-center justify-center text-white mb-6 mx-auto">
                     <span className="ml-1">▶</span>
                   </div>
-                  <div className="text-[10px] font-bold text-white/60 mb-2 uppercase tracking-widest">5 Min . {fourthPost.date}</div>
-                  <h3 className="text-xl font-bold text-white uppercase tracking-tighter leading-tight">
+                  <div className="text-[10px] font-black text-white/60 mb-2 uppercase tracking-widest">5 Min . {fourthPost.date}</div>
+                  <h3 className="text-xl font-black text-white uppercase tracking-tighter leading-tight">
                     {fourthPost.title}
                   </h3>
                </div>
@@ -140,7 +140,7 @@ const Blogs = () => {
             {/* Top Vertical Card */}
             <motion.div 
                whileHover={{ y: -5 }}
-               className="relative h-[550px] rounded-[3rem] overflow-hidden group bg-white"
+               className="relative h-[550px] rounded-none overflow-hidden group bg-white border border-black/10"
             >
                <img 
                 src={thirdPost.image} 
@@ -148,24 +148,24 @@ const Blogs = () => {
                 className="w-full h-[60%] object-cover group-hover:scale-105 transition-transform duration-1000"
                />
                <div className="p-8">
-                  <div className="text-[10px] font-bold text-black/30 mb-2 uppercase tracking-widest">Hot . {thirdPost.date}</div>
+                  <div className="text-[10px] font-black text-black/30 mb-2 uppercase tracking-widest">Hot . {thirdPost.date}</div>
                   <h3 className="text-3xl font-black text-black uppercase leading-none tracking-tighter group-hover:italic transition-all">
                     {thirdPost.title}
                   </h3>
                </div>
-               <div className="absolute top-8 left-8 text-[10px] font-bold uppercase tracking-widest bg-white/80 px-4 py-2 rounded-full">
+               <div className="absolute top-8 left-8 text-[10px] font-black uppercase tracking-widest bg-white/80 px-4 py-2 rounded-none border border-black/10">
                   Category . {thirdPost.category}
                </div>
             </motion.div>
 
             {/* Category Cloud */}
-            <div className="bg-[#D1C4E9] p-10 rounded-[3rem] flex-1 relative overflow-hidden">
+            <div className="bg-[#D1C4E9] p-10 rounded-none flex-1 relative overflow-hidden border border-black/5">
                 <div className="flex flex-wrap gap-3 mb-12 relative z-10">
                   {categories.map((cat, i) => (
                     <motion.span 
                       key={i}
                       whileHover={{ scale: 1.1, backgroundColor: "#000", color: "#fff" }}
-                      className="bg-[#FFF9C4]/80 px-5 py-3 rounded-full text-[10px] font-black uppercase tracking-tighter cursor-pointer transition-all"
+                      className="bg-[#FFF9C4]/80 px-5 py-3 rounded-none text-[10px] font-black uppercase tracking-tighter cursor-pointer transition-all border border-black/5 shadow-sm"
                     >
                       {cat}
                     </motion.span>
@@ -173,12 +173,12 @@ const Blogs = () => {
                 </div>
                 <div className="flex justify-between items-center relative z-10 mt-auto">
                   <span className="text-lg font-black text-black tracking-tighter uppercase">View All Categories</span>
-                  <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center text-xl shadow-lg cursor-pointer hover:bg-black hover:text-white transition-all">
+                  <div className="w-14 h-14 bg-white rounded-none flex items-center justify-center text-xl shadow-lg cursor-pointer hover:bg-black hover:text-white transition-all border border-black/10">
                     &rarr;
                   </div>
                 </div>
                 {/* Visual Accent */}
-                <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-3xl" />
+                <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-white/10 rounded-none blur-3xl" />
             </div>
           </div>
 
