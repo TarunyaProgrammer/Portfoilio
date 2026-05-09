@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import useDocumentSEO from "../hooks/useDocumentSEO";
 import { Link } from "react-router-dom";
+import { blogPosts } from "../data/blogData";
 
 const Blogs = () => {
   useDocumentSEO({
@@ -8,33 +9,6 @@ const Blogs = () => {
     description:
       "A collection of technical articles, architectural insights, and engineering philosophies.",
   });
-
-  const posts = [
-    {
-      id: 1,
-      date: "MAY 2026",
-      title: "The Case for Offline-First Architecture",
-      category: "Systems Design",
-      excerpt: "Why building for the disconnected state is the next frontier of user experience and system reliability.",
-      readTime: "8 min"
-    },
-    {
-      id: 2,
-      date: "APR 2026",
-      title: "Agentic Workflows in Production",
-      category: "Artificial Intelligence",
-      excerpt: "Moving beyond simple chat interfaces into autonomous task execution systems with LLMs.",
-      readTime: "12 min"
-    },
-    {
-      id: 3,
-      date: "MAR 2026",
-      title: "Minimalist Engineering: Doing Less",
-      category: "Philosophy",
-      excerpt: "How reducing complexity in your stack leads to faster deployments and fewer production fires.",
-      readTime: "5 min"
-    }
-  ];
 
   return (
     <motion.div
@@ -53,7 +27,7 @@ const Blogs = () => {
         </h1>
 
         <div className="space-y-32">
-          {posts.map((post, i) => (
+          {blogPosts.map((post, i) => (
             <motion.article 
               key={post.id}
               initial={{ opacity: 0, y: 30 }}
