@@ -56,5 +56,47 @@ export const blogPosts = [
         text: "The most common failure isn't a bug; it's a lack of intent. When a PR tries to solve three problems at once, it creates five more in the future. Here's how I trained my eye to spot these structural fractures early."
       }
     ]
+  },
+  {
+    id: "agentic-workflows-production",
+    date: "MAR 2026",
+    title: "Beyond the Hype: Real-World Agentic Workflows",
+    category: "AI Engineering",
+    excerpt: "Moving beyond simple chat interfaces into autonomous task execution systems that actually work in production.",
+    readTime: "12 min",
+    content: [
+      {
+        type: "paragraph",
+        text: "Everyone is talking about AI agents, but few are talking about the reliability gap. In this article, I break down how to build deterministic guardrails around stochastic models."
+      }
+    ]
+  },
+  {
+    id: "minimalist-ui-complex-systems",
+    date: "FEB 2026",
+    title: "Building Minimalist UIs for Complex Systems",
+    category: "Frontend Design",
+    excerpt: "How to maintain high informational density without overwhelming the user. Lessons from industrial dashboard design.",
+    readTime: "7 min",
+    content: [
+      {
+        type: "paragraph",
+        text: "Minimalism isn't about lack of content; it's about clarity of intent. When building systems that manage millions of data points, the UI should be a filter, not a funnel."
+      }
+    ]
+  },
+  {
+    id: "gsoc-scale-lessons",
+    date: "JAN 2026",
+    title: "Lessons from GSoC: Managing Scale in Open Source",
+    category: "Software Engineering",
+    excerpt: "What working with global-scale open source organizations taught me about communication, code quality, and distributed systems.",
+    readTime: "20 min",
+    content: [
+      {
+        type: "paragraph",
+        text: "Google Summer of Code is more than just a coding program; it's an immersion into how the world's most critical infrastructure is maintained by people who have never met in person."
+      }
+    ]
   }
 ];
