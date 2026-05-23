@@ -68,7 +68,7 @@ const Signals = () => {
         />
       )}
       
-      <div className="container mx-auto px-8 md:px-16 py-20 md:py-24 relative">
+      <div className="container mx-auto px-8 md:px-16 py-24 md:py-28 relative">
         <div className="flex flex-col md:flex-row items-baseline justify-between mb-16 gap-6">
             <div className="flex items-center gap-6">
                 <motion.span 

@@ -94,9 +94,7 @@ const Footer = () => {
              <div className="footer-col">
                 <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-black/20 mb-8">Navigation</h4>
                 <div className="flex flex-col gap-4">
-                   <Link to="/" className="text-base font-bold text-black hover:italic transition-all">About</Link>
-                   <Link to="/systems" className="text-base font-bold text-black hover:italic transition-all">Portfolio</Link>
-                   <Link to="/labs" className="text-base font-bold text-black hover:italic transition-all">Laboratory</Link>
+                   <Link to="/systems" className="text-base font-bold text-black hover:italic transition-all">Projects</Link>
                    <Link to="/blogs" className="text-base font-bold text-black hover:italic transition-all">Blogs</Link>
                 </div>
              </div>

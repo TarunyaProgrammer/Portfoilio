@@ -33,7 +33,7 @@ const Journey = () => {
   ];
 
   return (
-    <section className="py-32 md:py-48 bg-white border-t border-black/5">
+    <section className="py-36 md:py-52 bg-white border-t border-black/5">
       <div className="container mx-auto px-8 md:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-32 items-start">
           <motion.div

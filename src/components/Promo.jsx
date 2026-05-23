@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Promo = () => {
   return (
-    <section className="py-24 md:py-40 px-8 bg-white">
+    <section className="py-28 md:py-44 px-8 bg-white">
       <motion.div
         initial={{ opacity: 0, scale: 0.98 }}
         whileInView={{ opacity: 1, scale: 1 }}

@@ -21,9 +21,7 @@ const Nav = () => {
   }, [menuOpen]);
 
   const navLinks = [
-    { to: "/", label: "About" },
-    { to: "/systems", label: "Portfolio" },
-    { to: "/labs", label: "Laboratory" },
+    { to: "/systems", label: "Projects" },
     { to: "/blogs", label: "Blogs" },
     { to: "/resume", label: "Resume" },
   ];

@@ -4,7 +4,7 @@ import { engageOptions } from "../data/engage";
 
 const ServicesSection = () => {
   return (
-    <section className="py-32 md:py-48 bg-white border-t border-black/5">
+    <section className="py-36 md:py-52 bg-white border-t border-black/5">
       <div className="container mx-auto px-8 md:px-16">
         <div className="flex flex-col md:flex-row justify-between items-end mb-32 gap-12">
           <div className="max-w-2xl">

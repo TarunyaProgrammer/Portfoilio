@@ -66,7 +66,13 @@
   }
 
   .section-spacing {
-    @apply py-32 md:py-64;
+    @apply py-36;
+  }
+  @media (min-width: 768px) {
+    .section-spacing {
+      padding-top: 17rem;
+      padding-bottom: 17rem;
+    }
   }
 
   .text-script {
@@ -120,11 +126,6 @@ html.lenis {
 
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
-}
-
-/* Custom Cursor Active State */
-.custom-cursor-active, .custom-cursor-active * {
-  cursor: none !important;
 }
 
 /* Extracted SystemDetail Readme Styles */

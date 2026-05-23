@@ -23,7 +23,7 @@ const Insights = () => {
   ];
 
   return (
-    <section className="py-32 md:py-48 bg-white border-t border-black/5">
+    <section className="py-36 md:py-52 bg-white border-t border-black/5">
       <div className="container mx-auto px-8">
         <div className="text-center mb-32">
           <div className="text-[10px] font-bold text-black/30 uppercase tracking-[0.5em] mb-8">

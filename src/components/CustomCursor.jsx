@@ -16,8 +16,6 @@ const CustomCursor = () => {
       return;
     }
 
-    document.documentElement.classList.add("custom-cursor-active");
-
     const moveCursor = (e) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
@@ -42,7 +40,6 @@ const CustomCursor = () => {
     window.addEventListener("mouseover", handleMouseOver);
 
     return () => {
-      document.documentElement.classList.remove("custom-cursor-active");
       window.removeEventListener("mousemove", moveCursor);
       window.removeEventListener("mouseover", handleMouseOver);
     };

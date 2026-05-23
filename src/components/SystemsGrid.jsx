@@ -19,7 +19,7 @@ const SystemsGrid = ({ limit = 6, hideTitle = false }) => {
   const displayedSystems = safeProjects.slice(0, limit);
 
   return (
-    <section className="py-32 md:py-48 bg-white relative z-10">
+    <section className="py-36 md:py-52 bg-white relative z-10">
       <div className="container mx-auto px-8">
         {!hideTitle && (
           <div className="flex flex-col md:flex-row items-baseline justify-between mb-32 border-b border-black/10 pb-12">

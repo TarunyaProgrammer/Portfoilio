@@ -133,10 +133,10 @@ const NotFound = () => {
           </Link>
 
           <nav className="flex gap-10">
-            {['Portfolio', 'Laboratory', 'Blogs'].map((item) => (
+            {['Portfolio', 'Blogs'].map((item) => (
               <Link 
                 key={item}
-                to={`/${item.toLowerCase()}`} 
+                to={item === 'Portfolio' ? '/systems' : '/blogs'} 
                 className="text-[10px] font-black uppercase tracking-widest text-black/20 hover:text-black transition-colors"
               >
                 {item}

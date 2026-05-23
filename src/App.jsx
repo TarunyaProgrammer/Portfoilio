@@ -17,7 +17,6 @@ gsap.registerPlugin(ScrollTrigger);
 const Home = React.lazy(() => import("./pages/Home"));
 const SystemsPage = React.lazy(() => import("./pages/SystemsPage"));
 const SystemDetail = React.lazy(() => import("./pages/SystemDetail"));
-const LabsPage = React.lazy(() => import("./pages/LabsPage"));
 const Blogs = React.lazy(() => import("./pages/Blogs"));
 const ThinkingArticle = React.lazy(() => import("./pages/ThinkingArticle"));
 const Connect = React.lazy(() => import("./pages/Connect"));
@@ -61,14 +60,7 @@ const AnimatedRoutes = () => {
             </PageContainer>
           }
         />
-        <Route
-          path="/labs"
-          element={
-            <PageContainer>
-              <LabsPage />
-            </PageContainer>
-          }
-        />
+
         <Route
           path="/blogs"
           element={
