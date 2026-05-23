@@ -194,10 +194,10 @@ const ContactForm = ({ selectedOption, onSubmitSuccess }) => {
         <p className="text-[10px] font-bold text-text/30 uppercase tracking-[0.4em]">
           Direct Channel:{" "}
           <a
-            href="mailto:tarunyak.10@gmail.com"
+            href="mailto:tarunyaprogrammer@gmail.com"
             className="text-accent hover:text-text transition-colors"
           >
-            tarunyak.10@gmail.com
+            tarunyaprogrammer@gmail.com
           </a>
         </p>
       </div>

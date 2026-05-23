@@ -3,20 +3,21 @@ import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import useDocumentSEO from "../hooks/useDocumentSEO";
 import { blogPosts } from "../data/blogData";
 import React, { useRef } from "react";
+import DOMPurify from "dompurify";
 
 const ThinkingArticle = () => {
   const { slug } = useParams();
   const post = blogPosts.find((p) => p.id === slug);
   const containerRef = useRef(null);
   
+  useDocumentSEO({
+    title: post ? `${post.title} — Tarunya Systems Archive` : "Not Found",
+    description: post ? post.excerpt : "",
+  });
+
   if (!post) {
     return <Navigate to="/blogs" replace />;
   }
-
-  useDocumentSEO({
-    title: `${post.title} — Tarunya Systems Archive`,
-    description: post.excerpt,
-  });
 
   return (
     <div ref={containerRef} className="min-h-screen bg-[#121212] text-[#D1D1D1] selection:bg-white selection:text-black font-sans overflow-x-hidden">
@@ -123,7 +124,7 @@ const ThinkingArticle = () => {
             prose-td:border-b prose-td:border-white/5 prose-td:py-6 prose-td:px-4
             prose-tr:hover:bg-white/[0.02] transition-colors
           ">
-            <div dangerouslySetInnerHTML={{ __html: post.content }} />
+            <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content) }} />
             
             {/* The "Further Logic" Fix - Minimalist Terminal Style */}
             <section className="mt-[20vh] pt-24 border-t border-white/5">

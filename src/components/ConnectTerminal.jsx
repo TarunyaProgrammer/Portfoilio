@@ -127,11 +127,12 @@ const ConnectTerminal = () => {
               onSubmit={handleSubmit}
             >
               <div className="space-y-2 border-b border-black/10 pb-4">
-                <label className="text-[9px] font-bold tracking-[0.3em] text-black/40 uppercase">
+                <label htmlFor="name-input" className="text-[9px] font-bold tracking-[0.3em] text-black/40 uppercase">
                   Full Name / Entity
                 </label>
                 <input 
                   required
+                  id="name-input"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
@@ -143,11 +144,12 @@ const ConnectTerminal = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                 <div className="space-y-2 border-b border-black/10 pb-4">
-                  <label className="text-[9px] font-bold tracking-[0.3em] text-black/40 uppercase">
+                  <label htmlFor="email-input" className="text-[9px] font-bold tracking-[0.3em] text-black/40 uppercase">
                     Direct Email
                   </label>
                   <input 
                     required
+                    id="email-input"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
@@ -157,10 +159,11 @@ const ConnectTerminal = () => {
                   />
                 </div>
                 <div className="space-y-2 border-b border-black/10 pb-4">
-                  <label className="text-[9px] font-bold tracking-[0.3em] text-black/40 uppercase">
+                  <label htmlFor="phone-input" className="text-[9px] font-bold tracking-[0.3em] text-black/40 uppercase">
                     Phone (Optional)
                   </label>
                   <input 
+                    id="phone-input"
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
@@ -172,10 +175,11 @@ const ConnectTerminal = () => {
               </div>
 
               <div className="space-y-2 border-b border-black/10 pb-4">
-                <label className="text-[9px] font-bold tracking-[0.3em] text-black/40 uppercase">
+                <label htmlFor="project-title-select" className="text-[9px] font-bold tracking-[0.3em] text-black/40 uppercase">
                   Selected Service
                 </label>
                 <select 
+                  id="project-title-select"
                   name="projectTitle"
                   value={formData.projectTitle}
                   onChange={handleChange}
@@ -190,11 +194,12 @@ const ConnectTerminal = () => {
               </div>
 
               <div className="space-y-2 border-b border-black/10 pb-4">
-                <label className="text-[9px] font-bold tracking-[0.3em] text-black/40 uppercase">
+                <label htmlFor="summary-textarea" className="text-[9px] font-bold tracking-[0.3em] text-black/40 uppercase">
                   Project Briefing / Summary
                 </label>
                 <textarea 
                   required
+                  id="summary-textarea"
                   name="summary"
                   value={formData.summary}
                   onChange={handleChange}

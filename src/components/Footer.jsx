@@ -32,76 +32,6 @@ const Footer = () => {
 
   return (
     <footer className="footer-section bg-white pt-24 pb-12 px-6 md:px-12 selection:bg-black selection:text-white overflow-hidden border-t border-black/5">
-      <style>{`
-        .footer-wrapper {
-          max-width: 1200px;
-          margin: 0 auto;
-          display: grid;
-          grid-template-columns: 380px 1fr;
-          gap: 20px;
-          align-items: stretch;
-        }
-        @media (max-width: 860px) {
-          .footer-wrapper { grid-template-columns: 1fr; }
-        }
-        .footer-left {
-          position: relative;
-          min-height: 450px;
-          border-radius: 0;
-          padding: 40px;
-          overflow: hidden;
-          background: #000;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          border: 1px solid rgba(255,255,255,0.05);
-        }
-        .footer-left-video {
-          position: absolute;
-          inset: 0;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          z-index: 0;
-          pointer-events: none;
-          opacity: 0.5;
-          filter: grayscale(1);
-        }
-        .footer-right {
-          background: #fff;
-          border: 1px solid rgba(0,0,0,0.1);
-          border-radius: 0;
-          padding: 48px;
-          position: relative;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-        }
-        @media (max-width: 560px) {
-          .footer-right { padding: 32px; }
-        }
-        .lucky-cube {
-          width: 80px;
-          height: 80px;
-          border-radius: 0;
-          background: #000;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transform: rotate(-10deg);
-          border: 1px solid rgba(255,255,255,0.1);
-          box-shadow: 20px 20px 60px rgba(0,0,0,0.2);
-        }
-        .footer-watermark {
-          max-width: 1200px;
-          margin: -40px auto 0;
-          pointer-events: none;
-          user-select: none;
-          position: relative;
-          z-index: 0;
-          line-height: 0;
-        }
-      `}</style>
 
       <div className="footer-wrapper">
         {/* ═══ LEFT CARD ═══ */}
@@ -136,7 +66,7 @@ const Footer = () => {
                 {[
                   { name: 'Github', url: 'https://github.com/TarunyaProgrammer' },
                   { name: 'LinkedIn', url: 'https://www.linkedin.com/in/tarunyakesharwani' },
-                  { name: 'X', url: '#' }
+                  { name: 'X', url: 'https://x.com/TarunyaKesh' }
                 ].map((s) => (
                   <a key={s.name} href={s.url} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-none bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 hover:-translate-y-1 transition-all duration-500 text-[10px] font-black">
                     {s.name[0]}
@@ -174,8 +104,8 @@ const Footer = () => {
                 <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-black/20 mb-8">Connect</h4>
                 <div className="flex flex-col gap-4">
                    <a href="mailto:tarunyaprogrammer@gmail.com" className="text-base font-bold text-black hover:italic transition-all underline decoration-black/5 underline-offset-4">Email</a>
-                   <a href="#" className="text-base font-bold text-black hover:italic transition-all">LinkedIn</a>
-                   <a href="#" className="text-base font-bold text-black hover:italic transition-all">GitHub</a>
+                   <a href="https://www.linkedin.com/in/tarunyakesharwani" target="_blank" rel="noreferrer" className="text-base font-bold text-black hover:italic transition-all">LinkedIn</a>
+                   <a href="https://github.com/TarunyaProgrammer" target="_blank" rel="noreferrer" className="text-base font-bold text-black hover:italic transition-all">GitHub</a>
                 </div>
              </div>
           </div>
@@ -190,16 +120,23 @@ const Footer = () => {
                   Systems move fast.<br />
                   <span className="text-black text-xl font-black">Stay ahead with Tarunya.</span>
                 </h4>
-                <div className="bg-white border border-black p-2 flex shadow-sm focus-within:ring-2 ring-black transition-all rounded-none">
+                <form 
+                  onSubmit={(e) => { e.preventDefault(); alert("Subscription successful!"); }}
+                  className="bg-white border border-black p-2 flex shadow-sm focus-within:ring-2 ring-black transition-all rounded-none w-full"
+                >
                    <input 
                     type="email" 
+                    required
                     placeholder="Engineering updates..." 
                     className="flex-1 px-4 py-3 bg-transparent border-none text-sm font-bold text-black placeholder-black/20 focus:outline-none"
                    />
-                   <button className="px-8 py-3 bg-black text-white text-[10px] font-black uppercase tracking-widest rounded-none hover:bg-black/80 transition-all">
+                   <button 
+                     type="submit"
+                     className="px-8 py-3 bg-black text-white text-[10px] font-black uppercase tracking-widest rounded-none hover:bg-black/80 transition-all"
+                   >
                      Subscribe
                    </button>
-                </div>
+                </form>
              </div>
           </div>
         </div>

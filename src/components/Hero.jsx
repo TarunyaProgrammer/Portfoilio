@@ -40,7 +40,7 @@ const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 1.2, ease: [0.2, 0.8, 0.2, 1] }}
           >
-            <h1 className="text-7xl md:text-[14rem] lg:text-[18rem] font-bold leading-[0.75] tracking-tighter text-black mb-8 flex overflow-hidden">
+            <h1 className="text-7xl md:text-[10rem] lg:text-[12rem] xl:text-[16rem] 2xl:text-[18rem] font-bold leading-[0.75] tracking-tighter text-black mb-8 flex overflow-hidden">
               {"Hello".split("").map((char, index) => (
                 <motion.span
                   key={index}
@@ -120,7 +120,7 @@ const Hero = () => {
           <div className="aspect-[4/5] overflow-hidden grayscale contrast-125">
             <img
               src="/webme1.webp"
-              alt="Portrait"
+              alt="Tarunya Kesharwani — Full-Stack Engineer and Systems Architect"
               fetchpriority="high"
               decoding="async"
               className="w-full h-full object-cover object-top scale-110"

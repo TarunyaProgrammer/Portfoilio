@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useGitHubSignals } from "../hooks/useGitHubSignals";
 import { useCodeforcesSignals } from "../hooks/useCodeforcesSignals";
 import { formatDistanceToNow } from "date-fns";
@@ -39,6 +39,7 @@ const Signals = () => {
   const { data: github, loading: ghLoading } = useGitHubSignals();
   const { data: cf, loading: cfLoading } = useCodeforcesSignals();
   const [systemState, setSystemState] = useState("SYNCING");
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     if (ghLoading || cfLoading) {
@@ -59,11 +60,13 @@ const Signals = () => {
   return (
     <section className="bg-white relative z-20 border-b border-black/5 overflow-hidden">
       {/* Scanning Line Effect */}
-      <motion.div 
-        className="absolute inset-x-0 h-[1px] bg-black/5 z-30"
-        animate={{ top: ["0%", "100%", "0%"] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-      />
+      {!shouldReduceMotion && (
+        <motion.div 
+          className="absolute inset-x-0 h-[1px] bg-black/5 z-30"
+          animate={{ top: ["0%", "100%", "0%"] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+        />
+      )}
       
       <div className="container mx-auto px-8 md:px-16 py-20 md:py-24 relative">
         <div className="flex flex-col md:flex-row items-baseline justify-between mb-16 gap-6">

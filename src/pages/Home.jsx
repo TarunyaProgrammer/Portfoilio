@@ -26,69 +26,70 @@ const Home = () => {
   });
 
   useEffect(() => {
-    // Parallax Grid Background
-    gsap.to(gridRef.current, {
-      yPercent: 30,
-      ease: "none",
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top top",
-        end: "bottom bottom",
-        scrub: true
-      }
-    });
-
-    // Pin Hero Section (Only on Desktop)
-    const mm = gsap.matchMedia();
-    mm.add("(min-width: 768px)", () => {
-      ScrollTrigger.create({
-        trigger: ".hero-container",
-        start: "top top",
-        end: "bottom top",
-        pin: true,
-        pinSpacing: false
+    const ctx = gsap.context(() => {
+      // Parallax Grid Background
+      gsap.to(gridRef.current, {
+        yPercent: 30,
+        ease: "none",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: true
+        }
       });
-    });
 
-    // Reveal Sections on Scroll (Use a small delay to ensure lazy components are mounted)
+      // Pin Hero Section (Only on Desktop)
+      const mm = gsap.matchMedia();
+      mm.add("(min-width: 768px)", () => {
+        ScrollTrigger.create({
+          trigger: ".hero-container",
+          start: "top top",
+          end: "bottom top",
+          pin: true,
+          pinSpacing: false
+        });
+      });
+
+      const sections = containerRef.current.querySelectorAll("section");
+      sections.forEach((section) => {
+        gsap.fromTo(section, 
+          { opacity: 0, y: 50 },
+          { 
+            opacity: 1, 
+            y: 0, 
+            duration: 1, 
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: section,
+              start: "top 85%",
+              toggleActions: "play none none reverse"
+            }
+          }
+        );
+      });
+
+      // About Text Scroll Reveal
+      gsap.utils.toArray(".about-text p").forEach((p) => {
+        gsap.to(p, {
+          color: "rgba(0, 0, 0, 1)",
+          scrollTrigger: {
+            trigger: p,
+            start: "top 80%",
+            end: "top 40%",
+            scrub: true
+          }
+        });
+      });
+    }, containerRef);
+
     const refreshScroll = () => {
       ScrollTrigger.refresh();
     };
 
-    const sections = containerRef.current.querySelectorAll("section");
-    sections.forEach((section) => {
-      gsap.fromTo(section, 
-        { opacity: 0, y: 50 },
-        { 
-          opacity: 1, 
-          y: 0, 
-          duration: 1, 
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: section,
-            start: "top 85%",
-            toggleActions: "play none none reverse"
-          }
-        }
-      );
-    });
-
-    // About Text Scroll Reveal
-    gsap.utils.toArray(".about-text p").forEach((p) => {
-      gsap.to(p, {
-        color: "rgba(0, 0, 0, 1)",
-        scrollTrigger: {
-          trigger: p,
-          start: "top 80%",
-          end: "top 40%",
-          scrub: true
-        }
-      });
-    });
-
     window.addEventListener("load", refreshScroll);
     return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill());
+      ctx.revert();
       window.removeEventListener("load", refreshScroll);
     };
   }, []);

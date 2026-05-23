@@ -116,3 +116,7 @@ dist
 .yarn/install-state.gz
 .pnp.*
 .DS_Store
+
+# Scratch folders
+scratch/
+scratch*

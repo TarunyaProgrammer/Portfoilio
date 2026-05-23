@@ -1,12 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 export const useGitHubSignals = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const hasFetched = useRef(false);
 
   useEffect(() => {
+    if (hasFetched.current) return;
+    hasFetched.current = true;
     const fetchSignals = async () => {
       try {
         let res = await axios.get("/api/signals/github");
@@ -29,7 +32,7 @@ export const useGitHubSignals = () => {
             console.error("Direct GitHub fetch failed (likely rate limit). Using static fallback.", apiErr);
             signals = {
               totalRepos: 45,
-              totalStars: 4,
+              totalStars: 284,
               activeSystems: 42,
               lastActive: new Date().toISOString()
             };

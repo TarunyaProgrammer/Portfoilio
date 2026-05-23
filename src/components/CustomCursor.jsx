@@ -11,6 +11,13 @@ const CustomCursor = () => {
   const cursorYSpring = useSpring(cursorY, springConfig);
 
   useEffect(() => {
+    // Disable on mobile/touch
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+      return;
+    }
+
+    document.documentElement.classList.add("custom-cursor-active");
+
     const moveCursor = (e) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
@@ -34,15 +41,8 @@ const CustomCursor = () => {
     window.addEventListener("mousemove", moveCursor);
     window.addEventListener("mouseover", handleMouseOver);
 
-    // Disable on mobile/touch
-    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
-      return () => {
-        window.removeEventListener("mousemove", moveCursor);
-        window.removeEventListener("mouseover", handleMouseOver);
-      };
-    }
-
     return () => {
+      document.documentElement.classList.remove("custom-cursor-active");
       window.removeEventListener("mousemove", moveCursor);
       window.removeEventListener("mouseover", handleMouseOver);
     };

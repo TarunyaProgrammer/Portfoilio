@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import useDocumentSEO from "../hooks/useDocumentSEO";
+import DOMPurify from "dompurify";
 
 const SystemDetail = () => {
   const { slug } = useParams();
@@ -124,7 +125,7 @@ const SystemDetail = () => {
             <article className="prose-editorial">
               <div
                 className="github-readme"
-                dangerouslySetInnerHTML={{ __html: data.readmeHtml }}
+                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(data.readmeHtml) }}
               />
             </article>
           </div>
@@ -190,32 +191,6 @@ const SystemDetail = () => {
         </div>
       </div>
 
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-        .github-readme h1, .github-readme h2, .github-readme h3 {
-          font-family: 'Inter', sans-serif;
-          margin-top: 4rem;
-          margin-bottom: 1.5rem;
-          font-weight: 800;
-          color: #000;
-          line-height: 1.1;
-          letter-spacing: -0.04em;
-        }
-        .github-readme h1 { font-size: 3.5rem; border-bottom: 2px solid #000; padding-bottom: 1rem; }
-        .github-readme h2 { font-size: 2.25rem; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 0.5rem; }
-        .github-readme h3 { font-size: 1.5rem; }
-        .github-readme p { font-family: 'Inter', sans-serif; font-size: 1.125rem; line-height: 1.8; color: #333; margin-bottom: 2rem; }
-        .github-readme ul, .github-readme ol { margin-bottom: 2rem; padding-left: 2rem; list-style-type: square; }
-        .github-readme li { font-family: 'Inter', sans-serif; font-size: 1.125rem; color: #444; margin-bottom: 0.75rem; }
-        .github-readme code { background: rgba(0,0,0,0.05); padding: 0.2rem 0.5rem; border-radius: 0; font-family: monospace; font-size: 0.9em; font-weight: 600; color: #000; }
-        .github-readme pre { background: #000; color: #fff; padding: 2rem; border-radius: 0; margin-bottom: 2.5rem; overflow-x: auto; }
-        .github-readme img { max-width: 100%; height: auto; border: 1px solid rgba(0,0,0,0.1); margin: 3rem 0; }
-        .github-readme a { color: #000; text-decoration: underline; text-underline-offset: 4px; font-weight: 700; }
-        .github-readme hr { border: 0; border-top: 1px solid rgba(0,0,0,0.1); margin: 4rem 0; }
-      `,
-        }}
-      />
     </motion.section>
   );
 };

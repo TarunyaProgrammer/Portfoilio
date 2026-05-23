@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
+      external: ['nodemailer'],
       output: {
         manualChunks: {
           'vendor-animations': ['gsap', 'framer-motion'],

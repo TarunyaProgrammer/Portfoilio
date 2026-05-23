@@ -61,13 +61,26 @@ const ResumePage = () => {
                 </div>
               )}
 
-              {/* PDF iframe */}
-              <iframe
-                src="/Resume.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
+              {/* PDF object preview */}
+              <object
+                data="/Resume.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
+                type="application/pdf"
                 title="Tarunya Kesharwani Resume"
                 className="w-full h-full border-0 bg-white"
                 onLoad={() => setIframeLoaded(true)}
-              />
+              >
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-8 bg-black/5 text-center">
+                  <p className="text-black/60 font-semibold mb-4">PDF preview is not supported by your browser.</p>
+                  <a
+                    href="/Resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-6 py-3 bg-black text-white font-bold text-sm uppercase tracking-widest hover:bg-black/90 transition-all"
+                  >
+                    Open PDF directly
+                  </a>
+                </div>
+              </object>
 
               {/* Hover Overlay */}
               <AnimatePresence>
