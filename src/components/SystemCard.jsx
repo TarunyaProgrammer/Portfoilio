@@ -3,20 +3,24 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 const SystemCard = memo(({ system, index }) => {
-  const [imgSrc, setImgSrc] = useState(system.image);
+  const [imgSrc, setImgSrc] = useState("");
 
   useEffect(() => {
     if (system.homepage) {
-      // Use Microlink embed API to fetch the page's Open Graph image directly
       setImgSrc(`https://api.microlink.io/?url=${encodeURIComponent(system.homepage)}&embed=image.url`);
     } else {
-      setImgSrc(system.image);
+      setImgSrc(`https://opengraph.githubassets.com/1/TarunyaProgrammer/${system.slug}`);
     }
-  }, [system.homepage, system.image]);
+  }, [system.homepage, system.slug]);
 
   const handleImgError = () => {
-    // If Microlink fails, immediately fall back to the Unsplash placeholder illustration
-    setImgSrc(system.image);
+    if (imgSrc.includes("api.microlink.io")) {
+      // If live site OG image fails, try the GitHub social preview card
+      setImgSrc(`https://opengraph.githubassets.com/1/TarunyaProgrammer/${system.slug}`);
+    } else {
+      // If that also fails, fall back to the Unsplash illustration
+      setImgSrc(system.image);
+    }
   };
 
   return (
