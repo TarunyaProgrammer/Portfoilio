@@ -4,9 +4,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import useDocumentSEO from "../hooks/useDocumentSEO";
 import Hero from "../components/Hero.jsx";
 import Signals from "../components/Signals.jsx";
+import About from "../components/About.jsx";
 
 // Lazy loaded components
-const About = lazy(() => import("../components/About.jsx"));
 const SystemsGrid = lazy(() => import("../components/SystemsGrid.jsx"));
 const Journey = lazy(() => import("../components/Journey.jsx"));
 const Promo = lazy(() => import("../components/Promo.jsx"));
@@ -115,8 +115,8 @@ const Home = () => {
           <Hero />
         </div>
         <Signals />
+        <About />
         <Suspense fallback={<div className="h-96 flex items-center justify-center text-[10px] font-bold uppercase tracking-widest text-black/20">Initialising System Modules...</div>}>
-          <About />
           <SkillsArchive />
           <SystemsGrid limit={6} />
           <ServicesSection />

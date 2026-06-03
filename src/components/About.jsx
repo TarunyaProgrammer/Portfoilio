@@ -110,22 +110,22 @@ const About = () => {
               About Me
             </h2>
             <div className="space-y-10 max-w-xl about-text">
-              <p className="text-lg md:text-xl text-black/20 leading-relaxed font-medium transition-colors duration-700">
+              <p className="text-lg md:text-xl text-black/20 leading-relaxed font-medium">
                 I like building things that survive real usage. Not demo-day
                 perfect. Not <strong className="text-black font-extrabold bg-[#D8F1A0]/30 px-1.5 py-0.5 border-b border-black/10">“works on my machine”</strong> perfect. The kind of systems
                 people slowly start depending on without thinking about it.
               </p>
-              <p className="text-lg md:text-xl text-black/20 leading-relaxed font-medium transition-colors duration-700">
+              <p className="text-lg md:text-xl text-black/20 leading-relaxed font-medium">
                 I enjoy the <strong className="text-black font-extrabold bg-[#D8F1A0]/30 px-1.5 py-0.5 border-b border-black/10">messy side of engineering</strong> — unclear requirements,
                 evolving products, edge cases nobody planned for, and figuring
                 out how to keep things understandable as they grow.
               </p>
-              <p className="text-lg md:text-xl text-black/20 leading-relaxed font-medium transition-colors duration-700">
+              <p className="text-lg md:text-xl text-black/20 leading-relaxed font-medium">
                 Most of my interest sits somewhere between engineering, product
                 decisions, and interface design. I care a lot about clarity — in
                 code, spacing, naming, and user experience.
               </p>
-              <p className="text-lg md:text-xl text-black/20 leading-relaxed font-medium transition-colors duration-700">
+              <p className="text-lg md:text-xl text-black/20 leading-relaxed font-medium">
                 I’m less interested in building “impressive” software and more
                 interested in building products that feel <strong className="text-black font-extrabold bg-[#D8F1A0]/30 px-1.5 py-0.5 border-b border-black/10">calm, fast,
                 predictable, and easy to trust</strong>.
