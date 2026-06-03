@@ -1,8 +1,24 @@
-import { memo } from "react";
+import { memo, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 const SystemCard = memo(({ system, index }) => {
+  const [imgSrc, setImgSrc] = useState(system.image);
+
+  useEffect(() => {
+    if (system.homepage) {
+      // Use Microlink embed API to fetch the page's Open Graph image directly
+      setImgSrc(`https://api.microlink.io/?url=${encodeURIComponent(system.homepage)}&embed=image.url`);
+    } else {
+      setImgSrc(system.image);
+    }
+  }, [system.homepage, system.image]);
+
+  const handleImgError = () => {
+    // If Microlink fails, immediately fall back to the Unsplash placeholder illustration
+    setImgSrc(system.image);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -14,13 +30,13 @@ const SystemCard = memo(({ system, index }) => {
       <Link to={`/systems/${system.slug}`} className="block">
         <div className="relative aspect-video overflow-hidden bg-black/5 mb-8 group-hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.2)] transition-all duration-700">
           <img
-            src={system.image || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop"}
+            src={imgSrc || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop"}
             alt={system.title}
             loading="lazy"
             width="1280"
             height="720"
-            crossOrigin="anonymous"
             className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
+            onError={handleImgError}
           />
           
           {/* Overlay Number */}

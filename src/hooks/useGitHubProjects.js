@@ -61,6 +61,7 @@ export const useGitHubProjects = () => {
                   description: repo.description || "A technical system built for high-performance execution.",
                   stars: repo.stargazers_count,
                   url: repo.html_url,
+                  homepage: repo.homepage,
                   pushed_at: repo.pushed_at,
                   image: `https://images.unsplash.com/photo-${photoId}?q=80&w=1000&auto=format&fit=crop`
                 };
@@ -77,6 +78,7 @@ export const useGitHubProjects = () => {
                 description: "High-performance distributed locking mechanism using Redis and Lua.",
                 stars: 1200,
                 url: "https://github.com/TarunyaProgrammer/distributed-locker",
+                homepage: "",
                 image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2540&auto=format&fit=crop"
               },
               {
@@ -88,6 +90,7 @@ export const useGitHubProjects = () => {
                 description: "Lightweight particle animation library for React.",
                 stars: 840,
                 url: "https://github.com/TarunyaProgrammer/react-particles-x",
+                homepage: "",
                 image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2540&auto=format&fit=crop"
               }
             ];

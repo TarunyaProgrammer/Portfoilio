@@ -64,6 +64,7 @@ export default async function handler(req, res) {
           description: repo.description || "A technical system built for high-performance execution.",
           stars: repo.stargazers_count,
           url: repo.html_url,
+          homepage: repo.homepage,
           pushed_at: repo.pushed_at,
           image: `https://images.unsplash.com/photo-${photoId}?q=80&w=1000&auto=format&fit=crop`
         };
