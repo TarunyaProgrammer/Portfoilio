@@ -14,7 +14,8 @@
 <br />
 
 <div align="center">
-  <img src="public/hero-img.png" alt="Tarunya Systems Hero" width="800" style="border-radius: 8px;" />
+  <img width="800" alt="Tarunya Systems Hero" src="https://github.com/user-attachments/assets/035799fb-1f3a-43be-b7c5-450c06320a74" style="border-radius: 8px;" />
+  <!-- <img src="public/hero-img.png" alt="Tarunya Systems Hero" width="800" style="border-radius: 8px;" /> -->
 </div>
 
 <div align="center">
