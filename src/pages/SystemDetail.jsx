@@ -9,6 +9,7 @@ const SystemDetail = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [activeTab, setActiveTab] = useState("code"); // code, live
 
   const prettyName = slug
     .replace(/-/g, " ")
@@ -120,60 +121,98 @@ const SystemDetail = () => {
         </div>
 
         {/* Interactive Showcase Frame */}
-        {data.homepage ? (
-          <div className="w-full flex flex-col items-center mb-24 select-none">
-            {/* Holographic Header Bar */}
-            <div className="w-full bg-[#0A0A0A] text-white px-6 py-4 flex justify-between items-center text-[10px] font-mono border border-white/10 border-b-0 rounded-none relative">
-              <div className="flex items-center gap-3">
-                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                <span className="tracking-widest">LIVE WORKBENCH // SECURE SANDBOXED INSTANCE // {data.name.toUpperCase()}</span>
-              </div>
-              <div className="flex gap-6 items-center">
-                <span className="text-white/40 hidden sm:inline">
-                  [HOST: {(() => {
+        <div className="w-full flex flex-col items-center mb-24 select-none">
+          {/* Holographic Header Bar with Tabs */}
+          <div className="w-full bg-[#0A0A0A] text-white px-6 py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center text-[10px] font-mono border border-white/10 border-b-0 rounded-none relative gap-4">
+            <div className="flex flex-wrap items-center gap-3">
+              {/* Tab Selector Buttons */}
+              <button
+                onClick={() => setActiveTab("code")}
+                className={`px-4 py-2 border transition-all duration-300 font-extrabold uppercase tracking-widest ${
+                  activeTab === "code"
+                    ? "bg-[#D8F1A0] text-black border-[#D8F1A0]"
+                    : "bg-transparent text-white border-white/10 hover:border-white/30 hover:text-white"
+                }`}
+              >
+                [01] Code Workspace
+              </button>
+              {data.homepage && (
+                <button
+                  onClick={() => setActiveTab("live")}
+                  className={`px-4 py-2 border transition-all duration-300 font-extrabold uppercase tracking-widest ${
+                    activeTab === "live"
+                      ? "bg-[#D8F1A0] text-black border-[#D8F1A0]"
+                      : "bg-transparent text-white border-white/10 hover:border-white/30 hover:text-white"
+                  }`}
+                >
+                  [02] Live Preview
+                </button>
+              )}
+            </div>
+
+            {/* Dynamic Status / Host telemetry & Launch Link */}
+            <div className="flex flex-wrap gap-4 items-center self-end sm:self-auto">
+              <span className="text-white/40 font-bold hidden sm:inline">
+                {activeTab === "code" ? (
+                  `[REPO: ${data.fullName}]`
+                ) : (
+                  `[HOST: ${(() => {
                     try {
                       return new URL(data.homepage).hostname;
                     } catch (e) {
                       return data.homepage;
                     }
-                  })()}]
-                </span>
-                <a
-                  href={data.homepage}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#D8F1A0] hover:text-white transition-colors uppercase tracking-widest font-extrabold"
-                >
-                  Launch External ↗
-                </a>
-              </div>
+                  })()}]`
+                )}
+              </span>
+              <a
+                href={activeTab === "code" ? data.url : data.homepage}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#D8F1A0] hover:text-white transition-colors uppercase tracking-widest font-extrabold"
+              >
+                {activeTab === "code" ? "Open GitHub ↗" : "Launch External ↗"}
+              </a>
             </div>
+          </div>
 
-            {/* Sandboxed Interactive Panel */}
-            <div className="w-full h-[50vh] sm:h-[60vh] lg:h-[80vh] border border-black/10 bg-zinc-50 relative">
+          {/* Sandboxed Interactive Panel */}
+          <div className="w-full h-[50vh] sm:h-[60vh] lg:h-[80vh] border border-black/10 bg-zinc-950 relative">
+            {activeTab === "code" ? (
+              <iframe
+                src={`https://github1s.com/${data.fullName}`}
+                title={`${data.name} Code Workspace`}
+                className="w-full h-full border-none bg-zinc-900"
+                sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+                loading="lazy"
+              />
+            ) : (
               <iframe
                 src={data.homepage}
-                title={`${data.name} Interactive Frame`}
-                className="w-full h-full border-none"
+                title={`${data.name} Live Preview`}
+                className="w-full h-full border-none bg-white"
                 sandbox="allow-scripts allow-same-origin allow-forms"
                 loading="lazy"
               />
-            </div>
-            
-            {/* Tactical Notice Footer */}
-            <div className="w-full border border-t-0 border-black/5 bg-zinc-50/50 px-6 py-3 flex flex-col sm:flex-row justify-between items-start sm:items-center text-[9px] font-mono text-black/40 gap-2">
-              <span>SECURITY_POLICY: SANDBOX_ACTIVE // ENFORCING SAME_ORIGIN</span>
-              <span className="text-left sm:text-right">
-                ⚠️ Connection failing? Certain environments block frame loading. Use <a href={data.homepage} target="_blank" rel="noopener noreferrer" className="text-black font-extrabold underline hover:no-underline">Launch External ↗</a> if page remains blank.
-              </span>
-            </div>
+            )}
           </div>
-        ) : (
-          <div className="w-full border border-black/5 bg-zinc-50/50 px-6 py-4 mb-24 flex justify-between items-center text-[10px] font-mono text-black/40">
-            <span>[NO LIVE HOST CONFIGURED FOR THIS MODULE]</span>
-            <span>STATIC ARCHIVE TELEMETRY LOADED BELOW</span>
+          
+          {/* Tactical Notice Footer */}
+          <div className="w-full border border-t-0 border-black/5 bg-zinc-50/50 px-6 py-3 flex flex-col sm:flex-row justify-between items-start sm:items-center text-[9px] font-mono text-black/40 gap-2">
+            <span>
+              {activeTab === "code" 
+                ? "SECURITY_POLICY: CODE_WORKSPACE_ACTIVE // RENDERING REPOSITORY AST ENGINE"
+                : "SECURITY_POLICY: LIVE_PREVIEW_ACTIVE // ENFORCING SAME_ORIGIN SANDBOX"}
+            </span>
+            <span className="text-left sm:text-right">
+              {activeTab === "code" ? (
+                <span>Workspace blank? Launch directly on <a href={data.url} target="_blank" rel="noopener noreferrer" className="text-black font-extrabold underline hover:no-underline">GitHub ↗</a>.</span>
+              ) : (
+                <span>⚠️ Connection failing? Frame nesting may be restricted. Use <a href={data.homepage} target="_blank" rel="noopener noreferrer" className="text-black font-extrabold underline hover:no-underline">Launch External ↗</a>.</span>
+              )}
+            </span>
           </div>
-        )}
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-24">
           <div className="lg:col-span-2">
