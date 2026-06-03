@@ -105,12 +105,12 @@ const SkillsArchive = () => {
   };
 
   return (
-    <section className="py-36 md:py-52 bg-white border-t border-black/5 overflow-hidden">
-      <div className="container mx-auto px-8 md:px-16">
-        <div className="text-[10px] font-bold text-black/30 uppercase tracking-[0.5em] mb-12">
+    <section className="py-20 md:py-52 bg-white border-t border-black/5 overflow-hidden">
+      <div className="container mx-auto px-6 md:px-16">
+        <div className="text-[10px] font-bold text-black/30 uppercase tracking-[0.5em] mb-8 md:mb-12">
           Technical Inventory
         </div>
-        <h2 className="text-5xl md:text-8xl font-bold text-black tracking-tighter mb-24 leading-[0.85]">
+        <h2 className="text-4xl sm:text-5xl md:text-8xl font-bold text-black tracking-tighter mb-16 md:mb-24 leading-[0.85]">
           Language & <br />
           <span className="italic font-normal opacity-20">Protocols.</span>
         </h2>
@@ -170,10 +170,10 @@ const SkillsArchive = () => {
                           setActiveSkill(item);
                           setLogTrigger(prev => prev + 1); // re-trigger logs typewriter animation on click
                         }}
-                        className={`w-full p-6 text-left border flex items-center justify-between transition-all duration-300 group rounded-none relative overflow-hidden ${
+                        className={`w-full p-4 md:p-6 text-left border flex items-center justify-between gap-4 transition-all duration-300 group rounded-none relative overflow-hidden ${
                           isSelected
-                            ? "bg-black border-black text-white"
-                            : "bg-zinc-50/50 border-black/5 hover:border-black/20 text-black/80 hover:bg-zinc-50"
+                             ? "bg-black border-black text-white"
+                             : "bg-zinc-50/50 border-black/5 hover:border-black/20 text-black/80 hover:bg-zinc-50"
                         }`}
                       >
                         {/* Interactive hover line */}
@@ -181,17 +181,17 @@ const SkillsArchive = () => {
                           <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-black/0 group-hover:bg-black/20 transition-colors" />
                         )}
                         
-                        <div className="flex flex-col gap-2 z-10">
-                          <span className="text-base font-bold font-mono tracking-tight group-hover:pl-1 transition-all duration-300">
+                        <div className="flex flex-col gap-2 z-10 min-w-0">
+                          <span className="text-sm md:text-base font-bold font-mono tracking-tight group-hover:pl-1 transition-all duration-300 truncate">
                             {item}
                           </span>
                           
                           {/* Segmented LED matrix indicator */}
-                          <div className="flex gap-1 items-center">
+                          <div className="flex gap-0.5 md:gap-1 items-center overflow-x-auto scrollbar-none">
                             {getLedBars(itemData.level).map((filled, idx) => (
                               <span
                                 key={idx}
-                                className={`w-2 h-2 rounded-none transition-colors duration-300 ${
+                                className={`w-1.5 h-1.5 md:w-2 md:h-2 rounded-none transition-colors duration-300 shrink-0 ${
                                   isSelected
                                     ? filled ? "bg-white" : "bg-white/20"
                                     : filled ? "bg-black" : "bg-black/10"
@@ -201,7 +201,7 @@ const SkillsArchive = () => {
                           </div>
                         </div>
 
-                        <span className="text-[10px] font-mono font-bold tracking-wider opacity-60 group-hover:opacity-100 transition-opacity z-10">
+                        <span className="text-[9px] md:text-[10px] font-mono font-bold tracking-wider opacity-60 group-hover:opacity-100 transition-opacity z-10 shrink-0 uppercase">
                           {(skillDetails[item] || { metric: "Active" }).metric.split(":")[0]}
                         </span>
                       </button>
@@ -213,7 +213,7 @@ const SkillsArchive = () => {
           </div>
 
           {/* Right Column: Telemetry Monitor Console */}
-          <div className="lg:col-span-7 border border-black/10 bg-zinc-50/20 p-8 flex flex-col justify-between relative overflow-hidden">
+          <div className="lg:col-span-7 border border-black/10 bg-zinc-50/20 p-5 md:p-8 flex flex-col justify-between relative overflow-hidden">
             
             {/* Background Grid Pattern Accent */}
             <div 
@@ -231,7 +231,7 @@ const SkillsArchive = () => {
               
               {/* Header Telemetry Telemetry Bar */}
               <div className="flex justify-between items-center border-b border-black/5 pb-4">
-                <span className="text-[10px] font-mono font-bold tracking-widest text-black/40">
+                <span className="text-[8px] md:text-[10px] font-mono font-bold tracking-widest text-black/40">
                   SYSTEM DIAGNOSTIC CONSOLE v1.0.42
                 </span>
                 <div className="flex items-center gap-2">
@@ -240,19 +240,19 @@ const SkillsArchive = () => {
                     transition={{ duration: 1.5, repeat: Infinity }}
                     className="w-2 h-2 rounded-full bg-green-500"
                   />
-                  <span className="text-[9px] font-mono font-bold text-green-600 uppercase tracking-widest">
-                    Telemetry Stream
+                  <span className="text-[8px] md:text-[9px] font-mono font-bold text-green-600 uppercase tracking-widest">
+                    Telemetry
                   </span>
                 </div>
               </div>
 
               {/* Title and stats layout */}
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 pt-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pt-4">
                 <div className="space-y-2">
                   <span className="text-[10px] font-mono font-bold text-black/30 uppercase tracking-[0.3em]">
                     Active Module
                   </span>
-                  <h3 className="text-4xl md:text-5xl font-mono font-bold text-black tracking-tighter">
+                  <h3 className="text-3xl md:text-5xl font-mono font-bold text-black tracking-tighter">
                     {activeSkill}
                   </h3>
                   <div className="text-xs font-mono text-black/50 font-bold tracking-wide">
@@ -301,11 +301,11 @@ const SkillsArchive = () => {
                 <span className="text-[9px] font-mono font-bold text-black/40 uppercase tracking-widest">
                   Diagnostic Log Output
                 </span>
-                <div className="w-full bg-black p-6 font-mono text-xs text-zinc-400 min-h-[160px] flex flex-col justify-start gap-2 select-text selection:bg-zinc-800">
+                <div className="w-full bg-black p-4 md:p-6 font-mono text-[11px] md:text-xs text-zinc-400 min-h-[160px] flex flex-col justify-start gap-2 select-text selection:bg-zinc-800">
                   {displayedLogs.map((log, i) => (
                     <div key={i} className="flex gap-2 items-baseline">
-                      <span className="text-green-500 opacity-60">&gt;</span>
-                      <span>{log}</span>
+                      <span className="text-green-500 opacity-60 shrink-0">&gt;</span>
+                      <span className="break-all">{log}</span>
                     </div>
                   ))}
                   {displayedLogs.length < (activeSkillData.logs || []).length && (

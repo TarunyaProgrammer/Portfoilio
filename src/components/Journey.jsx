@@ -7,29 +7,33 @@ const Journey = () => {
       title: "Open Source Ecosystems",
       role: "Contributor",
       period: "Present Day",
-      description: "Actively contributing to Jaeger, Meshery, C2SI, and JSON Schema. Spanning 25+ repositories across frontend and systems logic."
+      description:
+        "Actively contributing to Jaeger, Meshery, C2SI, and JSON Schema. Spanning 25+ repositories across frontend and systems logic.",
     },
     {
       year: "2025",
       title: "Echo: Real-Time Systems",
       role: "Lead Architect",
       period: "MERN Stack",
-      description: "Built a production-deployed chat app focusing on instant delivery, live presence, and secure session management."
+      description:
+        "Built a production-deployed chat app focusing on instant delivery, live presence, and secure session management.",
     },
     {
       year: "2024",
       title: "Offline-First Protocols",
       role: "Core Developer",
       period: "PWA Focus",
-      description: "Developing robust systems like the Student Expense Tracker and Streakly, prioritizing local-first data and PWA stability."
+      description:
+        "Developing robust systems like the Student Expense Tracker and Streakly, prioritizing local-first data and PWA stability.",
     },
     {
       year: "2023",
       title: "Logical Foundations",
       role: "Full-Stack Learner",
       period: "Initial Phase",
-      description: "Establishing the core logical foundation for high-performance systems and mastering the MERN ecosystem."
-    }
+      description:
+        "Establishing the core logical foundation for high-performance systems and mastering the MERN ecosystem.",
+    },
   ];
 
   return (
@@ -45,30 +49,20 @@ const Journey = () => {
             <div className="text-[10px] font-bold text-black/30 uppercase tracking-[0.5em] mb-12">
               Growth Chronology
             </div>
-            <h2 className="text-5xl md:text-8xl font-bold text-black tracking-tighter mb-16 leading-[0.85]">
+             <h2 className="text-4xl sm:text-5xl md:text-8xl font-bold text-black tracking-tighter mb-16 leading-[0.85]">
               Architectural <br />
               <span className="italic font-normal opacity-20">Timeline.</span>
             </h2>
             <p className="text-xl text-black/60 font-medium max-w-md leading-relaxed">
-              A precise record of systems built, languages mastered, and the evolution of a digital philosophy.
+              A precise record of systems built, languages mastered, and the
+              evolution of a digital philosophy.
             </p>
-            
-            <div className="mt-24 flex gap-8">
-               <div className="w-32 h-32 bg-black/5 grayscale overflow-hidden relative group cursor-crosshair">
-                  <img src="/webme1.png" alt="Journey" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                  <div className="absolute inset-0 bg-black/10 mix-blend-overlay"></div>
-               </div>
-               <div className="w-48 h-32 bg-black/5 grayscale overflow-hidden relative group cursor-crosshair">
-                  <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2540&auto=format&fit=crop" alt="System" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                  <div className="absolute inset-0 bg-black/10 mix-blend-overlay"></div>
-               </div>
-            </div>
           </motion.div>
 
           {/* Right Column: Timeline */}
           <div className="relative border-l border-black/5 pl-8 md:pl-16 space-y-24">
             {/* Animated Progress Line */}
-            <motion.div 
+            <motion.div
               initial={{ height: 0 }}
               whileInView={{ height: "100%" }}
               transition={{ duration: 2, ease: "easeInOut" }}
@@ -85,7 +79,7 @@ const Journey = () => {
                 className="relative group"
               >
                 {/* Year Marker */}
-                <motion.div 
+                <motion.div
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
                   transition={{ delay: index * 0.2 + 0.5 }}
@@ -95,7 +89,7 @@ const Journey = () => {
                 <div className="text-[10px] font-bold text-black/30 uppercase tracking-[0.4em] mb-4">
                   {exp.year} // {exp.period}
                 </div>
-                <h3 className="text-3xl font-bold text-black group-hover:italic transition-all tracking-tight mb-2">
+                <h3 className="text-2xl sm:text-3xl font-bold text-black group-hover:italic transition-all tracking-tight mb-2">
                   {exp.title}
                 </h3>
                 <div className="text-[10px] font-bold text-black/40 uppercase tracking-widest mb-6">

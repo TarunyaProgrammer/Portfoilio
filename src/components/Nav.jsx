@@ -5,7 +5,17 @@ import Magnetic from "./Magnetic.jsx";
 
 const Nav = () => {
   const [menuOpen, setMenuOpen] = React.useState(false);
+  const [time, setTime] = React.useState("");
   const location = useLocation();
+
+  React.useEffect(() => {
+    if (!menuOpen) return;
+    setTime(new Date().toLocaleTimeString());
+    const interval = setInterval(() => {
+      setTime(new Date().toLocaleTimeString());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [menuOpen]);
 
   // Close mobile menu on route change
   React.useEffect(() => {
@@ -92,18 +102,18 @@ const Nav = () => {
           aria-label={menuOpen ? "Close menu" : "Open menu"}
         >
           <span
-            className={`block w-6 h-[1.5px] bg-black transition-all duration-500 ${
-              menuOpen ? "rotate-45 translate-y-[7.5px]" : ""
+            className={`block w-6 h-[1.5px] transition-all duration-500 ${
+              menuOpen ? "rotate-45 translate-y-[7.5px] bg-white" : "bg-black"
             }`}
           />
           <span
-            className={`block w-6 h-[1.5px] bg-black transition-all duration-500 ${
-              menuOpen ? "opacity-0" : ""
+            className={`block w-6 h-[1.5px] transition-all duration-500 ${
+              menuOpen ? "opacity-0 bg-white" : "bg-black"
             }`}
           />
           <span
-            className={`block w-6 h-[1.5px] bg-black transition-all duration-500 ${
-              menuOpen ? "-rotate-45 -translate-y-[7.5px]" : ""
+            className={`block w-6 h-[1.5px] transition-all duration-500 ${
+              menuOpen ? "-rotate-45 -translate-y-[7.5px] bg-white" : "bg-black"
             }`}
           />
         </button>
@@ -116,47 +126,83 @@ const Nav = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.6, ease: [0.2, 0.8, 0.2, 1] }}
-            className="fixed inset-0 z-40 bg-white md:hidden flex flex-col px-12 pt-48"
+            transition={{ duration: 0.5, ease: [0.2, 0.8, 0.2, 1] }}
+            className="fixed inset-0 z-40 bg-[#0A0A0A] text-white md:hidden flex flex-col px-10 pt-36 justify-between overflow-hidden"
           >
-            <div className="text-[10px] font-bold text-black/30 uppercase tracking-[0.5em] mb-12">
-              navigation
-            </div>
-            <div className="flex flex-col items-start gap-8 text-6xl text-black leading-none tracking-tighter">
-              {navLinks.map((link, i) => (
+            {/* Holographic grid background */}
+            <div 
+              className="absolute inset-0 pointer-events-none opacity-[0.02] mix-blend-screen"
+              style={{
+                backgroundImage: `
+                  linear-gradient(to right, white 1px, transparent 1px),
+                  linear-gradient(to bottom, white 1px, transparent 1px)
+                `,
+                backgroundSize: "30px 30px"
+              }}
+            />
+
+            <div className="relative z-10 w-full">
+              <div className="text-[10px] font-bold text-white/30 uppercase tracking-[0.5em] mb-10">
+                navigation
+              </div>
+              <div className="flex flex-col items-start gap-6 text-4xl font-extrabold tracking-tighter w-full">
+                {navLinks.map((link, i) => (
+                  <motion.div
+                    key={link.to}
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 20 }}
+                    transition={{ delay: 0.1 + i * 0.08, duration: 0.5, ease: "easeOut" }}
+                    className="w-full flex justify-between items-baseline border-b border-white/5 pb-4 group"
+                  >
+                    <Link
+                      to={link.to}
+                      className="hover:text-[#D8F1A0] transition-colors flex items-baseline gap-4"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      <span className="text-[10px] font-mono font-bold text-white/30">0{i + 1}.</span>
+                      <span>{link.label}</span>
+                    </Link>
+                    <span className="text-[9px] font-mono font-bold text-white/10 uppercase tracking-widest group-hover:text-[#D8F1A0]/30 transition-colors">
+                      [NAV_ENTRY]
+                    </span>
+                  </motion.div>
+                ))}
+                
                 <motion.div
-                  key={link.to}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.2 + i * 0.1, duration: 0.8 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  transition={{ delay: 0.2 + navLinks.length * 0.08, duration: 0.5 }}
+                  className="w-full mt-6"
                 >
                   <Link
-                    to={link.to}
-                    className="font-bold hover:italic transition-all"
+                    to="/connect"
+                    className="block w-full text-center py-4 bg-[#D8F1A0] hover:bg-white text-black font-extrabold text-xs uppercase tracking-[0.4em] transition-all duration-300 relative"
                     onClick={() => setMenuOpen(false)}
                   >
-                    {link.label}
+                    Inquiry Protocol &rarr;
                   </Link>
                 </motion.div>
-              ))}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2 + navLinks.length * 0.1, duration: 0.8 }}
-                className="mt-12 w-full"
-              >
-                <Link
-                  to="/connect"
-                  className="block w-full text-center py-6 bg-black text-white font-bold text-2xl uppercase tracking-widest"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Connect
-                </Link>
-              </motion.div>
+              </div>
             </div>
             
-            <div className="mt-auto mb-12 text-[10px] font-bold text-black/20 uppercase tracking-[0.5em] text-center">
-              &copy; 2026 Tarunya
+            <div className="relative z-10 pb-10 border-t border-white/5 pt-6 flex flex-col gap-4">
+              <div className="flex justify-between items-center text-[8px] font-mono font-bold text-white/20 uppercase tracking-[0.4em]">
+                <span>SYS_LOC: PORTFOLIO_V1.0</span>
+                <span className="flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                  ACTIVE_SYNC
+                </span>
+              </div>
+              <div className="flex justify-between items-center text-[9px] font-mono font-bold text-white/30 uppercase tracking-[0.3em]">
+                <span>SYSTEM TIME: {time || "00:00:00"}</span>
+                <div className="flex gap-4">
+                  <a href="https://github.com/TarunyaProgrammer" target="_blank" rel="noreferrer" className="hover:text-[#D8F1A0] transition-colors">GH</a>
+                  <a href="https://www.linkedin.com/in/tarunyakesharwani" target="_blank" rel="noreferrer" className="hover:text-[#D8F1A0] transition-colors">LN</a>
+                  <a href="https://x.com/TarunyaKesh" target="_blank" rel="noreferrer" className="hover:text-[#D8F1A0] transition-colors">X</a>
+                </div>
+              </div>
             </div>
           </motion.div>
         )}

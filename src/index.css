@@ -196,7 +196,7 @@ html.lenis {
   justify-content: space-between;
 }
 @media (max-width: 560px) {
-  .footer-right { padding: 32px; }
+  .footer-right { padding: 24px; }
 }
 .lucky-cube {
   width: 80px;
