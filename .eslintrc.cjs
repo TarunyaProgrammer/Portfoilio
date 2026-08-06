@@ -103,7 +103,8 @@ module.exports = {
     // Test files — relax some prod rules
     {
       files: ["src/__tests__/**/*.{js,jsx}", "**/*.test.{js,jsx}", "**/*.spec.{js,jsx}"],
-      env: { vitest: true },
+      env: { browser: true, node: true },
+      globals: { describe: "readonly", it: "readonly", expect: "readonly", vi: "readonly", beforeEach: "readonly", afterEach: "readonly" },
       rules: {
         "no-console": "off",
         "no-unused-vars": "warn",
