@@ -18,7 +18,6 @@ const Home = React.lazy(() => import("./pages/Home"));
 const SystemsPage = React.lazy(() => import("./pages/SystemsPage"));
 const SystemDetail = React.lazy(() => import("./pages/SystemDetail"));
 const Blogs = React.lazy(() => import("./pages/Blogs"));
-const ThinkingArticle = React.lazy(() => import("./pages/ThinkingArticle"));
 const Connect = React.lazy(() => import("./pages/Connect"));
 const ResumePage = React.lazy(() => import("./pages/ResumePage"));
 const Engage = React.lazy(() => import("./pages/Engage"));
@@ -70,15 +69,6 @@ const AnimatedRoutes = () => {
           }
         />
         <Route
-          path="/thinking/:slug"
-          element={
-            <PageContainer noPadding>
-              {/* ThinkingArticle has its own custom layout/hero */}
-              <ThinkingArticle />
-            </PageContainer>
-          }
-        />
-        <Route
           path="/connect"
           element={
             <PageContainer>
@@ -124,35 +114,14 @@ const AnimatedRoutes = () => {
 };
 
 function AppContent() {
-  const location = useLocation();
-  const isThinkingPage = location.pathname.startsWith("/thinking/");
-  
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
-
   return (
     <>
       <ScrollToTop />
       <CustomCursor />
-      
-      {/* Global Scroll Progress */}
-      <motion.div 
-        className="fixed top-0 left-0 right-0 h-1 z-[9999] mix-blend-difference pointer-events-none"
-      >
-        <motion.div 
-          className="h-full bg-white origin-left"
-          style={{ scaleX }}
-        />
-      </motion.div>
-
-      {!isThinkingPage && <Nav />}
-      <React.Suspense fallback={<div className="h-screen w-full bg-white flex items-center justify-center text-[10px] font-bold uppercase tracking-widest text-black/20">Initialising Core...</div>}>
+      <Nav />
+      <React.Suspense fallback={<div className="h-screen w-full bg-[#0b0d12] flex items-center justify-center text-[10px] font-bold uppercase tracking-widest text-white/40">Initialising Core...</div>}>
         <AnimatedRoutes />
-        {!isThinkingPage && <Footer />}
+        <Footer />
       </React.Suspense>
     </>
   );

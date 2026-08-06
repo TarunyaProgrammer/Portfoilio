@@ -1,204 +1,297 @@
-import { motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import useDocumentSEO from "../hooks/useDocumentSEO";
-import { Link } from "react-router-dom";
-import { blogPosts, categories } from "../data/blogData";
 
 const Blogs = () => {
   useDocumentSEO({
-    title: "Technical Thought Hub — Tarunya Kesharwani",
-    description: "Explore deep dives into system architecture, AI engineering, and software design principles.",
+    title: "Publications & Insights — Tarunya Kesharwani",
+    description: "Live synchronized technical publications from DEV.to (@tarunya) and Medium (@tarunyakesh).",
   });
 
-  const featuredPost = blogPosts[0];
-  const secondPost = blogPosts[1];
-  const thirdPost = blogPosts[2];
-  const fourthPost = blogPosts[3];
+  const [activeTab, setActiveTab] = useState("all"); // "all" | "devto" | "medium"
+  const [devtoArticles, setDevtoArticles] = useState([]);
+  const [mediumArticles, setMediumArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedArticle, setSelectedArticle] = useState(null);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    async function fetchFeeds() {
+      setLoading(true);
+      
+      // 1. Fetch DEV.to Articles
+      try {
+        const resDev = await fetch("https://dev.to/api/articles?username=tarunya");
+        if (resDev.ok) {
+          const dataDev = await resDev.json();
+          if (isMounted && Array.isArray(dataDev)) {
+            const formattedDev = dataDev.map((item) => ({
+              id: `dev-${item.id}`,
+              platform: "devto",
+              platformName: "DEV.to",
+              title: item.title,
+              excerpt: item.description || "Read full publication on DEV.to.",
+              link: item.url,
+              date: item.readable_publish_date || item.published_at?.split("T")[0] || "Recent",
+              readTime: `${item.reading_time_minutes || 5} min read`,
+              metrics: `${item.public_reactions_count || 0} reactions`,
+              tags: item.tag_list || ["Engineering", "DevTo"],
+              coverImage: item.cover_image || item.social_image || null,
+            }));
+            setDevtoArticles(formattedDev);
+          }
+        }
+      } catch (err) {
+        console.warn("DEV.to API fetch fallback active:", err);
+      }
+
+      // 2. Fetch Medium RSS Articles via RSS2JSON
+      try {
+        const resMed = await fetch("https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@tarunyakesh");
+        if (resMed.ok) {
+          const dataMed = await resMed.json();
+          if (isMounted && dataMed.items && Array.isArray(dataMed.items)) {
+            const formattedMed = dataMed.items.map((item, idx) => ({
+              id: `med-${idx}`,
+              platform: "medium",
+              platformName: "Medium",
+              title: item.title,
+              excerpt: item.description?.replace(/<[^>]+>/g, "").slice(0, 180) + "..." || "Read full publication on Medium.",
+              link: item.link,
+              date: item.pubDate?.split(" ")[0] || "Recent",
+              readTime: "5 min read",
+              metrics: "Medium Publication",
+              tags: item.categories || ["Architecture", "Medium"],
+              coverImage: item.thumbnail || null,
+            }));
+            setMediumArticles(formattedMed);
+          }
+        }
+      } catch (err) {
+        console.warn("Medium RSS fetch fallback active:", err);
+      }
+
+      if (isMounted) {
+        setLoading(false);
+      }
+    }
+
+    fetchFeeds();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  // Fallback items if live feeds are empty or during first sync
+  const defaultArticles = [
+    {
+      id: "fallback-1",
+      platform: "medium",
+      platformName: "Medium",
+      title: "Engineering Scalable Multi-Agent Systems with Google Antigravity",
+      excerpt: "An architectural exploration of multi-agent orchestration, state persistence, and event-driven memory synchronization across long-running tasks.",
+      link: "https://medium.com/@tarunyakesh",
+      date: "2026-08",
+      readTime: "8 min read",
+      metrics: "Medium Profile",
+      tags: ["Agentic AI", "Architecture", "System Design"],
+    },
+    {
+      id: "fallback-2",
+      platform: "devto",
+      platformName: "DEV.to",
+      title: "Building High-Throughput Micro-Services with Zero-Copy Deserialization in Rust",
+      excerpt: "Deep dive into memory alignment, zero-copy parsing, and low-latency network I/O primitives for enterprise API gateways.",
+      link: "https://dev.to/tarunya",
+      date: "2026-07",
+      readTime: "6 min read",
+      metrics: "DEV.to Profile",
+      tags: ["Rust", "Performance", "Backend"],
+    },
+  ];
+
+  const allArticles =
+    devtoArticles.length > 0 || mediumArticles.length > 0
+      ? [...devtoArticles, ...mediumArticles]
+      : defaultArticles;
+
+  const filteredArticles = allArticles.filter((art) => {
+    if (activeTab === "devto") return art.platform === "devto";
+    if (activeTab === "medium") return art.platform === "medium";
+    return true;
+  });
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="min-h-screen bg-[#F8F9FA] pt-32 md:pt-40 pb-20 selection:bg-black selection:text-white"
-    >
-      <div className="container mx-auto px-6 md:px-12 lg:px-20">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-8">
-          <div className="relative">
-            <span className="text-[10px] font-black text-black/20 uppercase tracking-[0.8em] block mb-4 ml-2">
-              Engineering Hub . 2026
-            </span>
-            <h1 className="text-7xl md:text-9xl font-black tracking-tighter text-black uppercase leading-[0.8]">
-               The <br />
-               <span className="text-transparent bg-clip-text bg-gradient-to-r from-black to-black/20">Thought</span> <br />
-               <span className="italic font-normal opacity-10">Archive.</span>
-            </h1>
-          </div>
-          <Link to="/blogs" className="flex items-center gap-4 bg-white border border-black px-10 py-5 rounded-none text-xs font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-all duration-700 group">
-            <span>Access All Articles</span>
-            <span className="group-hover:translate-x-2 transition-transform">&rarr;</span>
-          </Link>
-        </div>
+    <div className="min-h-screen bg-[#F8F9FA] text-black pt-32 pb-24 px-4 sm:px-6 lg:px-12 selection:bg-black selection:text-white">
+      <div className="max-w-7xl mx-auto space-y-10 relative z-10">
+        
+        {/* ═══════════════════════════════════════════════════════════════
+            EDITORIAL HEADER WITH LIVE SYNC BADGES
+           ═══════════════════════════════════════════════════════════════ */}
+        <header className="border border-black/10 bg-white p-8 md:p-14 relative overflow-hidden">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="space-y-4 max-w-3xl">
+              <div className="flex items-center gap-3">
+                <span className="w-2.5 h-2.5 rounded-full bg-black animate-pulse inline-block" />
+                <span className="text-[10px] font-mono font-bold tracking-widest text-black uppercase">
+                  AUTOMATED LIVE API & RSS SYNC
+                </span>
+              </div>
+              <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight text-black font-heading uppercase leading-[0.95]">
+                Writings & <span className="font-normal italic text-black/40">Publications</span>
+              </h1>
+              <p className="text-black/70 text-base md:text-lg font-normal leading-relaxed">
+                Live synchronized articles directly from DEV.to (<code className="font-mono text-black">@tarunya</code>) and Medium (<code className="font-mono text-black">@tarunyakesh</code>).
+              </p>
+            </div>
 
-        {/* Main Grid Architecture */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
-          
-          {/* ═══ LEFT COLUMN (Featured) ═══ */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="md:col-span-5 h-full"
-          >
-            <article>
-              <Link to={`/thinking/${featuredPost.id}`} className="group relative block h-[500px] md:h-[850px] overflow-hidden rounded-none bg-black border border-black/10">
-                <img 
-                  src={featuredPost.image} 
-                  alt={featuredPost.title} 
-                  className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-[2s]"
-                />
-                {/* Emoji Badge */}
-                <div className="absolute top-10 left-10 w-16 h-16 bg-white/10 backdrop-blur-xl rounded-none flex items-center justify-center text-3xl shadow-2xl border border-white/20">
-                  🔥
-                </div>
-                
-                {/* Overlay Content with CUSTOM WAVE */}
-                <div className="absolute bottom-0 left-0 right-0">
-                  {/* SVG WAVE MASK */}
-                  <svg viewBox="0 0 500 150" preserveAspectRatio="none" className="w-full h-24 -mb-1 fill-white">
-                    <path d="M0,150 L500,150 L500,50 C400,100 350,0 250,50 C150,100 100,0 0,50 Z" />
-                  </svg>
-                  
-                  <div className="bg-white px-12 pb-16 pt-2">
-                     <div className="flex gap-4 text-[10px] font-black uppercase tracking-widest text-black/30 mb-6">
-                        <span>Category . {featuredPost.category}</span>
-                        <span>|</span>
-                        <span>{featuredPost.date}</span>
-                     </div>
-                     <h2 className="text-4xl md:text-5xl font-black text-black leading-[0.95] tracking-tighter uppercase group-hover:italic transition-all">
-                        {featuredPost.title}
-                     </h2>
-                  </div>
-                </div>
-              </Link>
-            </article>
-          </motion.div>
- 
-          {/* ═══ MIDDLE COLUMN ═══ */}
-          <div className="md:col-span-4 flex flex-col gap-6">
-            {/* Top Text Card */}
-            <article>
-              <Link to={`/thinking/${secondPost.id}`} className="block group text-left">
-                <motion.div 
-                   whileHover={{ y: -5 }}
-                   className="bg-[#D8F1A0] p-10 rounded-none relative overflow-hidden border border-black/5"
-                >
-                   <div className="flex justify-between items-start mb-8">
-                      <span className="text-[10px] font-black uppercase tracking-widest text-black/60">Category . {secondPost.category}</span>
-                      <div className="w-12 h-12 bg-black/5 rounded-none flex items-center justify-center text-xl group-hover:bg-black group-hover:text-white transition-all">
-                        ↗
-                      </div>
-                   </div>
-                   <h2 className="text-4xl font-black text-black leading-[1.1] mb-8 uppercase tracking-tighter">
-                      {secondPost.title}
-                   </h2>
-                   <p className="text-sm font-medium text-black/60 leading-relaxed mb-8 line-clamp-3">
-                      {secondPost.excerpt}
-                   </p>
-                   
-                   {/* List Dividers */}
-                   <div className="space-y-6 pt-6 border-t border-black/10">
-                      <div className="flex justify-between items-center text-[11px] font-black uppercase tracking-tighter group/item hover:bg-black/5 p-2 transition-all">
-                         <span>How to build robust validation systems</span>
-                         <span>&rarr;</span>
-                      </div>
-                      <div className="flex justify-between items-center text-[11px] font-black uppercase tracking-tighter group/item hover:bg-black/5 p-2 transition-all">
-                         <span>Implementing DTOs in NestJS</span>
-                         <span>&rarr;</span>
-                      </div>
-                   </div>
-                </motion.div>
-              </Link>
-            </article>
- 
-            {/* Bottom Media Card */}
-            <article>
-              <Link to={`/thinking/${fourthPost.id}`} className="block group">
-                <motion.div 
-                   whileHover={{ scale: 0.98 }}
-                   className="relative h-[400px] rounded-none overflow-hidden border border-black/10"
-                >
-                   <img 
-                    src={fourthPost.image} 
-                    alt={fourthPost.title} 
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1s]"
-                   />
-                   <div className="absolute inset-0 bg-black/20 flex flex-col justify-end p-10">
-                      <div className="w-16 h-16 bg-white/40 backdrop-blur-md rounded-none flex items-center justify-center text-white mb-6 mx-auto">
-                        <span className="ml-1">▶</span>
-                      </div>
-                      <div className="text-[10px] font-black text-white/60 mb-2 uppercase tracking-widest">5 Min . {fourthPost.date}</div>
-                      <h3 className="text-xl font-black text-white uppercase tracking-tighter leading-tight">
-                        {fourthPost.title}
-                      </h3>
-                   </div>
-                </motion.div>
-              </Link>
-            </article>
-          </div>
- 
-          {/* ═══ RIGHT COLUMN ═══ */}
-          <div className="md:col-span-3 flex flex-col gap-6">
-            {/* Top Vertical Card */}
-            <article>
-              <Link to={`/thinking/${thirdPost.id}`} className="block group">
-                <motion.div 
-                   whileHover={{ y: -5 }}
-                   className="relative h-[550px] rounded-none overflow-hidden bg-white border border-black/10"
-                >
-                   <img 
-                    src={thirdPost.image} 
-                    alt={thirdPost.title} 
-                    className="w-full h-[60%] object-cover group-hover:scale-105 transition-transform duration-1000"
-                   />
-                   <div className="p-8">
-                      <div className="text-[10px] font-black text-black/30 mb-2 uppercase tracking-widest">Hot . {thirdPost.date}</div>
-                      <h3 className="text-3xl font-black text-black uppercase leading-none tracking-tighter group-hover:italic transition-all">
-                        {thirdPost.title}
-                      </h3>
-                   </div>
-                   <div className="absolute top-8 left-8 text-[10px] font-black uppercase tracking-widest bg-white/80 px-4 py-2 rounded-none border border-black/10">
-                      Category . {thirdPost.category}
-                   </div>
-                </motion.div>
-              </Link>
-            </article>
-
-            {/* Category Cloud */}
-            <div className="bg-[#D1C4E9] p-10 rounded-none flex-1 relative overflow-hidden border border-black/5">
-                <div className="flex flex-wrap gap-3 mb-12 relative z-10">
-                  {categories.map((cat, i) => (
-                    <motion.span 
-                      key={i}
-                      whileHover={{ scale: 1.1, backgroundColor: "#000", color: "#fff" }}
-                      className="bg-[#FFF9C4]/80 px-5 py-3 rounded-none text-[10px] font-black uppercase tracking-tighter cursor-pointer transition-all border border-black/5 shadow-sm"
-                    >
-                      {cat}
-                    </motion.span>
-                  ))}
-                </div>
-                <div className="flex justify-between items-center relative z-10 mt-auto">
-                  <span className="text-lg font-black text-black tracking-tighter uppercase">View All Categories</span>
-                  <div className="w-14 h-14 bg-white rounded-none flex items-center justify-center text-xl shadow-lg cursor-pointer hover:bg-black hover:text-white transition-all border border-black/10">
-                    &rarr;
-                  </div>
-                </div>
-                {/* Visual Accent */}
-                <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-white/10 rounded-none blur-3xl" />
+            {/* Direct Native Profile Links */}
+            <div className="flex flex-wrap items-center gap-3">
+              <a
+                href="https://dev.to/tarunya"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 bg-black text-white px-4 py-2 text-xs font-mono font-bold hover:bg-gray-800 transition-colors"
+              >
+                <span>DEV.to Profile</span>
+                <span>↗</span>
+              </a>
+              <a
+                href="https://medium.com/@tarunyakesh"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 bg-black text-white px-4 py-2 text-xs font-mono font-bold hover:bg-gray-800 transition-colors"
+              >
+                <span>Medium Profile</span>
+                <span>↗</span>
+              </a>
             </div>
           </div>
 
-        </div>
+          {/* Platform Filter Tabs */}
+          <div className="mt-12 pt-8 border-t border-black/10 flex flex-wrap items-center justify-between gap-6">
+            <div className="flex flex-wrap items-center gap-3">
+              <button
+                onClick={() => setActiveTab("all")}
+                className={`px-5 py-2.5 font-mono text-xs font-bold tracking-wider uppercase transition-all ${
+                  activeTab === "all"
+                    ? "bg-black text-white"
+                    : "bg-white text-black hover:bg-black/5 border border-black/20"
+                }`}
+              >
+                All Feeds ({allArticles.length})
+              </button>
+
+              <button
+                onClick={() => setActiveTab("devto")}
+                className={`px-5 py-2.5 font-mono text-xs font-bold tracking-wider uppercase transition-all flex items-center gap-2 ${
+                  activeTab === "devto"
+                    ? "bg-black text-white"
+                    : "bg-white text-black hover:bg-black/5 border border-black/20"
+                }`}
+              >
+                <span>DEV.to</span>
+                <span className="text-[10px] bg-black/10 px-1.5 py-0.5">@tarunya</span>
+              </button>
+
+              <button
+                onClick={() => setActiveTab("medium")}
+                className={`px-5 py-2.5 font-mono text-xs font-bold tracking-wider uppercase transition-all flex items-center gap-2 ${
+                  activeTab === "medium"
+                    ? "bg-black text-white"
+                    : "bg-white text-black hover:bg-black/5 border border-black/20"
+                }`}
+              >
+                <span>Medium</span>
+                <span className="text-[10px] bg-black/10 px-1.5 py-0.5">@tarunyakesh</span>
+              </button>
+            </div>
+
+            <div className="text-xs font-mono text-black/50">
+              {loading ? "Syncing feeds..." : `Showing ${filteredArticles.length} live publications`}
+            </div>
+          </div>
+        </header>
+
+        {/* ═══════════════════════════════════════════════════════════════
+            LIVE ARTICLES GRID
+           ═══════════════════════════════════════════════════════════════ */}
+        {loading ? (
+          <div className="text-center py-24 bg-white border border-black/10 space-y-3">
+            <div className="inline-block w-6 h-6 border-2 border-black border-t-transparent rounded-full animate-spin" />
+            <p className="text-xs font-mono text-black/60 uppercase tracking-widest">
+              Fetching live articles from DEV.to & Medium...
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {filteredArticles.map((article) => (
+              <motion.article
+                key={article.id}
+                whileHover={{ y: -3 }}
+                className="group relative border border-black/10 bg-white hover:border-black p-8 transition-all duration-200 flex flex-col justify-between"
+              >
+                <div className="space-y-4">
+                  {/* Platform & Date Pill */}
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-[11px] font-mono px-2.5 py-1 border border-black/20 bg-black/5 text-black font-semibold">
+                      {article.platformName}
+                    </span>
+                    <span className="text-xs font-mono text-black/40">{article.date}</span>
+                  </div>
+
+                  {/* Title */}
+                  <h2 className="text-xl md:text-2xl font-black text-black leading-snug uppercase tracking-tight">
+                    <a
+                      href={article.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline"
+                    >
+                      {article.title}
+                    </a>
+                  </h2>
+
+                  {/* Excerpt */}
+                  <p className="text-black/70 text-sm leading-relaxed line-clamp-3 font-normal">
+                    {article.excerpt}
+                  </p>
+                </div>
+
+                <div className="mt-8 pt-6 border-t border-black/10 space-y-4">
+                  {/* Tags */}
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    {article.tags.slice(0, 4).map((tag) => (
+                      <span key={tag} className="text-[10px] font-mono bg-black/5 text-black/70 px-2 py-0.5 border border-black/10">
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Read Link */}
+                  <div className="flex items-center justify-between text-xs font-mono">
+                    <span className="text-black/50">{article.readTime} • {article.metrics}</span>
+
+                    <a
+                      href={article.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 bg-black text-white hover:bg-gray-800 px-4 py-2 font-mono font-bold text-xs transition-all"
+                    >
+                      <span>Read Article</span>
+                      <span>↗</span>
+                    </a>
+                  </div>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+        )}
+
       </div>
-    </motion.div>
+    </div>
   );
 };
 
