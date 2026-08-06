@@ -96,8 +96,8 @@ const About = () => {
   };
 
   return (
-    <section className="py-28 md:py-40 bg-[#0d0d0f] text-white relative z-10 overflow-hidden font-pixelify border-b border-white/10 selection:bg-[#ff2a2a] selection:text-white">
-      <div className="container mx-auto px-8">
+    <section className="py-16 sm:py-28 md:py-40 bg-[#0d0d0f] text-white relative z-10 overflow-hidden font-pixelify border-b border-white/10 selection:bg-[#ff2a2a] selection:text-white">
+      <div className="container mx-auto px-4 sm:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 items-start">
           {/* Left Column: Text */}
           <motion.div
@@ -159,7 +159,7 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            <div className="border-2 border-white/20 p-6 md:p-10 bg-[#141417] relative flex flex-col justify-between min-h-[500px] shadow-[4px_4px_0px_#ff2a2a] rounded-none">
+            <div className="border-2 border-white/20 p-4 sm:p-6 md:p-10 bg-[#141417] relative flex flex-col justify-between min-h-0 md:min-h-[500px] shadow-[4px_4px_0px_#ff2a2a] rounded-none">
               {/* Technical corner brackets */}
               <div className="absolute top-2 left-2 w-3 h-3 border-t border-l border-[#ff2a2a]" />
               <div className="absolute top-2 right-2 w-3 h-3 border-t border-r border-[#ff2a2a]" />
@@ -184,7 +184,7 @@ const About = () => {
                       <button
                         key={tabKey}
                         onClick={() => setActiveTab(tabKey)}
-                        className={`px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider border transition-all ${
+                        className={`px-2.5 sm:px-3.5 py-1 sm:py-1.5 text-[10px] sm:text-xs font-bold uppercase tracking-wider border transition-all ${
                           activeTab === tabKey
                             ? "bg-[#ff2a2a] text-white border-white shadow-md"
                             : "bg-[#0d0d0f] text-white/50 border-white/10 hover:border-white/40 hover:text-white"

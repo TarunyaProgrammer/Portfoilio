@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, startTransition } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { useGitHubSignals } from "../hooks/useGitHubSignals";
 import { useCodeforcesSignals } from "../hooks/useCodeforcesSignals";
@@ -11,7 +11,7 @@ const SignalCard = ({ label, value, subtext, loading, delay, fallback = 0 }) => 
     whileInView={{ opacity: 1 }}
     viewport={{ once: true }}
     transition={{ delay, duration: 0.8 }}
-    className="flex flex-col pr-8 md:border-r border-white/10 last:border-r-0"
+    className="flex flex-col pr-4 sm:pr-8 border-r border-white/10 md:border-r"
   >
     <span className="text-[10px] font-mono font-bold text-white/50 uppercase tracking-[0.4em] mb-4">
       {label}
@@ -48,9 +48,9 @@ const Signals = () => {
 
   useEffect(() => {
     if (ghLoading || cfLoading) {
-      setSystemState("SYNCING");
+      startTransition(() => setSystemState("SYNCING"));
     } else {
-      setSystemState("LIVE TELEMETRY");
+      startTransition(() => setSystemState("LIVE TELEMETRY"));
     }
   }, [ghLoading, cfLoading]);
 
@@ -73,7 +73,7 @@ const Signals = () => {
         />
       )}
       
-      <div className="container mx-auto px-8 md:px-16 py-20 md:py-24 relative">
+      <div className="container mx-auto px-4 sm:px-8 md:px-16 py-12 sm:py-20 md:py-24 relative">
         <div className="flex flex-col md:flex-row items-baseline justify-between mb-12 gap-6 border-b border-white/10 pb-6">
           <div className="flex items-center gap-4">
             <motion.span 
@@ -83,13 +83,14 @@ const Signals = () => {
               }}
               transition={{ duration: 2, repeat: Infinity }}
               className={`w-3 h-3 ${ghLoading || cfLoading ? "bg-gray-500" : "bg-[#00ff66]"}`}
-            ></motion.span>
+            />
             <h3 className="text-xs font-mono font-bold text-white uppercase tracking-[0.4em]">
               Real-time Protocol Signals
             </h3>
           </div>
-          <span className="text-[10px] font-mono font-bold text-white/50 uppercase tracking-[0.4em]">
-            {systemState} &middot; SOURCE: SYSTEM_API_V3
+          <span className="text-[9px] sm:text-[10px] font-mono font-bold text-white/50 uppercase tracking-[0.2em] sm:tracking-[0.4em]">
+            <span className="hidden sm:inline">{systemState} &middot; SOURCE: SYSTEM_API_V3</span>
+            <span className="sm:hidden">SYSTEM_API_V3</span>
           </span>
         </div>
 
