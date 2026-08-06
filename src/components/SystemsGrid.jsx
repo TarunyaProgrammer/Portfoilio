@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useGitHubProjects } from "../hooks/useGitHubProjects";
 import SystemCard from "./SystemCard";
 
-const SystemsGrid = ({ limit = 6, hideTitle = false }) => {
+const SystemsGrid = ({ limit = 3, hideTitle = false }) => {
   const { projects, loading, error } = useGitHubProjects();
   
   if (loading) {

@@ -1,7 +1,19 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useGitHubSignals } from "../hooks/useGitHubSignals";
+
+const formatRoundedCount = (val, fallback) => {
+  const count = typeof val === "number" && !isNaN(val) ? val : fallback;
+  const rounded = Math.floor(count / 5) * 5;
+  return `+${rounded}`;
+};
 
 const Hero = () => {
+  const { data } = useGitHubSignals();
+
+  const reposMetric = formatRoundedCount(data?.totalRepos, 57);
+  const systemsMetric = formatRoundedCount(data?.activeSystems, 31);
+
   return (
     <section className="relative w-full min-h-screen bg-white flex items-start lg:items-center pt-40 pb-20 lg:pt-32 lg:pb-0 overflow-hidden">
       {/* Side Metadata (Vertical) */}
@@ -18,7 +30,7 @@ const Hero = () => {
       <div className="container mx-auto px-8 md:px-24 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         {/* Left: Text Content */}
         <div className="lg:col-span-7 z-10">
-          {/* Metrics */}
+          {/* Dynamic Metrics derived from live GitHub Signals */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -26,12 +38,20 @@ const Hero = () => {
             className="flex gap-16 mb-16"
           >
             <div>
-              <div className="text-5xl font-bold text-black leading-none mb-1">+45</div>
-              <div className="text-[10px] font-medium text-black/40 uppercase tracking-widest">Projects completed</div>
+              <div className="text-5xl font-bold text-black leading-none mb-1">
+                {reposMetric}
+              </div>
+              <div className="text-[10px] font-medium text-black/40 uppercase tracking-widest">
+                Projects completed
+              </div>
             </div>
             <div>
-              <div className="text-5xl font-bold text-black leading-none mb-1">+30</div>
-              <div className="text-[10px] font-medium text-black/40 uppercase tracking-widest">Inventions shipped</div>
+              <div className="text-5xl font-bold text-black leading-none mb-1">
+                {systemsMetric}
+              </div>
+              <div className="text-[10px] font-medium text-black/40 uppercase tracking-widest">
+                Inventions shipped
+              </div>
             </div>
           </motion.div>
 
@@ -58,21 +78,21 @@ const Hero = () => {
               ))}
             </h1>
             <p className="text-xl md:text-2xl text-black/60 font-medium max-w-lg leading-relaxed flex items-center gap-4">
-              <motion.span 
+              <motion.span
                 initial={{ width: 0 }}
                 animate={{ width: "3rem" }}
                 transition={{ duration: 1, delay: 0.8 }}
                 className="h-[2px] bg-black/10"
               ></motion.span>
-              Building robust, offline-first, and real-time systems.
+              Engineering high-throughput web applications, autonomous AI agents, and scalable digital products.
             </p>
           </motion.div>
 
           <div className="mt-32 flex flex-col md:flex-row items-start md:items-center gap-12">
             <motion.div
-              whileHover={{ 
+              whileHover={{
                 x: [0, -5, 5, -5, 5, 0],
-                transition: { duration: 0.4 }
+                transition: { duration: 0.4 },
               }}
               whileTap={{ scale: 0.95 }}
               className="relative"
@@ -82,7 +102,7 @@ const Hero = () => {
                 className="inline-block px-10 py-5 bg-black text-white text-xs font-bold uppercase tracking-widest transition-all duration-300 relative overflow-hidden group"
               >
                 <span className="relative z-10">Explore Archive</span>
-                <motion.div 
+                <motion.div
                   initial={{ x: "-100%" }}
                   whileHover={{ x: "0%" }}
                   transition={{ duration: 0.4, ease: "circOut" }}
@@ -95,16 +115,23 @@ const Hero = () => {
             </motion.div>
 
             <button className="text-sm font-bold text-black/30 flex items-center gap-3 hover:text-black transition-colors group">
-              <span className="group-hover:mr-2 transition-all duration-300">Scroll down</span>
-              <motion.svg 
+              <span className="group-hover:mr-2 transition-all duration-300">
+                Scroll down
+              </span>
+              <motion.svg
                 animate={{ y: [0, 5, 0] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="w-4 h-4" 
-                fill="none" 
-                stroke="currentColor" 
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
                 viewBox="0 0 24 24"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                />
               </motion.svg>
             </button>
           </div>

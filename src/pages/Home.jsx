@@ -118,7 +118,7 @@ const Home = () => {
         <About />
         <Suspense fallback={<div className="h-96 flex items-center justify-center text-[10px] font-bold uppercase tracking-widest text-black/20">Initialising System Modules...</div>}>
           <SkillsArchive />
-          <SystemsGrid limit={6} />
+          <SystemsGrid limit={3} />
           <ServicesSection />
           <Journey />
           <Promo />

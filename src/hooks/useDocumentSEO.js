@@ -24,19 +24,21 @@ const useDocumentSEO = ({ title, description } = {}) => {
       meta.setAttribute("content", description || BASE_DESC);
     }
 
-    // — OG title —
+    // — OG title & Twitter title —
     const ogTitle = document.querySelector('meta[property="og:title"]');
+    const twitterTitle = document.querySelector('meta[name="twitter:title"]');
     const prevOgTitle = ogTitle?.getAttribute("content") || "";
-    if (ogTitle) {
-      ogTitle.setAttribute("content", document.title);
-    }
+    const prevTwTitle = twitterTitle?.getAttribute("content") || "";
+    if (ogTitle) ogTitle.setAttribute("content", document.title);
+    if (twitterTitle) twitterTitle.setAttribute("content", document.title);
 
-    // — OG description —
+    // — OG description & Twitter description —
     const ogDesc = document.querySelector('meta[property="og:description"]');
+    const twitterDesc = document.querySelector('meta[name="twitter:description"]');
     const prevOgDesc = ogDesc?.getAttribute("content") || "";
-    if (ogDesc) {
-      ogDesc.setAttribute("content", description || BASE_DESC);
-    }
+    const prevTwDesc = twitterDesc?.getAttribute("content") || "";
+    if (ogDesc) ogDesc.setAttribute("content", description || BASE_DESC);
+    if (twitterDesc) twitterDesc.setAttribute("content", description || BASE_DESC);
 
     // — Canonical URL —
     let canonical = document.querySelector('link[rel="canonical"]');
