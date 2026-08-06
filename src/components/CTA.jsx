@@ -1,36 +1,39 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { audioSynth } from "../utils/audioSynth";
 
 const CTA = () => {
   return (
-    <section className="py-64 md:py-96 bg-white text-center border-t border-black/5">
+    <section className="py-24 md:py-36 bg-[#0d0d0f] text-white text-center border-t border-white/10 font-pixelify selection:bg-[#ff2a2a] selection:text-white">
       <div className="container mx-auto px-8">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1.2, ease: [0.2, 0.8, 0.2, 1] }}
         >
-          <div className="text-[10px] font-bold text-black/20 uppercase tracking-[0.5em] mb-12">
-            Final Inquiry
+          <div className="text-xs font-mono font-bold text-[#ff2a2a] uppercase tracking-[0.5em] mb-8">
+            FINAL INQUIRY // PROTOCOL
           </div>
-          <h2 className="text-6xl md:text-9xl lg:text-[14rem] font-bold text-black tracking-tighter mb-24 max-w-6xl mx-auto leading-[0.8]">
+          <h2 className="text-5xl sm:text-7xl md:text-9xl font-black text-white tracking-tight mb-16 max-w-6xl mx-auto leading-[0.85] font-pixelify uppercase">
             READY TO <br />
-            BUILD <span className="italic font-normal opacity-20">NEXT?</span>
+            BUILD <span className="italic font-normal text-[#00ff66]">NEXT?</span>
           </h2>
           
-          <div className="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-24">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 font-mono text-sm">
             <Link 
               to="/connect"
-              className="text-2xl font-bold border-b-2 border-black pb-2 hover:pb-6 transition-all"
+              onClick={() => audioSynth.playCoinSound()}
+              className="inline-block px-10 py-5 bg-[#ff2a2a] text-white font-pixel text-xs uppercase tracking-widest hover:bg-[#00e5ff] hover:text-black transition-all border-2 border-white shadow-[4px_4px_0px_#fff]"
             >
-              Initialize Project →
+              INITIALIZE PROJECT ➔
             </Link>
             <a 
               href="mailto:tarunyak.10@gmail.com"
-              className="text-2xl font-bold text-black/30 hover:text-black transition-all"
+              onClick={() => audioSynth.playClickSound()}
+              className="text-white/70 hover:text-[#fbd000] border-b-2 border-white/20 pb-1 hover:border-[#fbd000] transition-all font-bold"
             >
-              tarunyak.10@gmail.com
+              tarunyak.10@gmail.com ↗
             </a>
           </div>
         </motion.div>

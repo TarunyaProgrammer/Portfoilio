@@ -1,11 +1,12 @@
-# <div align="center">TARUNYA SYSTEMS</div>
+# <div align="center">TARUNYA SYSTEMS // 2026 DARK RETRO ARCHIVE</div>
 
 <div align="center">
   <br />
     <a href="https://tarunyaportfolio.vercel.app/" target="_blank">
       <img src="https://img.shields.io/badge/Status-Online-brightgreen?style=for-the-badge&logo=vercel" alt="Online" />
     </a>
-    <img src="https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey?style=for-the-badge" alt="License" />
+    <img src="https://img.shields.io/badge/Theme-Dark%20Retro%20Arcade-red?style=for-the-badge" alt="Dark Retro Arcade Theme" />
+    <img src="https://img.shields.io/badge/Telemetry-Live%20GitHub%20%26%20Codeforces-blue?style=for-the-badge" alt="Live Telemetry" />
     <img src="https://img.shields.io/badge/Framework-React-blue?style=for-the-badge&logo=react" alt="React" />
     <img src="https://img.shields.io/badge/Build-Vite-646CFF?style=for-the-badge&logo=vite" alt="Vite" />
   <br />
@@ -14,107 +15,95 @@
 <br />
 
 <div align="center">
-  <img width="800" alt="Tarunya Systems Hero" src="https://github.com/user-attachments/assets/035799fb-1f3a-43be-b7c5-450c06320a74" style="border-radius: 8px;" />
-  <!-- <img src="public/hero-img.png" alt="Tarunya Systems Hero" width="800" style="border-radius: 8px;" /> -->
-</div>
-
-<div align="center">
-  <h3>SYSTEM ARCHITECTURE & ENGINEERING PRECISION</h3>
-  <p>A high-performance, production-ready System-Design Portfolio built for the modern web. <br /> Designed with a "terminal-chic" aesthetic, prioritizing accessibility, performance, and responsive motion.</p>
+  <h3>DARK RETRO ARCADE SYSTEM ARCHITECTURE & TELEMETRY ENGINE</h3>
+  <p>A high-performance, production-ready 8-bit dark mode system design portfolio. <br /> Built with pure neutral dark mode palette (Jet Obsidian <code>#0d0d0f</code> & Dark Charcoal <code>#141417</code>), live GitHub & Codeforces APIs, Web Audio API sound synthesizer, and GPU hardware-accelerated scroll runner.</p>
 </div>
 
 <br />
 
 ## ⚡ System Status
 
-> **OPERATIONAL**: All systems normal.
+> **OPERATIONAL**: All protocol signals synced live.
 
-[**INITIATE SEQUENCE: VIEW LIVE DEMO**](https://tarunyaportfolio.vercel.app/)
+[**INITIATE SEQUENCE: VIEW LIVE ARCHIVE**](https://tarunyaportfolio.vercel.app/)
 
 ---
 
-## 🏗 Architecture & Tech Stack
-
-This system is engineered using a cutting-edge stack to ensure maximum efficiency and performance.
+## 🏗 Architecture & Core Modules
 
 | Core Module | Technology | Purpose |
 | :--- | :--- | :--- |
 | **Engine** | `React 18` | Component-based UI Architecture |
 | **Bundler** | `Vite` | Next-generation frontend tooling & HMR |
-| **Styling** | `Tailwind CSS` | Utility-first, atomic CSS framework |
-| **Motion** | `Framer Motion` | Production-ready declarative animations |
-| **Physics** | `tsParticles` | Lightweight particle engine for visual FX |
-| **Scrolling** | `Lenis` | Smooth, inertia-based scrolling interface |
-| **Routing** | `React Router 6` | Client-side routing with lazy loading |
+| **Styling** | `Tailwind CSS` | Pure dark retro arcade styling system |
+| **Motion** | `Framer Motion` | Declarative animations & scroll triggers |
+| **Audio Synthesizer**| `Web Audio API` | Native 8-bit sound synth with safety limiters |
+| **Scrolling** | `Lenis` | Smooth inertia-based scroll control |
+| **Telemetry** | `GitHub & Codeforces REST APIs` | Dynamic repo counts, stargazers, and CP metrics |
+| **Accessibility** | `ARIA Standards & High Contrast` | Screen reader accessible tags & keyboard focus |
 
 ---
 
-## 💠 Design Philosophy
+## 💠 Design System & Color Palette
 
-- **Visual Language**: Deep space contrast with neon lime accents (`#c8ff00`)
+- **Base Canvas**: Jet Obsidian (`#0d0d0f`) — 0% blue hue pure dark mode.
+- **Card Surfaces**: Dark Charcoal Slate (`#141417`).
+- **Arcade Accents**:
+  - Mario Red: `#ff2a2a`
+  - Arcade Cyan: `#00e5ff`
+  - Coin Gold: `#fbd000`
+  - Cyber Green: `#00ff66`
 - **Typography**:
-  - `Clash Display` (Display Headers)
-  - `Inter` (Body Text)
-  - `JetBrains Mono` (Code & Data)
-- **Kinetic Physics**: Precision-tuned ease curves `cubic-bezier(0.2, 0.8, 0.2, 1)` for fluid interaction.
+  - `Press Start 2P` (8-Bit Retro Titles & Logos)
+  - `Pixelify Sans` (Arcade Headings)
+  - `JetBrains Mono` (Code & Telemetry Data)
+  - `Inter` (High-Readability Body Copy)
 
 ---
 
-## 🛠 Local Deployment Protocol
+## 🛠 Local Development Protocol
 
-Follow these commands to clone and initialize the system locally.
-
-### 1. Clone Repository
 ```bash
+# 1. Clone Repository
 git clone https://github.com/TarunyaProgrammer/Portfoilio.git
 cd Portfoilio
-```
 
-### 2. Install Dependencies
-```bash
+# 2. Install Dependencies
 npm install
-```
 
-### 3. Initialize Dev Server
-```bash
+# 3. Launch Local Dev Server
 npm run dev
+
+# 4. Build Production Bundle
+npm run build
 ```
 
 > The system will come online at `http://localhost:5173`
 
 ---
 
-## 📂 Project Structure
+## 📂 Repository Structure
 
 ```bash
 /src
-├── components/   # Reusable UI blocks (Hero, SystemsGrid, etc.)
-├── pages/        # Route views (Lazy loaded)
-├── styles/       # Global styles & strict token mapping
-└── assets/       # Static assets & media
+├── components/   # Reusable UI modules (Hero, Signals, Nav, Footer, MarioRunner, CountUpNumber)
+├── pages/        # Lazy-loaded route views (Home, SystemsPage, SystemDetail, Blogs, ResumePage, Connect, NotFound)
+├── hooks/        # Live telemetry hooks (useGitHubSignals, useCodeforcesSignals, useDocumentSEO)
+├── utils/        # Audio synthesizer & helper utilities (audioSynth.js)
+└── data/         # System archive records & fallback data
 ```
 
 ---
 
 ## 🔒 License
 
-**© 2024 - Present | Tarunya Ksh. All Rights Reserved.**
+**© 2026 | Tarunya Kesharwani. All Rights Reserved.**
 
-This project is licensed under the **Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International Public License (CC BY-NC-ND 4.0)**.
-
-You are free to:
-- **Share** — copy and redistribute the material in any medium or format.
-
-Under the following terms:
-- **Attribution** — You must give appropriate credit, provide a link to the license, and indicate if changes were made.
-- **NonCommercial** — You may not use the material for commercial purposes.
-- **NoDerivatives** — If you remix, transform, or build upon the material, you may not distribute the modified material.
-
-[View Full License](LICENSE)
+Licensed under the **Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International Public License (CC BY-NC-ND 4.0)**.
 
 ---
 
 <div align="center">
   <p>End of Transmission</p>
-  <sub>Engineered by Tarunya Ksh</sub>
+  <sub>Engineered by Tarunya Kesharwani</sub>
 </div>

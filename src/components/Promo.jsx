@@ -3,16 +3,16 @@ import { Link } from "react-router-dom";
 
 const Promo = () => {
   return (
-    <section className="py-28 md:py-44 px-8 bg-white">
+    <section className="py-24 md:py-36 px-8 bg-[#0d0d0f] text-white border-b border-white/10 font-pixelify">
       <motion.div
         initial={{ opacity: 0, scale: 0.98 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 1.2, ease: [0.2, 0.8, 0.2, 1] }}
-        className="container mx-auto bg-black p-24 md:p-48 text-center relative overflow-hidden"
+        className="container mx-auto bg-[#141417] border-4 border-white p-16 md:p-32 text-center relative overflow-hidden rounded-none shadow-[6px_6px_0px_#ff2a2a]"
       >
         {/* Background Graphic */}
-        <div className="absolute inset-0 opacity-20 pointer-events-none">
+        <div className="absolute inset-0 opacity-15 pointer-events-none">
           <img 
             src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2540&auto=format&fit=crop" 
             alt="Infrastructure" 
@@ -20,33 +20,24 @@ const Promo = () => {
           />
         </div>
 
-        <div className="relative z-10">
-          <div className="text-[10px] font-bold text-white/40 uppercase tracking-[0.5em] mb-12">
-            Limited Availability / Q2 2026
+        <div className="relative z-10 space-y-6">
+          <div className="text-xs font-mono font-bold text-[#ff2a2a] uppercase tracking-[0.4em]">
+            LIMITED AVAILABILITY / Q2 2026
           </div>
-          <h2 className="text-4xl md:text-7xl font-bold text-white tracking-tighter leading-none mb-16 max-w-4xl mx-auto">
+          <h2 className="text-3xl sm:text-5xl md:text-7xl font-black text-white tracking-tight uppercase font-pixelify max-w-4xl mx-auto">
             Get a Strategic <br />
-            System Architecture Review
+            <span className="text-[#0066ff]">System Architecture Review</span>
           </h2>
-          <Link to="/connect" className="inline-block">
-            <motion.button
-              whileHover="hover"
-              whileTap={{ scale: 0.98 }}
-              className="group relative px-12 py-6 bg-white overflow-hidden w-full h-full"
-            >
-              <motion.div
-                variants={{
-                  hover: { x: "0%" }
-                }}
-                initial={{ x: "-101%" }}
-                transition={{ duration: 0.6, ease: [0.2, 0.8, 0.2, 1] }}
-                className="absolute inset-0 bg-zinc-200"
-              />
-              <span className="relative z-10 text-black font-bold text-lg uppercase tracking-[0.3em] group-hover:tracking-[0.5em] transition-all duration-500">
-                Request Consultation
-              </span>
-            </motion.button>
-          </Link>
+          <div className="pt-6">
+            <Link to="/connect" className="inline-block font-mono">
+              <motion.button
+                whileTap={{ scale: 0.98 }}
+                className="px-10 py-5 bg-[#ff2a2a] text-white font-bold text-xs uppercase tracking-widest hover:bg-[#0066ff] transition-all border border-white/20 shadow-lg"
+              >
+                Request Consultation ↗
+              </motion.button>
+            </Link>
+          </div>
         </div>
       </motion.div>
     </section>

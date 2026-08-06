@@ -72,7 +72,7 @@ const Home = () => {
       // About Text Scroll Reveal
       gsap.utils.toArray(".about-text p").forEach((p) => {
         gsap.to(p, {
-          color: "rgba(0, 0, 0, 1)",
+          color: "rgba(255, 255, 255, 0.95)",
           scrollTrigger: {
             trigger: p,
             start: "top 80%",
@@ -95,15 +95,15 @@ const Home = () => {
   }, []);
 
   return (
-    <main ref={containerRef} className="w-full bg-white min-h-screen relative overflow-hidden">
+    <main ref={containerRef} className="w-full bg-[#0d0d0f] text-white min-h-screen relative overflow-hidden selection:bg-[#ff2a2a] selection:text-white">
       {/* GSAP Parallax Blueprint Grid */}
       <div 
         ref={gridRef}
-        className="fixed inset-0 pointer-events-none opacity-[0.03] z-0"
+        className="fixed inset-0 pointer-events-none opacity-[0.06] z-0"
         style={{ 
           backgroundImage: `
-            linear-gradient(to right, black 1px, transparent 1px),
-            linear-gradient(to bottom, black 1px, transparent 1px)
+            linear-gradient(to right, rgba(255, 255, 255, 0.5) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 1px, transparent 1px)
           `,
           backgroundSize: "40px 40px",
           height: "150%" // Taller for parallax room

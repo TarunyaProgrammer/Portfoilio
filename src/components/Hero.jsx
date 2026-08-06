@@ -1,162 +1,158 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useGitHubSignals } from "../hooks/useGitHubSignals";
+import { audioSynth } from "../utils/audioSynth";
+import CountUpNumber from "./CountUpNumber";
 
-const formatRoundedCount = (val, fallback) => {
-  const count = typeof val === "number" && !isNaN(val) ? val : fallback;
-  const rounded = Math.floor(count / 5) * 5;
-  return `+${rounded}`;
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30, scale: 0.96 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.8,
+      ease: [0.2, 0.8, 0.2, 1],
+    },
+  },
 };
 
 const Hero = () => {
   const { data } = useGitHubSignals();
 
-  const reposMetric = formatRoundedCount(data?.totalRepos, 57);
-  const systemsMetric = formatRoundedCount(data?.activeSystems, 31);
+  const totalReposNum = typeof data?.totalRepos === "number" && !isNaN(data.totalRepos) ? data.totalRepos : 45;
+  const activeSystemsNum = typeof data?.activeSystems === "number" && !isNaN(data.activeSystems) ? data.activeSystems : 42;
+
+  const reposTarget = Math.floor(totalReposNum / 5) * 5;
+  const systemsTarget = Math.floor(activeSystemsNum / 5) * 5;
 
   return (
-    <section className="relative w-full min-h-screen bg-white flex items-start lg:items-center pt-40 pb-20 lg:pt-32 lg:pb-0 overflow-hidden">
-      {/* Side Metadata (Vertical) */}
-      <div className="absolute left-8 md:left-12 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-24 py-12">
-        <span className="text-[10px] font-bold text-black/20 uppercase tracking-[0.5em] rotate-180 [writing-mode:vertical-lr]">
-          System Architect & Engineer
-        </span>
-        <div className="w-[1px] h-32 bg-black/5"></div>
-        <span className="text-[10px] font-bold text-black/20 uppercase tracking-[0.5em] rotate-180 [writing-mode:vertical-lr]">
-          2026 Archive
-        </span>
-      </div>
-
-      <div className="container mx-auto px-8 md:px-24 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        {/* Left: Text Content */}
-        <div className="lg:col-span-7 z-10">
-          {/* Dynamic Metrics derived from live GitHub Signals */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="flex gap-16 mb-16"
-          >
-            <div>
-              <div className="text-5xl font-bold text-black leading-none mb-1">
-                {reposMetric}
-              </div>
-              <div className="text-[10px] font-medium text-black/40 uppercase tracking-widest">
-                Projects completed
-              </div>
-            </div>
-            <div>
-              <div className="text-5xl font-bold text-black leading-none mb-1">
-                {systemsMetric}
-              </div>
-              <div className="text-[10px] font-medium text-black/40 uppercase tracking-widest">
-                Inventions shipped
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.2, ease: [0.2, 0.8, 0.2, 1] }}
-          >
-            <h1 className="text-7xl md:text-[10rem] lg:text-[12rem] xl:text-[16rem] 2xl:text-[18rem] font-bold leading-[0.75] tracking-tighter text-black mb-8 flex overflow-hidden">
-              {"Hello".split("").map((char, index) => (
-                <motion.span
-                  key={index}
-                  initial={{ y: "100%" }}
-                  animate={{ y: "0%" }}
-                  transition={{
-                    duration: 1,
-                    delay: 0.2 + index * 0.1,
-                    ease: [0.2, 0.8, 0.2, 1],
-                  }}
-                  className="inline-block"
-                >
-                  {char}
-                </motion.span>
-              ))}
-            </h1>
-            <p className="text-xl md:text-2xl text-black/60 font-medium max-w-lg leading-relaxed flex items-center gap-4">
-              <motion.span
-                initial={{ width: 0 }}
-                animate={{ width: "3rem" }}
-                transition={{ duration: 1, delay: 0.8 }}
-                className="h-[2px] bg-black/10"
-              ></motion.span>
-              Engineering high-throughput web applications, autonomous AI agents, and scalable digital products.
-            </p>
-          </motion.div>
-
-          <div className="mt-32 flex flex-col md:flex-row items-start md:items-center gap-12">
-            <motion.div
-              whileHover={{
-                x: [0, -5, 5, -5, 5, 0],
-                transition: { duration: 0.4 },
-              }}
-              whileTap={{ scale: 0.95 }}
-              className="relative"
-            >
-              <Link
-                to="/systems"
-                className="inline-block px-10 py-5 bg-black text-white text-xs font-bold uppercase tracking-widest transition-all duration-300 relative overflow-hidden group"
-              >
-                <span className="relative z-10">Explore Archive</span>
-                <motion.div
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: "0%" }}
-                  transition={{ duration: 0.4, ease: "circOut" }}
-                  className="absolute inset-0 bg-white/20"
-                />
-              </Link>
-              {/* Architectural Accent */}
-              <div className="absolute -top-2 -right-2 w-4 h-4 border-t border-r border-black/20" />
-              <div className="absolute -bottom-2 -left-2 w-4 h-4 border-b border-l border-black/20" />
-            </motion.div>
-
-            <button className="text-sm font-bold text-black/30 flex items-center gap-3 hover:text-black transition-colors group">
-              <span className="group-hover:mr-2 transition-all duration-300">
-                Scroll down
-              </span>
-              <motion.svg
-                animate={{ y: [0, 5, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                />
-              </motion.svg>
-            </button>
-          </div>
-        </div>
-
-        {/* Right: Portrait */}
-        <motion.div
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.8, ease: [0.2, 0.8, 0.2, 1] }}
-          className="lg:col-span-5 relative"
+    <section className="relative w-full min-h-screen bg-[#0d0d0f] text-white flex flex-col items-center justify-center pt-28 pb-24 px-6 md:px-12 overflow-hidden border-b border-white/10 selection:bg-[#ff2a2a] selection:text-white font-pixelify">
+      
+      {/* 1. CINEMATIC RETRO BACKGROUND VIDEO BACKDROP */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          aria-hidden="true"
+          className="w-full h-full object-cover filter blur-[2px] brightness-[0.65] contrast-110 scale-105 pointer-events-none"
         >
-          <div className="aspect-[4/5] overflow-hidden grayscale contrast-125">
-            <img
-              src="/webme1.webp"
-              alt="Tarunya Kesharwani — Full-Stack Engineer and Systems Architect"
-              fetchpriority="high"
-              decoding="async"
-              className="w-full h-full object-cover object-top scale-110"
-            />
-          </div>
-          {/* Subtle overlay for depth */}
-          <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent"></div>
-        </motion.div>
+          <source src="/bg_video.mp4" type="video/mp4" />
+        </video>
+
+        {/* Soft Dark Vignette for Text Readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0f] via-[#0d0d0f]/40 to-[#0d0d0f]/60" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-[#0d0d0f]/30 to-[#0d0d0f]/70" />
+
+        {/* Retro CRT Scanline Lines */}
+        <div 
+          className="absolute inset-0 opacity-10 pointer-events-none"
+          style={{
+            backgroundImage: `linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.35) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03))`,
+            backgroundSize: "100% 4px, 6px 100%"
+          }}
+        />
+
+        {/* Subtle Architectural Blueprint Grid */}
+        <div 
+          className="absolute inset-0 opacity-15 pointer-events-none"
+          style={{
+            backgroundImage: `linear-gradient(to right, rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.15) 1px, transparent 1px)`,
+            backgroundSize: "45px 45px"
+          }}
+        />
       </div>
+
+      {/* 2. CENTERED HIGH-CRAFT CONTENT CONTAINER */}
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="relative z-10 max-w-5xl text-center space-y-9 flex flex-col items-center my-auto"
+      >
+        
+        {/* Top Telemetry Status Badge */}
+        <motion.div variants={itemVariants}>
+          <div className="inline-flex items-center gap-3 bg-[#141417]/90 text-[#00ff66] px-5 py-2 text-xs font-mono font-bold border-2 border-white/20 shadow-[3px_3px_0px_#000]">
+            <span className="w-2.5 h-2.5 bg-[#00ff66] animate-pulse inline-block" />
+            <span className="uppercase tracking-widest text-[11px]">
+              SYSTEM STATUS: OPERATIONAL // LATENCY: 12MS
+            </span>
+          </div>
+        </motion.div>
+
+        {/* Bespoke 8-Bit Pixel Headline */}
+        <motion.div variants={itemVariants} className="space-y-3">
+          <div className="relative inline-block">
+            <h1 className="text-7xl sm:text-9xl md:text-[11rem] lg:text-[12rem] font-black leading-[0.8] tracking-tight text-white uppercase font-pixelify drop-shadow-[4px_4px_0px_#ff2a2a]">
+              Hello<span className="text-[#00ff66]">!</span>
+            </h1>
+          </div>
+          
+          <div className="text-xl sm:text-3xl md:text-5xl font-black text-[#00e5ff] tracking-tight uppercase font-pixelify italic">
+            Full-Stack Developer & Craftsman
+          </div>
+        </motion.div>
+
+        {/* High-Impact High-Readability Subline */}
+        <motion.p
+          variants={itemVariants}
+          className="text-base sm:text-xl md:text-2xl font-sans text-white/90 font-medium max-w-3xl leading-relaxed tracking-normal"
+        >
+          Crafting high-throughput web applications, autonomous agentic workflows, and production-ready digital tools with zero compromise.
+        </motion.p>
+
+        {/* Bespoke Telemetry Cards */}
+        <motion.div
+          variants={itemVariants}
+          className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 pt-2"
+        >
+          {/* Projects Completed Card */}
+          <div className="bg-[#141417]/95 border-2 border-white/20 p-5 sm:p-6 rounded-none shadow-[4px_4px_0px_#ff2a2a] text-center min-w-[200px]">
+            <div className="text-3xl sm:text-5xl font-pixelify font-black text-[#ff2a2a] leading-none mb-1">
+              <CountUpNumber target={reposTarget} prefix="+" duration={1.5} fallback={45} />
+            </div>
+            <div className="text-[11px] font-mono font-bold text-white/70 uppercase tracking-wider">
+              Projects Completed
+            </div>
+          </div>
+
+          {/* Inventions Shipped Card */}
+          <div className="bg-[#141417]/95 border-2 border-white/20 p-5 sm:p-6 rounded-none shadow-[4px_4px_0px_#00e5ff] text-center min-w-[200px]">
+            <div className="text-3xl sm:text-5xl font-pixelify font-black text-[#00e5ff] leading-none mb-1">
+              <CountUpNumber target={systemsTarget} prefix="+" duration={1.5} fallback={40} />
+            </div>
+            <div className="text-[11px] font-mono font-bold text-white/70 uppercase tracking-wider">
+              Inventions Shipped
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Bespoke Interactive Command CTA */}
+        <motion.div variants={itemVariants} className="pt-4">
+          <Link
+            to="/systems"
+            onClick={() => audioSynth.playCoinSound()}
+            className="group relative inline-flex items-center gap-3 px-10 py-5 bg-[#ff2a2a] text-white font-pixel text-xs sm:text-sm uppercase tracking-widest hover:bg-[#00e5ff] hover:text-black transition-all border-2 border-white shadow-[5px_5px_0px_#fff]"
+          >
+            <span>Explore System Archives</span>
+            <span className="group-hover:translate-x-1 transition-transform">➔</span>
+          </Link>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

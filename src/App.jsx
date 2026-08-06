@@ -28,6 +28,7 @@ import ScrollToTop from "./components/ScrollToTop.jsx";
 const Footer = React.lazy(() => import("./components/Footer.jsx"));
 import CustomCursor from "./components/CustomCursor.jsx";
 import Nav from "./components/Nav.jsx";
+import MarioRunner from "./components/MarioRunner.jsx";
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -123,6 +124,7 @@ function AppContent() {
         <AnimatedRoutes />
         <Footer />
       </React.Suspense>
+      <MarioRunner />
     </>
   );
 }

@@ -96,9 +96,9 @@ const About = () => {
   };
 
   return (
-    <section className="py-36 md:py-52 bg-white relative z-10 overflow-hidden">
+    <section className="py-28 md:py-40 bg-[#0d0d0f] text-white relative z-10 overflow-hidden font-pixelify border-b border-white/10 selection:bg-[#ff2a2a] selection:text-white">
       <div className="container mx-auto px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 items-start">
           {/* Left Column: Text */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -106,47 +106,47 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 1 }}
           >
-            <h2 className="text-4xl md:text-6xl font-bold text-black mb-12">
-              About Me
+            <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tight mb-8 font-pixelify">
+              About <span className="text-[#ff2a2a]">Me</span>
             </h2>
-            <div className="space-y-10 max-w-xl about-text">
-              <p className="text-lg md:text-xl text-black/20 leading-relaxed font-medium">
+            <div className="space-y-6 max-w-xl font-sans">
+              <p className="text-lg md:text-xl text-white/90 leading-relaxed font-medium">
                 I like building things that survive real usage. Not demo-day
-                perfect. Not <strong className="text-black font-extrabold bg-[#D8F1A0]/30 px-1.5 py-0.5 border-b border-black/10">“works on my machine”</strong> perfect. The kind of systems
+                perfect. Not <strong className="text-[#fbd000] font-bold bg-[#ff2a2a]/20 px-1.5 py-0.5 border border-[#ff2a2a]/40">“works on my machine”</strong> perfect. The kind of systems
                 people slowly start depending on without thinking about it.
               </p>
-              <p className="text-lg md:text-xl text-black/20 leading-relaxed font-medium">
-                I enjoy the <strong className="text-black font-extrabold bg-[#D8F1A0]/30 px-1.5 py-0.5 border-b border-black/10">messy side of engineering</strong> — unclear requirements,
+              <p className="text-lg md:text-xl text-white/90 leading-relaxed font-medium">
+                I enjoy the <strong className="text-[#00ff66] font-bold bg-[#00ff66]/10 px-1.5 py-0.5 border border-[#00ff66]/30">messy side of engineering</strong> — unclear requirements,
                 evolving products, edge cases nobody planned for, and figuring
                 out how to keep things understandable as they grow.
               </p>
-              <p className="text-lg md:text-xl text-black/20 leading-relaxed font-medium">
+              <p className="text-lg md:text-xl text-white/90 leading-relaxed font-medium">
                 Most of my interest sits somewhere between engineering, product
                 decisions, and interface design. I care a lot about clarity — in
                 code, spacing, naming, and user experience.
               </p>
-              <p className="text-lg md:text-xl text-black/20 leading-relaxed font-medium">
+              <p className="text-lg md:text-xl text-white/90 leading-relaxed font-medium">
                 I’m less interested in building “impressive” software and more
-                interested in building products that feel <strong className="text-black font-extrabold bg-[#D8F1A0]/30 px-1.5 py-0.5 border-b border-black/10">calm, fast,
+                interested in building products that feel <strong className="text-white font-bold bg-[#ff2a2a] px-1.5 py-0.5">calm, fast,
                 predictable, and easy to trust</strong>.
               </p>
 
-              <div className="flex gap-8 pt-8">
+              <div className="flex gap-8 pt-6 font-mono text-xs font-bold">
                 <a
                   href="https://github.com/TarunyaProgrammer"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs font-bold uppercase tracking-[0.3em] border-b-2 border-black/5 hover:border-black pb-1 transition-all"
+                  className="text-white/70 hover:text-[#ff2a2a] uppercase tracking-[0.2em] border-b border-white/20 hover:border-[#ff2a2a] pb-1 transition-all"
                 >
-                  GitHub
+                  GitHub ↗
                 </a>
                 <a
                   href="https://www.linkedin.com/in/tarunyakesharwani"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs font-bold uppercase tracking-[0.3em] border-b-2 border-black/5 hover:border-black pb-1 transition-all"
+                  className="text-white/70 hover:text-[#0066ff] uppercase tracking-[0.2em] border-b border-white/20 hover:border-[#0066ff] pb-1 transition-all"
                 >
-                  LinkedIn
+                  LinkedIn ↗
                 </a>
               </div>
             </div>
@@ -159,20 +159,20 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            <div className="border border-black/10 p-8 md:p-12 bg-white relative flex flex-col justify-between min-h-[500px] shadow-2xl">
+            <div className="border-2 border-white/20 p-6 md:p-10 bg-[#141417] relative flex flex-col justify-between min-h-[500px] shadow-[4px_4px_0px_#ff2a2a] rounded-none">
               {/* Technical corner brackets */}
-              <div className="absolute top-2 left-2 w-3 h-3 border-t border-l border-black/20" />
-              <div className="absolute top-2 right-2 w-3 h-3 border-t border-r border-black/20" />
-              <div className="absolute bottom-2 left-2 w-3 h-3 border-b border-l border-black/20" />
-              <div className="absolute bottom-2 right-2 w-3 h-3 border-b border-r border-black/20" />
+              <div className="absolute top-2 left-2 w-3 h-3 border-t border-l border-[#ff2a2a]" />
+              <div className="absolute top-2 right-2 w-3 h-3 border-t border-r border-[#ff2a2a]" />
+              <div className="absolute bottom-2 left-2 w-3 h-3 border-b border-l border-[#ff2a2a]" />
+              <div className="absolute bottom-2 right-2 w-3 h-3 border-b border-r border-[#ff2a2a]" />
 
               <div>
-                <span className="text-[9px] font-black text-black/30 uppercase tracking-[0.5em] block mb-8">
-                  Mindspace / Workbench v1.0
+                <span className="text-[10px] font-mono font-bold text-[#ff2a2a] uppercase tracking-[0.4em] block mb-6">
+                  WORKBENCH MATRIX v2.0
                 </span>
 
-                {/* Tabs Row (Folder Tab styling) */}
-                <div className="flex flex-wrap gap-2 mb-10">
+                {/* Tabs Row */}
+                <div className="flex flex-wrap gap-2 mb-8 font-mono">
                   {Object.keys(mindspaceData).map((tabKey) => {
                     const labelMap = {
                       philosophy: "Principles",
@@ -184,10 +184,10 @@ const About = () => {
                       <button
                         key={tabKey}
                         onClick={() => setActiveTab(tabKey)}
-                        className={`px-4 py-2 text-[10px] font-black uppercase tracking-widest border transition-all duration-300 ${
+                        className={`px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider border transition-all ${
                           activeTab === tabKey
-                            ? "bg-black text-white border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)]"
-                            : "bg-zinc-50 text-black/40 border-black/10 hover:border-black/30 hover:text-black/60"
+                            ? "bg-[#ff2a2a] text-white border-white shadow-md"
+                            : "bg-[#0d0d0f] text-white/50 border-white/10 hover:border-white/40 hover:text-white"
                         }`}
                       >
                         {labelMap[tabKey]}
@@ -204,38 +204,34 @@ const About = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.3 }}
-                    className="space-y-8"
+                    className="space-y-6"
                   >
                     <div>
-                      <h3 className="text-2xl font-bold uppercase tracking-tighter text-black mb-1">
+                      <h3 className="text-xl font-bold uppercase tracking-tight text-white mb-1 font-pixelify">
                         {mindspaceData[activeTab].title}
                       </h3>
-                      <p className="text-xs font-semibold text-black/40 italic">
+                      <p className="text-xs font-mono text-[#fbd000]">
                         {mindspaceData[activeTab].subtitle}
                       </p>
                     </div>
 
-                    {/* 2x2 tactile grid layout for card stack */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6">
+                    {/* 2x2 grid layout for card stack */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 font-sans">
                       {mindspaceData[activeTab].items.map((item, index) => (
                         <div
                           key={index}
-                          className="group/item border border-black/[0.06] p-6 bg-zinc-50/50 hover:bg-white hover:border-black hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.05)] transition-all duration-500 relative flex flex-col justify-between"
+                          className="group/item border border-white/10 p-4 bg-[#0d0d0f] hover:border-[#ff2a2a] transition-all duration-300 relative flex flex-col justify-between"
                         >
-                          {/* Card Corner Brackets on Hover */}
-                          <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-black/20 opacity-0 group-hover/item:opacity-100 transition-opacity duration-300" />
-                          <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-black/20 opacity-0 group-hover/item:opacity-100 transition-opacity duration-300" />
-
                           <div>
-                            <div className="flex justify-between items-baseline mb-3">
-                              <h4 className="text-xs font-black text-black uppercase tracking-wider">
+                            <div className="flex justify-between items-baseline mb-2">
+                              <h4 className="text-xs font-bold text-white uppercase tracking-wider font-mono">
                                 {item.label}
                               </h4>
-                              <span className="text-[9px] font-mono font-bold text-black/20 group-hover/item:text-black/40 transition-colors">
+                              <span className="text-[9px] font-mono text-[#00ff66]">
                                 [0{index + 1}]
                               </span>
                             </div>
-                            <p className="text-[11px] font-medium text-black/50 leading-relaxed">
+                            <p className="text-xs font-medium text-white/70 leading-relaxed">
                               {item.desc}
                             </p>
                           </div>
@@ -247,12 +243,12 @@ const About = () => {
               </div>
 
               {/* Status bar */}
-              <div className="border-t border-black/5 pt-6 mt-12 flex justify-between items-center text-[9px] font-black uppercase tracking-widest text-black/20">
+              <div className="border-t border-white/10 pt-4 mt-8 flex justify-between items-center text-[10px] font-mono uppercase tracking-widest text-white/40">
                 <span className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
+                  <span className="w-2 h-2 bg-[#00ff66] rounded-full animate-pulse" />
                   STATUS: OPERATIONAL
                 </span>
-                <span>COORD: [45.10.CF]</span>
+                <span className="text-[#ff2a2a]">COORD: [45.10.CF]</span>
               </div>
             </div>
           </motion.div>

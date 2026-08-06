@@ -1,7 +1,7 @@
+/// <reference types="vitest" />
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   build: {
@@ -15,5 +15,12 @@ export default defineConfig({
       },
     },
     chunkSizeWarningLimit: 1000,
+  },
+  test: {
+    globals: true,
+    environment: "jsdom",
+    setupFiles: ["./src/__tests__/setup.js"],
+    css: false,
+    include: ["src/__tests__/**/*.test.{js,jsx}"],
   },
 });

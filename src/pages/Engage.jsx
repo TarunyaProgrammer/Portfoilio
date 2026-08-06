@@ -333,11 +333,11 @@ const Engage = () => {
                   <p className="text-xl md:text-2xl text-text/60 font-body leading-relaxed mb-12">
                     {selectedOption.description}
                   </p>
-                  <div className="p-12 bg-white border border-black/5 shadow-lg">
-                    <span className="block text-[10px] font-bold text-accent/40 mb-4 uppercase tracking-[0.4em]">
+                  <div className="p-8 bg-[#161922] border border-white/20 rounded-lg shadow-lg">
+                    <span className="block text-xs font-mono font-bold text-[#ff2a2a] mb-2 uppercase tracking-widest">
                       Project Outcome
                     </span>
-                    <p className="text-xl font-body italic text-text">
+                    <p className="text-lg font-sans text-white/90">
                       {selectedOption.outcome}
                     </p>
                   </div>

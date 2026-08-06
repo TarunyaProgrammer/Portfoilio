@@ -3,31 +3,36 @@ import { motion, useReducedMotion } from "framer-motion";
 import { useGitHubSignals } from "../hooks/useGitHubSignals";
 import { useCodeforcesSignals } from "../hooks/useCodeforcesSignals";
 import { formatDistanceToNow } from "date-fns";
+import CountUpNumber from "./CountUpNumber";
 
-const SignalCard = ({ label, value, subtext, loading, delay }) => (
+const SignalCard = ({ label, value, subtext, loading, delay, fallback = 0 }) => (
   <motion.div
     initial={{ opacity: 0 }}
     whileInView={{ opacity: 1 }}
     viewport={{ once: true }}
     transition={{ delay, duration: 0.8 }}
-    className="flex flex-col pr-12 md:border-r border-black/5 last:border-r-0"
+    className="flex flex-col pr-8 md:border-r border-white/10 last:border-r-0"
   >
-    <span className="text-[10px] font-bold text-black/30 uppercase tracking-[0.5em] mb-4">
+    <span className="text-[10px] font-mono font-bold text-white/50 uppercase tracking-[0.4em] mb-4">
       {label}
     </span>
     
     <div className="flex items-baseline gap-3">
       {loading ? (
-         <span className="text-xs font-bold text-black/10 animate-pulse tracking-widest uppercase">
-            Syncing
-         </span>
+        <span className="text-xs font-mono font-bold text-[#ff2a2a] animate-pulse tracking-widest uppercase">
+          Syncing
+        </span>
       ) : (
-        <span className="text-4xl font-bold text-black tracking-tighter">
-          {value !== undefined && value !== null ? value : "---"}
+        <span className="text-4xl font-pixelify font-black text-white tracking-tight">
+          {typeof value === "number" ? (
+            <CountUpNumber target={value} duration={1.5} fallback={fallback} />
+          ) : (
+            value || "---"
+          )}
         </span>
       )}
       {subtext && !loading && (
-        <span className="text-[10px] font-bold text-black/40 uppercase tracking-widest">
+        <span className="text-[10px] font-mono font-bold text-[#fbd000] uppercase tracking-widest">
           {subtext}
         </span>
       )}
@@ -43,9 +48,9 @@ const Signals = () => {
 
   useEffect(() => {
     if (ghLoading || cfLoading) {
-        setSystemState("SYNCING");
+      setSystemState("SYNCING");
     } else {
-        setSystemState("LIVE TELEMETRY");
+      setSystemState("LIVE TELEMETRY");
     }
   }, [ghLoading, cfLoading]);
 
@@ -58,82 +63,87 @@ const Signals = () => {
     : "Syncing...";
 
   return (
-    <section className="bg-white relative z-20 border-b border-black/5 overflow-hidden">
+    <section className="bg-[#141417] text-white relative z-20 border-b border-white/10 overflow-hidden font-pixelify selection:bg-[#ff2a2a] selection:text-white">
       {/* Scanning Line Effect */}
       {!shouldReduceMotion && (
         <motion.div 
-          className="absolute inset-x-0 h-[1px] bg-black/5 z-30"
+          className="absolute inset-x-0 h-[1px] bg-[#ff2a2a]/30 z-30 pointer-events-none"
           animate={{ top: ["0%", "100%", "0%"] }}
           transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
         />
       )}
       
-      <div className="container mx-auto px-8 md:px-16 py-24 md:py-28 relative">
-        <div className="flex flex-col md:flex-row items-baseline justify-between mb-16 gap-6">
-            <div className="flex items-center gap-6">
-                <motion.span 
-                  animate={{ 
-                    scale: [1, 1.5, 1],
-                    opacity: [1, 0.5, 1]
-                  }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className={`w-3 h-3 rounded-full ${ghLoading || cfLoading ? "bg-black/10" : "bg-black"}`}
-                ></motion.span>
-                <h3 className="text-[10px] font-bold text-black/60 uppercase tracking-[0.6em]">
-                    Real-time Protocol Signals
-                </h3>
-            </div>
-            <span className="text-[10px] font-bold text-black/30 uppercase tracking-[0.6em]">
-                {systemState} &middot; SOURCE: SYSTEM_API_V3
-            </span>
+      <div className="container mx-auto px-8 md:px-16 py-20 md:py-24 relative">
+        <div className="flex flex-col md:flex-row items-baseline justify-between mb-12 gap-6 border-b border-white/10 pb-6">
+          <div className="flex items-center gap-4">
+            <motion.span 
+              animate={{ 
+                scale: [1, 1.5, 1],
+                opacity: [1, 0.5, 1]
+              }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className={`w-3 h-3 ${ghLoading || cfLoading ? "bg-gray-500" : "bg-[#00ff66]"}`}
+            ></motion.span>
+            <h3 className="text-xs font-mono font-bold text-white uppercase tracking-[0.4em]">
+              Real-time Protocol Signals
+            </h3>
+          </div>
+          <span className="text-[10px] font-mono font-bold text-white/50 uppercase tracking-[0.4em]">
+            {systemState} &middot; SOURCE: SYSTEM_API_V3
+          </span>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-16">
-            <SignalCard 
-                label="Repositories" 
-                value={github?.totalRepos} 
-                loading={ghLoading} 
-                delay={0.1} 
-            />
-             <SignalCard 
-                label="Systems" 
-                value={github?.activeSystems} 
-                loading={ghLoading} 
-                delay={0.2} 
-            />
-             <SignalCard 
-                label="Stargazers" 
-                value={github?.totalStars} 
-                loading={ghLoading} 
-                delay={0.3} 
-            />
-             <SignalCard 
-                label="CF MAX" 
-                value={cf?.maxRating} 
-                subtext={cf?.rank}
-                loading={cfLoading} 
-                delay={0.4} 
-            />
-             <SignalCard 
-                label="Solved" 
-                value={cf?.uniqueSolved} 
-                loading={cfLoading} 
-                delay={0.5} 
-            />
-            
-            <div className="flex flex-col justify-end lg:pl-12 lg:border-l lg:border-black/5">
-                 <span className="text-[10px] font-bold text-black/30 uppercase tracking-[0.5em] mb-4">Pulse</span>
-                 <div className="space-y-3">
-                    <div className="flex justify-between items-center gap-6 text-[10px] font-bold text-black/60 uppercase tracking-widest">
-                        <span>GitHub</span>
-                        <span className="italic">{ghLoading ? "..." : lastActiveGH}</span>
-                    </div>
-                     <div className="flex justify-between items-center gap-6 text-[10px] font-bold text-black/60 uppercase tracking-widest">
-                        <span>Codeforces</span>
-                         <span className="italic">{cfLoading ? "..." : lastActiveCF}</span>
-                    </div>
-                 </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-12">
+          <SignalCard 
+            label="Repositories" 
+            value={github?.totalRepos ?? 45} 
+            loading={ghLoading} 
+            delay={0.1} 
+            fallback={45}
+          />
+          <SignalCard 
+            label="Systems" 
+            value={github?.activeSystems ?? 42} 
+            loading={ghLoading} 
+            delay={0.2} 
+            fallback={42}
+          />
+          <SignalCard 
+            label="Stargazers" 
+            value={github?.totalStars ?? 284} 
+            loading={ghLoading} 
+            delay={0.3} 
+            fallback={284}
+          />
+          <SignalCard 
+            label="CF MAX" 
+            value={cf?.maxRating ?? 939} 
+            subtext={cf?.rank || "NEWBIE"}
+            loading={cfLoading} 
+            delay={0.4} 
+            fallback={939}
+          />
+          <SignalCard 
+            label="Solved" 
+            value={cf?.uniqueSolved ?? 88} 
+            loading={cfLoading} 
+            delay={0.5} 
+            fallback={88}
+          />
+          
+          <div className="flex flex-col justify-end lg:pl-8 lg:border-l border-white/10">
+            <span className="text-[10px] font-mono font-bold text-white/50 uppercase tracking-[0.4em] mb-3">Pulse</span>
+            <div className="space-y-2 font-mono text-[10px]">
+              <div className="flex justify-between items-center gap-4 text-white/80 uppercase">
+                <span>GitHub</span>
+                <span className="text-[#00ff66]">{ghLoading ? "..." : lastActiveGH}</span>
+              </div>
+              <div className="flex justify-between items-center gap-4 text-white/80 uppercase">
+                <span>Codeforces</span>
+                <span className="text-[#fbd000]">{cfLoading ? "..." : lastActiveCF}</span>
+              </div>
             </div>
+          </div>
         </div>
       </div>
     </section>

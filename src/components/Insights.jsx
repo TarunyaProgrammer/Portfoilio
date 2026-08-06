@@ -23,18 +23,18 @@ const Insights = () => {
   ];
 
   return (
-    <section className="py-36 md:py-52 bg-white border-t border-black/5">
+    <section className="py-24 md:py-36 bg-[#0d0d0f] text-white border-b border-white/10 font-pixelify selection:bg-[#ff2a2a] selection:text-white">
       <div className="container mx-auto px-8">
-        <div className="text-center mb-32">
-          <div className="text-[10px] font-bold text-black/30 uppercase tracking-[0.5em] mb-8">
-            Knowledge Base
+        <div className="text-center mb-20 space-y-2">
+          <div className="text-xs font-mono font-bold text-[#ff2a2a] uppercase tracking-[0.4em]">
+            KNOWLEDGE BASE
           </div>
-          <h2 className="text-4xl md:text-6xl font-bold text-black tracking-tighter">
-            System Insights & Trends
+          <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight uppercase font-pixelify">
+            System Insights & <span className="text-[#00ff66]">Trends</span>
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {articles.map((article, index) => (
             <motion.div
               key={index}
@@ -42,25 +42,25 @@ const Insights = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: index * 0.1 }}
-              className="group cursor-pointer"
+              className="group cursor-pointer border-2 border-white/20 bg-[#141417] p-6 rounded-none shadow-[4px_4px_0px_#fbd000] hover:border-white transition-all"
             >
-              <div className="aspect-[16/10] overflow-hidden grayscale mb-8 bg-black/5">
+              <div className="aspect-[16/10] overflow-hidden rounded mb-6 bg-[#0d0d0f] border border-white/10">
                 <img 
                   src={article.image} 
                   alt={article.title} 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
                 />
               </div>
-              <div className="space-y-4">
+              <div className="space-y-3 font-mono">
                 <div className="flex gap-4 items-center">
-                   <span className="px-3 py-1 bg-black text-white text-[8px] font-bold tracking-widest uppercase">
+                   <span className="px-2.5 py-0.5 bg-[#ff2a2a] text-white text-[9px] font-bold tracking-widest uppercase">
                       {article.label}
                    </span>
-                   <span className="text-[10px] font-bold text-black/30">
+                   <span className="text-[10px] font-bold text-white/50">
                       {article.date}
                    </span>
                 </div>
-                <h3 className="text-2xl font-bold text-black group-hover:italic transition-all leading-tight">
+                <h3 className="text-xl font-bold text-white group-hover:text-[#ff2a2a] transition-colors font-pixelify leading-snug">
                   {article.title}
                 </h3>
               </div>

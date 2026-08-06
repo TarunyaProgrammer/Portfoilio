@@ -1,81 +1,63 @@
-import { memo, useState, useEffect } from "react";
+import { memo } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { audioSynth } from "../utils/audioSynth";
 
 const SystemCard = memo(({ system, index }) => {
-  const [imgSrc, setImgSrc] = useState("");
-
-  useEffect(() => {
-    if (system.homepage) {
-      setImgSrc(`https://api.microlink.io/?url=${encodeURIComponent(system.homepage)}&embed=image.url`);
-    } else {
-      setImgSrc(`https://opengraph.githubassets.com/1/TarunyaProgrammer/${system.slug}`);
-    }
-  }, [system.homepage, system.slug]);
-
-  const handleImgError = () => {
-    if (imgSrc.includes("api.microlink.io")) {
-      // If live site OG image fails, try the GitHub social preview card
-      setImgSrc(`https://opengraph.githubassets.com/1/TarunyaProgrammer/${system.slug}`);
-    } else {
-      // If that also fails, fall back to the Unsplash illustration
-      setImgSrc(system.image);
-    }
-  };
-
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.8, delay: index * 0.1 }}
-      className="group"
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      className="group relative border-2 border-white/20 bg-[#141417] p-6 sm:p-8 rounded-none shadow-[4px_4px_0px_#000] hover:border-[#ff2a2a] hover:shadow-[4px_4px_0px_#ff2a2a] transition-all font-pixelify flex flex-col justify-between"
     >
-      <Link to={`/systems/${system.slug}`} className="block">
-        <div className="relative aspect-video overflow-hidden bg-black/5 mb-8 group-hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.2)] transition-all duration-700">
-          <img
-            src={imgSrc || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop"}
-            alt={system.title}
-            loading="lazy"
-            width="1280"
-            height="720"
-            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
-            onError={handleImgError}
-          />
-          
-          {/* Overlay Number */}
-          <div className="absolute top-6 right-6 text-[40px] font-bold text-white/20 group-hover:text-white/40 transition-colors tracking-tighter leading-none z-20 font-mono">
-             0{index + 1}
+      {/* Retro Pixel Corner Accents (Clean Neutral White) */}
+      <div className="absolute top-2 left-2 w-3 h-3 border-t-2 border-l-2 border-white/30 group-hover:border-[#ff2a2a] transition-colors" />
+      <div className="absolute top-2 right-2 w-3 h-3 border-t-2 border-r-2 border-white/30 group-hover:border-[#ff2a2a] transition-colors" />
+      <div className="absolute bottom-2 left-2 w-3 h-3 border-b-2 border-l-2 border-white/30 group-hover:border-[#ff2a2a] transition-colors" />
+      <div className="absolute bottom-2 right-2 w-3 h-3 border-b-2 border-r-2 border-white/30 group-hover:border-[#ff2a2a] transition-colors" />
+
+      <Link
+        to={`/systems/${system.slug}`}
+        onClick={() => audioSynth.playCoinSound()}
+        className="block space-y-5"
+      >
+        {/* Top Header Row */}
+        <div className="flex items-center justify-between font-mono text-xs border-b border-white/10 pb-4">
+          <div className="flex items-center gap-2">
+            <span className="px-2.5 py-1 bg-[#0d0d0f] text-white/80 border border-white/20 font-pixel text-[9px] uppercase tracking-wider group-hover:bg-[#ff2a2a] group-hover:text-white transition-colors">
+              LEVEL 0{index + 1}
+            </span>
+            <span className="font-bold text-[#00ff66] uppercase tracking-wider bg-[#0d0d0f] px-2 py-0.5 border border-white/10">
+              {system.category || "General"}
+            </span>
           </div>
 
-          <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col items-center justify-center backdrop-blur-sm z-10">
-             <div className="text-white text-[10px] font-bold uppercase tracking-[0.6em] border border-white/20 px-6 py-3">
-                Protocol Access
-             </div>
+          <div className="font-bold text-[#fbd000] bg-[#0d0d0f] px-2.5 py-1 border border-white/10">
+            ★ {system.stars || 0}
           </div>
-
-          {/* Technical Corner Accents */}
-          <div className="absolute top-0 left-0 w-8 h-8 border-t border-l border-black/10 group-hover:border-white/40 transition-all duration-700" />
-          <div className="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-black/10 group-hover:border-white/40 transition-all duration-700" />
         </div>
 
-        <div className="flex flex-col">
-          <div className="flex justify-between items-baseline mb-4">
-             <div className="text-[9px] font-bold text-black/30 uppercase tracking-[0.4em]">
-                {system.category || "General System"}
-             </div>
-             <div className="text-[11px] font-bold text-black tracking-tighter">
-                ★ {system.stars || 0}
-             </div>
+        {/* Title */}
+        <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight group-hover:text-[#ff2a2a] transition-colors font-pixelify uppercase leading-tight">
+          {system.title}
+        </h3>
+
+        {/* High-Readability Inter Body Description */}
+        <p className="text-sm font-sans font-normal text-white/80 leading-relaxed line-clamp-3">
+          {system.description}
+        </p>
+
+        {/* Action Button */}
+        <div className="pt-4 flex justify-between items-center font-mono">
+          <div className="text-xs font-bold bg-[#0d0d0f] text-white/80 group-hover:bg-[#ff2a2a] group-hover:text-white px-4 py-2 border border-white/20 transition-all flex items-center gap-2">
+            <svg className="w-3.5 h-3.5 text-[#00ff66] group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            <span>LAUNCH SYSTEM</span>
+            <span>↗</span>
           </div>
-          
-          <h3 className="text-2xl font-bold text-black tracking-tighter mb-4 group-hover:italic transition-all">
-            {system.title}
-          </h3>
-          
-          <p className="text-[13px] text-black/50 font-medium leading-relaxed line-clamp-2 group-hover:text-black/80 transition-colors">
-            {system.description}
-          </p>
         </div>
       </Link>
     </motion.div>

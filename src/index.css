@@ -5,13 +5,13 @@
 @layer base {
   :root {
     --nav-height: 80px;
-    --bg: #FFFFFF;
-    --text: #000000;
-    --accent: #000000;
-    --font-heading: "Inter", sans-serif;
-    --font-serif: "Fraunces", serif;
-    --font-body: "Inter", sans-serif;
-    --font-script: "Ephesis", cursive;
+    --bg: #0d0d0f;
+    --text: #ffffff;
+    --accent: #ff2a2a;
+    --font-heading: "Pixelify Sans", sans-serif;
+    --font-serif: "Inter", sans-serif;
+    --font-body: "Inter", -apple-system, sans-serif;
+    --font-script: "Inter", sans-serif;
   }
 
   html,
@@ -22,6 +22,12 @@
     @apply antialiased;
     scrollbar-width: none !important; /* Firefox */
     -ms-overflow-style: none !important; /* IE and Edge */
+  }
+
+  @media (min-width: 768px) {
+    html, body, a, button, input, select, textarea {
+      cursor: none !important;
+    }
   }
 
   /* Hide scrollbar for Chrome, Safari and Opera */
@@ -78,6 +84,13 @@
   .text-script {
     font-family: var(--font-script);
     @apply text-2xl lowercase;
+  }
+
+  .pixelify-sans {
+    font-family: "Pixelify Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
   }
 
   .ephesis-regular {

@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+# ─── Husky Pre-Commit Hook ──────────────────────────────────────
+# Runs lint-staged BEFORE every commit.
+# lint-staged only lints/tests staged (changed) files — fast.
+# If any check fails → commit is blocked.
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🔍 Running pre-commit checks (ESLint + format)..."
+npx lint-staged
