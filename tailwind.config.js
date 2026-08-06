@@ -13,7 +13,7 @@ export default {
         heading: ["Inter", "sans-serif"],
         body: ["Inter", "sans-serif"],
         serif: ["Fraunces", "serif"],
-        script: ["Pinyon Script", "cursive"],
+        script: ["Ephesis", "cursive"],
         mono: ["JetBrains Mono", "monospace"],
       },
       spacing: {

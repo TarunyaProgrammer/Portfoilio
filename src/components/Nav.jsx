@@ -48,8 +48,8 @@ const Nav = () => {
             className="flex flex-col group relative"
           >
             <span 
-              style={{ fontFamily: "'Pinyon Script', cursive" }}
-              className="text-4xl text-black group-hover:scale-105 transition-transform duration-500 lowercase leading-none"
+              style={{ fontFamily: "'Ephesis', cursive" }}
+              className="text-4xl text-black group-hover:scale-105 transition-transform duration-500 leading-none ephesis-regular"
             >
               Tarunya
             </span>

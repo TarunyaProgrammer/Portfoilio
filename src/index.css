@@ -11,7 +11,7 @@
     --font-heading: "Inter", sans-serif;
     --font-serif: "Fraunces", serif;
     --font-body: "Inter", sans-serif;
-    --font-script: "Pinyon Script", cursive;
+    --font-script: "Ephesis", cursive;
   }
 
   html,
@@ -78,6 +78,12 @@
   .text-script {
     font-family: var(--font-script);
     @apply text-2xl lowercase;
+  }
+
+  .ephesis-regular {
+    font-family: "Ephesis", cursive;
+    font-weight: 400;
+    font-style: normal;
   }
 
   .editorial-link {

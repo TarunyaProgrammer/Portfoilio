@@ -46,8 +46,8 @@ const Footer = () => {
           
           <div className="footer-logo flex items-center gap-4 relative z-10">
             <span 
-              style={{ fontFamily: "'Pinyon Script', cursive" }}
-              className="text-4xl text-white lowercase leading-none"
+              style={{ fontFamily: "'Ephesis', cursive" }}
+              className="text-4xl text-white lowercase leading-none ephesis-regular"
             >
               Tarunya
             </span>
