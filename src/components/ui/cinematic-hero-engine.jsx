@@ -91,6 +91,17 @@ export const CinematicHeroEngine = forwardRef(
       return () => cancelAnimationFrame(rafRef.current);
     }, [isPlaying]);
 
+    // Unmount cleanup for audio instance & RAF
+    useEffect(() => {
+      const audioEl = audioRef.current;
+      return () => {
+        cancelAnimationFrame(rafRef.current);
+        if (audioEl) {
+          audioEl.pause();
+        }
+      };
+    }, []);
+
     // Handle isMuted prop updates safely
     useEffect(() => {
       if (!audioRef.current) return;

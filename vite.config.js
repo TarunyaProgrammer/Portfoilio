@@ -14,4 +14,19 @@ export default defineConfig({
     port: 5173,
     host: true,
   },
+  build: {
+    target: "es2022",
+    cssMinify: true,
+    chunkSizeWarningLimit: 600,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          "vendor-react": ["react", "react-dom"],
+          "vendor-motion": ["framer-motion", "lenis"],
+          "vendor-icons": ["lucide-react"],
+          "vendor-utils": ["canvas-confetti", "clsx", "tailwind-merge"],
+        },
+      },
+    },
+  },
 });

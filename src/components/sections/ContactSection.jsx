@@ -57,6 +57,8 @@ export const ContactSection = () => {
     },
   ];
 
+  const [validationError, setValidationError] = useState("");
+
   const handleCopyEmail = (e) => {
     navigator.clipboard.writeText(portfolioData.personal.email);
     setCopied(true);
@@ -77,15 +79,30 @@ export const ContactSection = () => {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    if (validationError) setValidationError("");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setStatus("submitting");
+    const cleanName = formData.name.trim().replace(/[\r\n]/g, " ");
+    const cleanEmail = formData.email.trim();
+    const cleanMessage = formData.message.trim();
 
-    const subject = encodeURIComponent(`🚀 Inquiry: ${formData.service} | ${formData.name}`);
+    if (!cleanName || !cleanEmail || !cleanMessage) {
+      setValidationError("Please fill out all required fields.");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(cleanEmail)) {
+      setValidationError("Please enter a valid email address.");
+      return;
+    }
+
+    setStatus("submitting");
+    const subject = encodeURIComponent(`🚀 Inquiry: ${formData.service} | ${cleanName}`);
     const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\nSelected Service: ${formData.service}\n\nProject Overview:\n${formData.message}`
+      `Name: ${cleanName}\nEmail: ${cleanEmail}\nSelected Service: ${formData.service}\n\nProject Overview:\n${cleanMessage}`
     );
 
     window.location.href = `mailto:${portfolioData.personal.email}?subject=${subject}&body=${body}`;
@@ -234,15 +251,18 @@ export const ContactSection = () => {
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4" noValidate>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-mono text-zinc-300 font-medium">
+                  <label htmlFor="contact-name" className="text-xs font-mono text-zinc-300 font-medium">
                     Your Name / Organization
                   </label>
                   <input
+                    id="contact-name"
                     type="text"
                     name="name"
+                    autoComplete="name"
+                    maxLength={100}
                     required
                     value={formData.name}
                     onChange={handleChange}
@@ -252,12 +272,15 @@ export const ContactSection = () => {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-mono text-zinc-300 font-medium">
+                  <label htmlFor="contact-email" className="text-xs font-mono text-zinc-300 font-medium">
                     Your Email Address
                   </label>
                   <input
+                    id="contact-email"
                     type="email"
                     name="email"
+                    autoComplete="email"
+                    maxLength={120}
                     required
                     value={formData.email}
                     onChange={handleChange}
@@ -268,10 +291,11 @@ export const ContactSection = () => {
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-mono text-zinc-300 font-medium">
+                <label htmlFor="contact-service" className="text-xs font-mono text-zinc-300 font-medium">
                   Select Focus Area
                 </label>
                 <select
+                  id="contact-service"
                   name="service"
                   value={formData.service}
                   onChange={handleChange}
@@ -287,19 +311,27 @@ export const ContactSection = () => {
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-mono text-zinc-300 font-medium">
+                <label htmlFor="contact-message" className="text-xs font-mono text-zinc-300 font-medium">
                   Project Briefing / Mission Scope
                 </label>
                 <textarea
+                  id="contact-message"
                   name="message"
                   required
                   rows={4}
+                  maxLength={2000}
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Outline your architectural requirements, timelines, or role details..."
                   className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-white/10 text-sm text-white placeholder:text-zinc-600 focus:outline-none focus:border-white/30 transition-colors font-sans resize-none"
                 />
               </div>
+
+              {validationError && (
+                <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-mono text-center">
+                  ! {validationError}
+                </div>
+              )}
 
               <button
                 type="submit"

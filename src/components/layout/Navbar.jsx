@@ -43,8 +43,11 @@ export const Navbar = () => {
           <div className="relative">
             <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white/20 group-hover:border-blue-400/80 transition-all duration-300 shadow-md bg-zinc-900 flex items-center justify-center group-hover:scale-105">
               <img
-                src="/webme1.png"
+                src="/avatar.png"
                 alt="Tarunya Kesharwani"
+                width={40}
+                height={40}
+                decoding="async"
                 className="w-full h-full object-cover object-center filter contrast-105 group-hover:scale-110 transition-transform duration-300"
               />
             </div>
