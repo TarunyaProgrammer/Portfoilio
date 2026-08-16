@@ -44,3 +44,14 @@
   background: rgba(59, 130, 246, 0.4);
   color: #ffffff;
 }
+
+/* Classy Signature Cursive Typography */
+.font-signature {
+  font-family: 'Alex Brush', 'Great Vibes', 'Caveat', 'Pinyon Script', cursive !important;
+  letter-spacing: 0.04em;
+}
+
+.font-script {
+  font-family: 'Caveat', 'Alex Brush', 'Pinyon Script', cursive !important;
+}
+

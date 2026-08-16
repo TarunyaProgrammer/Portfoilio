@@ -116,7 +116,7 @@ export const Footer = () => {
               />
             </div>
             <div className="flex flex-col">
-              <span className="font-script text-2xl font-normal text-white group-hover:text-blue-300 leading-none">
+              <span className="font-signature text-3xl font-normal text-white group-hover:text-blue-300 leading-none">
                 Tarunya K.
               </span>
               <span className="text-[9px] font-mono tracking-widest text-zinc-500 uppercase">
