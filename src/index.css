@@ -21,13 +21,6 @@
   }
 }
 
-/* Hide default cursor on desktop where custom SmoothCursor is active */
-@media (min-width: 768px) {
-  *, *::before, *::after {
-    cursor: none !important;
-  }
-}
-
 /* Custom Minimal Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
@@ -57,4 +50,3 @@
   font-family: 'Alex Brush', cursive !important;
   letter-spacing: 0.03em;
 }
-

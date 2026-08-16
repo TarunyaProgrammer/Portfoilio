@@ -10,7 +10,6 @@ import { FlagshipProjects } from "@/components/sections/FlagshipProjects";
 import { ExperienceTimeline } from "@/components/sections/ExperienceTimeline";
 import { PublicationsSection } from "@/components/sections/PublicationsSection";
 import { ContactSection } from "@/components/sections/ContactSection";
-import { SmoothCursor } from "@/components/ui/smooth-cursor";
 import { AnimatedGridPattern } from "@/components/ui/animated-grid-pattern";
 
 export function App() {
@@ -38,9 +37,6 @@ export function App() {
 
   return (
     <div className="relative min-h-screen bg-[#09090b] text-[#f4f4f5] font-sans selection:bg-blue-500/40 selection:text-white overflow-x-hidden">
-      {/* Magic UI Physics Smooth Cursor */}
-      <SmoothCursor />
-
       {/* Magic UI Animated Grid Pattern Background */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <AnimatedGridPattern
