@@ -187,14 +187,14 @@ export const AboutSection = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.1, ease: smoothEase }}
-                  className="p-5 rounded-2xl bg-zinc-900/50 border border-white/10 hover:border-white/25 hover:bg-zinc-900/80 transition-all flex flex-col justify-between space-y-3 font-mono text-xs shadow-lg"
+                  className="p-5 rounded-2xl bg-zinc-900/50 border border-white/10 hover:border-amber-500/30 hover:bg-zinc-900/80 transition-all flex flex-col justify-between space-y-3 font-mono text-xs shadow-lg group"
                 >
                   <div className="flex items-center justify-between gap-2 border-b border-white/10 pb-3">
                     <span className="text-white font-semibold flex items-center gap-2 text-xs">
-                      <Icon className="w-4 h-4 text-zinc-300 shrink-0" />
+                      <Icon className="w-4 h-4 text-amber-400 shrink-0 group-hover:scale-110 transition-transform" />
                       <span>{item.org}</span>
                     </span>
-                    <span className="text-emerald-400 font-bold text-xs shrink-0">
+                    <span className="px-2 py-0.5 rounded-md bg-amber-500/10 border border-amber-500/30 text-amber-300 font-bold text-xs shrink-0 shadow-sm">
                       {item.score}
                     </span>
                   </div>
