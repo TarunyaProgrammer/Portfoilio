@@ -122,9 +122,9 @@ export const FlagshipProjects = () => {
       <div className="max-w-7xl mx-auto space-y-16">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div className="space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-blue-500/10 border border-blue-500/20 text-blue-400 font-mono text-xs font-semibold tracking-wider uppercase">
-              Flagship Engineering Showcase
+          <div className="space-y-2">
+            <div className="text-xs font-mono text-zinc-500 uppercase tracking-widest">
+              03 // FLAGSHIP ENGINEERING SHOWCASE
             </div>
             <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white">
               Top 3 Flagship Products.

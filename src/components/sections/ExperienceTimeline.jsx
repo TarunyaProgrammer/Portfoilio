@@ -7,9 +7,9 @@ export const ExperienceTimeline = () => {
     <section id="experience" className="py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative">
       <div className="max-w-5xl mx-auto space-y-16">
         {/* Section Header */}
-        <div className="space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-amber-500/10 border border-amber-500/20 text-amber-400 font-mono text-xs font-semibold tracking-wider uppercase">
-            Career &amp; Open Source Leadership
+        <div className="space-y-2">
+          <div className="text-xs font-mono text-zinc-500 uppercase tracking-widest">
+            04 // EXPERIENCE &amp; LEADERSHIP
           </div>
           <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white">
             Experience &amp; Milestones.

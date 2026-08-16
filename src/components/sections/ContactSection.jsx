@@ -64,9 +64,9 @@ export const ContactSection = () => {
     <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative">
       <div className="max-w-7xl mx-auto space-y-16">
         {/* Section Header */}
-        <div className="space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-blue-500/10 border border-blue-500/20 text-blue-400 font-mono text-xs font-semibold tracking-wider uppercase">
-            Direct Coordination
+        <div className="space-y-2">
+          <div className="text-xs font-mono text-zinc-500 uppercase tracking-widest">
+            06 // TRANSMISSION &amp; INQUIRY
           </div>
           <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white">
             Let&apos;s Build Together.

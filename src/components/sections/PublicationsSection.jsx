@@ -9,9 +9,9 @@ export const PublicationsSection = () => {
       <div className="max-w-7xl mx-auto space-y-16">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div className="space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-violet-500/10 border border-violet-500/20 text-violet-400 font-mono text-xs font-semibold tracking-wider uppercase">
-              Publications &amp; Insights
+          <div className="space-y-2">
+            <div className="text-xs font-mono text-zinc-500 uppercase tracking-widest">
+              05 // PUBLICATIONS &amp; INSIGHTS
             </div>
             <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white">
               Technical Writings.
