@@ -112,7 +112,7 @@ export const AboutSection = () => {
             <div className="p-6 sm:p-8 rounded-2xl bg-zinc-900/60 border border-white/10 space-y-5 text-zinc-300 leading-relaxed font-normal text-sm sm:text-base shadow-xl h-full flex flex-col justify-between">
               <p>
                 Currently developing as a{" "}
-                <Highlighter action="highlight" color="rgba(59, 130, 246, 0.25)">
+                <Highlighter action="highlight">
                   Google Summer of Code (GSoC &apos;26)
                 </Highlighter>{" "}
                 contributor for C2SI, architecting webhook-driven backends, caching protocols, and distributed services.
