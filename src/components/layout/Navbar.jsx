@@ -88,7 +88,7 @@ export const Navbar = () => {
             className="px-4 py-2 text-xs font-medium tracking-wide shadow-md"
           >
             <span className="flex items-center gap-1.5 font-medium text-white">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-emerald-400" />
               Hire Me
               <ArrowUpRight className="w-3.5 h-3.5 ml-0.5 text-blue-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </span>

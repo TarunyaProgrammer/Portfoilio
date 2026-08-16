@@ -126,7 +126,7 @@ export const Footer = () => {
           </a>
 
           <div className="flex items-center gap-2 font-mono text-[11px] text-zinc-500">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-emerald-400" />
             <span>IST: <strong className="text-zinc-300">{time || "21:50:00"}</strong></span>
           </div>
         </div>

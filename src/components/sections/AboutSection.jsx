@@ -1,6 +1,7 @@
 import React from "react";
 import { portfolioData } from "@/data/portfolioData";
 import { SpotlightCard } from "@/components/ui/spotlight-card";
+import { Highlighter } from "@/components/ui/highlighter";
 import { ShieldCheck, Zap, Code2, Award, ExternalLink } from "lucide-react";
 
 export const AboutSection = () => {
@@ -46,13 +47,21 @@ export const AboutSection = () => {
           <div className="lg:col-span-5 space-y-6">
             <div className="p-6 sm:p-8 rounded-2xl bg-zinc-900/60 border border-white/10 space-y-5 text-zinc-300 leading-relaxed font-normal text-sm sm:text-base">
               <p>
-                Currently developing as a <strong className="text-white font-semibold">Google Summer of Code (GSoC &apos;26)</strong> contributor for C2SI, architecting webhook-driven backends, caching protocols, and distributed services.
+                Currently developing as a{" "}
+                <Highlighter action="highlight" color="rgba(59, 130, 246, 0.25)">
+                  Google Summer of Code (GSoC &apos;26)
+                </Highlighter>{" "}
+                contributor for C2SI, architecting webhook-driven backends, caching protocols, and distributed services.
               </p>
               <p>
                 Pursuing <strong className="text-white font-semibold">B.Tech in Computer Science &amp; Artificial Intelligence</strong> at Newton School of Technology (8.83 CGPA). My focus bridges system design, low-latency APIs, and human-centric developer experiences.
               </p>
               <p>
-                I thrive in the messy reality of engineering—unclear edge cases, evolving data pipelines, and building software that feels <span className="text-blue-400 font-medium">calm, fast, and trustworthy</span>.
+                I thrive in the messy reality of engineering—unclear edge cases, evolving data pipelines, and building software that feels{" "}
+                <Highlighter action="underline" color="#60a5fa">
+                  calm, fast, and trustworthy
+                </Highlighter>
+                .
               </p>
 
               <div className="pt-4 border-t border-white/10 flex flex-wrap gap-4 font-mono text-xs">

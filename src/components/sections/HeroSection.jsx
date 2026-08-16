@@ -51,10 +51,7 @@ export const HeroSection = () => {
         {/* Bottom Left: Sleek Identity Badge & Status */}
         <div className="p-4 sm:p-5 rounded-2xl bg-zinc-950/70 border border-white/15 backdrop-blur-xl shadow-2xl space-y-2 max-w-md">
           <div className="inline-flex items-center gap-2">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-            </span>
+            <span className="w-2 h-2 rounded-full bg-emerald-400" />
             <span className="font-mono text-[11px] text-emerald-400 font-semibold tracking-wider uppercase">
               GSoC &apos;26 Developer @ C2SI
             </span>
