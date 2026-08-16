@@ -119,6 +119,44 @@ export const portfolioData = {
   // ═══════════════════════════════════════════════════════════════
   // OTHER NOTABLE REPOSITORIES & SYSTEMS (ARCHIVE)
   // ═══════════════════════════════════════════════════════════════
+  archivedProjects: [
+    {
+      name: "Streakly — Habit & Discipline Protocol",
+      desc: "Offline-first habit engineering application with IndexedDB synchronization, service workers, and streak resilience.",
+      tags: ["React", "IndexedDB", "Service Workers", "PWA"],
+      link: "https://github.com/TarunyaProgrammer/Streakly-Habit-Discipline-System",
+    },
+    {
+      name: "RFP-ResponseBuilder",
+      desc: "AI workflow pipeline generating structured, tender-compliant corporate proposals from technical specifications.",
+      tags: ["React", "Node.js", "LangChain", "Gemini API"],
+      link: "https://github.com/TarunyaProgrammer/RFP-ResponseBuilder",
+    },
+    {
+      name: "Student Expense Tracker",
+      desc: "Financial analytics and budget forecasting system designed for university students with dynamic visual reporting.",
+      tags: ["MERN", "Chart.js", "JWT Auth", "REST API"],
+      link: "https://github.com/TarunyaProgrammer/Student-expense-tracker",
+    },
+    {
+      name: "Aeon Privacy Protocol",
+      desc: "Architectural exploration of privacy layers and encrypted cross-chain state relays in distributed networks.",
+      tags: ["TypeScript", "Cryptography", "Distributed Systems"],
+      link: "https://github.com/TarunyaProgrammer",
+    },
+    {
+      name: "DocuQuery AI RAG Engine",
+      desc: "Multi-tenant vector search pipeline over PDF/markdown documentation with deterministic citation grounding.",
+      tags: ["Python", "FastAPI", "Pinecone", "LangChain"],
+      link: "https://github.com/TarunyaProgrammer",
+    },
+    {
+      name: "EdgeRate Limiter",
+      desc: "Sub-millisecond token bucket rate limiter for serverless edge handlers on Cloudflare Workers.",
+      tags: ["Rust", "Wasm", "Cloudflare Workers"],
+      link: "https://github.com/TarunyaProgrammer",
+    },
+  ],
   otherProjects: [
     {
       title: "Streakly — Habit & Discipline Protocol",
@@ -133,20 +171,6 @@ export const portfolioData = {
       description: "Generates structured, tender-compliant corporate proposals from technical specs using LLM pipelines.",
       stack: ["React", "Node.js", "LangChain", "Gemini API"],
       github: "https://github.com/TarunyaProgrammer/RFP-ResponseBuilder",
-    },
-    {
-      title: "Student Expense Tracker",
-      category: "Fintech Dashboard",
-      description: "Financial analytics and budget forecasting system designed for university students with data visualization.",
-      stack: ["MERN Stack", "Chart.js", "JWT Auth", "REST API"],
-      github: "https://github.com/TarunyaProgrammer/Student-expense-tracker",
-    },
-    {
-      title: "Aeon Privacy Protocol",
-      category: "Decentralized Security",
-      description: "Architectural exploration of privacy layers and encrypted cross-chain state relays.",
-      stack: ["TypeScript", "Cryptography", "Distributed Systems"],
-      github: "https://github.com/TarunyaProgrammer",
     },
   ],
 

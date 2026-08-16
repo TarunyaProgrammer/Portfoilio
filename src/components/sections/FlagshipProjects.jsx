@@ -290,13 +290,13 @@ export const FlagshipProjects = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {(showAll
+            {((showAll
               ? portfolioData.archivedProjects
-              : portfolioData.archivedProjects.slice(0, 6)
+              : (portfolioData.archivedProjects || []).slice(0, 6)) || []
             ).map((item) => (
               <a
                 key={item.name}
-                href={item.link}
+                href={item.link || item.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-5 rounded-xl bg-zinc-900/50 border border-white/10 hover:border-white/20 hover:bg-zinc-900 transition-all flex flex-col justify-between group"
