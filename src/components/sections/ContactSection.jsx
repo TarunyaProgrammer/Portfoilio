@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { portfolioData } from "@/data/portfolioData";
+import { DottedMap } from "@/components/ui/dotted-map";
 import {
   Mail,
   Send,
@@ -7,6 +8,7 @@ import {
   Copy,
   ExternalLink,
   MapPin,
+  Globe2,
   Calendar,
   Sparkles,
   ArrowUpRight,
@@ -24,6 +26,28 @@ export const ContactSection = () => {
   const [status, setStatus] = useState("idle");
   const [copied, setCopied] = useState(false);
   const smoothEase = [0.22, 1, 0.36, 1];
+
+  // Target work locations requested by Tarunya
+  const mapMarkers = [
+    {
+      lat: 22.0,
+      lng: 78.5,
+      size: 5,
+      overlay: { countryCode: "in", label: "India (Base / Relocation)" },
+    },
+    {
+      lat: 39.0,
+      lng: -98.0,
+      size: 5,
+      overlay: { countryCode: "us", label: "USA / SF & NYC (PST/EST)" },
+    },
+    {
+      lat: 54.0,
+      lng: -2.5,
+      size: 5,
+      overlay: { countryCode: "gb", label: "UK / London (GMT)" },
+    },
+  ];
 
   const handleCopyEmail = (e) => {
     navigator.clipboard.writeText(portfolioData.personal.email);
@@ -73,17 +97,58 @@ export const ContactSection = () => {
           className="space-y-2"
         >
           <div className="text-xs font-mono text-zinc-500 uppercase tracking-widest">
-            06 // TRANSMISSION &amp; INQUIRY
+            06 // TRANSMISSION &amp; GLOBAL MOBILITY
           </div>
           <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white">
             Let&apos;s Build Together.
           </h2>
           <p className="text-zinc-400 text-base sm:text-lg max-w-2xl font-normal leading-relaxed">
-            Currently accepting new high-impact software engineering roles, startup MVPs, and architecture consulting inquiries.
+            Currently accepting new software engineering roles, high-throughput startup MVPs, and architecture consulting inquiries worldwide.
           </p>
         </motion.div>
 
-        {/* 2-Column Grid: Coordinates Left (Flows in from left), Form Right (Flows in from right) */}
+        {/* ═══ DOTTED WORLD MAP WORK AVAILABILITY STAGE ═══ */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.7, ease: smoothEase }}
+          className="p-6 sm:p-8 rounded-2xl bg-zinc-900/40 border border-white/10 relative overflow-hidden backdrop-blur-md shadow-2xl space-y-6"
+        >
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-4">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2 text-white font-bold text-base sm:text-lg">
+                <Globe2 className="w-5 h-5 text-blue-400" />
+                <span>Global Work Availability &amp; Preferred Regions</span>
+              </div>
+              <p className="text-xs text-zinc-400 font-sans">
+                Actively seeking and open to remote worldwide or on-site engineering roles in India, USA, and the UK.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-2 font-mono text-xs">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-950/80 border border-white/10 text-zinc-300">
+                <Check className="w-3.5 h-3.5 text-emerald-400" />
+                <span>India (Primary Base)</span>
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-950/80 border border-white/10 text-zinc-300">
+                <Check className="w-3.5 h-3.5 text-emerald-400" />
+                <span>USA (PST / EST)</span>
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-950/80 border border-white/10 text-zinc-300">
+                <Check className="w-3.5 h-3.5 text-emerald-400" />
+                <span>UK &amp; London (GMT)</span>
+              </span>
+            </div>
+          </div>
+
+          {/* Dotted Map Canvas with Radial Fade */}
+          <div className="relative w-full [mask-image:radial-gradient(ellipse_65%_65%_at_50%_50%,#000_65%,transparent_100%)]">
+            <DottedMap markers={mapMarkers} />
+          </div>
+        </motion.div>
+
+        {/* 2-Column Grid: Coordinates Left, Form Right */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left Column: Direct Coordinates */}
           <motion.div
