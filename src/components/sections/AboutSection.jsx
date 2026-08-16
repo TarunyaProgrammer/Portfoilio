@@ -58,30 +58,30 @@ export const AboutSection = () => {
     <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden">
       <div className="max-w-7xl mx-auto space-y-16">
         {/* ═══ TOP TELEMETRY METRICS ═══ */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 font-mono">
-          {portfolioData.metrics.map((metric, idx) => (
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {(portfolioData.personal?.metrics || portfolioData.metrics || []).map((metric, idx) => (
             <motion.div
               key={metric.label}
-              initial={{ opacity: 0, y: 25, scale: 0.95 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: idx * 0.1, ease: smoothEase }}
-              className="p-4 sm:p-5 rounded-2xl bg-zinc-900/60 border border-white/10 backdrop-blur-sm flex flex-col items-center text-center shadow-lg hover:border-white/20 transition-colors"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, delay: idx * 0.1, ease: smoothEase }}
+              className="p-5 sm:p-6 rounded-2xl bg-zinc-900/40 border border-white/10 hover:border-white/20 transition-all backdrop-blur-sm group"
             >
-              <span className="text-2xl sm:text-4xl font-bold text-white tracking-tight">
+              <div className="text-2xl sm:text-4xl font-black text-white font-mono tracking-tight group-hover:text-blue-400 transition-colors">
                 {metric.value}
-              </span>
-              <span className="text-xs text-zinc-400 font-sans mt-0.5 font-medium">
+              </div>
+              <div className="text-xs sm:text-sm font-semibold text-zinc-300 mt-1">
                 {metric.label}
-              </span>
-              <span className="text-[10px] text-emerald-400 font-mono mt-1 font-semibold uppercase tracking-wider">
-                {metric.highlight}
-              </span>
+              </div>
+              <div className="text-[11px] text-zinc-500 font-mono mt-0.5">
+                {metric.detail}
+              </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Section Header */}
+        {/* ═══ SECTION HEADER ═══ */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -178,7 +178,7 @@ export const AboutSection = () => {
             Key Credentials &amp; Honors
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {achievements.map((item, idx) => {
               const Icon = item.icon;
               return (
@@ -194,25 +194,38 @@ export const AboutSection = () => {
                   <SpotlightCard
                     spotlightColor="rgba(245, 158, 11, 0.22)"
                     className={cn(
-                      "h-full p-5 rounded-2xl bg-gradient-to-b from-zinc-900/60 to-zinc-950/80",
+                      "h-full p-6 rounded-2xl bg-gradient-to-b from-zinc-900/70 to-zinc-950/90",
                       "border border-white/10 hover:border-amber-500/45 hover:shadow-[0_14px_35px_-8px_rgba(245,158,11,0.25)]",
-                      "transition-all duration-300 flex flex-col justify-between space-y-3 font-mono text-xs group cursor-default backdrop-blur-md"
+                      "transition-all duration-300 flex flex-col justify-between space-y-4 group cursor-default backdrop-blur-md"
                     )}
                   >
-                    <div className="flex items-center justify-between gap-2 border-b border-white/10 pb-3 group-hover:border-amber-500/25 transition-colors">
-                      <span className="text-white font-semibold flex items-center gap-2 text-xs">
-                        <span className="p-1.5 rounded-lg bg-amber-500/10 border border-amber-500/20 group-hover:bg-amber-500/20 group-hover:border-amber-500/40 transition-all duration-300 shrink-0">
+                    <div>
+                      {/* Top Header Row: Icon on left, Score Badge on right */}
+                      <div className="flex items-center justify-between gap-2 mb-4">
+                        <div className="p-2 rounded-xl bg-amber-500/10 border border-amber-500/20 group-hover:bg-amber-500/20 group-hover:border-amber-500/40 transition-all duration-300 shrink-0">
                           <Icon className="w-4 h-4 text-amber-400 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 drop-shadow-[0_0_8px_rgba(245,158,11,0.6)]" />
+                        </div>
+                        <span className="px-2.5 py-1 rounded-md bg-amber-500/10 border border-amber-500/30 text-amber-300 font-mono font-bold text-xs shrink-0 shadow-sm group-hover:bg-amber-500/25 group-hover:border-amber-400/60 group-hover:text-amber-100 group-hover:shadow-[0_0_14px_rgba(245,158,11,0.4)] transition-all duration-300">
+                          {item.score}
                         </span>
-                        <span className="group-hover:text-amber-100 transition-colors leading-snug">{item.org}</span>
-                      </span>
-                      <span className="px-2.5 py-1 rounded-md bg-amber-500/10 border border-amber-500/30 text-amber-300 font-bold text-xs shrink-0 shadow-sm group-hover:bg-amber-500/25 group-hover:border-amber-400/60 group-hover:text-amber-100 group-hover:shadow-[0_0_14px_rgba(245,158,11,0.4)] transition-all duration-300">
-                        {item.score}
-                      </span>
+                      </div>
+
+                      {/* Title: Unconstrained full-width */}
+                      <h4 className="text-base font-semibold text-white font-sans tracking-tight group-hover:text-amber-100 transition-colors leading-snug">
+                        {item.org}
+                      </h4>
+
+                      {/* Description */}
+                      <p className="text-xs text-zinc-400 font-sans mt-2 leading-relaxed group-hover:text-zinc-300 transition-colors">
+                        {item.desc}
+                      </p>
                     </div>
-                    <p className="text-zinc-400 font-sans text-xs leading-relaxed group-hover:text-zinc-300 transition-colors">
-                      {item.desc}
-                    </p>
+
+                    {/* Subtle bottom tag */}
+                    <div className="pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-zinc-500 group-hover:text-zinc-400">
+                      <span>{item.tag}</span>
+                      <span className="text-amber-500/40 group-hover:text-amber-400 transition-colors">Verified</span>
+                    </div>
                   </SpotlightCard>
                 </motion.div>
               );

@@ -24,38 +24,12 @@ export const FlagshipProjects = () => {
         name: "src",
         type: "folder",
         children: [
-          {
-            id: "core",
-            name: "core",
-            type: "folder",
-            children: [
-              { id: "audit-engine", name: "audit-engine.ts", tag: "Deterministic" },
-              { id: "cost-analyzer", name: "cost-analyzer.ts", tag: "Rule-Based" },
-            ],
-          },
-          {
-            id: "ai",
-            name: "ai",
-            type: "folder",
-            children: [
-              { id: "gemini-flash", name: "gemini-flash.ts", tag: "Gemini 2.5" },
-              { id: "prompt-guard", name: "prompt-guard.ts", tag: "Safety" },
-            ],
-          },
-          {
-            id: "db",
-            name: "db",
-            type: "folder",
-            children: [
-              { id: "supabase-client", name: "supabase.ts", tag: "Supabase RLS" },
-              { id: "schema", name: "schema.sql", tag: "PostgreSQL" },
-            ],
-          },
-          { id: "mailer", name: "mailer.ts", tag: "Resend" },
-          { id: "test", name: "audit.test.ts", tag: "Vitest 100%" },
+          { id: "audit-engine", name: "audit-engine.ts", tag: "Deterministic" },
+          { id: "gemini-flash", name: "gemini-flash.ts", tag: "Gemini 2.5" },
+          { id: "supabase-client", name: "supabase.ts", tag: "Supabase RLS" },
         ],
       },
-      { id: "package", name: "package.json", tag: "Vite + React 19" },
+      { id: "package", name: "package.json", tag: "Vite + React" },
     ],
     "github-analyzer": [
       {
@@ -63,57 +37,34 @@ export const FlagshipProjects = () => {
         name: "src",
         type: "folder",
         children: [
-          {
-            id: "handlers",
-            name: "handlers",
-            type: "folder",
-            children: [
-              { id: "hono-router", name: "router.ts", tag: "Hono Edge" },
-              { id: "webhooks", name: "webhooks.ts", tag: "Event-Driven" },
-            ],
-          },
-          {
-            id: "cache",
-            name: "cache",
-            type: "folder",
-            children: [
-              { id: "octokit-cache", name: "octokit.ts", tag: "60% Query Drop" },
-              { id: "redis-edge", name: "kv-store.ts", tag: "Sub-5ms" },
-            ],
-          },
-          { id: "telemetry", name: "telemetry.ts", tag: "Prometheus" },
+          { id: "hono-router", name: "router.ts", tag: "Hono Edge" },
+          { id: "octokit-cache", name: "octokit.ts", tag: "60% Query Drop" },
+          { id: "telemetry", name: "telemetry.ts", tag: "Live Analytics" },
         ],
       },
-      { id: "wrangler", name: "wrangler.toml", tag: "Cloudflare" },
+      { id: "wrangler", name: "wrangler.toml", tag: "Cloudflare Workers" },
     ],
-    "echo-chat": [
+    cabin: [
       {
-        id: "echo-src",
-        name: "src",
+        id: "cabin-apps",
+        name: "apps/desktop",
         type: "folder",
         children: [
-          {
-            id: "sockets",
-            name: "sockets",
-            type: "folder",
-            children: [
-              { id: "socket-manager", name: "socket-manager.ts", tag: "Socket.IO" },
-              { id: "heartbeat", name: "heartbeat.ts", tag: "Ping/Pong" },
-            ],
-          },
-          {
-            id: "auth",
-            name: "auth",
-            type: "folder",
-            children: [
-              { id: "jwt-verifier", name: "jwt.ts", tag: "HMAC-SHA256" },
-              { id: "middleware", name: "auth.middleware.ts", tag: "Guards" },
-            ],
-          },
-          { id: "db-conn", name: "mongodb.ts", tag: "Mongoose Pool" },
+          { id: "electron-main", name: "main.ts", tag: "Electron IPC & Git" },
+          { id: "preload-bridge", name: "preload.ts", tag: "CLI Spawner" },
         ],
       },
-      { id: "server", name: "server.ts", tag: "Node + Express" },
+      {
+        id: "cabin-pkgs",
+        name: "packages",
+        type: "folder",
+        children: [
+          { id: "review-engine", name: "review-engine/", tag: "Pipeline Orchestrator" },
+          { id: "workers", name: "workers/", tag: "CI / DCO / Merge" },
+          { id: "database", name: "database/", tag: "SQLite Controller" },
+        ],
+      },
+      { id: "cabin-root", name: "package.json", tag: "NPM Monorepo" },
     ],
   };
 
@@ -136,7 +87,7 @@ export const FlagshipProjects = () => {
               Top 3 Flagship Products.
             </h2>
             <p className="text-zinc-400 text-base sm:text-lg max-w-2xl font-normal leading-relaxed">
-              Production-ready applications architected for deterministic AI audits, high-throughput serverless telemetry, and sub-50ms messaging.
+              Production systems architected for AI financial audits, distributed serverless telemetry, and real-time messaging.
             </p>
           </div>
 
@@ -147,13 +98,13 @@ export const FlagshipProjects = () => {
             className="inline-flex items-center gap-2 text-xs font-mono font-medium text-zinc-400 hover:text-white px-4 py-2 rounded-xl bg-zinc-900 border border-white/10 hover:border-white/25 transition-all self-start md:self-auto"
           >
             <Github className="w-4 h-4 text-zinc-300" />
-            <span>GitHub Profile (45+ Repos)</span>
+            <span>GitHub (45+ Repos)</span>
             <ExternalLink className="w-3.5 h-3.5" />
           </a>
         </motion.div>
 
-        {/* ═══ TOP 3 FLAGSHIP SHOWCASE (FLOWS IN WITH STAGGER) ═══ */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* ═══ TOP 3 FLAGSHIP SHOWCASE (MINIMALIST & CRISP) ═══ */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {portfolioData.flagshipProjects.map((project, index) => {
             const isTreeOpen = activeTreeProject === project.id;
             const treeData = projectArchitectures[project.id];
@@ -161,12 +112,12 @@ export const FlagshipProjects = () => {
             return (
               <motion.div
                 key={project.id}
-                initial={{ opacity: 0, y: 60, scale: 0.94 }}
+                initial={{ opacity: 0, y: 50, scale: 0.96 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{
-                  duration: 0.7,
-                  delay: index * 0.15,
+                  duration: 0.6,
+                  delay: index * 0.12,
                   ease: smoothEase,
                 }}
                 className="h-full"
@@ -176,72 +127,68 @@ export const FlagshipProjects = () => {
                   glowTo="rgba(255, 255, 255, 0.01)"
                   borderGlow="rgba(255, 255, 255, 0.16)"
                   size={400}
-                  className="p-6 sm:p-8 flex flex-col justify-between h-full"
+                  className="p-6 sm:p-7 flex flex-col justify-between h-full space-y-6"
                 >
-                  <div className="space-y-6">
-                    {/* Top Category & Badge Row */}
-                    <div className="flex items-center justify-between gap-2 border-b border-white/10 pb-4">
-                      <span className="text-[11px] font-mono font-medium text-zinc-400 uppercase tracking-wide">
+                  <div className="space-y-4">
+                    {/* Top Category & Status Header */}
+                    <div className="flex items-center justify-between gap-2 border-b border-white/10 pb-3 font-mono text-[11px]">
+                      <span className="text-zinc-400 uppercase tracking-wider font-semibold">
                         {project.category}
                       </span>
-                      <span className="text-[11px] font-mono text-zinc-400">
+                      <span className="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-zinc-300 font-medium">
                         {project.badge}
                       </span>
                     </div>
 
-                    {/* Title & Tagline */}
-                    <div className="space-y-2">
-                      <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight leading-tight">
-                        {project.title}
-                      </h3>
-                      <p className="text-xs font-mono text-zinc-400 leading-snug">
-                        {project.tagline}
-                      </p>
-                    </div>
+                    {/* Clean Title */}
+                    <h3 className="text-xl font-bold text-white tracking-tight leading-snug">
+                      {project.title}
+                    </h3>
 
-                    {/* Detailed Description */}
-                    <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal">
+                    {/* Single Crisp Description */}
+                    <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed font-normal">
                       {project.description}
                     </p>
 
-                    {/* Highlight Metric */}
-                    <div className="p-3 rounded-xl bg-zinc-900/60 border border-white/10 font-mono text-xs text-zinc-300">
+                    {/* Performance Metric Pill */}
+                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900/80 border border-white/10 font-mono text-xs text-zinc-300">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                       <span>{project.metrics}</span>
                     </div>
 
-                    {/* Tech Stack Pills */}
+                    {/* Tech Stack Pills (4 core tags) */}
                     <div className="flex flex-wrap gap-1.5 pt-1">
                       {project.stack.map((tech) => (
                         <span
                           key={tech}
-                          className="px-2 py-0.5 rounded-md bg-zinc-900 text-[11px] font-mono font-medium text-zinc-300 border border-white/10"
+                          className="px-2.5 py-0.5 rounded-md bg-zinc-900/90 text-[11px] font-mono font-medium text-zinc-300 border border-white/10"
                         >
                           {tech}
                         </span>
                       ))}
                     </div>
 
-                    {/* Interactive Architecture Blueprint Button */}
+                    {/* Architecture Blueprint Tree Toggle */}
                     {treeData && (
-                      <div className="pt-2">
+                      <div className="pt-1">
                         <button
                           onClick={() => setActiveTreeProject(isTreeOpen ? null : project.id)}
-                          className="w-full inline-flex items-center justify-between px-3.5 py-2 rounded-xl bg-zinc-900/80 border border-white/10 text-xs font-mono text-zinc-400 hover:text-white hover:border-white/25 transition-colors cursor-pointer"
+                          className="w-full inline-flex items-center justify-between px-3 py-1.5 rounded-lg bg-zinc-900/60 border border-white/10 text-[11px] font-mono text-zinc-400 hover:text-white hover:border-white/20 transition-colors cursor-pointer"
                         >
                           <span className="flex items-center gap-1.5">
                             <FolderTree className="w-3.5 h-3.5 text-zinc-400" />
                             <span>Architecture Blueprint</span>
                           </span>
                           {isTreeOpen ? (
-                            <ChevronUp className="w-3.5 h-3.5 text-zinc-500" />
+                            <ChevronUp className="w-3 h-3 text-zinc-500" />
                           ) : (
-                            <ChevronDown className="w-3.5 h-3.5 text-zinc-500" />
+                            <ChevronDown className="w-3 h-3 text-zinc-500" />
                           )}
                         </button>
 
-                        {/* Expandable Magic UI Tree */}
+                        {/* Expandable Tree */}
                         {isTreeOpen && (
-                          <div className="mt-3 transition-all animate-fadeIn">
+                          <div className="mt-2 transition-all">
                             <Tree elements={treeData} />
                           </div>
                         )}
@@ -249,8 +196,8 @@ export const FlagshipProjects = () => {
                     )}
                   </div>
 
-                  {/* Bottom Action Links */}
-                  <div className="pt-6 mt-6 border-t border-white/10 flex items-center justify-between font-mono text-xs">
+                  {/* Bottom Actions */}
+                  <div className="pt-4 border-t border-white/10 flex items-center justify-between font-mono text-xs">
                     <a
                       href={project.github}
                       target="_blank"
@@ -259,17 +206,17 @@ export const FlagshipProjects = () => {
                     >
                       <Github className="w-4 h-4 text-zinc-400" />
                       <span>Repository</span>
-                      <ArrowUpRight className="w-3.5 h-3.5 text-zinc-500" />
+                      <ArrowUpRight className="w-3 h-3 text-zinc-500" />
                     </a>
 
                     <a
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white text-zinc-950 hover:bg-zinc-200 transition-all font-semibold shadow-sm"
+                      className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white text-zinc-950 hover:bg-zinc-200 transition-all font-semibold shadow-sm text-xs"
                     >
                       <span>Inspect</span>
-                      <ArrowUpRight className="w-3.5 h-3.5" />
+                      <ArrowUpRight className="w-3 h-3" />
                     </a>
                   </div>
                 </MagicCard>
@@ -284,7 +231,7 @@ export const FlagshipProjects = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6, ease: smoothEase }}
-          className="space-y-6 pt-6"
+          className="space-y-6 pt-4"
         >
           <div className="flex items-center justify-between">
             <h3 className="text-xl font-bold text-white tracking-tight">

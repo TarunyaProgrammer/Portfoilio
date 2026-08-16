@@ -66,53 +66,53 @@ export const portfolioData = {
   ],
 
   // ═══════════════════════════════════════════════════════════════
-  // TOP 3 FLAGSHIP PRODUCTS (VERIFIED REAL SYSTEMS)
+  // TOP 3 FLAGSHIP PRODUCTS (CONCISE & PUNCHY)
   // ═══════════════════════════════════════════════════════════════
   flagshipProjects: [
     {
       id: "vyay",
-      title: "Vyay — AI Infrastructure Cost Audit Platform",
-      category: "Full-Stack • AI Financial Engineering",
+      title: "Vyay — AI Cost Engine",
+      category: "AI Infrastructure",
       year: "2026",
-      tagline: "Pinpoint cloud AI token waste, compute redundancies, and cost-saving vectors in under 60 seconds.",
+      tagline: "Audit cloud & LLM spend in <60s.",
       description:
-        "Engineered a deterministic audit engine calculating cloud & LLM infrastructure spend. Integrates Gemini 2.5 Flash for executive financial breakdowns, Supabase PostgreSQL with Row-Level Security, shareable unique report URLs, and transactional reporting via Resend.",
-      stack: ["React", "TypeScript", "Supabase", "Gemini 2.5 Flash", "Resend", "Tailwind CSS", "Vitest"],
-      metrics: "Calculates audits in <60s • 95+ Lighthouse score",
-      badge: "Featured Flagship",
+        "Deterministic audit platform calculating cloud & LLM token spend with Gemini 2.5 Flash, Supabase RLS, and shareable reports.",
+      stack: ["React", "TypeScript", "Supabase", "Gemini 2.5"],
+      metrics: "<60s Audits • 95+ Score",
+      badge: "Featured",
       github: "https://github.com/TarunyaProgrammer",
       live: "https://tarunyaportfolio.vercel.app",
-      glowColor: "#3b82f6", // Electric Blue
+      glowColor: "#3b82f6",
     },
     {
       id: "github-analyzer",
-      title: "GithubAnalyzer & WebiU Next-Gen",
-      category: "GSoC 2026 • Distributed Serverless Architecture",
+      title: "GithubAnalyzer & WebiU",
+      category: "GSoC '26 @ C2SI",
       year: "2026",
-      tagline: "High-throughput GitHub telemetry and intelligence platform with edge caching on Cloudflare Workers.",
+      tagline: "Edge telemetry & developer analytics.",
       description:
-        "Designed during Google Summer of Code (GSoC '26) for C2SI. Transforms complex repository activity into live developer telemetry using Hono on Cloudflare Workers, Octokit caching strategies reducing API consumption by 60%, and event-driven webhook architectures.",
-      stack: ["Hono", "Cloudflare Workers", "Angular", "NestJS", "GraphQL", "PostgreSQL", "Octokit"],
-      metrics: "60% API overhead reduction • Event-Driven Webhooks",
-      badge: "GSoC 2026 @ C2SI",
+        "Edge-cached telemetry platform built for C2SI using Hono on Cloudflare Workers, cutting API overhead by 60%.",
+      stack: ["Hono", "Cloudflare Workers", "NestJS", "PostgreSQL"],
+      metrics: "60% API Reduction • Webhooks",
+      badge: "GSoC '26",
       github: "https://github.com/TarunyaProgrammer/GithubAnalyzer-PreGsocTask",
       live: "https://github.com/TarunyaProgrammer/Webiu",
-      glowColor: "#10b981", // Emerald Green
+      glowColor: "#10b981",
     },
     {
-      id: "echo-chat",
-      title: "Echo — Real-Time Production Messaging Engine",
-      category: "Full-Stack • Real-Time Systems",
+      id: "cabin",
+      title: "Cabin — MaintainerOS",
+      category: "Local-First Desktop OS",
       year: "2025 - 2026",
-      tagline: "Sub-50ms instant messaging system with persistent offline queuing and authenticated sessions.",
+      tagline: "Local-first operating system for open-source code reviews.",
       description:
-        "Built a complete real-time messaging architecture utilizing WebSockets (Socket.IO) and Node.js. Features zero-lag bidirectional communication, JWT token authorization with secure cookies, persistent message archiving in MongoDB, and offline queue synchronization.",
-      stack: ["React", "Node.js", "Express", "MongoDB", "Socket.IO", "Tailwind CSS", "JWT"],
-      metrics: "<50ms message latency • Resilient offline sync",
-      badge: "Production Deployed",
-      github: "https://github.com/TarunyaProgrammer/Echo-FullstackDeployed-ChatNow",
-      live: "https://tarunyaportfolio.vercel.app",
-      glowColor: "#8b5cf6", // Violet
+        "Local-first Electron desktop workspace automating multi-repo PR context collection, local git checkouts, automated DCO/CI validation, and streaming AI reviews.",
+      stack: ["Electron", "React", "TypeScript", "SQLite"],
+      metrics: "10s Context Pipeline • Local Git Engine",
+      badge: "Production OS",
+      github: "https://github.com/TarunyaProgrammer/Cabin-MaintainerOS",
+      live: "https://github.com/TarunyaProgrammer/Cabin-MaintainerOS",
+      glowColor: "#8b5cf6",
     },
   ],
 
@@ -120,6 +120,12 @@ export const portfolioData = {
   // AUTHENTIC VERIFIED REPOSITORIES & SYSTEMS
   // ═══════════════════════════════════════════════════════════════
   archivedProjects: [
+    {
+      name: "Echo — Real-Time Messaging Platform",
+      desc: "Low-latency instant messaging engine with Socket.IO bidirectional channels, JWT authentication, and offline sync.",
+      tags: ["React", "Node.js", "Socket.IO", "MongoDB"],
+      link: "https://github.com/TarunyaProgrammer/Echo-FullstackDeployed-ChatNow",
+    },
     {
       name: "Streakly — Habit & Discipline Protocol",
       desc: "Offline-first habit engineering application with IndexedDB synchronization, service workers, and streak resilience.",
