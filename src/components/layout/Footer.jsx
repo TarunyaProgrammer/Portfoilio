@@ -113,8 +113,8 @@ export const Footer = () => {
               }}
               className="inline-block group"
             >
-              <h2 className="font-signature text-5xl sm:text-7xl font-normal text-white group-hover:text-blue-300 transition-colors leading-none tracking-wide">
-                Tarunya K.
+              <h2 className="font-signature text-5xl sm:text-7xl font-normal text-white group-hover:text-blue-300 transition-colors leading-none tracking-wide pt-2">
+                Tarunya k
               </h2>
             </a>
             <p className="text-sm font-mono text-zinc-400 max-w-lg">

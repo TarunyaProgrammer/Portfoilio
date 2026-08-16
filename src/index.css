@@ -46,7 +46,10 @@
 }
 
 /* Special Signature Typography (Bonheur Royale) */
-.font-signature {
-  font-family: 'Bonheur Royale', cursive !important;
-  letter-spacing: 0.04em;
+.font-signature,
+.bonheur-royale-regular {
+  font-family: "Bonheur Royale", cursive !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  letter-spacing: 0.02em;
 }

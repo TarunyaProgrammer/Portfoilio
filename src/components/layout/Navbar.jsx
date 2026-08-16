@@ -53,8 +53,8 @@ export const Navbar = () => {
           {/* Classy Cursive Name & Subtitle */}
           <div className="flex flex-col">
             <div className="flex items-baseline gap-1.5">
-              <span className="font-signature text-3xl sm:text-4xl font-normal text-white group-hover:text-blue-300 transition-colors leading-none tracking-wide">
-                Tarunya K.
+              <span className="font-signature text-3xl sm:text-4xl lg:text-[40px] font-normal text-white group-hover:text-blue-300 transition-colors leading-none tracking-wide pt-1">
+                Tarunya k
               </span>
             </div>
             <span className="text-[10px] font-mono tracking-wider text-zinc-400 uppercase hidden sm:inline leading-tight mt-0.5">
