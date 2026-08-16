@@ -21,7 +21,7 @@ export default {
       fontFamily: {
         sans: ["Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
         mono: ["Plus Jakarta Sans", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
-        signature: ["Alex Brush", "cursive"],
+        signature: ["'Bonheur Royale'", "cursive"],
       },
       animation: {
         "border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
