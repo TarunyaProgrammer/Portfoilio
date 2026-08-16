@@ -9,12 +9,13 @@ export const SmoothCursor = () => {
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
 
-  const springConfig = { damping: 30, stiffness: 450, mass: 0.4 };
+  // Precision spring configuration for instant, zero-lag response with subtle silky momentum
+  const springConfig = { damping: 28, stiffness: 600, mass: 0.2 };
   const smoothX = useSpring(cursorX, springConfig);
   const smoothY = useSpring(cursorY, springConfig);
 
   useEffect(() => {
-    // Disable on touch devices
+    // Disable on mobile/touch devices
     if (
       window.matchMedia("(pointer: coarse)").matches ||
       "ontouchstart" in window
@@ -34,7 +35,7 @@ export const SmoothCursor = () => {
 
     const handleHoverElements = () => {
       const interactives = document.querySelectorAll(
-        "a, button, input, select, textarea, [role='button']"
+        "a, button, input, select, textarea, [role='button'], [tabindex='0']"
       );
       interactives.forEach((el) => {
         el.addEventListener("mouseenter", () => setIsHovered(true));
@@ -65,30 +66,30 @@ export const SmoothCursor = () => {
       style={{
         x: smoothX,
         y: smoothY,
-        translateX: "-2px",
-        translateY: "-2px",
+        translateX: "-3px",
+        translateY: "-3px",
       }}
       animate={{
-        scale: isHovered ? 1.2 : 1,
-        rotate: isHovered ? -12 : 0,
+        scale: isHovered ? 1.15 : 1,
       }}
-      transition={{ duration: 0.15 }}
-      className="pointer-events-none fixed top-0 left-0 z-[99999] hidden md:block"
+      transition={{ duration: 0.12 }}
+      className="pointer-events-none fixed top-0 left-0 z-[999999] hidden md:block"
     >
-      {/* ═══ MODERN BLACK PRECISION CURSOR ARROW ═══ */}
+      {/* ═══ PERFECTLY PROPORTIONED BLACK POINTER CURSOR ═══ */}
       <svg
         width="26"
         height="26"
         viewBox="0 0 24 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="filter drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]"
+        className="filter drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]"
       >
         <path
-          d="M4 2L18.5 13.5L12 14.5L15 21L12.5 22L9.5 15.5L4 19.5V2Z"
+          d="M3 3L10.07 19.97L12.58 12.58L19.97 10.07L3 3Z"
           fill="#000000"
           stroke="#ffffff"
-          strokeWidth="1.3"
+          strokeWidth="1.5"
+          strokeLinecap="round"
           strokeLinejoin="round"
         />
       </svg>
