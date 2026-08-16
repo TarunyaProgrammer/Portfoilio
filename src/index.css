@@ -45,13 +45,9 @@
   color: #ffffff;
 }
 
-/* Classy Signature Cursive Typography */
+/* Special Signature Typography */
 .font-signature {
-  font-family: 'Alex Brush', 'Great Vibes', 'Caveat', 'Pinyon Script', cursive !important;
-  letter-spacing: 0.04em;
-}
-
-.font-script {
-  font-family: 'Caveat', 'Alex Brush', 'Pinyon Script', cursive !important;
+  font-family: 'Alex Brush', cursive !important;
+  letter-spacing: 0.03em;
 }
 
