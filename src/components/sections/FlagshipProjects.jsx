@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import { portfolioData } from "@/data/portfolioData";
-import { BorderBeam } from "@/components/ui/border-beam";
+import { MagicCard } from "@/components/ui/magic-card";
 import { Tree } from "@/components/ui/file-tree";
 import {
   ExternalLink,
   Github,
-  Sparkles,
-  Layers,
   ChevronDown,
   ChevronUp,
-  Flame,
   FolderTree,
+  ArrowUpRight,
 } from "lucide-react";
 
 export const FlagshipProjects = () => {
@@ -57,7 +55,7 @@ export const FlagshipProjects = () => {
       },
       { id: "package", name: "package.json", tag: "Vite + React 19" },
     ],
-    github: [
+    "github-analyzer": [
       {
         id: "worker-src",
         name: "src",
@@ -86,7 +84,7 @@ export const FlagshipProjects = () => {
       },
       { id: "wrangler", name: "wrangler.toml", tag: "Cloudflare" },
     ],
-    echo: [
+    "echo-chat": [
       {
         id: "echo-src",
         name: "src",
@@ -138,7 +136,7 @@ export const FlagshipProjects = () => {
             href="https://github.com/TarunyaProgrammer"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-xs font-mono font-medium text-zinc-400 hover:text-white px-4 py-2 rounded-lg bg-zinc-900 border border-white/10 hover:border-white/25 transition-all self-start md:self-auto"
+            className="inline-flex items-center gap-2 text-xs font-mono font-medium text-zinc-400 hover:text-white px-4 py-2 rounded-xl bg-zinc-900 border border-white/10 hover:border-white/25 transition-all self-start md:self-auto"
           >
             <Github className="w-4 h-4 text-zinc-300" />
             <span>GitHub Profile (45+ Repos)</span>
@@ -146,47 +144,35 @@ export const FlagshipProjects = () => {
           </a>
         </div>
 
-        {/* ═══ TOP 3 FLAGSHIP SHOWCASE WITH BORDER BEAMS ═══ */}
+        {/* ═══ TOP 3 FLAGSHIP SHOWCASE WITH MONOTONE MAGIC CARD ORBS ═══ */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {portfolioData.flagshipProjects.map((project, index) => {
-            const beamColors = [
-              { from: "#3b82f6", to: "#8b5cf6" }, // Blue to Violet
-              { from: "#10b981", to: "#3b82f6" }, // Emerald to Blue
-              { from: "#8b5cf6", to: "#ec4899" }, // Violet to Pink
-            ];
-            const colors = beamColors[index % beamColors.length];
+          {portfolioData.flagshipProjects.map((project) => {
             const isTreeOpen = activeTreeProject === project.id;
             const treeData = projectArchitectures[project.id];
 
             return (
-              <div
+              <MagicCard
                 key={project.id}
-                className="group relative rounded-2xl bg-zinc-900/80 border border-white/15 p-6 sm:p-8 backdrop-blur-md transition-all duration-300 hover:border-white/30 hover:bg-zinc-900 shadow-2xl flex flex-col justify-between overflow-hidden"
+                mode="orb"
+                glowFrom="rgba(255, 255, 255, 0.14)"
+                glowTo="rgba(255, 255, 255, 0.02)"
+                size={320}
+                className="p-6 sm:p-8 flex flex-col justify-between"
               >
-                {/* Magic UI Border Beam */}
-                <BorderBeam
-                  size={250}
-                  duration={10 + index * 2}
-                  colorFrom={colors.from}
-                  colorTo={colors.to}
-                  borderWidth={1.5}
-                />
-
-                <div className="space-y-6 relative z-10">
+                <div className="space-y-6">
                   {/* Top Category & Badge Row */}
                   <div className="flex items-center justify-between gap-2 border-b border-white/10 pb-4">
-                    <span className="text-[11px] font-mono font-semibold text-zinc-400 uppercase tracking-wide">
+                    <span className="text-[11px] font-mono font-medium text-zinc-400 uppercase tracking-wide">
                       {project.category}
                     </span>
-                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-zinc-950 border border-white/10 text-[10px] font-mono font-medium text-emerald-400">
-                      <Flame className="w-3 h-3 text-amber-400" />
+                    <span className="px-2.5 py-0.5 rounded-full bg-zinc-900 border border-white/10 text-[10px] font-mono text-zinc-300 font-medium">
                       {project.badge}
                     </span>
                   </div>
 
                   {/* Title & Tagline */}
                   <div className="space-y-2">
-                    <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight group-hover:text-blue-400 transition-colors leading-tight">
+                    <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight leading-tight">
                       {project.title}
                     </h3>
                     <p className="text-xs font-mono text-zinc-400 leading-snug">
@@ -200,8 +186,8 @@ export const FlagshipProjects = () => {
                   </p>
 
                   {/* Highlight Metric */}
-                  <div className="p-3 rounded-xl bg-zinc-950/70 border border-white/10 font-mono text-xs text-zinc-300 flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-blue-400" />
+                  <div className="p-3 rounded-xl bg-zinc-900/60 border border-white/10 font-mono text-xs text-zinc-300 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-zinc-400" />
                     <span>{project.metrics}</span>
                   </div>
 
@@ -210,7 +196,7 @@ export const FlagshipProjects = () => {
                     {project.stack.map((tech) => (
                       <span
                         key={tech}
-                        className="px-2 py-0.5 rounded-md bg-zinc-950 text-[11px] font-mono font-medium text-zinc-400 border border-white/10"
+                        className="px-2 py-0.5 rounded-md bg-zinc-900 text-[11px] font-mono font-medium text-zinc-300 border border-white/10"
                       >
                         {tech}
                       </span>
@@ -222,10 +208,10 @@ export const FlagshipProjects = () => {
                     <div className="pt-2">
                       <button
                         onClick={() => setActiveTreeProject(isTreeOpen ? null : project.id)}
-                        className="w-full inline-flex items-center justify-between px-3.5 py-2 rounded-xl bg-zinc-950/80 border border-white/10 text-xs font-mono text-zinc-400 hover:text-blue-400 hover:border-blue-500/30 transition-colors"
+                        className="w-full inline-flex items-center justify-between px-3.5 py-2 rounded-xl bg-zinc-900/80 border border-white/10 text-xs font-mono text-zinc-400 hover:text-white hover:border-white/25 transition-colors cursor-pointer"
                       >
                         <span className="flex items-center gap-1.5">
-                          <FolderTree className="w-3.5 h-3.5 text-blue-400" />
+                          <FolderTree className="w-3.5 h-3.5 text-zinc-400" />
                           <span>Architecture Blueprint</span>
                         </span>
                         {isTreeOpen ? (
@@ -246,29 +232,29 @@ export const FlagshipProjects = () => {
                 </div>
 
                 {/* Bottom Action Links */}
-                <div className="pt-6 mt-6 border-t border-white/10 flex items-center justify-between font-mono text-xs relative z-10">
+                <div className="pt-6 mt-6 border-t border-white/10 flex items-center justify-between font-mono text-xs">
                   <a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-zinc-300 hover:text-white transition-colors"
+                    className="inline-flex items-center gap-1.5 text-zinc-400 hover:text-white transition-colors"
                   >
                     <Github className="w-4 h-4 text-zinc-400" />
                     <span>Repository</span>
-                    <ExternalLink className="w-3 h-3 text-zinc-500" />
+                    <ArrowUpRight className="w-3.5 h-3.5 text-zinc-500" />
                   </a>
 
                   <a
                     href={project.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-600/20 text-blue-400 border border-blue-500/30 hover:bg-blue-600/30 hover:text-white transition-all font-medium"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white text-zinc-950 hover:bg-zinc-200 transition-all font-semibold shadow-sm"
                   >
                     <span>Inspect</span>
-                    <ExternalLink className="w-3 h-3" />
+                    <ArrowUpRight className="w-3.5 h-3.5" />
                   </a>
                 </div>
-              </div>
+              </MagicCard>
             );
           })}
         </div>
@@ -282,7 +268,7 @@ export const FlagshipProjects = () => {
 
             <button
               onClick={() => setShowAll(!showAll)}
-              className="inline-flex items-center gap-2 text-xs font-mono text-blue-400 hover:text-blue-300 font-medium transition-colors"
+              className="inline-flex items-center gap-2 text-xs font-mono text-zinc-400 hover:text-white font-medium transition-colors cursor-pointer"
             >
               <span>{showAll ? "Collapse Archive" : "Expand All 45+ Repositories"}</span>
               {showAll ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
@@ -299,14 +285,14 @@ export const FlagshipProjects = () => {
                 href={item.link || item.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-5 rounded-xl bg-zinc-900/50 border border-white/10 hover:border-white/20 hover:bg-zinc-900 transition-all flex flex-col justify-between group"
+                className="p-5 rounded-2xl bg-zinc-950/60 border border-white/10 hover:border-white/20 hover:bg-zinc-900 transition-all flex flex-col justify-between group"
               >
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="font-semibold text-sm text-white group-hover:text-blue-400 transition-colors">
+                    <span className="font-semibold text-sm text-white group-hover:text-zinc-200 transition-colors">
                       {item.name}
                     </span>
-                    <ExternalLink className="w-3.5 h-3.5 text-zinc-500 group-hover:text-white transition-colors" />
+                    <ArrowUpRight className="w-3.5 h-3.5 text-zinc-500 group-hover:text-white transition-colors" />
                   </div>
                   <p className="text-xs text-zinc-400 font-normal leading-relaxed">
                     {item.desc}
@@ -317,7 +303,7 @@ export const FlagshipProjects = () => {
                   {item.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-2 py-0.5 rounded text-[10px] font-mono text-zinc-500 bg-zinc-950 border border-white/5"
+                      className="px-2 py-0.5 rounded text-[10px] font-mono text-zinc-400 bg-zinc-900 border border-white/5"
                     >
                       {tag}
                     </span>
