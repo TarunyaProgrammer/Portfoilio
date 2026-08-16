@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Matte Obsidian Surface with Subtle Luxury Gradient -->
+  <rect width="64" height="64" rx="14" fill="#09090B"/>
+  <rect x="0.75" y="0.75" width="62.5" height="62.5" rx="13.25" stroke="url(#borderGrad)" stroke-width="1.5"/>
+
+  <!-- Architectural Minimalist "T" Monogram (Clean, Linear & High-Precision) -->
+  <g fill="url(#metalGrad)">
+    <!-- Top Horizontal Crossbar -->
+    <rect x="16" y="18" width="32" height="6.5" rx="2"/>
+    <!-- Vertical Pillar -->
+    <rect x="28.75" y="24.5" width="6.5" height="23.5" rx="2"/>
+    <!-- Subtle Accent Precision Dot in Bottom-Right -->
+    <circle cx="45" cy="45" r="2.5" fill="#3B82F6"/>
+  </g>
+
+  <defs>
+    <!-- Border Gradient -->
+    <linearGradient id="borderGrad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity="0.25"/>
+      <stop offset="0.5" stop-color="#FFFFFF" stop-opacity="0.08"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.2"/>
+    </linearGradient>
+    
+    <!-- Metallic Monogram Gradient -->
+    <linearGradient id="metalGrad" x1="16" y1="18" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#D4D4D8"/>
+    </linearGradient>
+  </defs>
+</svg>
