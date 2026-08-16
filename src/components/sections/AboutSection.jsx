@@ -7,6 +7,26 @@ export const AboutSection = () => {
   return (
     <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative">
       <div className="max-w-7xl mx-auto space-y-16">
+        {/* ═══ TELEMETRY METRIC STRIP AT TOP OF ABOUT ═══ */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 font-mono">
+          {portfolioData.metrics.map((metric) => (
+            <div
+              key={metric.label}
+              className="p-4 sm:p-5 rounded-2xl bg-zinc-900/60 border border-white/10 backdrop-blur-sm flex flex-col items-center text-center shadow-lg"
+            >
+              <span className="text-2xl sm:text-4xl font-bold text-white tracking-tight">
+                {metric.value}
+              </span>
+              <span className="text-xs text-zinc-400 font-sans mt-0.5 font-medium">
+                {metric.label}
+              </span>
+              <span className="text-[10px] text-emerald-400 font-mono mt-1 font-semibold uppercase tracking-wider">
+                {metric.highlight}
+              </span>
+            </div>
+          ))}
+        </div>
+
         {/* Section Header */}
         <div className="space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-blue-500/10 border border-blue-500/20 text-blue-400 font-mono text-xs font-semibold tracking-wider uppercase">
