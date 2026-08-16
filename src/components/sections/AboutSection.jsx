@@ -12,6 +12,7 @@ import {
   Trophy,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 export const AboutSection = () => {
   const iconMap = {
@@ -61,7 +62,7 @@ export const AboutSection = () => {
           {portfolioData.metrics.map((metric, idx) => (
             <motion.div
               key={metric.label}
-              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              initial={{ opacity: 0, y: 25, scale: 0.95 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: idx * 0.1, ease: smoothEase }}
@@ -99,9 +100,9 @@ export const AboutSection = () => {
           </p>
         </motion.div>
 
-        {/* 2-Column Grid: Bio Left, Philosophy Cards Right */}
+        {/* 2-Column Split: Bio Narrative & Architecture Philosophy Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          {/* Left Column: Bio Narrative */}
+          {/* Left Column: Narrative Card */}
           <motion.div
             initial={{ opacity: 0, x: -60 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -139,7 +140,7 @@ export const AboutSection = () => {
                   initial={{ opacity: 0, x: 60 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.65, delay: index * 0.12, ease: smoothEase }}
+                  transition={{ duration: 0.6, delay: index * 0.15, ease: smoothEase }}
                 >
                   <SpotlightCard
                     spotlightColor="rgba(59, 130, 246, 0.12)"
@@ -187,20 +188,32 @@ export const AboutSection = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.1, ease: smoothEase }}
-                  className="p-5 rounded-2xl bg-zinc-900/50 border border-white/10 hover:border-amber-500/30 hover:bg-zinc-900/80 transition-all flex flex-col justify-between space-y-3 font-mono text-xs shadow-lg group"
+                  whileHover={{ y: -6, scale: 1.02 }}
+                  className="h-full"
                 >
-                  <div className="flex items-center justify-between gap-2 border-b border-white/10 pb-3">
-                    <span className="text-white font-semibold flex items-center gap-2 text-xs">
-                      <Icon className="w-4 h-4 text-amber-400 shrink-0 group-hover:scale-110 transition-transform" />
-                      <span>{item.org}</span>
-                    </span>
-                    <span className="px-2 py-0.5 rounded-md bg-amber-500/10 border border-amber-500/30 text-amber-300 font-bold text-xs shrink-0 shadow-sm">
-                      {item.score}
-                    </span>
-                  </div>
-                  <p className="text-zinc-400 font-sans text-xs leading-relaxed">
-                    {item.desc}
-                  </p>
+                  <SpotlightCard
+                    spotlightColor="rgba(245, 158, 11, 0.22)"
+                    className={cn(
+                      "h-full p-5 rounded-2xl bg-gradient-to-b from-zinc-900/60 to-zinc-950/80",
+                      "border border-white/10 hover:border-amber-500/45 hover:shadow-[0_14px_35px_-8px_rgba(245,158,11,0.25)]",
+                      "transition-all duration-300 flex flex-col justify-between space-y-3 font-mono text-xs group cursor-default backdrop-blur-md"
+                    )}
+                  >
+                    <div className="flex items-center justify-between gap-2 border-b border-white/10 pb-3 group-hover:border-amber-500/25 transition-colors">
+                      <span className="text-white font-semibold flex items-center gap-2 text-xs">
+                        <span className="p-1.5 rounded-lg bg-amber-500/10 border border-amber-500/20 group-hover:bg-amber-500/20 group-hover:border-amber-500/40 transition-all duration-300 shrink-0">
+                          <Icon className="w-4 h-4 text-amber-400 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 drop-shadow-[0_0_8px_rgba(245,158,11,0.6)]" />
+                        </span>
+                        <span className="group-hover:text-amber-100 transition-colors leading-snug">{item.org}</span>
+                      </span>
+                      <span className="px-2.5 py-1 rounded-md bg-amber-500/10 border border-amber-500/30 text-amber-300 font-bold text-xs shrink-0 shadow-sm group-hover:bg-amber-500/25 group-hover:border-amber-400/60 group-hover:text-amber-100 group-hover:shadow-[0_0_14px_rgba(245,158,11,0.4)] transition-all duration-300">
+                        {item.score}
+                      </span>
+                    </div>
+                    <p className="text-zinc-400 font-sans text-xs leading-relaxed group-hover:text-zinc-300 transition-colors">
+                      {item.desc}
+                    </p>
+                  </SpotlightCard>
                 </motion.div>
               );
             })}
