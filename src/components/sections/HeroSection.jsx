@@ -48,30 +48,30 @@ export const HeroSection = () => {
 
       {/* ═══ MINIMALIST BOTTOM OVERLAY BAR ═══ */}
       <div className="relative z-20 w-full max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 pb-6">
-        {/* Bottom Left: Sleek Identity Badge & Status */}
-        <div className="p-4 sm:p-5 rounded-2xl bg-zinc-950/70 border border-white/15 backdrop-blur-xl shadow-2xl space-y-2 max-w-md">
-          <div className="inline-flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-400" />
-            <span className="font-mono text-[11px] text-emerald-400 font-semibold tracking-wider uppercase">
+        {/* Bottom Left: Seamless Ethereal Identity Overlay */}
+        <div className="space-y-2 max-w-xl">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/40 border border-white/10 backdrop-blur-md text-[11px] font-mono text-emerald-400">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+            <span className="tracking-wider uppercase font-medium">
               GSoC &apos;26 Developer @ C2SI
             </span>
           </div>
 
-          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-white leading-snug">
+          <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight drop-shadow-lg">
             {portfolioData.personal.name}
           </h1>
 
-          <p className="text-xs font-mono text-zinc-300">
+          <p className="text-xs sm:text-sm font-mono text-zinc-300 drop-shadow">
             {portfolioData.personal.role}
           </p>
 
-          <div className="pt-1">
+          <div className="pt-2">
             <button
               onClick={scrollToAbout}
-              className="inline-flex items-center gap-1.5 text-xs font-mono text-blue-400 hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 text-xs font-mono text-zinc-400 hover:text-white transition-colors group cursor-pointer"
             >
               <span>Explore Portfolio</span>
-              <ArrowDown className="w-3.5 h-3.5 animate-bounce" />
+              <ArrowDown className="w-3.5 h-3.5 text-blue-400 group-hover:translate-y-1 transition-transform" />
             </button>
           </div>
         </div>
@@ -80,28 +80,17 @@ export const HeroSection = () => {
         <button
           onClick={toggleSound}
           aria-label={isMuted ? "Unmute Hero Video" : "Mute Hero Video"}
-          className="group inline-flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-zinc-950/80 border border-white/20 backdrop-blur-xl text-white hover:border-white/40 hover:bg-zinc-900 transition-all shadow-2xl hover:scale-105 active:scale-95 cursor-pointer font-mono text-xs"
+          className="group inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-black/40 border border-white/10 backdrop-blur-md text-white hover:border-white/30 hover:bg-black/60 transition-all hover:scale-105 active:scale-95 cursor-pointer font-mono text-xs shadow-lg"
         >
           {isMuted ? (
             <>
-              <div className="w-6 h-6 rounded-lg bg-zinc-900 border border-white/10 flex items-center justify-center text-zinc-400 group-hover:text-white transition-colors">
-                <VolumeX className="w-3.5 h-3.5" />
-              </div>
-              <span className="text-zinc-300 font-medium">SOUND: OFF</span>
+              <VolumeX className="w-3.5 h-3.5 text-zinc-400 group-hover:text-white transition-colors" />
+              <span className="text-zinc-400 group-hover:text-zinc-200 text-[11px] font-medium">Sound: Off</span>
             </>
           ) : (
             <>
-              <div className="w-6 h-6 rounded-lg bg-blue-500/20 border border-blue-500/40 flex items-center justify-center text-blue-400">
-                <Volume2 className="w-3.5 h-3.5 animate-pulse" />
-              </div>
-              <span className="text-blue-400 font-semibold flex items-center gap-1">
-                <span>SOUND: ON</span>
-                <span className="inline-flex gap-0.5 items-end h-3">
-                  <span className="w-0.5 h-2 bg-blue-400 animate-pulse"></span>
-                  <span className="w-0.5 h-3 bg-blue-400 animate-pulse" style={{ animationDelay: "150ms" }}></span>
-                  <span className="w-0.5 h-1.5 bg-blue-400 animate-pulse" style={{ animationDelay: "300ms" }}></span>
-                </span>
-              </span>
+              <Volume2 className="w-3.5 h-3.5 text-blue-400" />
+              <span className="text-blue-400 font-semibold text-[11px]">Sound: On</span>
             </>
           )}
         </button>
