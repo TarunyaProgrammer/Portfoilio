@@ -45,14 +45,10 @@ export function App() {
       {/* Magic UI Animated Grid Pattern Background */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <AnimatedGridPattern
-          numSquares={35}
-          maxOpacity={0.12}
-          duration={3}
-          repeatDelay={1}
-          className={cn(
-            "mask-[radial-gradient(ellipse_at_center,white,transparent_85%)]",
-            "inset-x-0 inset-y-[-10%] h-[120%]"
-          )}
+          numSquares={45}
+          maxOpacity={0.16}
+          duration={3.5}
+          className="[mask-image:radial-gradient(ellipse_at_center,white_30%,transparent_90%)] inset-0 w-full h-full"
         />
       </div>
 
