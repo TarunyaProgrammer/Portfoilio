@@ -184,7 +184,7 @@ export const FlagshipProjects = () => {
                       <span className="text-[11px] font-mono font-medium text-zinc-400 uppercase tracking-wide">
                         {project.category}
                       </span>
-                      <span className="px-2.5 py-0.5 rounded-full bg-zinc-900 border border-white/10 text-[10px] font-mono text-zinc-300 font-medium">
+                      <span className="text-[11px] font-mono text-zinc-400">
                         {project.badge}
                       </span>
                     </div>

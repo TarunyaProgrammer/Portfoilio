@@ -184,10 +184,6 @@ export const TechStackSection = () => {
               Modular capabilities across distributed backend services, reactive frontend interfaces, deterministic AI pipelines, and cloud DevOps.
             </p>
           </div>
-
-          <div className="font-mono text-xs text-zinc-400 px-3.5 py-1.5 rounded-full bg-zinc-900 border border-white/10 self-start md:self-auto">
-            ARCHITECTURE: <span className="text-zinc-200 font-semibold">PRODUCTION-VERIFIED</span>
-          </div>
         </motion.div>
 
         {/* ═══ MAGIC UI BENTO GRID (FLOWS IN WITH STAGGER) ═══ */}
