@@ -9,17 +9,16 @@ export const SmoothCursor = () => {
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
 
-  const springConfig = { damping: 28, stiffness: 350, mass: 0.5 };
+  const springConfig = { damping: 30, stiffness: 450, mass: 0.4 };
   const smoothX = useSpring(cursorX, springConfig);
   const smoothY = useSpring(cursorY, springConfig);
 
-  const dotSpringConfig = { damping: 40, stiffness: 800, mass: 0.1 };
-  const dotX = useSpring(cursorX, dotSpringConfig);
-  const dotY = useSpring(cursorY, dotSpringConfig);
-
   useEffect(() => {
-    // Detect touch device
-    if (window.matchMedia("(pointer: coarse)").matches || "ontouchstart" in window) {
+    // Disable on touch devices
+    if (
+      window.matchMedia("(pointer: coarse)").matches ||
+      "ontouchstart" in window
+    ) {
       setIsTouchDevice(true);
       return;
     }
@@ -34,7 +33,9 @@ export const SmoothCursor = () => {
     const handleMouseEnter = () => setIsVisible(true);
 
     const handleHoverElements = () => {
-      const interactives = document.querySelectorAll("a, button, input, select, textarea, [role='button']");
+      const interactives = document.querySelectorAll(
+        "a, button, input, select, textarea, [role='button']"
+      );
       interactives.forEach((el) => {
         el.addEventListener("mouseenter", () => setIsHovered(true));
         el.addEventListener("mouseleave", () => setIsHovered(false));
@@ -60,38 +61,37 @@ export const SmoothCursor = () => {
   if (isTouchDevice || !isVisible) return null;
 
   return (
-    <>
-      {/* Outer Smooth Spring Ring */}
-      <motion.div
-        style={{
-          x: smoothX,
-          y: smoothY,
-          translateX: "-50%",
-          translateY: "-50%",
-        }}
-        animate={{
-          scale: isHovered ? 1.6 : 1,
-          borderColor: isHovered ? "rgba(96, 165, 250, 0.8)" : "rgba(255, 255, 255, 0.3)",
-          backgroundColor: isHovered ? "rgba(59, 130, 246, 0.12)" : "rgba(255, 255, 255, 0.02)",
-        }}
-        transition={{ duration: 0.18 }}
-        className="pointer-events-none fixed top-0 left-0 z-[9999] w-8 h-8 rounded-full border border-white/30 backdrop-blur-[1px] hidden md:block"
-      />
-
-      {/* Center Precise Dot */}
-      <motion.div
-        style={{
-          x: dotX,
-          y: dotY,
-          translateX: "-50%",
-          translateY: "-50%",
-        }}
-        animate={{
-          scale: isHovered ? 0 : 1,
-        }}
-        transition={{ duration: 0.12 }}
-        className="pointer-events-none fixed top-0 left-0 z-[9999] w-1.5 h-1.5 rounded-full bg-blue-400 shadow-[0_0_8px_#3b82f6] hidden md:block"
-      />
-    </>
+    <motion.div
+      style={{
+        x: smoothX,
+        y: smoothY,
+        translateX: "-2px",
+        translateY: "-2px",
+      }}
+      animate={{
+        scale: isHovered ? 1.2 : 1,
+        rotate: isHovered ? -12 : 0,
+      }}
+      transition={{ duration: 0.15 }}
+      className="pointer-events-none fixed top-0 left-0 z-[99999] hidden md:block"
+    >
+      {/* ═══ MODERN BLACK PRECISION CURSOR ARROW ═══ */}
+      <svg
+        width="26"
+        height="26"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="filter drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]"
+      >
+        <path
+          d="M4 2L18.5 13.5L12 14.5L15 21L12.5 22L9.5 15.5L4 19.5V2Z"
+          fill="#000000"
+          stroke="#ffffff"
+          strokeWidth="1.3"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </motion.div>
   );
 };
