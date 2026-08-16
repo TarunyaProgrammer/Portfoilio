@@ -27,25 +27,38 @@ export const ContactSection = () => {
   const [copied, setCopied] = useState(false);
   const smoothEase = [0.22, 1, 0.36, 1];
 
-  // Target work locations requested by Tarunya
+  // Target work locations requested by Tarunya (India base + English-speaking global engineering hubs)
   const mapMarkers = [
     {
-      lat: 22.0,
-      lng: 78.5,
-      size: 5,
-      overlay: { countryCode: "in", label: "India (Base / Relocation)" },
+      lat: 20.5937,
+      lng: 78.9629,
+      isBase: true,
+      overlay: { countryCode: "in", label: "India (Base)" },
     },
     {
-      lat: 39.0,
-      lng: -98.0,
-      size: 5,
-      overlay: { countryCode: "us", label: "USA / SF & NYC (PST/EST)" },
+      lat: 37.7749,
+      lng: -122.4194,
+      overlay: { countryCode: "us", label: "USA (SF & NYC / PST/EST)" },
     },
     {
-      lat: 54.0,
-      lng: -2.5,
-      size: 5,
+      lat: 51.5074,
+      lng: -0.1278,
       overlay: { countryCode: "gb", label: "UK / London (GMT)" },
+    },
+    {
+      lat: -33.8688,
+      lng: 151.2093,
+      overlay: { countryCode: "au", label: "Australia (Sydney / AEST)" },
+    },
+    {
+      lat: 43.6532,
+      lng: -79.3832,
+      overlay: { countryCode: "ca", label: "Canada (Toronto / EST)" },
+    },
+    {
+      lat: 1.3521,
+      lng: 103.8198,
+      overlay: { countryCode: "sg", label: "Singapore (SGT)" },
     },
   ];
 
@@ -129,15 +142,19 @@ export const ContactSection = () => {
             <div className="flex flex-wrap gap-2 font-mono text-xs">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-950/80 border border-white/10 text-zinc-300">
                 <Check className="w-3.5 h-3.5 text-emerald-400" />
-                <span>India (Primary Base)</span>
+                <span>India (Home Base)</span>
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-950/80 border border-white/10 text-zinc-300">
                 <Check className="w-3.5 h-3.5 text-emerald-400" />
-                <span>USA (PST / EST)</span>
+                <span>USA &amp; Canada (PST/EST)</span>
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-950/80 border border-white/10 text-zinc-300">
                 <Check className="w-3.5 h-3.5 text-emerald-400" />
                 <span>UK &amp; London (GMT)</span>
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-950/80 border border-white/10 text-zinc-300">
+                <Check className="w-3.5 h-3.5 text-emerald-400" />
+                <span>Australia &amp; APAC (AEST/SGT)</span>
               </span>
             </div>
           </div>

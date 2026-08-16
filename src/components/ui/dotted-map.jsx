@@ -5,7 +5,9 @@ import { cn } from "@/lib/utils";
 // Generates smooth quadratic bezier flight arc between two coordinates
 const createArcPath = (start, end) => {
   const midX = (start.x + end.x) / 2;
-  const midY = Math.min(start.y, end.y) - Math.abs(start.x - end.x) * 0.35;
+  const distance = Math.sqrt(Math.pow(end.x - start.x, 2) + Math.pow(end.y - start.y, 2));
+  const arcElevation = Math.min(22, Math.max(8, distance * 0.28));
+  const midY = Math.min(start.y, end.y) - arcElevation;
   return `M ${start.x} ${start.y} Q ${midX} ${midY} ${end.x} ${end.y}`;
 };
 
@@ -34,20 +36,28 @@ export const DottedMap = ({
     };
   }, []);
 
-  // Compute pins for India, USA, UK
-  const indiaPin = useMemo(() => map.getPin({ lat: 20.5937, lng: 78.9629 }), [map]);
-  const usaPin = useMemo(() => map.getPin({ lat: 37.7749, lng: -122.4194 }), [map]);
-  const ukPin = useMemo(() => map.getPin({ lat: 51.5074, lng: -0.1278 }), [map]);
+  // Compute dynamic flight arcs connecting India (Base) to all destination hubs
+  const { basePin, arcs } = useMemo(() => {
+    const baseMarker = markers.find((m) => m.isBase) || markers[0];
+    if (!baseMarker) return { basePin: null, arcs: [] };
 
-  const arcIndiaToUSA = useMemo(() => {
-    if (!indiaPin || !usaPin) return "";
-    return createArcPath(indiaPin, usaPin);
-  }, [indiaPin, usaPin]);
+    const bPin = map.getPin({ lat: baseMarker.lat, lng: baseMarker.lng });
+    if (!bPin) return { basePin: null, arcs: [] };
 
-  const arcIndiaToUK = useMemo(() => {
-    if (!indiaPin || !ukPin) return "";
-    return createArcPath(indiaPin, ukPin);
-  }, [indiaPin, ukPin]);
+    const generatedArcs = markers
+      .filter((m) => !m.isBase)
+      .map((m) => {
+        const destPin = map.getPin({ lat: m.lat, lng: m.lng });
+        if (!destPin) return null;
+        return {
+          path: createArcPath(bPin, destPin),
+          label: m.overlay?.label,
+        };
+      })
+      .filter(Boolean);
+
+    return { basePin: bPin, arcs: generatedArcs };
+  }, [map, markers]);
 
   return (
     <div className={cn("relative w-full overflow-hidden select-none", className)} {...props}>
@@ -77,28 +87,18 @@ export const DottedMap = ({
           ))}
         </g>
 
-        {/* ═══ CONNECTING MOBILITY FLIGHT ARCS ═══ */}
-        {arcIndiaToUSA && (
+        {/* ═══ DYNAMIC MOBILITY FLIGHT ARCS TO GLOBAL HUBS ═══ */}
+        {arcs.map((arc, i) => (
           <path
-            d={arcIndiaToUSA}
+            key={i}
+            d={arc.path}
             fill="none"
             stroke={`url(#${id}-arc-gradient)`}
-            strokeWidth="0.32"
-            strokeDasharray="1 1"
-            opacity={0.85}
+            strokeWidth="0.28"
+            strokeDasharray="0.8 0.8"
+            opacity={0.8}
           />
-        )}
-
-        {arcIndiaToUK && (
-          <path
-            d={arcIndiaToUK}
-            fill="none"
-            stroke={`url(#${id}-arc-gradient)`}
-            strokeWidth="0.32"
-            strokeDasharray="1 1"
-            opacity={0.85}
-          />
-        )}
+        ))}
 
         {/* ═══ COUNTRY MARKERS & OVERLAYS ═══ */}
         {markers.map((marker, index) => {
@@ -107,14 +107,14 @@ export const DottedMap = ({
           const { x, y } = pin;
 
           const clipId = `${id}-flag-clip-${index}`;
-          const r = 1.35; // flag radius in SVG units
+          const r = 1.3; // flag radius in SVG units
           const { countryCode, label } = marker.overlay || {};
           const flagUrl = `https://flagcdn.com/w80/${countryCode}.webp`;
 
-          const fontSize = 1.55;
-          const pillH = 3.0;
-          const pillW = label.length * 0.92 + 3.8;
-          const pillX = x + 2.0;
+          const fontSize = 1.5;
+          const pillH = 2.9;
+          const pillW = label.length * 0.88 + 3.6;
+          const pillX = x + 1.8;
           const pillY = y - pillH / 2;
 
           return (
@@ -123,9 +123,9 @@ export const DottedMap = ({
               <circle
                 cx={x}
                 cy={y}
-                r={r * 2.2}
+                r={r * 2}
                 fill="none"
-                stroke="rgba(59, 130, 246, 0.5)"
+                stroke={marker.isBase ? "rgba(16, 185, 129, 0.5)" : "rgba(59, 130, 246, 0.45)"}
                 strokeWidth="0.18"
               />
 
@@ -133,8 +133,8 @@ export const DottedMap = ({
               <circle
                 cx={x}
                 cy={y}
-                r={r + 0.35}
-                fill="rgba(59, 130, 246, 0.35)"
+                r={r + 0.3}
+                fill={marker.isBase ? "rgba(16, 185, 129, 0.35)" : "rgba(59, 130, 246, 0.35)"}
               />
 
               {/* Clip Path for Circular Flag */}
@@ -175,8 +175,8 @@ export const DottedMap = ({
                 strokeWidth="0.18"
               />
               <text
-                x={pillX + 1.6}
-                y={y + 0.52}
+                x={pillX + 1.5}
+                y={y + 0.5}
                 fontSize={fontSize}
                 fontFamily="Space Grotesk, sans-serif"
                 fontWeight="600"
