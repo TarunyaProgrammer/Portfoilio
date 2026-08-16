@@ -154,9 +154,9 @@ export const FlagshipProjects = () => {
               <MagicCard
                 key={project.id}
                 mode="orb"
-                glowFrom="rgba(255, 255, 255, 0.14)"
-                glowTo="rgba(255, 255, 255, 0.02)"
-                size={320}
+                glowFrom="rgba(255, 255, 255, 0.28)"
+                glowTo="rgba(161, 161, 170, 0.08)"
+                size={380}
                 className="p-6 sm:p-8 flex flex-col justify-between"
               >
                 <div className="space-y-6">
