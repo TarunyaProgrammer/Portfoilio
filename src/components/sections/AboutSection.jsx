@@ -7,7 +7,6 @@ import {
   Zap,
   Code2,
   Award,
-  Terminal,
   Flame,
   GitPullRequest,
   Trophy,
@@ -57,7 +56,7 @@ export const AboutSection = () => {
   return (
     <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden">
       <div className="max-w-7xl mx-auto space-y-16">
-        {/* ═══ TELEMETRY METRIC STRIP (FLOWS IN WITH STAGGER) ═══ */}
+        {/* ═══ TOP TELEMETRY METRICS ═══ */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 font-mono">
           {portfolioData.metrics.map((metric, idx) => (
             <motion.div
@@ -100,18 +99,17 @@ export const AboutSection = () => {
           </p>
         </motion.div>
 
-        {/* 2-Column Grid: Bio & Achievements Left, Philosophy Cards Right */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left Column: Bio + 4 Key Honors */}
+        {/* 2-Column Grid: Bio Left, Philosophy Cards Right */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          {/* Left Column: Bio Narrative */}
           <motion.div
             initial={{ opacity: 0, x: -60 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.7, ease: smoothEase }}
-            className="lg:col-span-5 space-y-6"
+            className="lg:col-span-5 h-full"
           >
-            {/* Bio Narrative Card */}
-            <div className="p-6 sm:p-8 rounded-2xl bg-zinc-900/60 border border-white/10 space-y-5 text-zinc-300 leading-relaxed font-normal text-sm sm:text-base shadow-xl">
+            <div className="p-6 sm:p-8 rounded-2xl bg-zinc-900/60 border border-white/10 space-y-5 text-zinc-300 leading-relaxed font-normal text-sm sm:text-base shadow-xl h-full flex flex-col justify-between">
               <p>
                 Currently developing as a{" "}
                 <Highlighter action="highlight" color="rgba(59, 130, 246, 0.25)">
@@ -129,46 +127,10 @@ export const AboutSection = () => {
                 </Highlighter>.
               </p>
             </div>
-
-            {/* ═══ EXPANDED ACHIEVEMENTS & HONORS MATRIX ═══ */}
-            <div className="space-y-3">
-              <div className="text-[11px] font-mono uppercase tracking-widest text-zinc-400">
-                Key Credentials &amp; Milestones
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {achievements.map((item, idx) => {
-                  const Icon = item.icon;
-                  return (
-                    <motion.div
-                      key={item.org}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: idx * 0.08 }}
-                      className="p-4 rounded-2xl bg-zinc-900/50 border border-white/10 hover:border-white/20 transition-all flex flex-col justify-between space-y-2.5 font-mono text-xs shadow-md"
-                    >
-                      <div className="flex items-center justify-between gap-1 text-zinc-400 border-b border-white/5 pb-2">
-                        <span className="text-white font-semibold flex items-center gap-1.5 truncate text-[11px]">
-                          <Icon className="w-3.5 h-3.5 text-zinc-300 shrink-0" />
-                          <span className="truncate">{item.org}</span>
-                        </span>
-                        <span className="text-emerald-400 font-bold text-[11px] shrink-0">
-                          {item.score}
-                        </span>
-                      </div>
-                      <p className="text-zinc-400 font-sans text-[11px] leading-relaxed">
-                        {item.desc}
-                      </p>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </div>
           </motion.div>
 
-          {/* Right Column: Philosophy Cards Flow in from Right */}
-          <div className="lg:col-span-7 space-y-4">
+          {/* Right Column: Philosophy Cards */}
+          <div className="lg:col-span-7 space-y-4 flex flex-col justify-between">
             {(portfolioData.personal?.philosophy || portfolioData.philosophy || []).map((item, index) => {
               const Icon = iconMap[item.icon] || Zap;
               return (
@@ -202,6 +164,48 @@ export const AboutSection = () => {
             })}
           </div>
         </div>
+
+        {/* ═══ FULL-WIDTH WIDESCREEN ACHIEVEMENTS & HONORS MATRIX ═══ */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.7, ease: smoothEase }}
+          className="space-y-4 pt-4"
+        >
+          <div className="text-xs font-mono uppercase tracking-widest text-zinc-400">
+            Key Credentials &amp; Honors
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {achievements.map((item, idx) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={item.org}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1, ease: smoothEase }}
+                  className="p-5 rounded-2xl bg-zinc-900/50 border border-white/10 hover:border-white/25 hover:bg-zinc-900/80 transition-all flex flex-col justify-between space-y-3 font-mono text-xs shadow-lg"
+                >
+                  <div className="flex items-center justify-between gap-2 border-b border-white/10 pb-3">
+                    <span className="text-white font-semibold flex items-center gap-2 text-xs">
+                      <Icon className="w-4 h-4 text-zinc-300 shrink-0" />
+                      <span>{item.org}</span>
+                    </span>
+                    <span className="text-emerald-400 font-bold text-xs shrink-0">
+                      {item.score}
+                    </span>
+                  </div>
+                  <p className="text-zinc-400 font-sans text-xs leading-relaxed">
+                    {item.desc}
+                  </p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </motion.div>
       </div>
     </section>
   );
