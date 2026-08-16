@@ -54,13 +54,13 @@ export const CinematicHeroEngine = ({ className }) => {
       lastTimeRef.current = timestamp;
 
       setTime((prev) => {
-        let next = prev + delta;
+        const next = prev + delta;
         if (next >= 10.0) {
-          next = 0;
-          if (audioRef.current && !isMuted) {
-            audioRef.current.currentTime = 0;
-            audioRef.current.play().catch(() => {});
+          setIsPlaying(false);
+          if (audioRef.current) {
+            audioRef.current.pause();
           }
+          return 10.0;
         }
 
         // Sync audio if drifted
@@ -93,9 +93,13 @@ export const CinematicHeroEngine = ({ className }) => {
       setIsPlaying(false);
       if (audioRef.current) audioRef.current.pause();
     } else {
+      const startTime = time >= 9.98 ? 0 : time;
+      if (time >= 9.98) {
+        setTime(0);
+      }
       setIsPlaying(true);
       if (audioRef.current && !isMuted) {
-        audioRef.current.currentTime = time;
+        audioRef.current.currentTime = startTime;
         audioRef.current.play().catch(() => {});
       }
     }
@@ -106,7 +110,9 @@ export const CinematicHeroEngine = ({ className }) => {
     if (isMuted) {
       audioRef.current.muted = false;
       audioRef.current.currentTime = time;
-      audioRef.current.play().catch(() => {});
+      if (isPlaying) {
+        audioRef.current.play().catch(() => {});
+      }
       setIsMuted(false);
     } else {
       audioRef.current.muted = true;
@@ -146,16 +152,15 @@ export const CinematicHeroEngine = ({ className }) => {
     return Math.floor((time - 8.2) / 0.08) % PLATES.length;
   }, [time]);
 
-  const currentScene = SCENES.find((s) => time >= s.start && time < s.end) || SCENES[0];
+  const currentScene = SCENES.find((s) => time >= s.start && time < s.end) || SCENES[SCENES.length - 1];
 
   return (
     <div className={cn("relative w-full h-full overflow-hidden select-none bg-[#050507]", className)}>
-      {/* Hidden Synchronized Audio Track */}
+      {/* Hidden Synchronized Audio Track (No Loop) */}
       <audio
         ref={audioRef}
         src="/hero_sound_V3_high_energy.wav"
         preload="auto"
-        loop
         muted={isMuted}
       />
 
