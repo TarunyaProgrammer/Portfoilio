@@ -7,31 +7,26 @@ import {
   Cpu,
   Layout,
   Database,
-  Terminal,
-  Zap,
-  ShieldCheck,
   Code2,
-  Workflow,
-  Sparkles,
-  ArrowUpRight,
+  Check,
+  Shield,
+  Zap,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const TechStackSection = () => {
   const backendEvents = [
-    { title: "Hono Edge Worker", status: "Sub-5ms response", tag: "Cloudflare" },
-    { title: "Webhook Dispatcher", status: "Event-driven", tag: "GSoC '26" },
-    { title: "Octokit Caching", status: "60% query savings", tag: "Redis/KV" },
-    { title: "WebSocket Channel", status: "Zero-lag sync", tag: "Socket.IO" },
-    { title: "NestJS Microservice", status: "Type-safe RPC", tag: "PostgreSQL" },
+    { title: "Hono Edge Worker", status: "< 5ms", tag: "Cloudflare" },
+    { title: "Webhook Dispatcher", status: "Event-Driven", tag: "GSoC '26" },
+    { title: "Octokit Caching", status: "60% Query Drop", tag: "Redis/KV" },
+    { title: "WebSocket Sync", status: "Sub-50ms", tag: "Socket.IO" },
   ];
 
   const aiModules = [
     { name: "Gemini 2.5 Flash", desc: "Multimodal fast inference" },
     { name: "Google Antigravity SDK", desc: "Autonomous agent workflows" },
     { name: "Deterministic RAG", desc: "Zero hallucination grounding" },
-    { name: "LangChain Pipelines", desc: "Structured tool invocation" },
-    { name: "Structured JSON Output", desc: "Strict schema compliance" },
+    { name: "Structured JSON Output", desc: "Strict schema validation" },
   ];
 
   const frontendChips = [
@@ -61,28 +56,26 @@ export const TechStackSection = () => {
         "Architecting resilient event-driven microservices, Cloudflare edge workers, and sub-50ms WebSockets with persistent caching.",
       href: "#projects",
       cta: "Explore Systems",
-      className: "col-span-3 lg:col-span-2 min-h-[320px]",
+      className: "col-span-3 lg:col-span-2",
       background: (
-        <div className="absolute top-4 right-4 left-4 h-44 overflow-hidden [mask-image:linear-gradient(to_bottom,#000_30%,transparent_100%)] pointer-events-none opacity-85">
-          <div className="space-y-2 font-mono text-[11px]">
-            {backendEvents.map((evt, idx) => (
-              <div
-                key={idx}
-                className="flex items-center justify-between p-2.5 rounded-xl bg-zinc-950/80 border border-white/10 text-zinc-300 shadow-md backdrop-blur-sm"
-              >
-                <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                  <span className="font-semibold text-white">{evt.title}</span>
-                </div>
-                <div className="flex items-center gap-2 text-zinc-500">
-                  <span>{evt.status}</span>
-                  <span className="px-1.5 py-0.5 rounded bg-zinc-900 border border-white/10 text-[10px] text-blue-400">
-                    {evt.tag}
-                  </span>
-                </div>
+        <div className="w-full h-full flex flex-col justify-center gap-2 font-mono text-[11px]">
+          {backendEvents.map((evt, idx) => (
+            <div
+              key={idx}
+              className="flex items-center justify-between px-3 py-1.5 rounded-lg bg-zinc-900/90 border border-white/10 text-zinc-300 shadow-sm"
+            >
+              <div className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                <span className="font-semibold text-white">{evt.title}</span>
               </div>
-            ))}
-          </div>
+              <div className="flex items-center gap-2">
+                <span className="text-zinc-400">{evt.status}</span>
+                <span className="px-1.5 py-0.5 rounded bg-zinc-950 border border-white/10 text-[10px] text-blue-400">
+                  {evt.tag}
+                </span>
+              </div>
+            </div>
+          ))}
         </div>
       ),
     },
@@ -95,19 +88,19 @@ export const TechStackSection = () => {
         "Engineering autonomous agents, structured JSON output validation, and multimodal RAG pipelines.",
       href: "#projects",
       cta: "View AI Architecture",
-      className: "col-span-3 lg:col-span-1 min-h-[320px]",
+      className: "col-span-3 lg:col-span-1",
       background: (
-        <div className="absolute top-2 inset-x-0 h-44 overflow-hidden [mask-image:linear-gradient(to_bottom,#000_40%,transparent_100%)] pointer-events-none">
-          <Marquee pauseOnHover className="[--duration:22s] py-2">
+        <div className="w-full h-full flex items-center justify-center overflow-hidden">
+          <Marquee pauseOnHover className="[--duration:20s] py-1">
             {aiModules.map((m, idx) => (
               <div
                 key={idx}
-                className="w-36 p-3 mx-2 rounded-xl bg-zinc-950/90 border border-white/10 text-left font-mono text-xs shadow-md"
+                className="w-36 p-2.5 mx-1.5 rounded-xl bg-zinc-900/90 border border-white/10 text-left font-mono text-xs shadow-sm"
               >
-                <div className="text-blue-400 font-semibold text-[11px] truncate">
+                <div className="text-white font-semibold text-[11px] truncate">
                   {m.name}
                 </div>
-                <div className="text-[10px] text-zinc-400 mt-1 leading-tight">
+                <div className="text-[10px] text-zinc-400 mt-0.5 leading-tight">
                   {m.desc}
                 </div>
               </div>
@@ -125,14 +118,14 @@ export const TechStackSection = () => {
         "Sub-second interactive interfaces engineered with React 19, TypeScript, Framer Motion, and Lenis momentum scrolling.",
       href: "#projects",
       cta: "Inspect Components",
-      className: "col-span-3 lg:col-span-1 min-h-[320px]",
+      className: "col-span-3 lg:col-span-1",
       background: (
-        <div className="absolute top-4 inset-x-4 h-40 overflow-hidden [mask-image:linear-gradient(to_bottom,#000_40%,transparent_100%)] pointer-events-none">
-          <div className="flex flex-wrap gap-1.5">
+        <div className="w-full h-full flex items-center justify-center">
+          <div className="flex flex-wrap gap-1.5 justify-center">
             {frontendChips.map((chip, idx) => (
               <span
                 key={idx}
-                className="px-2.5 py-1 rounded-lg bg-zinc-950/90 border border-white/10 font-mono text-[11px] text-zinc-300 shadow-sm"
+                className="px-2.5 py-1 rounded-lg bg-zinc-900/90 border border-white/10 font-mono text-[11px] text-zinc-200 shadow-sm"
               >
                 {chip}
               </span>
@@ -150,22 +143,20 @@ export const TechStackSection = () => {
         "Automated CI/CD pipelines, PostgreSQL with Row-Level Security, Redis edge caching, and containerized deployments.",
       href: "#projects",
       cta: "Review Infrastructure",
-      className: "col-span-3 lg:col-span-2 min-h-[320px]",
+      className: "col-span-3 lg:col-span-2",
       background: (
-        <div className="absolute top-4 right-4 left-4 h-44 overflow-hidden [mask-image:linear-gradient(to_bottom,#000_30%,transparent_100%)] pointer-events-none">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 font-mono text-xs">
-            {infraChecks.map((item, idx) => (
-              <div
-                key={idx}
-                className="p-3 rounded-xl bg-zinc-950/80 border border-white/10 flex flex-col justify-between shadow-md"
-              >
-                <span className="text-white font-medium text-[11px]">{item.label}</span>
-                <span className={cn("text-[10px] mt-1 font-semibold", item.color)}>
-                  &check; {item.status}
-                </span>
-              </div>
-            ))}
-          </div>
+        <div className="w-full h-full grid grid-cols-1 sm:grid-cols-2 gap-2 font-mono text-xs items-center">
+          {infraChecks.map((item, idx) => (
+            <div
+              key={idx}
+              className="p-2.5 rounded-xl bg-zinc-900/90 border border-white/10 flex flex-col justify-between shadow-sm"
+            >
+              <span className="text-white font-medium text-[11px]">{item.label}</span>
+              <span className={cn("text-[10px] mt-0.5 font-semibold flex items-center gap-1", item.color)}>
+                <Check className="w-3 h-3" /> {item.status}
+              </span>
+            </div>
+          ))}
         </div>
       ),
     },
@@ -189,7 +180,7 @@ export const TechStackSection = () => {
           </div>
 
           <div className="font-mono text-xs text-zinc-400 px-3.5 py-1.5 rounded-full bg-zinc-900 border border-white/10 self-start md:self-auto">
-            ARCHITECTURE: <span className="text-blue-400 font-semibold">PRODUCTION-VERIFIED</span>
+            ARCHITECTURE: <span className="text-zinc-200 font-semibold">PRODUCTION-VERIFIED</span>
           </div>
         </div>
 
