@@ -2,7 +2,16 @@ import React from "react";
 import { portfolioData } from "@/data/portfolioData";
 import { SpotlightCard } from "@/components/ui/spotlight-card";
 import { Highlighter } from "@/components/ui/highlighter";
-import { ShieldCheck, Zap, Code2, Award, ExternalLink } from "lucide-react";
+import {
+  ShieldCheck,
+  Zap,
+  Code2,
+  Award,
+  Terminal,
+  Flame,
+  GitPullRequest,
+  Trophy,
+} from "lucide-react";
 import { motion } from "framer-motion";
 
 export const AboutSection = () => {
@@ -13,6 +22,37 @@ export const AboutSection = () => {
   };
 
   const smoothEase = [0.22, 1, 0.36, 1];
+
+  const achievements = [
+    {
+      icon: Award,
+      org: "Newton School of Technology",
+      score: "8.83 CGPA",
+      desc: "B.Tech in Computer Science & Artificial Intelligence (2024 \u2013 2028)",
+      tag: "Academic Honors",
+    },
+    {
+      icon: Flame,
+      org: "Google Summer of Code '26",
+      score: "Selected Developer",
+      desc: "C2SI contributor architecting telemetry & serverless webhook engines",
+      tag: "Open Source",
+    },
+    {
+      icon: GitPullRequest,
+      org: "GSSoC & SSoC Mentorship",
+      score: "100+ Mentored",
+      desc: "Guided 100+ developers on distributed git workflows and architecture",
+      tag: "Leadership",
+    },
+    {
+      icon: Trophy,
+      org: "Competitive Problem Solving",
+      score: "939+ Rating",
+      desc: "Active competitive programmer on Codeforces & LeetCode in DSA & graphs",
+      tag: "Algorithms",
+    },
+  ];
 
   return (
     <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden">
@@ -60,9 +100,9 @@ export const AboutSection = () => {
           </p>
         </motion.div>
 
-        {/* 2-Column Grid: Bio Left (Flows in from left), Philosophy Cards Right (Flows in from right) */}
+        {/* 2-Column Grid: Bio & Achievements Left, Philosophy Cards Right */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left Column: Bio Flows in from Left */}
+          {/* Left Column: Bio + 4 Key Honors */}
           <motion.div
             initial={{ opacity: 0, x: -60 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -70,6 +110,7 @@ export const AboutSection = () => {
             transition={{ duration: 0.7, ease: smoothEase }}
             className="lg:col-span-5 space-y-6"
           >
+            {/* Bio Narrative Card */}
             <div className="p-6 sm:p-8 rounded-2xl bg-zinc-900/60 border border-white/10 space-y-5 text-zinc-300 leading-relaxed font-normal text-sm sm:text-base shadow-xl">
               <p>
                 Currently developing as a{" "}
@@ -89,18 +130,40 @@ export const AboutSection = () => {
               </p>
             </div>
 
-            {/* Quick Education Card */}
-            <div className="p-5 rounded-2xl bg-zinc-900/40 border border-white/10 space-y-2 font-mono text-xs">
-              <div className="flex items-center justify-between text-zinc-400">
-                <span className="text-white font-semibold flex items-center gap-2">
-                  <Award className="w-4 h-4 text-amber-400" />
-                  Newton School of Technology
-                </span>
-                <span className="text-emerald-400 font-bold">8.83 CGPA</span>
+            {/* ═══ EXPANDED ACHIEVEMENTS & HONORS MATRIX ═══ */}
+            <div className="space-y-3">
+              <div className="text-[11px] font-mono uppercase tracking-widest text-zinc-400">
+                Key Credentials &amp; Milestones
               </div>
-              <p className="text-zinc-400 font-sans text-xs">
-                B.Tech in Computer Science &amp; Artificial Intelligence (2024 &ndash; 2028)
-              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {achievements.map((item, idx) => {
+                  const Icon = item.icon;
+                  return (
+                    <motion.div
+                      key={item.org}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: idx * 0.08 }}
+                      className="p-4 rounded-2xl bg-zinc-900/50 border border-white/10 hover:border-white/20 transition-all flex flex-col justify-between space-y-2.5 font-mono text-xs shadow-md"
+                    >
+                      <div className="flex items-center justify-between gap-1 text-zinc-400 border-b border-white/5 pb-2">
+                        <span className="text-white font-semibold flex items-center gap-1.5 truncate text-[11px]">
+                          <Icon className="w-3.5 h-3.5 text-zinc-300 shrink-0" />
+                          <span className="truncate">{item.org}</span>
+                        </span>
+                        <span className="text-emerald-400 font-bold text-[11px] shrink-0">
+                          {item.score}
+                        </span>
+                      </div>
+                      <p className="text-zinc-400 font-sans text-[11px] leading-relaxed">
+                        {item.desc}
+                      </p>
+                    </motion.div>
+                  );
+                })}
+              </div>
             </div>
           </motion.div>
 
