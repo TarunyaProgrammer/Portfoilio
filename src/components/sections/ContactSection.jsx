@@ -2,15 +2,10 @@ import React, { useState } from "react";
 import { portfolioData } from "@/data/portfolioData";
 import { DottedMap } from "@/components/ui/dotted-map";
 import {
-  Mail,
   Send,
   Check,
   Copy,
-  ExternalLink,
-  MapPin,
   Globe2,
-  Calendar,
-  Sparkles,
   ArrowUpRight,
 } from "lucide-react";
 import confetti from "canvas-confetti";
@@ -27,18 +22,18 @@ export const ContactSection = () => {
   const [copied, setCopied] = useState(false);
   const smoothEase = [0.22, 1, 0.36, 1];
 
-  // Target work locations requested by Tarunya (India base + English-speaking global engineering hubs)
+  // Target work locations requested by Tarunya
   const mapMarkers = [
     {
       lat: 20.5937,
       lng: 78.9629,
       isBase: true,
-      overlay: { countryCode: "in", label: "India (Base)" },
+      overlay: { countryCode: "in", label: "India (Home Base)" },
     },
     {
       lat: 37.7749,
       lng: -122.4194,
-      overlay: { countryCode: "us", label: "USA (SF & NYC / PST/EST)" },
+      overlay: { countryCode: "us", label: "USA (PST / EST)" },
     },
     {
       lat: 51.5074,
@@ -48,12 +43,12 @@ export const ContactSection = () => {
     {
       lat: -33.8688,
       lng: 151.2093,
-      overlay: { countryCode: "au", label: "Australia (Sydney / AEST)" },
+      overlay: { countryCode: "au", label: "Australia (AEST)" },
     },
     {
       lat: 43.6532,
       lng: -79.3832,
-      overlay: { countryCode: "ca", label: "Canada (Toronto / EST)" },
+      overlay: { countryCode: "ca", label: "Canada (EST / PST)" },
     },
     {
       lat: 1.3521,
@@ -68,8 +63,8 @@ export const ContactSection = () => {
 
     const rect = e.currentTarget.getBoundingClientRect();
     confetti({
-      particleCount: 40,
-      spread: 60,
+      particleCount: 30,
+      spread: 50,
       origin: {
         x: (rect.left + rect.width / 2) / window.innerWidth,
         y: (rect.top + rect.height / 2) / window.innerHeight,
@@ -120,22 +115,22 @@ export const ContactSection = () => {
           </p>
         </motion.div>
 
-        {/* ═══ DOTTED WORLD MAP WORK AVAILABILITY STAGE ═══ */}
+        {/* ═══ 1. BIG IMPRESSIVE DOTTED WORLD MAP SHOWCASE ═══ */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.7, ease: smoothEase }}
-          className="p-6 sm:p-8 rounded-2xl bg-zinc-900/40 border border-white/10 relative overflow-hidden backdrop-blur-md shadow-2xl space-y-6"
+          className="p-6 sm:p-10 rounded-3xl bg-zinc-900/40 border border-white/10 relative overflow-hidden backdrop-blur-md shadow-2xl space-y-6"
         >
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-4">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-white/10 pb-5">
             <div className="space-y-1">
               <div className="flex items-center gap-2 text-white font-bold text-base sm:text-lg">
                 <Globe2 className="w-5 h-5 text-blue-400" />
-                <span>Global Work Availability &amp; Preferred Regions</span>
+                <span>Global Mobility &amp; Engineering Hubs</span>
               </div>
               <p className="text-xs text-zinc-400 font-sans">
-                Actively seeking and open to remote worldwide or on-site engineering roles in India, USA, and the UK.
+                Open to remote worldwide or on-site engineering roles across India, USA, UK, Australia, Canada, and Singapore.
               </p>
             </div>
 
@@ -159,92 +154,87 @@ export const ContactSection = () => {
             </div>
           </div>
 
-          {/* Dotted Map Canvas with Radial Fade */}
-          <div className="relative w-full [mask-image:radial-gradient(ellipse_65%_65%_at_50%_50%,#000_65%,transparent_100%)]">
+          {/* Full-Scale Dotted Map with Soft Radial Fade */}
+          <div className="relative w-full [mask-image:radial-gradient(ellipse_75%_75%_at_50%_50%,#000_75%,transparent_100%)]">
             <DottedMap markers={mapMarkers} />
           </div>
         </motion.div>
 
-        {/* 2-Column Grid: Coordinates Left, Form Right */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* Left Column: Direct Coordinates */}
+        {/* ═══ 2. MAIN CONTACT TRANSMISSION (SUBTLE METADATA LEFT, PROMINENT FORM RIGHT) ═══ */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          {/* Left Column: Subtle, De-emphasized Contact Metadata */}
           <motion.div
-            initial={{ opacity: 0, x: -60 }}
+            initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.7, ease: smoothEase }}
-            className="lg:col-span-5 space-y-8"
+            transition={{ duration: 0.65, ease: smoothEase }}
+            className="lg:col-span-4 space-y-6 pt-2"
           >
-            {/* Quick 1-Click Copy Card */}
-            <div className="p-6 sm:p-8 rounded-2xl bg-zinc-900/70 border border-white/15 space-y-5 backdrop-blur-md shadow-xl">
-              <div className="text-xs font-mono text-zinc-400 uppercase tracking-wider">
-                Primary Direct Channel
-              </div>
+            <div className="space-y-2">
+              <h4 className="text-sm font-semibold text-white tracking-tight">Direct Inquiries</h4>
+              <p className="text-xs text-zinc-400 font-sans leading-relaxed">
+                Prefer direct communication? Feel free to reach out via email or connect across networks.
+              </p>
+            </div>
 
-              <div className="space-y-3">
-                <div className="font-mono text-sm sm:text-base text-white font-semibold break-all bg-zinc-950 p-3.5 rounded-xl border border-white/10 flex items-center justify-between">
-                  <span>{portfolioData.personal.email}</span>
-                </div>
-
+            {/* Clean Monospace Email Line */}
+            <div className="space-y-1.5 text-xs font-mono">
+              <div className="text-[11px] text-zinc-500 uppercase tracking-wider">Email Address</div>
+              <div className="flex items-center gap-2">
+                <a
+                  href={`mailto:${portfolioData.personal.email}`}
+                  className="text-zinc-300 hover:text-white transition-colors underline decoration-white/20 underline-offset-4"
+                >
+                  {portfolioData.personal.email}
+                </a>
                 <button
                   onClick={handleCopyEmail}
-                  className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-white/5 border border-white/10 text-zinc-300 font-medium text-xs sm:text-sm hover:bg-white/10 hover:text-white transition-all shadow-md active:scale-98 cursor-pointer"
+                  title="Copy email to clipboard"
+                  className="p-1 rounded text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors cursor-pointer"
                 >
-                  {copied ? (
-                    <>
-                      <Check className="w-4 h-4 text-emerald-400" />
-                      <span className="text-emerald-400 font-semibold font-mono">Email Address Copied!</span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="w-4 h-4 text-zinc-400" />
-                      <span>Copy Email to Clipboard</span>
-                    </>
-                  )}
+                  {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
                 </button>
               </div>
             </div>
 
-            {/* Direct Social Shortcuts */}
-            <div className="p-6 sm:p-8 rounded-2xl bg-zinc-900/40 border border-white/10 space-y-4 font-mono text-xs">
-              <div className="text-xs font-mono text-zinc-400 uppercase tracking-wider">
-                Network Coordinates
-              </div>
-              <div className="flex flex-wrap gap-2.5">
+            {/* Subtle Social Links */}
+            <div className="space-y-2 text-xs font-mono pt-3 border-t border-white/10">
+              <div className="text-[11px] text-zinc-500 uppercase tracking-wider">Network Coordinates</div>
+              <div className="flex flex-wrap gap-x-4 gap-y-2 text-xs">
                 {portfolioData.socials.map((social) => (
                   <a
                     key={social.name}
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-zinc-950/80 border border-white/10 text-xs font-mono text-zinc-300 hover:text-white hover:border-white/25 transition-all"
+                    className="text-zinc-400 hover:text-white transition-colors inline-flex items-center gap-0.5"
                   >
                     <span>{social.name}</span>
-                    <ArrowUpRight className="w-3 h-3 text-zinc-500" />
+                    <ArrowUpRight className="w-3 h-3 text-zinc-600" />
                   </a>
                 ))}
               </div>
             </div>
           </motion.div>
 
-          {/* Right Column: Inquiry Sheet */}
+          {/* Right Column: Prominent, High-Readability Inquiry Sheet */}
           <motion.div
-            initial={{ opacity: 0, x: 60 }}
+            initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.7, delay: 0.1, ease: smoothEase }}
-            className="lg:col-span-7 p-6 sm:p-10 rounded-2xl bg-zinc-900/80 border border-white/15 backdrop-blur-md shadow-2xl space-y-6"
+            transition={{ duration: 0.65, delay: 0.1, ease: smoothEase }}
+            className="lg:col-span-8 p-6 sm:p-9 rounded-2xl bg-zinc-900/80 border border-white/15 backdrop-blur-md shadow-2xl space-y-6"
           >
-            <div className="space-y-1">
-              <h3 className="text-xl font-bold text-white tracking-tight">
+            <div className="space-y-1 border-b border-white/10 pb-4">
+              <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
                 Initiate Project Transmission
               </h3>
               <p className="text-xs font-mono text-zinc-400">
-                Transmits directly to tarunyaprogrammer@gmail.com
+                Direct route to {portfolioData.personal.email}
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
                   <label className="text-xs font-mono text-zinc-300 font-medium">
