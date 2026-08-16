@@ -1,28 +1,43 @@
 <!doctype html>
-<html lang="en" class="dark scroll-smooth">
+<html lang="en" class="dark scroll-smooth" prefix="og: https://ogp.me/ns#">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
 
-    <!-- ═══ Primary SEO ═══ -->
+    <!-- ═══ Primary SEO & Entity Authority ═══ -->
     <title>Tarunya Kesharwani — Full-Stack Engineer & Systems Architect</title>
     <meta
       name="description"
-      content="Tarunya Kesharwani builds high-performance web systems, autonomous agentic workflows, and distributed backends. GSoC '26 Developer at C2SI."
+      content="Official portfolio of Tarunya Kesharwani (TarunyaProgrammer) — Systems Architect & GSoC '26 Developer at C2SI. Building high-performance web systems, distributed infrastructure, and autonomous agentic workflows."
     />
     <meta
       name="keywords"
-      content="Tarunya Kesharwani, TarunyaProgrammer, Systems Architect, Full-Stack Developer, GSoC 2026, C2SI, React, TypeScript, Node.js, AI Engineering, Minimalist Portfolio"
+      content="Tarunya Kesharwani, Tarunya, TarunyaProgrammer, tarunyakesh, Tarunya Kesharwani Portfolio, Tarunya Kesharwani GitHub, Systems Architect, Full-Stack Developer, GSoC 2026, C2SI, React Developer, TypeScript Engineer, Node.js, Cabin MaintainerOS, Vyay, WebiU, Minimalist Portfolio"
     />
     <meta name="author" content="Tarunya Kesharwani" />
-    <meta name="robots" content="index, follow" />
+    <meta name="creator" content="Tarunya Kesharwani" />
+    <meta name="publisher" content="Tarunya Kesharwani" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="format-detection" content="telephone=no, address=no, email=no" />
     <link rel="canonical" href="https://tarunyaportfolio.vercel.app/" />
 
-    <!-- ═══ Favicons ═══ -->
+    <!-- ═══ Favicons & Web App Manifest ═══ -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- ═══ Clean 3-Font System (Primary: Inter, Secondary: Plus Jakarta Sans, Special: Bonheur Royale) ═══ -->
+    <!-- ═══ Mobile & PWA Theme Controls ═══ -->
+    <meta name="theme-color" content="#09090b" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Tarunya Kesharwani" />
+    <meta name="application-name" content="Tarunya Kesharwani Portfolio" />
+
+    <!-- ═══ Performance Font Preconnects (Inter, Plus Jakarta Sans, Bonheur Royale) ═══ -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -30,12 +45,9 @@
       rel="stylesheet"
     />
 
-    <!-- ═══ Theme Colors ═══ -->
-    <meta name="theme-color" content="#09090b" />
-    <meta name="color-scheme" content="dark" />
-
-    <!-- ═══ Open Graph ═══ -->
-    <meta property="og:type" content="website" />
+    <!-- ═══ Open Graph / Facebook / LinkedIn / Discord ═══ -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="Tarunya Kesharwani — Systems Architect" />
     <meta
       property="og:title"
@@ -43,11 +55,21 @@
     />
     <meta
       property="og:description"
-      content="Crafting high-throughput web applications, autonomous agentic workflows, and distributed backend systems. GSoC 2026 Developer."
+      content="Official portfolio of Tarunya Kesharwani (TarunyaProgrammer) — Systems Architect & GSoC '26 Developer at C2SI. Building high-performance web systems and autonomous agentic workflows."
     />
     <meta property="og:url" content="https://tarunyaportfolio.vercel.app/" />
+    <meta property="og:image" content="https://tarunyaportfolio.vercel.app/og-image.png" />
+    <meta property="og:image:secure_url" content="https://tarunyaportfolio.vercel.app/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Tarunya Kesharwani — Full-Stack Engineer & Systems Architect" />
+    <meta property="profile:first_name" content="Tarunya" />
+    <meta property="profile:last_name" content="Kesharwani" />
+    <meta property="profile:username" content="TarunyaProgrammer" />
+    <meta property="profile:gender" content="male" />
 
-    <!-- ═══ Twitter Card ═══ -->
+    <!-- ═══ Twitter / X Summary Large Image Card ═══ -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@TarunyaKesh" />
     <meta name="twitter:creator" content="@TarunyaKesh" />
@@ -57,8 +79,10 @@
     />
     <meta
       name="twitter:description"
-      content="Crafting high-throughput web applications, autonomous agentic workflows, and distributed backend systems."
+      content="Official portfolio of Tarunya Kesharwani (TarunyaProgrammer) — Systems Architect & GSoC '26 Developer at C2SI."
     />
+    <meta name="twitter:image" content="https://tarunyaportfolio.vercel.app/og-image.png" />
+    <meta name="twitter:image:alt" content="Tarunya Kesharwani Portfolio Card" />
 
     <!-- ═══ Google Search Console Verification ═══ -->
     <meta
@@ -66,34 +90,196 @@
       content="DxTCGccg6BFriko5c1X_2E3LUwTSmLSkc6-jv_0ydvw"
     />
 
-    <!-- ═══ Structured Data (JSON-LD) ═══ -->
+    <!-- ═══ Comprehensive Schema.org Knowledge Graph (JSON-LD) ═══ -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "ProfilePage",
-        "dateCreated": "2025-01-01",
-        "dateModified": "2026-08-16",
-        "mainEntity": {
-          "@type": "Person",
-          "name": "Tarunya Kesharwani",
-          "alternateName": "TarunyaProgrammer",
-          "url": "https://tarunyaportfolio.vercel.app",
-          "jobTitle": "Full-Stack Engineer & Systems Architect",
-          "description": "Crafts high-throughput web applications, autonomous agentic workflows, and production-ready digital tools.",
-          "email": "mailto:tarunyaprogrammer@gmail.com",
-          "sameAs": [
-            "https://github.com/TarunyaProgrammer",
-            "https://www.linkedin.com/in/tarunyakesharwani/",
-            "https://x.com/TarunyaKesh",
-            "https://dev.to/tarunya",
-            "https://medium.com/@tarunyakesh"
-          ]
-        }
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://tarunyaportfolio.vercel.app/#website",
+            "url": "https://tarunyaportfolio.vercel.app/",
+            "name": "Tarunya Kesharwani Portfolio",
+            "headline": "Tarunya Kesharwani — Full-Stack Engineer & Systems Architect",
+            "description": "Personal engineering portfolio of Tarunya Kesharwani — Systems Architect & Full-Stack Developer.",
+            "publisher": {
+              "@id": "https://tarunyaportfolio.vercel.app/#person"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Person",
+            "@id": "https://tarunyaportfolio.vercel.app/#person",
+            "name": "Tarunya Kesharwani",
+            "givenName": "Tarunya",
+            "familyName": "Kesharwani",
+            "alternateName": ["TarunyaProgrammer", "Tarunya", "tarunyakesh"],
+            "url": "https://tarunyaportfolio.vercel.app",
+            "image": "https://tarunyaportfolio.vercel.app/og-image.png",
+            "jobTitle": "Systems Architect & Full-Stack Engineer",
+            "gender": "https://schema.org/Male",
+            "nationality": {
+              "@type": "Country",
+              "name": "India"
+            },
+            "worksFor": {
+              "@type": "Organization",
+              "name": "Center for Cyber Security & Intelligence (C2SI)",
+              "url": "https://c2si.org"
+            },
+            "alumniOf": {
+              "@type": "EducationalOrganization",
+              "name": "Computer Science & Artificial Intelligence"
+            },
+            "hasOccupation": {
+              "@type": "Occupation",
+              "name": "Full-Stack Software Engineer & Systems Architect",
+              "skills": "React, TypeScript, Node.js, Distributed Systems, AI Agents, Electron, Cloudflare Workers, PostgreSQL, SQLite, Supabase"
+            },
+            "description": "Tarunya Kesharwani builds high-throughput web applications, autonomous agentic workflows, and distributed backend infrastructure. GSoC 2026 Developer at C2SI.",
+            "email": "mailto:tarunyaprogrammer@gmail.com",
+            "sameAs": [
+              "https://github.com/TarunyaProgrammer",
+              "https://www.linkedin.com/in/tarunyakesharwani/",
+              "https://x.com/TarunyaKesh",
+              "https://dev.to/tarunya",
+              "https://medium.com/@tarunyakesh",
+              "https://tarunyaportfolio.vercel.app"
+            ],
+            "knowsAbout": [
+              "Systems Architecture",
+              "Distributed Computing",
+              "Full-Stack Development",
+              "Artificial Intelligence",
+              "Autonomous AI Agents",
+              "Open Source Software Engineering",
+              "React",
+              "TypeScript",
+              "Node.js",
+              "Electron",
+              "SQLite",
+              "Cloudflare Workers",
+              "Supabase",
+              "PostgreSQL",
+              "Docker",
+              "Tailwind CSS"
+            ]
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://tarunyaportfolio.vercel.app/#breadcrumbs",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://tarunyaportfolio.vercel.app/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Flagship Engineering Showcase",
+                "item": "https://tarunyaportfolio.vercel.app/#projects"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Engineering Philosophy & Credentials",
+                "item": "https://tarunyaportfolio.vercel.app/#about"
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "name": "Core Tech & Production Capabilities",
+                "item": "https://tarunyaportfolio.vercel.app/#tech"
+              },
+              {
+                "@type": "ListItem",
+                "position": 5,
+                "name": "Production Experience",
+                "item": "https://tarunyaportfolio.vercel.app/#experience"
+              },
+              {
+                "@type": "ListItem",
+                "position": 6,
+                "name": "Technical Writing & Research",
+                "item": "https://tarunyaportfolio.vercel.app/#writing"
+              },
+              {
+                "@type": "ListItem",
+                "position": 7,
+                "name": "Global Mobility & Contact",
+                "item": "https://tarunyaportfolio.vercel.app/#contact"
+              }
+            ]
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "Cabin — MaintainerOS",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Cross-platform (Electron)",
+            "url": "https://github.com/TarunyaProgrammer/Cabin-MaintainerOS",
+            "author": {
+              "@id": "https://tarunyaportfolio.vercel.app/#person"
+            },
+            "description": "Local-first operating system for open-source code reviews automating multi-repo PR context collection, local git checkouts, automated DCO/CI validation, and streaming AI reviews."
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "Vyay — AI Cost Engine",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "Web Application",
+            "url": "https://github.com/TarunyaProgrammer",
+            "author": {
+              "@id": "https://tarunyaportfolio.vercel.app/#person"
+            },
+            "description": "Deterministic AI infrastructure cost auditor and architectural intelligence platform built with React, TypeScript, Supabase, and Gemini 2.5."
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "GithubAnalyzer & WebiU",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Web / Cloudflare Edge",
+            "url": "https://github.com/TarunyaProgrammer/GithubAnalyzer-PreGsocTask",
+            "author": {
+              "@id": "https://tarunyaportfolio.vercel.app/#person"
+            },
+            "description": "Edge-cached developer telemetry analytics built for C2SI using Hono on Cloudflare Workers, cutting API overhead by 60%."
+          }
+        ]
       }
     </script>
   </head>
   <body class="bg-[#09090b] text-[#f4f4f5] antialiased selection:bg-blue-500 selection:text-white min-h-screen overflow-x-hidden">
-    <div id="root"></div>
+    <!-- Accessible Screen Reader Skip Link -->
+    <a
+      href="#hero"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:rounded-lg focus:shadow-xl font-mono text-xs"
+    >
+      Skip to main content
+    </a>
+
+    <!-- ═══ Search Engine Prerender / React Hydration Root ═══ -->
+    <div id="root">
+      <header style="opacity:0; position:absolute; pointer-events:none; height:0; overflow:hidden;">
+        <h1>Tarunya Kesharwani — Full-Stack Engineer & Systems Architect</h1>
+        <p>
+          Tarunya Kesharwani (TarunyaProgrammer) is a software engineer, systems architect, and GSoC '26 Developer at C2SI building high-performance web systems, distributed backend infrastructure, and autonomous agentic workflows.
+        </p>
+        <nav aria-label="Main Navigation">
+          <ul>
+            <li><a href="#hero">Hero</a></li>
+            <li><a href="#about">About & Credentials</a></li>
+            <li><a href="#tech">Tech Stack</a></li>
+            <li><a href="#projects">Flagship Projects</a></li>
+            <li><a href="#experience">Experience Timeline</a></li>
+            <li><a href="#writing">Publications</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

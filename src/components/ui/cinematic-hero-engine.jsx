@@ -209,7 +209,9 @@ export const CinematicHeroEngine = forwardRef(
               />
               <div className="absolute inset-0 bg-gradient-to-b from-[#050507]/50 via-transparent to-[#050507]" />
               <div className="absolute inset-0 flex items-center justify-center">
-                <h1
+                <div
+                  role="heading"
+                  aria-level="2"
                   className="font-black text-6xl sm:text-8xl lg:text-9xl leading-[0.88] tracking-[-0.05em] text-[#F5F5F2] text-center"
                   style={{
                     transform: `scale(${0.96 + (time - 1.2) * 0.08})`,
@@ -220,7 +222,7 @@ export const CinematicHeroEngine = forwardRef(
                   <span className="font-extrabold tracking-[-0.03em] text-[#C8C9CC]">
                     HERE.
                   </span>
-                </h1>
+                </div>
               </div>
               <div className="absolute bottom-12 left-8 font-mono text-[10px] tracking-[0.25em] text-white/40">
                 GLASS / REFLECTION / DEPTH

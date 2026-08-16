@@ -1,0 +1,5 @@
+# Robots.txt for Tarunya Kesharwani Portfolio
+User-agent: *
+Allow: /
+
+Sitemap: https://tarunyaportfolio.vercel.app/sitemap.xml

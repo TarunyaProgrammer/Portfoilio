@@ -1,0 +1,23 @@
+{
+  "name": "Tarunya Kesharwani — Full-Stack Engineer & Systems Architect",
+  "short_name": "Tarunya",
+  "description": "Systems Architect & Full-Stack Developer. GSoC '26 Developer at C2SI.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#09090b",
+  "theme_color": "#09090b",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/og-image.png",
+      "sizes": "1200x630",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+Contact: mailto:tarunyaprogrammer@gmail.com
+Preferred-Languages: en
+Canonical: https://tarunyaportfolio.vercel.app/.well-known/security.txt
+Policy: https://github.com/TarunyaProgrammer
+Expires: 2027-12-31T23:59:59.000Z
