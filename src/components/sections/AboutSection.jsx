@@ -3,17 +3,30 @@ import { portfolioData } from "@/data/portfolioData";
 import { SpotlightCard } from "@/components/ui/spotlight-card";
 import { Highlighter } from "@/components/ui/highlighter";
 import { ShieldCheck, Zap, Code2, Award, ExternalLink } from "lucide-react";
+import { motion } from "framer-motion";
 
 export const AboutSection = () => {
+  const iconMap = {
+    Zap: Zap,
+    ShieldCheck: ShieldCheck,
+    Code2: Code2,
+  };
+
+  const smoothEase = [0.22, 1, 0.36, 1];
+
   return (
-    <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative">
+    <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden">
       <div className="max-w-7xl mx-auto space-y-16">
-        {/* ═══ TELEMETRY METRIC STRIP AT TOP OF ABOUT ═══ */}
+        {/* ═══ TELEMETRY METRIC STRIP (FLOWS IN WITH STAGGER) ═══ */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 font-mono">
-          {portfolioData.metrics.map((metric) => (
-            <div
+          {portfolioData.metrics.map((metric, idx) => (
+            <motion.div
               key={metric.label}
-              className="p-4 sm:p-5 rounded-2xl bg-zinc-900/60 border border-white/10 backdrop-blur-sm flex flex-col items-center text-center shadow-lg"
+              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: idx * 0.1, ease: smoothEase }}
+              className="p-4 sm:p-5 rounded-2xl bg-zinc-900/60 border border-white/10 backdrop-blur-sm flex flex-col items-center text-center shadow-lg hover:border-white/20 transition-colors"
             >
               <span className="text-2xl sm:text-4xl font-bold text-white tracking-tight">
                 {metric.value}
@@ -24,12 +37,18 @@ export const AboutSection = () => {
               <span className="text-[10px] text-emerald-400 font-mono mt-1 font-semibold uppercase tracking-wider">
                 {metric.highlight}
               </span>
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* Section Header */}
-        <div className="space-y-3">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6, ease: smoothEase }}
+          className="space-y-3"
+        >
           <div className="text-xs font-mono text-zinc-500 uppercase tracking-widest">
             01 // PROFILE &amp; PHILOSOPHY
           </div>
@@ -39,13 +58,19 @@ export const AboutSection = () => {
           <p className="text-zinc-400 text-base sm:text-lg max-w-2xl font-normal leading-relaxed">
             I specialize in full-stack architecture, real-time event-driven systems, and deterministic AI applications that thrive under production load.
           </p>
-        </div>
+        </motion.div>
 
-        {/* 2-Column Grid: Bio Left, Philosophy Cards Right */}
+        {/* 2-Column Grid: Bio Left (Flows in from left), Philosophy Cards Right (Flows in from right) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left Column: Narrative & Credentials */}
-          <div className="lg:col-span-5 space-y-6">
-            <div className="p-6 sm:p-8 rounded-2xl bg-zinc-900/60 border border-white/10 space-y-5 text-zinc-300 leading-relaxed font-normal text-sm sm:text-base">
+          {/* Left Column: Bio Flows in from Left */}
+          <motion.div
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.7, ease: smoothEase }}
+            className="lg:col-span-5 space-y-6"
+          >
+            <div className="p-6 sm:p-8 rounded-2xl bg-zinc-900/60 border border-white/10 space-y-5 text-zinc-300 leading-relaxed font-normal text-sm sm:text-base shadow-xl">
               <p>
                 Currently developing as a{" "}
                 <Highlighter action="highlight" color="rgba(59, 130, 246, 0.25)">
@@ -59,83 +84,57 @@ export const AboutSection = () => {
               <p>
                 I thrive in the messy reality of engineering—unclear edge cases, evolving data pipelines, and building software that feels{" "}
                 <Highlighter action="underline" color="#60a5fa">
-                  calm, fast, and trustworthy
-                </Highlighter>
-                .
+                  deterministic, instant, and impossible to break
+                </Highlighter>.
               </p>
-
-              <div className="pt-4 border-t border-white/10 flex flex-wrap gap-4 font-mono text-xs">
-                <a
-                  href="https://github.com/TarunyaProgrammer"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-zinc-300 hover:text-white transition-colors"
-                >
-                  <span>GitHub</span>
-                  <ExternalLink className="w-3.5 h-3.5 text-zinc-500" />
-                </a>
-                <span className="text-zinc-600">&bull;</span>
-                <a
-                  href="https://www.linkedin.com/in/tarunyakesharwani/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-zinc-300 hover:text-blue-400 transition-colors"
-                >
-                  <span>LinkedIn</span>
-                  <ExternalLink className="w-3.5 h-3.5 text-zinc-500" />
-                </a>
-                <span className="text-zinc-600">&bull;</span>
-                <a
-                  href="https://x.com/TarunyaKesh"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-zinc-300 hover:text-white transition-colors"
-                >
-                  <span>Twitter / X</span>
-                  <ExternalLink className="w-3.5 h-3.5 text-zinc-500" />
-                </a>
-              </div>
             </div>
 
-            {/* Quick Merit Badge */}
-            <div className="p-4 rounded-xl bg-emerald-950/20 border border-emerald-500/20 flex items-center gap-3">
-              <Award className="w-5 h-5 text-emerald-400 shrink-0" />
-              <div className="text-xs text-emerald-300">
-                <span className="font-semibold text-emerald-200">GSoC 2026 Developer</span> &bull; 93%ile JEE Mains &bull; 94.6% CBSE Boards
+            {/* Quick Education Card */}
+            <div className="p-5 rounded-2xl bg-zinc-900/40 border border-white/10 space-y-2 font-mono text-xs">
+              <div className="flex items-center justify-between text-zinc-400">
+                <span className="text-white font-semibold flex items-center gap-2">
+                  <Award className="w-4 h-4 text-amber-400" />
+                  Newton School of Technology
+                </span>
+                <span className="text-emerald-400 font-bold">8.83 CGPA</span>
               </div>
+              <p className="text-zinc-400 font-sans text-xs">
+                B.Tech in Computer Science &amp; Artificial Intelligence (2024 &ndash; 2028)
+              </p>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Right Column: Work Philosophy Cards */}
+          {/* Right Column: Philosophy Cards Flow in from Right */}
           <div className="lg:col-span-7 space-y-4">
-            {portfolioData.personal.philosophy.map((item, index) => {
-              const icons = [Code2, ShieldCheck, Zap];
-              const Icon = icons[index % icons.length];
+            {(portfolioData.personal?.philosophy || portfolioData.philosophy || []).map((item, index) => {
+              const Icon = iconMap[item.icon] || Zap;
               return (
-                <SpotlightCard
+                <motion.div
                   key={item.title}
-                  spotlightColor="rgba(59, 130, 246, 0.12)"
-                  className="p-6 sm:p-7 border border-white/10 hover:border-white/20"
+                  initial={{ opacity: 0, x: 60 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.65, delay: index * 0.12, ease: smoothEase }}
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="p-2.5 rounded-xl bg-zinc-800/80 border border-white/10 text-blue-400 shrink-0">
-                      <Icon className="w-5 h-5" />
-                    </div>
-                    <div className="space-y-1.5">
-                      <div className="flex items-center justify-between">
-                        <h3 className="font-semibold text-base sm:text-lg text-white">
+                  <SpotlightCard
+                    spotlightColor="rgba(59, 130, 246, 0.12)"
+                    className="p-6 sm:p-7 border border-white/10 hover:border-white/20 bg-zinc-900/60 backdrop-blur-md"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="p-2.5 rounded-xl bg-zinc-800 border border-white/10 text-white shrink-0 mt-0.5">
+                        <Icon className="w-5 h-5 text-blue-400" />
+                      </div>
+                      <div className="space-y-1.5">
+                        <h3 className="font-semibold text-base sm:text-lg text-white tracking-tight">
                           {item.title}
                         </h3>
-                        <span className="text-[11px] font-mono text-zinc-500">
-                          0{index + 1}
-                        </span>
+                        <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed font-normal">
+                          {item.desc}
+                        </p>
                       </div>
-                      <p className="text-sm text-zinc-400 leading-relaxed font-normal">
-                        {item.desc}
-                      </p>
                     </div>
-                  </div>
-                </SpotlightCard>
+                  </SpotlightCard>
+                </motion.div>
               );
             })}
           </div>

@@ -9,12 +9,13 @@ import {
   Database,
   Code2,
   Check,
-  Shield,
-  Zap,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 export const TechStackSection = () => {
+  const smoothEase = [0.22, 1, 0.36, 1];
+
   const backendEvents = [
     { title: "Hono Edge Worker", status: "< 5ms", tag: "Cloudflare" },
     { title: "Webhook Dispatcher", status: "Event-Driven", tag: "GSoC '26" },
@@ -162,10 +163,16 @@ export const TechStackSection = () => {
   ];
 
   return (
-    <section id="skills" className="py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative">
+    <section id="skills" className="py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden">
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6, ease: smoothEase }}
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6"
+        >
           <div className="space-y-2">
             <div className="text-xs font-mono text-zinc-500 uppercase tracking-widest">
               02 // CAPABILITIES &amp; ARCHITECTURE
@@ -181,17 +188,32 @@ export const TechStackSection = () => {
           <div className="font-mono text-xs text-zinc-400 px-3.5 py-1.5 rounded-full bg-zinc-900 border border-white/10 self-start md:self-auto">
             ARCHITECTURE: <span className="text-zinc-200 font-semibold">PRODUCTION-VERIFIED</span>
           </div>
-        </div>
+        </motion.div>
 
-        {/* ═══ MAGIC UI BENTO GRID ═══ */}
+        {/* ═══ MAGIC UI BENTO GRID (FLOWS IN WITH STAGGER) ═══ */}
         <BentoGrid className="grid-cols-3 gap-6">
           {bentoFeatures.map((feature, idx) => (
-            <BentoCard key={idx} {...feature} />
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 50, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.65, delay: idx * 0.12, ease: smoothEase }}
+              className={feature.className}
+            >
+              <BentoCard {...feature} className="h-full" />
+            </motion.div>
           ))}
         </BentoGrid>
 
-        {/* Continuous Magic UI Marquee Ticker */}
-        <div className="relative overflow-hidden rounded-2xl bg-zinc-950/40 border border-white/10 py-3 mt-6">
+        {/* Continuous Magic UI Marquee Ticker (Flows in from bottom) */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.6, delay: 0.3, ease: smoothEase }}
+          className="relative overflow-hidden rounded-2xl bg-zinc-950/40 border border-white/10 py-3 mt-6"
+        >
           <Marquee pauseOnHover className="[--duration:35s]">
             {portfolioData.skills.flatMap((s) => s.items).map((skill, i) => (
               <div
@@ -203,7 +225,7 @@ export const TechStackSection = () => {
               </div>
             ))}
           </Marquee>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

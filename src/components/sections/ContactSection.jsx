@@ -1,32 +1,34 @@
 import React, { useState } from "react";
 import { portfolioData } from "@/data/portfolioData";
-import confetti from "canvas-confetti";
 import {
-  Copy,
-  Check,
-  Send,
   Mail,
-  ArrowUpRight,
+  Send,
+  Check,
+  Copy,
+  ExternalLink,
+  MapPin,
+  Calendar,
   Sparkles,
-  Phone,
-  User,
+  ArrowUpRight,
 } from "lucide-react";
+import confetti from "canvas-confetti";
+import { motion } from "framer-motion";
 
 export const ContactSection = () => {
-  const [copied, setCopied] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    service: "Startup MVP & Landing Pages",
+    service: "Full-Time / Contract Engineering",
     message: "",
   });
   const [status, setStatus] = useState("idle");
+  const [copied, setCopied] = useState(false);
+  const smoothEase = [0.22, 1, 0.36, 1];
 
   const handleCopyEmail = (e) => {
     navigator.clipboard.writeText(portfolioData.personal.email);
     setCopied(true);
 
-    // Trigger subtle celebratory confetti burst
     const rect = e.currentTarget.getBoundingClientRect();
     confetti({
       particleCount: 40,
@@ -49,7 +51,6 @@ export const ContactSection = () => {
     e.preventDefault();
     setStatus("submitting");
 
-    // Client-side instant mailto trigger with pre-filled content
     const subject = encodeURIComponent(`🚀 Inquiry: ${formData.service} | ${formData.name}`);
     const body = encodeURIComponent(
       `Name: ${formData.name}\nEmail: ${formData.email}\nSelected Service: ${formData.service}\n\nProject Overview:\n${formData.message}`
@@ -61,10 +62,16 @@ export const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative">
+    <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden">
       <div className="max-w-7xl mx-auto space-y-16">
         {/* Section Header */}
-        <div className="space-y-2">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6, ease: smoothEase }}
+          className="space-y-2"
+        >
           <div className="text-xs font-mono text-zinc-500 uppercase tracking-widest">
             06 // TRANSMISSION &amp; INQUIRY
           </div>
@@ -74,12 +81,18 @@ export const ContactSection = () => {
           <p className="text-zinc-400 text-base sm:text-lg max-w-2xl font-normal leading-relaxed">
             Currently accepting new high-impact software engineering roles, startup MVPs, and architecture consulting inquiries.
           </p>
-        </div>
+        </motion.div>
 
-        {/* 2-Column Grid: Coordinates Left, Form Right */}
+        {/* 2-Column Grid: Coordinates Left (Flows in from left), Form Right (Flows in from right) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left Column: Direct Coordinates */}
-          <div className="lg:col-span-5 space-y-8">
+          <motion.div
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.7, ease: smoothEase }}
+            className="lg:col-span-5 space-y-8"
+          >
             {/* Quick 1-Click Copy Card */}
             <div className="p-6 sm:p-8 rounded-2xl bg-zinc-900/70 border border-white/15 space-y-5 backdrop-blur-md shadow-xl">
               <div className="text-xs font-mono text-zinc-400 uppercase tracking-wider">
@@ -93,30 +106,25 @@ export const ContactSection = () => {
 
                 <button
                   onClick={handleCopyEmail}
-                  className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-blue-600/20 border border-blue-500/40 text-blue-400 font-medium text-xs sm:text-sm hover:bg-blue-600/30 hover:text-white transition-all shadow-md active:scale-98"
+                  className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-white/5 border border-white/10 text-zinc-300 font-medium text-xs sm:text-sm hover:bg-white/10 hover:text-white transition-all shadow-md active:scale-98 cursor-pointer"
                 >
                   {copied ? (
                     <>
                       <Check className="w-4 h-4 text-emerald-400" />
-                      <span className="text-emerald-400 font-semibold">Email Copied to Clipboard!</span>
+                      <span className="text-emerald-400 font-semibold font-mono">Email Address Copied!</span>
                     </>
                   ) : (
                     <>
-                      <Copy className="w-4 h-4" />
-                      <span>Copy Email Address</span>
+                      <Copy className="w-4 h-4 text-zinc-400" />
+                      <span>Copy Email to Clipboard</span>
                     </>
                   )}
                 </button>
               </div>
-
-              <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-zinc-400">
-                <span>Response SLA: &lt; 24 Hours</span>
-                <span className="text-emerald-400 font-medium">&bull; Inbox Active</span>
-              </div>
             </div>
 
-            {/* Social Coordinates Strip */}
-            <div className="p-6 rounded-2xl bg-zinc-900/50 border border-white/10 space-y-4">
+            {/* Direct Social Shortcuts */}
+            <div className="p-6 sm:p-8 rounded-2xl bg-zinc-900/40 border border-white/10 space-y-4 font-mono text-xs">
               <div className="text-xs font-mono text-zinc-400 uppercase tracking-wider">
                 Network Coordinates
               </div>
@@ -135,10 +143,16 @@ export const ContactSection = () => {
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column: Inquiry Sheet */}
-          <div className="lg:col-span-7 p-6 sm:p-10 rounded-2xl bg-zinc-900/80 border border-white/15 backdrop-blur-md shadow-2xl space-y-6">
+          <motion.div
+            initial={{ opacity: 0, x: 60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.7, delay: 0.1, ease: smoothEase }}
+            className="lg:col-span-7 p-6 sm:p-10 rounded-2xl bg-zinc-900/80 border border-white/15 backdrop-blur-md shadow-2xl space-y-6"
+          >
             <div className="space-y-1">
               <h3 className="text-xl font-bold text-white tracking-tight">
                 Initiate Project Transmission
@@ -161,7 +175,7 @@ export const ContactSection = () => {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="e.g. Sarah Connor / Apex Corp"
-                    className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-white/10 text-sm text-white placeholder:text-zinc-600 focus:outline-none focus:border-blue-500 transition-colors font-sans"
+                    className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-white/10 text-sm text-white placeholder:text-zinc-600 focus:outline-none focus:border-white/30 transition-colors font-sans"
                   />
                 </div>
 
@@ -176,7 +190,7 @@ export const ContactSection = () => {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="sarah@example.com"
-                    className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-white/10 text-sm text-white placeholder:text-zinc-600 focus:outline-none focus:border-blue-500 transition-colors font-sans"
+                    className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-white/10 text-sm text-white placeholder:text-zinc-600 focus:outline-none focus:border-white/30 transition-colors font-sans"
                   />
                 </div>
               </div>
@@ -189,7 +203,7 @@ export const ContactSection = () => {
                   name="service"
                   value={formData.service}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-white/10 text-sm text-white focus:outline-none focus:border-blue-500 transition-colors font-sans cursor-pointer"
+                  className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-white/10 text-sm text-white focus:outline-none focus:border-white/30 transition-colors font-sans cursor-pointer"
                 >
                   <option value="Full-Time / Contract Engineering">Full-Time / Contract Engineering Role</option>
                   <option value="Startup MVP & Landing Pages">Startup MVP &amp; Landing Pages</option>
@@ -211,16 +225,16 @@ export const ContactSection = () => {
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Outline your architectural requirements, timelines, or role details..."
-                  className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-white/10 text-sm text-white placeholder:text-zinc-600 focus:outline-none focus:border-blue-500 transition-colors font-sans resize-none"
+                  className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-white/10 text-sm text-white placeholder:text-zinc-600 focus:outline-none focus:border-white/30 transition-colors font-sans resize-none"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-xl bg-white text-zinc-950 font-semibold text-sm hover:bg-zinc-200 transition-all duration-200 shadow-xl shadow-white/10 active:scale-98"
+                className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-xl bg-white text-zinc-950 font-semibold text-sm hover:bg-zinc-200 transition-all duration-200 shadow-xl shadow-white/10 active:scale-98 cursor-pointer"
               >
                 <span>Transmit Inquiry</span>
-                <Send className="w-4 h-4 text-blue-600" />
+                <Send className="w-4 h-4 text-zinc-950" />
               </button>
 
               {status === "success" && (
@@ -229,7 +243,7 @@ export const ContactSection = () => {
                 </div>
               )}
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
