@@ -20,7 +20,7 @@ export default {
       },
       fontFamily: {
         sans: ["Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
-        mono: ["JetBrains Mono", "monospace"],
+        mono: ["Space Grotesk", "sans-serif"],
         signature: ["Alex Brush", "cursive"],
       },
       animation: {
