@@ -153,10 +153,10 @@ export const FlagshipProjects = () => {
             return (
               <MagicCard
                 key={project.id}
-                mode="orb"
-                glowFrom="rgba(255, 255, 255, 0.28)"
-                glowTo="rgba(161, 161, 170, 0.08)"
-                size={380}
+                glowFrom="rgba(255, 255, 255, 0.05)"
+                glowTo="rgba(255, 255, 255, 0.01)"
+                borderGlow="rgba(255, 255, 255, 0.16)"
+                size={400}
                 className="p-6 sm:p-8 flex flex-col justify-between"
               >
                 <div className="space-y-6">
