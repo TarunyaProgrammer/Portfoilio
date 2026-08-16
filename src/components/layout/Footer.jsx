@@ -106,14 +106,23 @@ export const Footer = () => {
               e.preventDefault();
               scrollTo("hero");
             }}
-            className="flex items-center gap-2 text-white hover:text-blue-400 transition-colors"
+            className="flex items-center gap-3 text-white hover:text-blue-300 transition-colors group"
           >
-            <div className="w-8 h-8 rounded-lg bg-zinc-900 border border-white/20 flex items-center justify-center font-bold text-xs">
-              TK
+            <div className="w-9 h-9 rounded-full overflow-hidden border border-white/20 group-hover:border-blue-400/80 transition-all bg-zinc-900 flex items-center justify-center">
+              <img
+                src="/webme1.png"
+                alt="Tarunya Kesharwani"
+                className="w-full h-full object-cover object-center"
+              />
             </div>
-            <span className="font-semibold text-sm tracking-wider uppercase text-zinc-200">
-              Tarunya Systems
-            </span>
+            <div className="flex flex-col">
+              <span className="font-script text-2xl font-normal text-white group-hover:text-blue-300 leading-none">
+                Tarunya K.
+              </span>
+              <span className="text-[9px] font-mono tracking-widest text-zinc-500 uppercase">
+                Systems Architecture
+              </span>
+            </div>
           </a>
 
           <div className="flex items-center gap-2 font-mono text-[11px] text-zinc-500">

@@ -30,23 +30,36 @@ export const Navbar = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Left: Brand Monogram & Name */}
+        {/* Left: Classy Avatar & Cursive Brand Name */}
         <a
           href="#hero"
           onClick={(e) => {
             e.preventDefault();
             scrollToSection("hero");
           }}
-          className="group flex items-center gap-3 cursor-pointer select-none"
+          className="group flex items-center gap-3.5 cursor-pointer select-none"
         >
-          <div className="w-9 h-9 rounded-xl bg-zinc-900 border border-white/15 flex items-center justify-center font-mono font-bold text-sm text-white group-hover:border-blue-500/60 group-hover:bg-blue-500/10 transition-all duration-300 shadow-md">
-            TK
+          {/* Photo Avatar with Elegant Ring */}
+          <div className="relative">
+            <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white/20 group-hover:border-blue-400/80 transition-all duration-300 shadow-md bg-zinc-900 flex items-center justify-center group-hover:scale-105">
+              <img
+                src="/webme1.png"
+                alt="Tarunya Kesharwani"
+                className="w-full h-full object-cover object-center filter contrast-105 group-hover:scale-110 transition-transform duration-300"
+              />
+            </div>
+            {/* Live Signal Status Dot */}
+            <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-zinc-950 shadow-sm" />
           </div>
+
+          {/* Classy Cursive Name & Subtitle */}
           <div className="flex flex-col">
-            <span className="font-semibold text-sm tracking-tight text-zinc-100 group-hover:text-white transition-colors">
-              {portfolioData.personal.name}
-            </span>
-            <span className="text-[11px] font-mono text-zinc-400 hidden sm:inline">
+            <div className="flex items-baseline gap-1.5">
+              <span className="font-script text-2xl sm:text-3xl font-normal text-white group-hover:text-blue-300 transition-colors leading-none tracking-wide drop-shadow-sm">
+                Tarunya K.
+              </span>
+            </div>
+            <span className="text-[10px] font-mono tracking-wider text-zinc-400 uppercase hidden sm:inline leading-tight mt-0.5">
               Systems Architect &bull; GSoC &apos;26
             </span>
           </div>

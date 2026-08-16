@@ -22,6 +22,8 @@ export default {
         sans: ["Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
         mono: ["JetBrains Mono", "monospace"],
         display: ["Cabinet Grotesk", "Inter", "sans-serif"],
+        script: ["Pinyon Script", "cursive"],
+        serif: ["Playfair Display", "serif"],
       },
       animation: {
         "border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
