@@ -61,10 +61,13 @@ export const BentoCard = ({
 
         {cta && (
           <div className="pt-2 border-t border-white/10 flex items-center justify-between font-mono text-xs">
-            <span className="text-zinc-400 group-hover:text-white transition-colors flex items-center gap-1 font-medium">
+            <a
+              href={href || "#projects"}
+              className="text-zinc-400 group-hover:text-white transition-colors flex items-center gap-1 font-medium"
+            >
               <span>{cta}</span>
               <ArrowUpRight className="w-3.5 h-3.5 text-zinc-500 group-hover:text-white transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </span>
+            </a>
           </div>
         )}
       </div>

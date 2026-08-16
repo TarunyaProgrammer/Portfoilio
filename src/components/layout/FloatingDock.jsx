@@ -11,23 +11,23 @@ import {
   FileText,
 } from "lucide-react";
 
+const NAV_ITEMS = [
+  { id: "hero", label: "Home", icon: Home },
+  { id: "about", label: "Profile & Philosophy", icon: User },
+  { id: "skills", label: "Capabilities & Stack", icon: Cpu },
+  { id: "projects", label: "Flagship Products", icon: FolderGit2 },
+  { id: "experience", label: "Experience & Milestones", icon: Briefcase },
+  { id: "writing", label: "Technical Writings", icon: PenTool },
+  { id: "contact", label: "Transmission & Inquiry", icon: Mail },
+];
+
 export const FloatingDock = () => {
   const [activeSection, setActiveSection] = useState("hero");
 
-  const navItems = [
-    { id: "hero", label: "Home", icon: Home },
-    { id: "about", label: "About", icon: User },
-    { id: "skills", label: "Tech Stack", icon: Cpu },
-    { id: "projects", label: "Projects", icon: FolderGit2 },
-    { id: "experience", label: "Experience", icon: Briefcase },
-    { id: "writing", label: "Writings", icon: PenTool },
-    { id: "contact", label: "Contact", icon: Mail },
-  ];
-
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 200;
-      for (const item of navItems) {
+      const scrollPosition = window.scrollY + 250;
+      for (const item of NAV_ITEMS) {
         const element = document.getElementById(item.id);
         if (element) {
           const top = element.offsetTop;
@@ -53,38 +53,30 @@ export const FloatingDock = () => {
   return (
     <div className="fixed bottom-6 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
       <div className="pointer-events-auto">
-        <Dock className="bg-zinc-950/85 backdrop-blur-xl border border-white/15 p-1.5 shadow-2xl shadow-black/80 rounded-2xl">
-          {navItems.map((item) => {
+        <Dock className="gap-2 sm:gap-2.5">
+          {NAV_ITEMS.map((item) => {
             const Icon = item.icon;
             const isActive = activeSection === item.id;
             return (
               <DockIcon
                 key={item.id}
+                label={item.label}
+                isActive={isActive}
                 onClick={() => scrollTo(item.id)}
-                className={`relative group p-2 rounded-xl transition-all duration-200 ${
-                  isActive
-                    ? "bg-blue-600/20 text-blue-400 border border-blue-500/30"
-                    : "text-zinc-400 hover:text-white hover:bg-white/10"
-                }`}
               >
-                <Icon className="w-5 h-5 transition-transform group-hover:scale-110" />
-
-                {/* Floating Tooltip */}
-                <span className="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-md bg-zinc-900 border border-white/15 text-[11px] font-medium text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap shadow-md">
-                  {item.label}
-                </span>
-
-                {/* Active Indicator Bar */}
-                {isActive && (
-                  <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-3 h-0.5 rounded-sm bg-white/80" />
-                )}
+                <Icon
+                  className={`w-5 h-5 transition-colors duration-200 ${
+                    isActive ? "text-white" : "text-zinc-400 group-hover:text-white"
+                  }`}
+                />
               </DockIcon>
             );
           })}
 
-          <div className="w-[1px] h-6 bg-white/15 my-auto mx-1" />
+          {/* Authentic macOS Dock Separator Bar */}
+          <div className="w-[1px] h-7 bg-white/20 my-auto mx-1 self-center rounded-full" />
 
-          {/* Direct Resume Link */}
+          {/* Direct Resume Download App Tile */}
           <a
             href="/Resume.pdf"
             target="_blank"
@@ -92,11 +84,8 @@ export const FloatingDock = () => {
             download="Tarunya_Kesharwani_Resume.pdf"
             className="flex items-center"
           >
-            <DockIcon className="relative group p-2 rounded-xl text-zinc-400 hover:text-white hover:bg-white/10 transition-all duration-200">
-              <FileText className="w-5 h-5 transition-transform group-hover:scale-110 text-emerald-400" />
-              <span className="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-md bg-zinc-900 border border-white/15 text-[11px] font-medium text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap shadow-md">
-                Resume (PDF)
-              </span>
+            <DockIcon label="Download Resume (PDF)">
+              <FileText className="w-5 h-5 text-emerald-400 group-hover:text-emerald-300 transition-colors" />
             </DockIcon>
           </a>
         </Dock>

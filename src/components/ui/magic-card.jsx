@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import {
   motion,
   useMotionValue,
@@ -17,7 +17,6 @@ export const MagicCard = ({
   ...props
 }) => {
   const cardRef = useRef(null);
-  const [isHovered, setIsHovered] = useState(false);
 
   const mouseX = useMotionValue(-size);
   const mouseY = useMotionValue(-size);
@@ -38,9 +37,7 @@ export const MagicCard = ({
     mouseY.set(e.clientY - rect.top);
   };
 
-  const handleMouseEnter = () => setIsHovered(true);
   const handleMouseLeave = () => {
-    setIsHovered(false);
     mouseX.set(-size);
     mouseY.set(-size);
   };
@@ -49,7 +46,6 @@ export const MagicCard = ({
     <div
       ref={cardRef}
       onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className={cn(
         "group relative overflow-hidden rounded-2xl border border-white/10 bg-zinc-950/80 transition-all duration-300 hover:border-white/20 shadow-xl",

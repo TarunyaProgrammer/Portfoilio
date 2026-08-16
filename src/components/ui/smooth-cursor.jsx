@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { useMotionValue, useSpring } from "framer-motion";
 
 export const SmoothCursor = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [isTouchDevice] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia("(pointer: coarse)").matches || "ontouchstart" in window;
+  });
 
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
@@ -15,19 +18,12 @@ export const SmoothCursor = () => {
   const smoothY = useSpring(cursorY, springConfig);
 
   useEffect(() => {
-    // Disable on mobile/touch devices
-    if (
-      window.matchMedia("(pointer: coarse)").matches ||
-      "ontouchstart" in window
-    ) {
-      setIsTouchDevice(true);
-      return;
-    }
+    if (isTouchDevice) return;
 
     const moveCursor = (e) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
-      if (!isVisible) setIsVisible(true);
+      setIsVisible(true);
     };
 
     const handleMouseLeave = () => setIsVisible(false);
@@ -43,11 +39,12 @@ export const SmoothCursor = () => {
       });
     };
 
-    window.addEventListener("mousemove", moveCursor);
+    window.addEventListener("mousemove", moveCursor, { passive: true });
     document.addEventListener("mouseleave", handleMouseLeave);
     document.addEventListener("mouseenter", handleMouseEnter);
 
     handleHoverElements();
+
     const observer = new MutationObserver(handleHoverElements);
     observer.observe(document.body, { childList: true, subtree: true });
 
@@ -57,42 +54,46 @@ export const SmoothCursor = () => {
       document.removeEventListener("mouseenter", handleMouseEnter);
       observer.disconnect();
     };
-  }, [isVisible, cursorX, cursorY]);
+  }, [cursorX, cursorY, isTouchDevice]);
 
-  if (isTouchDevice || !isVisible) return null;
+  if (isTouchDevice) return null;
 
   return (
-    <motion.div
+    <div
       style={{
-        x: smoothX,
-        y: smoothY,
-        translateX: "-3px",
-        translateY: "-3px",
+        position: "fixed",
+        top: 0,
+        left: 0,
+        pointerEvents: "none",
+        zIndex: 999999,
+        transform: `translate3d(${smoothX.get()}px, ${smoothY.get()}px, 0)`,
+        opacity: isVisible ? 1 : 0,
+        transition: "opacity 0.2s ease",
+        willChange: "transform",
       }}
-      animate={{
-        scale: isHovered ? 1.15 : 1,
-      }}
-      transition={{ duration: 0.12 }}
-      className="pointer-events-none fixed top-0 left-0 z-[999999] hidden md:block"
+      className="hidden md:block"
     >
-      {/* ═══ AUTHENTIC TOP-LEFT POINTING BLACK CURSOR ═══ */}
       <svg
         width="28"
         height="28"
         viewBox="0 0 24 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="filter drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]"
+        style={{
+          transform: `scale(${isHovered ? 1.2 : 1})`,
+          transition: "transform 0.15s cubic-bezier(0.2, 0, 0, 1)",
+          filter: "drop-shadow(0 2px 8px rgba(0, 0, 0, 0.7))",
+          transformOrigin: "3px 2.5px",
+        }}
       >
         <path
           d="M3 2.5V19.5L7.8 14.8L14.8 14.8L3 2.5Z"
-          fill="#000000"
+          fill="#09090b"
           stroke="#ffffff"
           strokeWidth="1.5"
-          strokeLinecap="round"
           strokeLinejoin="round"
         />
       </svg>
-    </motion.div>
+    </div>
   );
 };

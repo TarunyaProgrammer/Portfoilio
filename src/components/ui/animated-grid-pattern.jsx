@@ -14,13 +14,11 @@ export const AnimatedGridPattern = ({
 }) => {
   const id = useId();
   const [squares, setSquares] = useState([]);
-  const [gridDimensions, setGridDimensions] = useState({ cols: 35, rows: 35 });
 
   useEffect(() => {
     const updateGrid = () => {
       const cols = Math.ceil(window.innerWidth / width) + 2;
       const rows = Math.ceil(window.innerHeight / height) + 2;
-      setGridDimensions({ cols, rows });
 
       const generated = Array.from({ length: numSquares }, (_, i) => ({
         id: i,
@@ -28,6 +26,7 @@ export const AnimatedGridPattern = ({
         y: Math.floor(Math.random() * rows),
         delay: Math.random() * 4,
         duration: 3 + Math.random() * 3,
+        repeatDelay: 1.5 + Math.random() * 2,
       }));
       setSquares(generated);
     };
@@ -69,7 +68,7 @@ export const AnimatedGridPattern = ({
 
         {/* ═══ RESPONSIVE GLOWING AMBIENT CELLS ═══ */}
         <svg className="overflow-visible">
-          {squares.map(({ id: sqId, x: sqX, y: sqY, delay, duration: sqDuration }) => (
+          {squares.map(({ id: sqId, x: sqX, y: sqY, delay, duration: sqDuration, repeatDelay: sqRepeatDelay }) => (
             <motion.rect
               key={`${sqX}-${sqY}-${sqId}`}
               initial={{ opacity: 0 }}
@@ -81,7 +80,7 @@ export const AnimatedGridPattern = ({
                 duration: sqDuration || duration,
                 repeat: Infinity,
                 delay: delay,
-                repeatDelay: 1.5 + Math.random() * 2,
+                repeatDelay: sqRepeatDelay || 2,
                 ease: "easeInOut",
               }}
               width={width - 1}

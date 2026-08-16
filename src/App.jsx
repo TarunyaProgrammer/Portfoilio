@@ -12,7 +12,6 @@ import { PublicationsSection } from "@/components/sections/PublicationsSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { SmoothCursor } from "@/components/ui/smooth-cursor";
 import { AnimatedGridPattern } from "@/components/ui/animated-grid-pattern";
-import { cn } from "@/lib/utils";
 
 export function App() {
   // Initialize Lenis smooth inertial scrolling
