@@ -48,8 +48,6 @@ export const Navbar = () => {
                 className="w-full h-full object-cover object-center filter contrast-105 group-hover:scale-110 transition-transform duration-300"
               />
             </div>
-            {/* Live Signal Status Dot */}
-            <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-zinc-950 shadow-sm" />
           </div>
 
           {/* Classy Cursive Name & Subtitle */}
@@ -79,18 +77,14 @@ export const Navbar = () => {
             <span>CV</span>
           </a>
 
-          {/* Hire Me Shimmer CTA */}
+          {/* Hire Me CTA */}
           <ShimmerButton
             onClick={() => scrollToSection("contact")}
-            shimmerColor="#60a5fa"
-            shimmerDuration="2.5s"
-            background="rgba(18, 18, 22, 0.95)"
             className="px-4 py-2 text-xs font-medium tracking-wide shadow-md"
           >
             <span className="flex items-center gap-1.5 font-medium text-white">
-              <span className="w-2 h-2 rounded-full bg-emerald-400" />
-              Hire Me
-              <ArrowUpRight className="w-3.5 h-3.5 ml-0.5 text-blue-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              <span>Hire Me</span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-blue-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </span>
           </ShimmerButton>
         </div>

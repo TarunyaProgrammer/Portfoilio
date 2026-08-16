@@ -74,9 +74,9 @@ export const FloatingDock = () => {
                   {item.label}
                 </span>
 
-                {/* Active Indicator Dot */}
+                {/* Active Indicator Bar */}
                 {isActive && (
-                  <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-blue-400 shadow-[0_0_8px_#3b82f6]" />
+                  <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-3 h-0.5 rounded-sm bg-white/80" />
                 )}
               </DockIcon>
             );

@@ -124,7 +124,6 @@ export const Footer = () => {
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 font-mono text-xs">
             <div className="flex items-center gap-2 text-zinc-400">
-              <span className="w-2 h-2 rounded-full bg-emerald-400" />
               <span>IST: <strong className="text-white">{time || "22:40:00"}</strong></span>
             </div>
 

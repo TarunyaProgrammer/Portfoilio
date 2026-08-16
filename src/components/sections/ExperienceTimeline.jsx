@@ -23,8 +23,8 @@ export const ExperienceTimeline = () => {
         <div className="relative pl-6 sm:pl-8 border-l border-white/15 space-y-12">
           {portfolioData.experience.map((item, index) => (
             <div key={item.role + index} className="relative group">
-              {/* Timeline Node Marker */}
-              <div className="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-zinc-950 border-2 border-blue-500 group-hover:bg-blue-500 transition-colors shadow-lg shadow-blue-500/30" />
+              {/* Timeline Tick Line */}
+              <div className="absolute -left-[25px] sm:-left-[33px] top-4 w-6 h-[1px] bg-zinc-700 group-hover:bg-zinc-300 transition-colors" />
 
               <div className="p-6 sm:p-7 rounded-2xl bg-zinc-900/60 border border-white/10 hover:border-white/20 transition-all space-y-4 backdrop-blur-sm">
                 {/* Header row */}

@@ -65,7 +65,6 @@ export const TechStackSection = () => {
               className="flex items-center justify-between px-3 py-1.5 rounded-lg bg-zinc-900/90 border border-white/10 text-zinc-300 shadow-sm"
             >
               <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                 <span className="font-semibold text-white">{evt.title}</span>
               </div>
               <div className="flex items-center gap-2">

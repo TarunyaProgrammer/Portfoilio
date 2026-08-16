@@ -186,8 +186,7 @@ export const FlagshipProjects = () => {
                   </p>
 
                   {/* Highlight Metric */}
-                  <div className="p-3 rounded-xl bg-zinc-900/60 border border-white/10 font-mono text-xs text-zinc-300 flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-zinc-400" />
+                  <div className="p-3 rounded-xl bg-zinc-900/60 border border-white/10 font-mono text-xs text-zinc-300">
                     <span>{project.metrics}</span>
                   </div>
 
