@@ -10,7 +10,7 @@ export const SmoothCursor = () => {
   const cursorY = useMotionValue(-100);
 
   // Precision spring configuration for instant, zero-lag response with subtle silky momentum
-  const springConfig = { damping: 28, stiffness: 600, mass: 0.2 };
+  const springConfig = { damping: 30, stiffness: 650, mass: 0.25 };
   const smoothX = useSpring(cursorX, springConfig);
   const smoothY = useSpring(cursorY, springConfig);
 
@@ -75,17 +75,17 @@ export const SmoothCursor = () => {
       transition={{ duration: 0.12 }}
       className="pointer-events-none fixed top-0 left-0 z-[999999] hidden md:block"
     >
-      {/* ═══ PERFECTLY PROPORTIONED BLACK POINTER CURSOR ═══ */}
+      {/* ═══ AUTHENTIC TOP-LEFT POINTING BLACK CURSOR ═══ */}
       <svg
-        width="26"
-        height="26"
+        width="28"
+        height="28"
         viewBox="0 0 24 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="filter drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]"
+        className="filter drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]"
       >
         <path
-          d="M3 3L10.07 19.97L12.58 12.58L19.97 10.07L3 3Z"
+          d="M3 2.5V19.5L7.8 14.8L14.8 14.8L3 2.5Z"
           fill="#000000"
           stroke="#ffffff"
           strokeWidth="1.5"
