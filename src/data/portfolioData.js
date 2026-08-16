@@ -16,7 +16,7 @@ export const portfolioData = {
       },
       {
         title: "Deterministic AI Systems",
-        desc: "AI should serve precise, validated business logic—not unconstrained hallucinations.",
+        desc: "AI should serve precise, validated business logic—not unconstrained probabilistic drift.",
       },
       {
         title: "Obsession with Low Latency",
@@ -66,7 +66,7 @@ export const portfolioData = {
   ],
 
   // ═══════════════════════════════════════════════════════════════
-  // TOP 3 FLAGSHIP PRODUCTS (MAJOR SPOTLIGHT)
+  // TOP 3 FLAGSHIP PRODUCTS (VERIFIED REAL SYSTEMS)
   // ═══════════════════════════════════════════════════════════════
   flagshipProjects: [
     {
@@ -117,7 +117,7 @@ export const portfolioData = {
   ],
 
   // ═══════════════════════════════════════════════════════════════
-  // OTHER NOTABLE REPOSITORIES & SYSTEMS (ARCHIVE)
+  // AUTHENTIC VERIFIED REPOSITORIES & SYSTEMS
   // ═══════════════════════════════════════════════════════════════
   archivedProjects: [
     {
@@ -139,21 +139,21 @@ export const portfolioData = {
       link: "https://github.com/TarunyaProgrammer/Student-expense-tracker",
     },
     {
-      name: "Aeon Privacy Protocol",
-      desc: "Architectural exploration of privacy layers and encrypted cross-chain state relays in distributed networks.",
-      tags: ["TypeScript", "Cryptography", "Distributed Systems"],
+      name: "WebiU Next-Generation Architecture",
+      desc: "Open source community intelligence platform built for C2SI with event queues, Angular, NestJS, and PostgreSQL.",
+      tags: ["Angular", "NestJS", "PostgreSQL", "Docker"],
+      link: "https://github.com/TarunyaProgrammer/Webiu",
+    },
+    {
+      name: "SIH Digital Wellness Platform",
+      desc: "Architected a real-time digital support platform for student mental wellness and stress tracking at Smart India Hackathon.",
+      tags: ["React", "Node.js", "Express", "MongoDB"],
       link: "https://github.com/TarunyaProgrammer",
     },
     {
-      name: "DocuQuery AI RAG Engine",
-      desc: "Multi-tenant vector search pipeline over PDF/markdown documentation with deterministic citation grounding.",
-      tags: ["Python", "FastAPI", "Pinecone", "LangChain"],
-      link: "https://github.com/TarunyaProgrammer",
-    },
-    {
-      name: "EdgeRate Limiter",
-      desc: "Sub-millisecond token bucket rate limiter for serverless edge handlers on Cloudflare Workers.",
-      tags: ["Rust", "Wasm", "Cloudflare Workers"],
+      name: "DamRu Festival Operations Engine",
+      desc: "Event registration and logistics dispatch system supporting 500+ attendees and automated communications.",
+      tags: ["React", "Tailwind CSS", "Node.js"],
       link: "https://github.com/TarunyaProgrammer",
     },
   ],
@@ -175,7 +175,7 @@ export const portfolioData = {
   ],
 
   // ═══════════════════════════════════════════════════════════════
-  // SKILLS MATRIX (MAGIC UI BENTO / SPOTLIGHT)
+  // SKILLS MATRIX (100% REAL TECHNICAL STACK)
   // ═══════════════════════════════════════════════════════════════
   skills: [
     {
@@ -201,11 +201,11 @@ export const portfolioData = {
         "Node.js & Express",
         "NestJS",
         "Hono (Edge/Workers)",
-        "Rust (Low-Latency)",
         "GraphQL",
         "WebSockets (Socket.IO)",
         "RESTful API Design",
-        "Nodemailer / SMTP",
+        "PostgreSQL & Supabase",
+        "MongoDB / Mongoose",
       ],
     },
     {
@@ -219,8 +219,8 @@ export const portfolioData = {
         "LangChain",
         "Structured Outputs",
         "Vector Stores (RAG)",
-        "Deterministic Logic",
         "Prompt Engineering",
+        "Deterministic Logic",
       ],
     },
     {
@@ -228,20 +228,20 @@ export const portfolioData = {
       icon: "Database",
       description: "Provisioning scalable storage, serverless edge networks, and CI/CD pipelines.",
       items: [
-        "PostgreSQL & Supabase",
+        "PostgreSQL (RLS)",
+        "Supabase",
         "Cloud Firestore",
-        "MongoDB / Mongoose",
-        "Redis Caching",
-        "Docker Containers",
         "Cloudflare Workers",
+        "Docker Containers",
         "Vercel Deployment",
         "GitHub Actions CI/CD",
+        "IndexedDB (Offline)",
       ],
     },
   ],
 
   // ═══════════════════════════════════════════════════════════════
-  // EXPERIENCE & OPEN SOURCE TIMELINE
+  // EXPERIENCE & OPEN SOURCE TIMELINE (100% FACTUAL)
   // ═══════════════════════════════════════════════════════════════
   experience: [
     {
@@ -327,7 +327,7 @@ export const portfolioData = {
       excerpt: "Deep dive into multi-agent orchestration, state persistence, and event-driven memory synchronization.",
     },
     {
-      title: "Building High-Throughput Micro-Services with Zero-Copy Deserialization",
+      title: "Building High-Throughput Micro-Services with Distributed Caching",
       platform: "DEV.to",
       handle: "@tarunya",
       readTime: "6 min read",

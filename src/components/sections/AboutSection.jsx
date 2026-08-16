@@ -28,7 +28,7 @@ export const AboutSection = () => {
       icon: Award,
       org: "Newton School of Technology",
       score: "8.83 CGPA",
-      desc: "B.Tech in Computer Science & Artificial Intelligence (2024 \u2013 2028)",
+      desc: "B.Tech in Computer Science & Artificial Intelligence (2025 \u2013 2029)",
       tag: "Academic Honors",
     },
     {
