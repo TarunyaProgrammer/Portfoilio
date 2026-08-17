@@ -1,6 +1,10 @@
 import React, { useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
+const isPointerFine = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
 export const SpotlightCard = ({
   children,
   className,
@@ -13,11 +17,9 @@ export const SpotlightCard = ({
   const [opacity, setOpacity] = useState(0);
 
   const handleMouseMove = (e) => {
-    if (!divRef.current || isFocused) return;
-
+    if (!divRef.current || isFocused || !isPointerFine()) return;
     const div = divRef.current;
     const rect = div.getBoundingClientRect();
-
     setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
   };
 

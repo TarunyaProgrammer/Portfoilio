@@ -23,23 +23,48 @@ const PLATES = [
   "/hero-plates/plate-8.webp",
 ];
 
+// Check prefers-reduced-motion
+const prefersReducedMotion = typeof window !== 'undefined'
+  ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  : false;
+
 export const CinematicHeroEngine = forwardRef(
   ({ className, isMuted = true }, ref) => {
     const audioRef = useRef(null);
     const rafRef = useRef(0);
     const lastTimeRef = useRef(0);
     const updateLoopRef = useRef(null);
+    const containerRef = useRef(null);
 
     const [time, setTime] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
 
-    // Initial 1.2s start delay before commencing cinematic playback
+    // Initial 1.2s start delay — skip animation if reduced motion requested
     useEffect(() => {
+      if (prefersReducedMotion) return; // Stay on static slide
       const timer = setTimeout(() => {
         setIsPlaying(true);
       }, 1200);
       return () => clearTimeout(timer);
     }, []);
+
+    // Pause RAF loop when hero section is not visible (IntersectionObserver)
+    useEffect(() => {
+      if (!containerRef.current) return;
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry.isIntersecting) {
+            cancelAnimationFrame(rafRef.current);
+          } else if (isPlaying) {
+            lastTimeRef.current = 0;
+            rafRef.current = requestAnimationFrame((ts) => updateLoopRef.current?.(ts));
+          }
+        },
+        { threshold: 0.01 }
+      );
+      observer.observe(containerRef.current);
+      return () => observer.disconnect();
+    }, [isPlaying]);
 
     // Frame-accurate RAF loop
     useEffect(() => {
@@ -151,8 +176,23 @@ export const CinematicHeroEngine = forwardRef(
       return Math.floor((time - 8.2) / 0.08) % PLATES.length;
     }, [time]);
 
+    // Reduced motion: show static final slide
+    if (prefersReducedMotion) {
+      return (
+        <div className={cn("relative w-full h-full overflow-hidden select-none bg-[#050507] flex items-center justify-center", className)}>
+          <div className="text-center space-y-3 px-4">
+            <div className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white">FROM CODE</div>
+            <p className="text-xs sm:text-sm font-mono text-zinc-400 tracking-widest uppercase">
+              TARUNYA KESHARWANI &bull; SYSTEMS ARCHITECT &bull; GSoC &apos;26
+            </p>
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div
+        ref={containerRef}
         className={cn(
           "relative w-full h-full overflow-hidden select-none bg-[#050507]",
           className
@@ -164,6 +204,7 @@ export const CinematicHeroEngine = forwardRef(
           src="/hero_sound_V3_high_energy.wav"
           preload="auto"
           muted={isMuted}
+          playsInline
         />
 
         {/* ═══════════════════════════════════════════════════════════════ */}
@@ -223,7 +264,7 @@ export const CinematicHeroEngine = forwardRef(
                 <div
                   role="heading"
                   aria-level="2"
-                  className="font-black text-6xl sm:text-8xl lg:text-9xl leading-[0.88] tracking-[-0.05em] text-[#F5F5F2] text-center"
+                  className="font-black text-4xl sm:text-7xl lg:text-9xl leading-[0.88] tracking-[-0.05em] text-[#F5F5F2] text-center px-4"
                   style={{
                     transform: `scale(${0.96 + (time - 1.2) * 0.08})`,
                   }}
@@ -235,7 +276,7 @@ export const CinematicHeroEngine = forwardRef(
                   </span>
                 </div>
               </div>
-              <div className="absolute bottom-12 left-8 font-mono text-[10px] tracking-[0.25em] text-white/40">
+              <div className="absolute bottom-12 left-8 hidden sm:block font-mono text-[10px] tracking-[0.25em] text-white/40">
                 GLASS / REFLECTION / DEPTH
               </div>
             </div>
@@ -245,7 +286,7 @@ export const CinematicHeroEngine = forwardRef(
           {time >= 2.1 && time < 2.7 && (
             <div className="absolute inset-0 bg-[#070709] flex items-center justify-center overflow-hidden">
               <div
-                className="font-extrabold text-6xl sm:text-8xl lg:text-9xl leading-none tracking-[-0.05em] text-white whitespace-nowrap"
+                className="font-extrabold text-4xl sm:text-7xl lg:text-9xl leading-none tracking-[-0.05em] text-white text-center px-4 break-words"
                 style={{
                   transform: `scale(${0.88 + (time - 2.1) * 0.55})`,
                   opacity: 0.9 + (time - 2.1) * 0.15,
@@ -259,7 +300,7 @@ export const CinematicHeroEngine = forwardRef(
                 className="absolute top-1/2 left-0 right-0 h-[2px] bg-white/30 blur-[1px]"
                 style={{ transform: `scaleX(${0.2 + (time - 2.1) * 1.2})` }}
               />
-              <div className="absolute bottom-[24%] left-1/2 -translate-x-1/2 font-mono text-[11px] tracking-[0.3em] text-[#C8C9CC]/70">
+              <div className="absolute bottom-[24%] left-1/2 -translate-x-1/2 hidden sm:block font-mono text-[11px] tracking-[0.3em] text-[#C8C9CC]/70">
                 TENSION &uarr; 0.1s TO IMPACT
               </div>
             </div>
@@ -276,7 +317,7 @@ export const CinematicHeroEngine = forwardRef(
                 }}
               />
               <h2
-                className="font-black text-8xl sm:text-9xl lg:text-[180px] leading-[0.85] tracking-[-0.06em] text-[#050507] text-center"
+                className="font-black text-5xl sm:text-8xl lg:text-[140px] leading-[0.85] tracking-[-0.06em] text-[#050507] text-center px-4"
                 style={{
                   transform: `scale(${1 + (time - 2.7) * 7.5})`,
                   filter: `blur(${Math.min(8, (time - 2.7) * 20)}px)`,
@@ -350,7 +391,7 @@ export const CinematicHeroEngine = forwardRef(
                 </div>
               )}
 
-              <div className="absolute bottom-14 right-8 font-mono text-xs tracking-[0.2em] text-white/90 bg-black/70 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/15">
+              <div className="absolute bottom-14 right-4 sm:right-8 hidden sm:block font-mono text-xs tracking-[0.2em] text-white/90 bg-black/70 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/15">
                 I BUILD. &bull; {buildCutIndex + 1}/5 &bull; 0.15s CUT
               </div>
             </div>
@@ -390,7 +431,7 @@ export const CinematicHeroEngine = forwardRef(
                   />
                 </div>
               </div>
-              <div className="absolute bottom-14 left-8 font-mono text-xs tracking-[0.2em] text-white/90">
+              <div className="absolute bottom-14 left-8 hidden sm:block font-mono text-xs tracking-[0.2em] text-white/90">
                 I SHIP. &bull; DOCKER &bull; K8S
               </div>
             </div>
@@ -406,7 +447,7 @@ export const CinematicHeroEngine = forwardRef(
               />
               <div className="absolute inset-0 bg-gradient-to-b from-[#050507]/40 via-transparent to-[#050507]/70" />
               <div
-                className="absolute inset-0 flex items-center justify-center font-black text-6xl sm:text-8xl lg:text-9xl tracking-[-0.04em] text-white text-center"
+                className="absolute inset-0 flex items-center justify-center font-black text-4xl sm:text-7xl lg:text-9xl tracking-[-0.04em] text-white text-center px-4"
                 style={{
                   transform: `scale(${1 + (time - 4.9) * 0.12})`,
                   letterSpacing: `${0.02 + (time - 4.9) * 0.08}em`,
@@ -414,9 +455,8 @@ export const CinematicHeroEngine = forwardRef(
               >
                 I SCALE.
               </div>
-              <div className="absolute bottom-[20%] left-1/2 -translate-x-1/2 font-mono text-xs tracking-[0.3em] text-white/50 whitespace-nowrap">
-                MONOLITH &rarr; 12 MICROSERVICES &bull; SUPABASE &bull;
-                CLOUDFLARE
+              <div className="absolute bottom-[20%] left-1/2 -translate-x-1/2 hidden sm:block font-mono text-xs tracking-[0.3em] text-white/50 text-center">
+                MONOLITH &rarr; 12 MICROSERVICES &bull; SUPABASE
               </div>
             </div>
           )}
@@ -430,10 +470,10 @@ export const CinematicHeroEngine = forwardRef(
                 className="absolute inset-0 w-full h-full object-cover scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#050507] via-[#050507]/30 to-transparent" />
-              <div className="absolute top-[14%] left-1/2 -translate-x-1/2 font-black text-5xl sm:text-7xl lg:text-8xl tracking-[-0.03em] text-white text-center leading-none">
+              <div className="absolute top-[14%] left-1/2 -translate-x-1/2 font-black text-3xl sm:text-6xl lg:text-8xl tracking-[-0.03em] text-white text-center leading-none px-4">
                 TO PRODUCTION.
               </div>
-              <div className="absolute bottom-14 inset-x-8 flex justify-between font-mono text-xs text-white/40 tracking-[0.2em]">
+              <div className="absolute bottom-14 inset-x-4 hidden sm:flex justify-between font-mono text-xs text-white/40 tracking-[0.2em]">
                 <span>CONTAINER &rarr; NETWORK &rarr; CLOUD</span>
                 <span>SUB-BASS IMPACT @ 5.90s</span>
               </div>
@@ -449,19 +489,18 @@ export const CinematicHeroEngine = forwardRef(
                 className="absolute inset-0 w-full h-full object-cover scale-105"
               />
               <div className="absolute inset-0 bg-[#050507]/50" />
-              <div className="absolute inset-y-0 right-[8%] flex items-center font-black text-6xl sm:text-8xl lg:text-9xl leading-[0.85] tracking-[-0.04em] text-white">
-                <div>
-                  OPEN
-                  <br />
-                  <span className="text-zinc-400">SOURCE.</span>
+              {/* On mobile: stacked; on desktop: side-by-side */}
+              <div className="absolute inset-0 flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-4 px-6">
+                <div className="p-4 sm:p-5 rounded-2xl bg-[#050507]/80 border border-white/15 backdrop-blur-md space-y-2 font-mono text-xs w-full sm:max-w-xs">
+                  <div className="text-emerald-400 font-bold">
+                    Google Summer of Code &apos;26 @ C2SI
+                  </div>
+                  <div className="text-zinc-300">
+                    25+ Merged Pull Requests &bull; CNCF Ecosystem
+                  </div>
                 </div>
-              </div>
-              <div className="absolute left-[6%] top-1/2 -translate-y-1/2 p-5 rounded-2xl bg-[#050507]/80 border border-white/15 backdrop-blur-md space-y-2 font-mono text-xs max-w-sm">
-                <div className="text-emerald-400 font-bold">
-                  Google Summer of Code &apos;26 @ C2SI
-                </div>
-                <div className="text-zinc-300">
-                  25+ Merged Pull Requests &bull; CNCF Ecosystem
+                <div className="font-black text-4xl sm:text-7xl lg:text-9xl leading-[0.85] tracking-[-0.04em] text-white text-center sm:text-right">
+                  OPEN<br /><span className="text-zinc-400">SOURCE.</span>
                 </div>
               </div>
             </div>
@@ -476,12 +515,12 @@ export const CinematicHeroEngine = forwardRef(
                 className="absolute inset-0 w-full h-full object-cover scale-105"
               />
               <div className="absolute inset-0 bg-[#050507]/50" />
-              <div className="absolute inset-0 flex items-center justify-center font-black text-6xl sm:text-8xl lg:text-9xl tracking-[-0.04em] text-white text-center">
+              <div className="absolute inset-0 flex items-center justify-center font-black text-4xl sm:text-7xl lg:text-9xl tracking-[-0.04em] text-white text-center px-4">
                 {time < 7.72 && <span>AI</span>}
                 {time >= 7.72 && time < 7.96 && <span>AGENTS</span>}
                 {time >= 7.96 && <span>AUTOMATION</span>}
               </div>
-              <div className="absolute bottom-14 left-1/2 -translate-x-1/2 font-mono text-xs tracking-[0.25em] text-blue-300">
+              <div className="absolute bottom-14 left-1/2 -translate-x-1/2 hidden sm:block font-mono text-xs tracking-[0.25em] text-blue-300 whitespace-nowrap">
                 PROMPT &rarr; MODEL &rarr; TOOLS &rarr; ACTION
               </div>
             </div>
@@ -497,14 +536,14 @@ export const CinematicHeroEngine = forwardRef(
               />
               <div className="absolute inset-0 bg-black/20" />
               <div
-                className="absolute inset-0 flex items-center justify-center font-black text-7xl sm:text-9xl lg:text-[160px] tracking-[-0.06em] text-white/95 text-center"
+                className="absolute inset-0 flex items-center justify-center font-black text-5xl sm:text-8xl lg:text-[130px] tracking-[-0.06em] text-white/95 text-center px-4"
                 style={{
                   transform: `scale(${1 + (time - 8.2) * 2.2})`,
                 }}
               >
                 SOFTWARE.
               </div>
-              <div className="absolute bottom-14 right-8 font-mono text-xs tracking-[0.2em] text-amber-300 bg-black/80 px-3 py-1 rounded border border-amber-500/30">
+              <div className="absolute bottom-14 right-4 sm:right-8 hidden sm:block font-mono text-xs tracking-[0.2em] text-amber-300 bg-black/80 px-3 py-1 rounded border border-amber-500/30">
                 0.08s COLLISION &bull; MAX BASS
               </div>
             </div>

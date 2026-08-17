@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useRef as useRef2 } from "react";
 import {
   motion,
   useMotionValue,
@@ -6,6 +6,11 @@ import {
   useMotionTemplate,
 } from "framer-motion";
 import { cn } from "@/lib/utils";
+
+// Reusable pointer capability check
+const isPointerFine = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
 export const MagicCard = ({
   children,
@@ -25,13 +30,11 @@ export const MagicCard = ({
   const smoothX = useSpring(mouseX, springConfig);
   const smoothY = useSpring(mouseY, springConfig);
 
-  // Subtle, soft radial gradient for surface sheen that blends seamlessly with dark theme
   const surfaceGradient = useMotionTemplate`radial-gradient(${size}px circle at ${smoothX}px ${smoothY}px, ${glowFrom}, ${glowTo} 60%, transparent 100%)`;
-  // Sleek border highlight that softly tracks the cursor along the rim
   const borderGradient = useMotionTemplate`radial-gradient(${size * 0.7}px circle at ${smoothX}px ${smoothY}px, ${borderGlow}, transparent 75%)`;
 
   const handleMouseMove = (e) => {
-    if (!cardRef.current) return;
+    if (!cardRef.current || !isPointerFine()) return;
     const rect = cardRef.current.getBoundingClientRect();
     mouseX.set(e.clientX - rect.left);
     mouseY.set(e.clientY - rect.top);

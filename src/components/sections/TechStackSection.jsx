@@ -49,7 +49,7 @@ export const TechStackSection = () => {
   ];
 
   const bentoFeatures = [
-    // 1. Distributed Backends (col-span-3 lg:col-span-2)
+    // 1. Distributed Backends (col-span-1 md:col-span-2)
     {
       Icon: Server,
       name: "Distributed Backends & Edge APIs",
@@ -57,7 +57,7 @@ export const TechStackSection = () => {
         "Architecting resilient event-driven microservices, Cloudflare edge workers, and sub-50ms WebSockets with persistent caching.",
       href: "#projects",
       cta: "Explore Systems",
-      className: "col-span-3 lg:col-span-2",
+      className: "col-span-1 md:col-span-2 lg:col-span-2",
       background: (
         <div className="w-full h-full flex flex-col justify-center gap-2 font-mono text-[11px]">
           {backendEvents.map((evt, idx) => (
@@ -80,7 +80,7 @@ export const TechStackSection = () => {
       ),
     },
 
-    // 2. Deterministic AI (col-span-3 lg:col-span-1)
+    // 2. Deterministic AI (col-span-1)
     {
       Icon: Cpu,
       name: "Deterministic AI & Agentic Workflows",
@@ -88,7 +88,7 @@ export const TechStackSection = () => {
         "Engineering autonomous agents, structured JSON output validation, and multimodal RAG pipelines.",
       href: "#projects",
       cta: "View AI Architecture",
-      className: "col-span-3 lg:col-span-1",
+      className: "col-span-1 md:col-span-1 lg:col-span-1",
       background: (
         <div className="w-full h-full flex items-center justify-center overflow-hidden">
           <Marquee pauseOnHover className="[--duration:20s] py-1">
@@ -110,7 +110,7 @@ export const TechStackSection = () => {
       ),
     },
 
-    // 3. Reactive Frontend Systems (col-span-3 lg:col-span-1)
+    // 3. Reactive Frontend Systems (col-span-1)
     {
       Icon: Layout,
       name: "Reactive Frontend Architecture",
@@ -118,7 +118,7 @@ export const TechStackSection = () => {
         "Sub-second interactive interfaces engineered with React 19, TypeScript, Framer Motion, and Lenis momentum scrolling.",
       href: "#projects",
       cta: "Inspect Components",
-      className: "col-span-3 lg:col-span-1",
+      className: "col-span-1 md:col-span-1 lg:col-span-1",
       background: (
         <div className="w-full h-full flex items-center justify-center">
           <div className="flex flex-wrap gap-1.5 justify-center">
@@ -135,7 +135,7 @@ export const TechStackSection = () => {
       ),
     },
 
-    // 4. Cloud DevOps & Enterprise Storage (col-span-3 lg:col-span-2)
+    // 4. Cloud DevOps & Enterprise Storage (col-span-1 md:col-span-2)
     {
       Icon: Database,
       name: "Cloud DevOps & Distributed Storage",
@@ -143,7 +143,7 @@ export const TechStackSection = () => {
         "Automated CI/CD pipelines, PostgreSQL with Row-Level Security, Redis edge caching, and containerized deployments.",
       href: "#projects",
       cta: "Review Infrastructure",
-      className: "col-span-3 lg:col-span-2",
+      className: "col-span-1 md:col-span-2 lg:col-span-2",
       background: (
         <div className="w-full h-full grid grid-cols-1 sm:grid-cols-2 gap-2 font-mono text-xs items-center">
           {infraChecks.map((item, idx) => (
@@ -187,7 +187,7 @@ export const TechStackSection = () => {
         </motion.div>
 
         {/* ═══ MAGIC UI BENTO GRID (FLOWS IN WITH STAGGER) ═══ */}
-        <BentoGrid className="grid-cols-3 gap-6">
+        <BentoGrid className="gap-6">
           {bentoFeatures.map((feature, idx) => (
             <motion.div
               key={idx}

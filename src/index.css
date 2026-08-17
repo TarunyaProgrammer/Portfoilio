@@ -6,6 +6,8 @@
   :root {
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
+    /* Dock height compensation so content isn't hidden behind it */
+    --dock-height: 80px;
   }
 
   html {
@@ -13,11 +15,27 @@
     background-color: #09090b;
     color: #f4f4f5;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    /* Prevent iOS tap highlight */
+    -webkit-tap-highlight-color: transparent;
   }
 
   body {
     background-color: #09090b;
     overflow-x: hidden;
+    /* Safe area for notch/home-indicator devices */
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  /* Respect reduced motion globally */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
@@ -52,4 +70,14 @@
   font-weight: 400 !important;
   font-style: normal !important;
   letter-spacing: 0.02em;
+}
+
+/* Safe-area dock padding utility */
+.pb-safe-dock {
+  padding-bottom: calc(var(--dock-height) + env(safe-area-inset-bottom, 16px));
+}
+
+/* Fluid section headings */
+.heading-fluid {
+  font-size: clamp(1.75rem, 5vw, 3rem);
 }

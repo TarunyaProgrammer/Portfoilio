@@ -104,8 +104,8 @@ export const AboutSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* Left Column: Narrative Card */}
           <motion.div
-            initial={{ opacity: 0, x: -60 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.7, ease: smoothEase }}
             className="lg:col-span-5 h-full"
@@ -137,8 +137,8 @@ export const AboutSection = () => {
               return (
                 <motion.div
                   key={item.title}
-                  initial={{ opacity: 0, x: 60 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
                   transition={{ duration: 0.6, delay: index * 0.15, ease: smoothEase }}
                 >
@@ -188,7 +188,7 @@ export const AboutSection = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.1, ease: smoothEase }}
-                  whileHover={{ y: -6, scale: 1.02 }}
+                  whileHover={typeof window !== 'undefined' && window.matchMedia('(hover: hover) and (pointer: fine)').matches ? { y: -6, scale: 1.02 } : undefined}
                   className="h-full"
                 >
                   <SpotlightCard

@@ -13,8 +13,12 @@ import { ContactSection } from "@/components/sections/ContactSection";
 import { AnimatedGridPattern } from "@/components/ui/animated-grid-pattern";
 
 export function App() {
-  // Initialize Lenis smooth inertial scrolling
+  // Initialize Lenis smooth inertial scrolling — desktop only
   useEffect(() => {
+    // On touch/coarse-pointer devices, native scroll is better
+    const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
+    if (isTouchDevice) return;
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -40,7 +44,7 @@ export function App() {
       {/* Magic UI Animated Grid Pattern Background */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <AnimatedGridPattern
-          numSquares={45}
+          numSquares={typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches ? 18 : 45}
           maxOpacity={0.16}
           duration={3.5}
           className="[mask-image:radial-gradient(ellipse_at_center,white_30%,transparent_90%)] inset-0 w-full h-full"

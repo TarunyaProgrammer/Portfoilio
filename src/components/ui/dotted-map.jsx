@@ -19,6 +19,8 @@ export const DottedMap = React.memo(
     const svgRef = useRef(null);
     const [hoveredMarker, setHoveredMarker] = useState(null);
     const [mousePos, setMousePos] = useState({ x: -100, y: -100, active: false });
+    // Detect touch device once
+    const isTouchDevice = typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches;
 
     // ═══ ULTRA HIGH-PERFORMANCE PRECOMPUTED 1-PATH MAP ═══
     const { map, singlePathData, viewBox } = useMemo(() => {
@@ -72,11 +74,11 @@ export const DottedMap = React.memo(
       return { arcs: generatedArcs };
     }, [map, markers]);
 
-    // Handle mouse movement for interactive radar spotlight
+    // Handle mouse movement for interactive radar spotlight (pointer:fine only)
     const handleMouseMove = (e) => {
-      if (!svgRef.current) return;
+      if (!svgRef.current || isTouchDevice) return;
       const rect = svgRef.current.getBoundingClientRect();
-      const svgW = 127; // ViewBox width approx
+      const svgW = 127;
       const svgH = 62;
       const x = ((e.clientX - rect.left) / rect.width) * svgW;
       const y = ((e.clientY - rect.top) / rect.height) * svgH;
@@ -85,7 +87,7 @@ export const DottedMap = React.memo(
 
     const handleMouseLeave = () => {
       setMousePos((prev) => ({ ...prev, active: false }));
-      setHoveredMarker(null);
+      if (!isTouchDevice) setHoveredMarker(null);
     };
 
     return (
@@ -101,7 +103,7 @@ export const DottedMap = React.memo(
         <svg
           ref={svgRef}
           viewBox={viewBox}
-          className="w-full h-auto max-h-[520px] transition-transform duration-500 ease-out"
+          className="w-full h-auto max-h-[260px] sm:max-h-[400px] lg:max-h-[520px] transition-transform duration-500 ease-out"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -228,8 +230,9 @@ export const DottedMap = React.memo(
               <g
                 key={index}
                 className="cursor-pointer transition-all duration-300"
-                onMouseEnter={() => setHoveredMarker(index)}
-                onMouseLeave={() => setHoveredMarker(null)}
+                onMouseEnter={() => !isTouchDevice && setHoveredMarker(index)}
+                onMouseLeave={() => !isTouchDevice && setHoveredMarker(null)}
+                onClick={() => setHoveredMarker(hoveredMarker === index ? null : index)}
               >
                 {/* Expanding Pulse Ring on Hover */}
                 <circle

@@ -34,7 +34,7 @@ export const HeroSection = () => {
   return (
     <section
       id="hero"
-      className="relative w-full min-h-[90vh] sm:min-h-screen flex flex-col justify-between p-6 sm:p-10 lg:p-14 overflow-hidden border-b border-white/10 select-none"
+      className="relative w-full min-h-[100svh] flex flex-col justify-between p-5 sm:p-10 lg:p-14 pb-28 sm:pb-10 overflow-hidden border-b border-white/10 select-none"
     >
       {/* ═══ CINEMATIC HERO BACKGROUND VIDEO LAYER ═══ */}
       <CinematicHeroEngine
@@ -59,7 +59,7 @@ export const HeroSection = () => {
         </div>
 
         {/* Bottom-Right: Repeat and Mute/Unmute Controls + Clock */}
-        <div className="flex items-center gap-3 font-mono text-xs drop-shadow-[0_2px_14px_rgba(0,0,0,0.9)]">
+        <div className="flex items-center flex-wrap gap-2 font-mono text-xs drop-shadow-[0_2px_14px_rgba(0,0,0,0.9)]">
           <span className="hidden sm:inline-block text-zinc-300 font-medium">
             IST: <strong className="text-white">{time || "23:45"}</strong>
           </span>
