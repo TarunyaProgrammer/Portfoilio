@@ -218,11 +218,13 @@ export const CinematicHeroEngine = forwardRef(
         )}
       >
         {/* ═══ CLEAN STUDIO AUDIO SOURCE (MASTERED 10.0S HIGH-ENERGY DROP) ═══ */}
-        <audio ref={audioRef} preload="auto" muted={isMuted} playsInline>
-          <source src="/hero-audio-drop.m4a" type="audio/mp4" />
-          <source src="/hero-audio-drop.wav" type="audio/wav" />
-          <source src="/hero-bg-music.mp3" type="audio/mpeg" />
-        </audio>
+        <audio
+          ref={audioRef}
+          src="/hero-audio.m4a"
+          preload="auto"
+          muted={isMuted}
+          playsInline
+        />
 
         {/* ═══ SUBTLE GPU-ACCELERATED AMBIENT FILM GRAIN ═══ */}
         <div className="absolute inset-0 pointer-events-none z-20 opacity-[0.03] mix-blend-overlay bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]" />

@@ -106,8 +106,7 @@ npm run preview
 /
 ├── public/
 │   ├── hero-plates/              # 9 preloaded 60fps cinematic scene plates
-│   ├── hero-audio-drop.m4a       # Mastered 10.0s AAC high-energy audio drop
-│   ├── hero-bg-music.mp3         # Background audio track
+│   ├── hero-audio.m4a            # Mastered 10.0s AAC high-energy audio drop (236KB)
 │   ├── avatar.png                # Optimized portfolio profile avatar
 │   ├── og-image.png              # 1200x630 social preview card
 │   ├── sitemap.xml               # Search engine index sitemap

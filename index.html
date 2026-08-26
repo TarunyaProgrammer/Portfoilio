@@ -37,9 +37,11 @@
     <meta name="apple-mobile-web-app-title" content="Tarunya Kesharwani" />
     <meta name="application-name" content="Tarunya Kesharwani Portfolio" />
 
-    <!-- ═══ Performance Font Preconnects (Inter, Plus Jakarta Sans, Bonheur Royale) ═══ -->
+    <!-- ═══ Performance Font Preconnects & DNS Prefetches ═══ -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Bonheur+Royale&family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
@@ -55,7 +57,7 @@
     />
     <meta
       property="og:description"
-      content="Official portfolio of Tarunya Kesharwani (TarunyaProgrammer) — Systems Architect & GSoC '26 Developer at C2SI. Building high-performance web systems and autonomous agentic workflows."
+      content="Official portfolio of Tarunya Kesharwani (TarunyaProgrammer) — Systems Architect & GSoC '26 Developer at C2SI. Building high-performance web systems, distributed infra, and autonomous agentic workflows."
     />
     <meta property="og:url" content="https://tarunya.me/" />
     <meta property="og:image" content="https://tarunya.me/og-image.png" />
@@ -63,7 +65,7 @@
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Tarunya Kesharwani — Full-Stack Engineer & Systems Architect" />
+    <meta property="og:image:alt" content="Tarunya Kesharwani — Full-Stack Engineer & Systems Architect Portfolio Card" />
     <meta property="profile:first_name" content="Tarunya" />
     <meta property="profile:last_name" content="Kesharwani" />
     <meta property="profile:username" content="TarunyaProgrammer" />
@@ -71,6 +73,8 @@
 
     <!-- ═══ Twitter / X Summary Large Image Card ═══ -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:domain" content="tarunya.me" />
+    <meta name="twitter:url" content="https://tarunya.me/" />
     <meta name="twitter:site" content="@TarunyaKesh" />
     <meta name="twitter:creator" content="@TarunyaKesh" />
     <meta
@@ -95,6 +99,18 @@
       {
         "@context": "https://schema.org",
         "@graph": [
+          {
+            "@type": "ProfilePage",
+            "@id": "https://tarunya.me/#profilepage",
+            "url": "https://tarunya.me/",
+            "name": "Tarunya Kesharwani — Full-Stack Engineer & Systems Architect",
+            "headline": "Tarunya Kesharwani — Full-Stack Engineer & Systems Architect",
+            "description": "Official engineering portfolio of Tarunya Kesharwani (TarunyaProgrammer) — Systems Architect & GSoC '26 Developer at C2SI.",
+            "mainEntity": {
+              "@id": "https://tarunya.me/#person"
+            },
+            "inLanguage": "en-US"
+          },
           {
             "@type": "WebSite",
             "@id": "https://tarunya.me/#website",
@@ -144,6 +160,7 @@
               "https://x.com/TarunyaKesh",
               "https://dev.to/tarunya",
               "https://medium.com/@tarunyakesh",
+              "https://codeforces.com/profile/tarunya.programmer",
               "https://tarunya.me"
             ],
             "knowsAbout": [

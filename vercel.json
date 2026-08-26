@@ -50,7 +50,7 @@
       ]
     },
     {
-      "source": "/(hero-audio-drop.m4a|hero-audio-drop.wav|hero-bg-music.mp3|avatar.png|Resume.pdf)",
+      "source": "/(hero-audio.m4a|avatar.png|Resume.pdf)",
       "headers": [
         {
           "key": "Cache-Control",
