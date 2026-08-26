@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useRef as useRef2 } from "react";
+import React, { useRef } from "react";
 import {
   motion,
   useMotionValue,

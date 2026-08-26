@@ -16,10 +16,13 @@ const DockContext = createContext({
 
 // Detect pointer capability once
 function usePointerFine() {
-  const [isPointerFine, setIsPointerFine] = useState(true);
+  const [isPointerFine, setIsPointerFine] = useState(() =>
+    typeof window !== "undefined"
+      ? window.matchMedia("(hover: hover) and (pointer: fine)").matches
+      : true
+  );
   useEffect(() => {
     const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
-    setIsPointerFine(mq.matches);
     const handler = (e) => setIsPointerFine(e.matches);
     mq.addEventListener("change", handler);
     return () => mq.removeEventListener("change", handler);

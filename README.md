@@ -105,43 +105,53 @@ npm run preview
 ```bash
 /
 ├── public/
-│   ├── hero_video.mp4            # Hero cinematic background video
+│   ├── hero-plates/              # 9 preloaded 60fps cinematic scene plates
+│   ├── hero-audio-drop.m4a       # Mastered 10.0s AAC high-energy audio drop
+│   ├── hero-bg-music.mp3         # Background audio track
+│   ├── avatar.png                # Optimized portfolio profile avatar
+│   ├── og-image.png              # 1200x630 social preview card
+│   ├── sitemap.xml               # Search engine index sitemap
+│   ├── robots.txt                # Crawler directives & sitemap declaration
+│   ├── site.webmanifest          # PWA manifest
 │   ├── Resume.pdf                # Downloadable Curriculum Vitae
 │   └── favicon.svg               # Architectural minimalist monogram favicon
 ├── src/
 │   ├── main.jsx                  # React DOM root entry point
 │   ├── App.jsx                   # Single-page wrapper with Lenis & sections
-│   ├── index.css                 # Custom dark scrollbars & Tailwind base directives
+│   ├── index.css                 # Custom dark scrollbars, GPU animations & Tailwind
 │   ├── lib/
-│   │   └── utils.js              # Magic UI cn() class merging utility
+│   │   └── utils.js              # cn() class merging utility
 │   ├── data/
 │   │   └── portfolioData.js      # Single source of truth (profile, projects, skills, timeline)
 │   └── components/
-│       ├── ui/                   # Magic UI Reusable Primitives
+│       ├── ui/                   # Reusable UI Primitives
+│       │   ├── cinematic-hero-engine.jsx # RAF 60-120fps hero visual engine
 │       │   ├── dock.jsx          # Spring-physics macOS floating dock
 │       │   ├── shimmer-button.jsx# Glowing CTA button
-│       │   ├── border-beam.jsx   # Laser perimeter beam for flagship cards
 │       │   ├── spotlight-card.jsx# Mouse position radial gradient card
+│       │   ├── magic-card.jsx    # Spotlight glassmorphic card
 │       │   ├── marquee.jsx       # Infinite continuous skills ticker
-│       │   ├── shiny-text.jsx    # Shimmering gradient typography
-│       │   ├── blur-fade.jsx     # Viewport entrance animation
-│       │   └── bento-grid.jsx    # Modern bento layout grids
+│       │   ├── bento-grid.jsx    # Modern bento layout grids
+│       │   ├── highlighter.jsx   # Radiant text highlighter
+│       │   ├── file-tree.jsx     # Interactive project tree
+│       │   ├── dotted-map.jsx    # Interactive radar mobility map
+│       │   └── animated-grid-pattern.jsx # Animated background grid
 │       ├── layout/
 │       │   ├── Navbar.jsx        # Fixed top navigation (Brand + Hire Me CTA)
 │       │   ├── FloatingDock.jsx  # Bottom center macOS dock navigation
 │       │   └── Footer.jsx        # Live clock, copyright, and back-to-top
 │       └── sections/
-│           ├── HeroSection.jsx   # Video hero backdrop, headline, quick metrics (#hero)
+│           ├── HeroSection.jsx   # Cinematic hero engine layer & telemetry (#hero)
 │           ├── AboutSection.jsx  # Bio, credentials, and work principles (#about)
 │           ├── TechStackSection.jsx # Spotlight Bento matrix + Marquee (#skills)
-│           ├── FlagshipProjects.jsx # Top 3 products with Border Beams (#projects)
+│           ├── FlagshipProjects.jsx # Top 3 products with interactive cards (#projects)
 │           ├── ExperienceTimeline.jsx # GSoC '26 & CNCF leadership timeline (#experience)
 │           ├── PublicationsSection.jsx # DEV.to & Medium syndicated articles (#writing)
 │           └── ContactSection.jsx   # 1-Click email copy + inquiry sheet (#contact)
 ├── LICENSE                       # Restrictive CC BY-NC-ND 4.0 License
 ├── README.md                     # Documentation & setup guide
 ├── package.json                  # Dependencies & npm scripts
-├── tailwind.config.js            # Magic UI keyframes and custom color tokens
+├── tailwind.config.js            # Keyframes and custom color tokens
 └── vite.config.js                # Vite alias and plugin configurations
 ```
 

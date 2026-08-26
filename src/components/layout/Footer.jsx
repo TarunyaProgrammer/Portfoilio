@@ -124,7 +124,7 @@ export const Footer = () => {
               </span>
             </div>
             <p className="text-xs text-zinc-500 font-sans max-w-sm leading-relaxed">
-              Systems Architect · GSoC '26 @ C2SI · Building from code to production.
+              Systems Architect · GSoC &apos;26 @ C2SI · Building from code to production.
             </p>
           </div>
 

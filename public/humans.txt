@@ -1,5 +1,6 @@
 /* TEAM */
   Architect & Developer: Tarunya Kesharwani
+  Website: https://tarunya.me
   GitHub: https://github.com/TarunyaProgrammer
   X / Twitter: @TarunyaKesh
   LinkedIn: https://www.linkedin.com/in/tarunyakesharwani/
@@ -7,9 +8,10 @@
   Location: India
 
 /* SITE SPECIFICATIONS */
-  Standards: HTML5, CSS3, ES2024, WebP, SVG
-  Architecture: React 18, Vite 6, Tailwind CSS, Framer Motion
+  Standards: HTML5, CSS3, ES2024, WebP, SVG, AAC
+  Architecture: React 18, Vite 6, Tailwind CSS, Framer Motion, Lenis
   Components: Lucide Icons, Canvas Confetti, Dotted Map
-  Hero Sub-Frame RAF Engine: 10.00s 144 BPM Audio Synchronizer
+  Hero Sub-Frame RAF Engine: 10.00s 144 BPM Studio Audio Synchronizer
   Typography: Inter, Plus Jakarta Sans, Bonheur Royale
-  Design Philosophy: Modern Luxury Dark Aesthetic, Minimalist Precision, 120 FPS Framerate
+  Design Philosophy: Modern Luxury Dark Aesthetic, Minimalist Precision, 60-120 FPS Framerate
+

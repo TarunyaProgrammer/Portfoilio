@@ -50,6 +50,15 @@
       ]
     },
     {
+      "source": "/(hero-audio-drop.m4a|hero-audio-drop.wav|hero-bg-music.mp3|avatar.png|Resume.pdf)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
       "source": "/(favicon.svg|og-image.png|site.webmanifest|robots.txt|sitemap.xml)",
       "headers": [
         {
