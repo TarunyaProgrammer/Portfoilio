@@ -81,7 +81,7 @@ export const portfolioData = {
       metrics: "<60s Audits • 95+ Score",
       badge: "Featured",
       github: "https://github.com/TarunyaProgrammer",
-      live: "https://tarunyaportfolio.vercel.app",
+      live: "https://tarunya.me",
       glowColor: "#3b82f6",
     },
     {

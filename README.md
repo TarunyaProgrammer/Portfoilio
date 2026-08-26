@@ -3,7 +3,7 @@
   <p><strong>Minimalist Single-Page Engineering Portfolio &bull; GSoC &apos;26 Developer at C2SI</strong></p>
 
   <p>
-    <a href="https://tarunyaportfolio.vercel.app/" target="_blank">
+    <a href="https://tarunya.me/" target="_blank">
       <img src="https://img.shields.io/badge/Status-Live%20Production-10B981?style=for-the-badge&logo=vercel" alt="Live Site" />
     </a>
     <img src="https://img.shields.io/badge/Engine-React%2018%20%2B%20Vite-3B82F6?style=for-the-badge&logo=react" alt="React 18" />
@@ -21,7 +21,7 @@
 
 A high-performance, single-page minimalist portfolio engineered with **React, Vite, Tailwind CSS, Framer Motion, Lenis, and Magic UI**. Designed specifically for recruiters, engineering leaders, and clients to immediately understand Tarunya's core competencies, GSoC '26 leadership, and flagship product architectures.
 
-[**🌐 VIEW LIVE PRODUCTION PORTFOLIO**](https://tarunyaportfolio.vercel.app/)
+[**🌐 VIEW LIVE PRODUCTION PORTFOLIO**](https://tarunya.me/)
 
 ---
 

@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tarunyaportfolio.vercel.app/sitemap.xml
+Sitemap: https://tarunya.me/sitemap.xml
