@@ -163,8 +163,8 @@ export const TechStackSection = () => {
   ];
 
   return (
-    <section id="skills" className="py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto space-y-12">
+    <section id="skills" className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto space-y-12 sm:space-y-14">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -173,16 +173,29 @@ export const TechStackSection = () => {
           transition={{ duration: 0.6, ease: smoothEase }}
           className="flex flex-col md:flex-row md:items-end justify-between gap-6"
         >
-          <div className="space-y-2">
-            <div className="text-xs font-mono text-zinc-500 uppercase tracking-widest">
-              02 // CAPABILITIES &amp; ARCHITECTURE
+          <div className="space-y-2.5">
+            <div className="text-xs font-mono text-zinc-500 uppercase tracking-widest flex items-center gap-2">
+              <span>02 // TECHNICAL ARSENAL &amp; SYSTEMS ARCHITECTURE</span>
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             </div>
-            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white">
-              Tech Stack Bento Matrix.
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
+              Core Architectural Systems &amp; Capabilities.
             </h2>
-            <p className="text-zinc-400 text-base sm:text-lg max-w-2xl font-normal leading-relaxed">
-              Modular capabilities across distributed backend services, reactive frontend interfaces, deterministic AI pipelines, and cloud DevOps.
+            <p className="text-zinc-400 text-sm sm:text-base lg:text-lg max-w-2xl font-normal leading-relaxed">
+              Production-grade systems engineered for high throughput, sub-5ms edge routing, deterministic AI execution, and resilient zero-downtime deployments.
             </p>
+          </div>
+
+          {/* Quick SLA / Value Metric Badge */}
+          <div className="flex flex-wrap items-center gap-2 font-mono text-xs self-start md:self-auto">
+            <div className="px-3.5 py-1.5 rounded-xl bg-zinc-900/90 border border-white/10 text-zinc-300 flex items-center gap-2 shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-blue-400 animate-ping" />
+              <span>Sub-50ms Response SLAs</span>
+            </div>
+            <div className="px-3.5 py-1.5 rounded-xl bg-zinc-900/90 border border-white/10 text-zinc-300 flex items-center gap-2 shadow-sm">
+              <Check className="w-3.5 h-3.5 text-emerald-400" />
+              <span>95+ Lighthouse Speed</span>
+            </div>
           </div>
         </motion.div>
 

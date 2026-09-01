@@ -59,10 +59,10 @@ export const portfolioData = {
   ],
 
   metrics: [
-    { label: "Open Source PRs", value: "25+", highlight: "CNCF & GSoC" },
-    { label: "Academic Merit", value: "8.83", highlight: "CGPA in CS/AI" },
-    { label: "GitHub Repositories", value: "45+", highlight: "Shipped Projects" },
-    { label: "Community Mentored", value: "100+", highlight: "GSSoC & SSoC" },
+    { label: "Open Source PRs", value: "100+", highlight: "CNCF & GSoC '26" },
+    { label: "Selected Developer", value: "GSoC '26", highlight: "C2SI Foundation" },
+    { label: "GitHub Repositories", value: "60+", highlight: "Shipped & Active" },
+    { label: "Developers Mentored", value: "100+", highlight: "GSSoC & SSoC" },
   ],
 
   // ═══════════════════════════════════════════════════════════════

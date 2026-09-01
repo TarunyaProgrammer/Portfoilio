@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import confetti from "canvas-confetti";
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 export const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -132,7 +133,83 @@ export const ContactSection = () => {
           </p>
         </motion.div>
 
-        {/* ═══ 1. BIG IMPRESSIVE DOTTED WORLD MAP SHOWCASE ═══ */}
+        {/* ═══ 1. HIGH-IMPACT SPECIALIZED SPRINTS & DELIVERABLES (FOMO & SPEED) ═══ */}
+        <motion.div
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.65, ease: smoothEase }}
+          className="space-y-6"
+        >
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div className="space-y-1.5">
+              <div className="text-xs font-mono text-zinc-500 uppercase tracking-widest flex items-center gap-2">
+                <span>ENGAGEMENT PROTOCOLS &amp; DELIVERY SLAS</span>
+                <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+                Specialized Engineering Sprints.
+              </h3>
+              <p className="text-xs sm:text-sm text-zinc-400 max-w-2xl font-normal leading-relaxed">
+                Need to ship before your competitors? Select a pre-scoped engineering sprint or schedule custom architecture consulting.
+              </p>
+            </div>
+
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 font-mono text-xs self-start sm:self-auto">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+              <span>Q3/Q4 Active Window &bull; Limited Slots</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {portfolioData.services.map((svc) => {
+              const isSelected = formData.service === svc.title;
+              return (
+                <div
+                  key={svc.title}
+                  onClick={() => {
+                    setFormData((prev) => ({ ...prev, service: svc.title }));
+                    document.getElementById("contact-form-card")?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className={cn(
+                    "p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between space-y-4 cursor-pointer group backdrop-blur-sm",
+                    isSelected
+                      ? "bg-zinc-800/90 border-blue-500/80 shadow-[0_0_25px_rgba(59,130,246,0.25)] scale-[1.02]"
+                      : "bg-zinc-900/60 border-white/10 hover:border-white/25 hover:bg-zinc-900/90"
+                  )}
+                >
+                  <div className="space-y-2.5">
+                    <div className="flex items-center justify-between">
+                      <span className="px-2.5 py-1 rounded-md bg-zinc-950 border border-white/10 text-emerald-400 font-mono font-semibold text-[11px]">
+                        {svc.timeframe}
+                      </span>
+                      <ArrowUpRight className={cn(
+                        "w-4 h-4 transition-transform",
+                        isSelected ? "text-blue-400 translate-x-0.5 -translate-y-0.5" : "text-zinc-500 group-hover:text-white"
+                      )} />
+                    </div>
+
+                    <h4 className="font-bold text-white text-sm sm:text-base tracking-tight leading-snug group-hover:text-blue-300 transition-colors">
+                      {svc.title}
+                    </h4>
+
+                    <p className="text-xs text-zinc-400 font-sans leading-relaxed">
+                      {svc.description}
+                    </p>
+                  </div>
+
+                  <div className="pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono">
+                    <span className={isSelected ? "text-blue-400 font-semibold" : "text-zinc-500 group-hover:text-zinc-300"}>
+                      {isSelected ? "✓ Selected in Form" : "Click to Select Sprint"}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </motion.div>
+
+        {/* ═══ 2. BIG IMPRESSIVE DOTTED WORLD MAP SHOWCASE ═══ */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -177,7 +254,7 @@ export const ContactSection = () => {
           </div>
         </motion.div>
 
-        {/* ═══ 2. MAIN CONTACT TRANSMISSION (SUBTLE METADATA LEFT, PROMINENT FORM RIGHT) ═══ */}
+        {/* ═══ 3. MAIN CONTACT TRANSMISSION (SUBTLE METADATA LEFT, PROMINENT FORM RIGHT) ═══ */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           {/* Left Column: Subtle, De-emphasized Contact Metadata */}
           <motion.div
@@ -236,6 +313,7 @@ export const ContactSection = () => {
 
           {/* Right Column: Prominent, High-Readability Inquiry Sheet */}
           <motion.div
+            id="contact-form-card"
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-60px" }}

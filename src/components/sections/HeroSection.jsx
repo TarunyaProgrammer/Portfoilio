@@ -48,19 +48,24 @@ export const HeroSection = () => {
 
       {/* ═══ SEAMLESS CORNER OVERLAYS (BLENDED ON TOP OF VIDEO) ═══ */}
       <div className="relative z-20 w-full max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6">
-        {/* Bottom-Left: Restored Intro Typography Line */}
-        <div className="flex flex-col drop-shadow-[0_2px_14px_rgba(0,0,0,0.9)]">
-          <h1 className="text-white font-sans font-bold text-xl sm:text-3xl tracking-tight leading-tight">
+        {/* Bottom-Left: Restored Intro Typography Line with Live Status */}
+        <div className="flex flex-col drop-shadow-[0_2px_14px_rgba(0,0,0,0.9)] space-y-1.5">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 border border-emerald-500/30 backdrop-blur-md self-start text-[11px] font-mono text-emerald-300">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+            <span>Available for High-Impact Roles &amp; Select Sprints</span>
+          </div>
+
+          <h1 className="text-white font-sans font-bold text-2xl sm:text-3xl lg:text-4xl tracking-tight leading-tight">
             {portfolioData.personal.name}
           </h1>
-          <p className="text-xs sm:text-sm text-zinc-300 font-mono mt-1 tracking-wide">
-            Systems Architect &bull; GSoC &apos;26 @ C2SI
+          <p className="text-xs sm:text-sm text-zinc-300 font-mono tracking-wide">
+            Full-Stack Systems Architect &bull; GSoC &apos;26 @ C2SI &bull; AI Engineer
           </p>
         </div>
 
         {/* Bottom-Right: Repeat and Mute/Unmute Controls + Clock */}
         <div className="flex items-center flex-wrap gap-2 font-mono text-xs drop-shadow-[0_2px_14px_rgba(0,0,0,0.9)]">
-          <span className="hidden sm:inline-block text-zinc-300 font-medium">
+          <span className="hidden sm:inline-block text-zinc-300 font-medium px-3 py-1.5 rounded-full bg-black/40 border border-white/10 backdrop-blur-sm">
             IST: <strong className="text-white">{time || "23:45"}</strong>
           </span>
 

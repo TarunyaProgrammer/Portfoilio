@@ -69,8 +69,8 @@ export const FlagshipProjects = () => {
   };
 
   return (
-    <section id="projects" className="py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto space-y-16">
+    <section id="projects" className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto space-y-14 sm:space-y-16">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -79,15 +79,16 @@ export const FlagshipProjects = () => {
           transition={{ duration: 0.6, ease: smoothEase }}
           className="flex flex-col md:flex-row md:items-end justify-between gap-6"
         >
-          <div className="space-y-2">
-            <div className="text-xs font-mono text-zinc-500 uppercase tracking-widest">
-              03 // FLAGSHIP ENGINEERING SHOWCASE
+          <div className="space-y-2.5">
+            <div className="text-xs font-mono text-zinc-500 uppercase tracking-widest flex items-center gap-2">
+              <span>03 // FLAGSHIP ENGINEERING SHOWCASE</span>
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
             </div>
-            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white">
-              Top 3 Flagship Products.
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
+              Flagship Production Systems.
             </h2>
-            <p className="text-zinc-400 text-base sm:text-lg max-w-2xl font-normal leading-relaxed">
-              Production systems architected for AI financial audits, distributed serverless telemetry, and real-time messaging.
+            <p className="text-zinc-400 text-sm sm:text-base lg:text-lg max-w-2xl font-normal leading-relaxed">
+              High-impact platforms engineered for deterministic AI financial auditing, sub-5ms serverless edge telemetry, and local-first developer infrastructure.
             </p>
           </div>
 
@@ -95,7 +96,7 @@ export const FlagshipProjects = () => {
             href="https://github.com/TarunyaProgrammer"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-xs font-mono font-medium text-zinc-400 hover:text-white px-4 py-2 rounded-xl bg-zinc-900 border border-white/10 hover:border-white/25 transition-all self-start md:self-auto"
+            className="inline-flex items-center gap-2 text-xs font-mono font-medium text-zinc-300 hover:text-white px-4 py-2.5 rounded-xl bg-zinc-900 border border-white/10 hover:border-white/25 transition-all self-start md:self-auto shadow-sm"
           >
             <Github className="w-4 h-4 text-zinc-300" />
             <span>GitHub (45+ Repos)</span>

@@ -1,5 +1,6 @@
 import React from "react";
 import { portfolioData } from "@/data/portfolioData";
+import { useGithubMetrics } from "@/lib/useGithubMetrics";
 import { SpotlightCard } from "@/components/ui/spotlight-card";
 import { Highlighter } from "@/components/ui/highlighter";
 import {
@@ -10,11 +11,15 @@ import {
   Flame,
   GitPullRequest,
   Trophy,
+  Github,
+  RefreshCw,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export const AboutSection = () => {
+  const { metrics, isLiveSynced } = useGithubMetrics();
+
   const iconMap = {
     Zap: Zap,
     ShieldCheck: ShieldCheck,
@@ -55,30 +60,46 @@ export const AboutSection = () => {
   ];
 
   return (
-    <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden">
+    <section id="about" className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden">
       <div className="max-w-7xl mx-auto space-y-16">
-        {/* ═══ TOP TELEMETRY METRICS ═══ */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          {(portfolioData.personal?.metrics || portfolioData.metrics || []).map((metric, idx) => (
-            <motion.div
-              key={metric.label}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.5, delay: idx * 0.1, ease: smoothEase }}
-              className="p-5 sm:p-6 rounded-2xl bg-zinc-900/40 border border-white/10 hover:border-white/20 transition-all backdrop-blur-sm group"
-            >
-              <div className="text-2xl sm:text-4xl font-black text-white font-mono tracking-tight group-hover:text-blue-400 transition-colors">
-                {metric.value}
-              </div>
-              <div className="text-xs sm:text-sm font-semibold text-zinc-300 mt-1">
-                {metric.label}
-              </div>
-              <div className="text-[11px] text-zinc-500 font-mono mt-0.5">
-                {metric.detail}
-              </div>
-            </motion.div>
-          ))}
+        {/* ═══ TOP TELEMETRY METRICS (LIVE GITHUB SYNC WITH 6-HOUR CRON CACHE) ═══ */}
+        <div className="space-y-3">
+          <div className="flex items-center justify-between px-1 text-[11px] font-mono text-zinc-500">
+            <span className="flex items-center gap-1.5 text-zinc-400">
+              <Github className="w-3.5 h-3.5 text-zinc-300" />
+              <span>Telemetry &amp; Open Source Metrics</span>
+            </span>
+            <span className="inline-flex items-center gap-1.5 text-zinc-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span>{isLiveSynced ? "Live GitHub Synced" : "Verified Metrics"} (6h Cron Cache)</span>
+            </span>
+          </div>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {metrics.map((metric, idx) => (
+              <motion.div
+                key={metric.label}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.5, delay: idx * 0.1, ease: smoothEase }}
+                className="p-5 sm:p-6 rounded-2xl bg-zinc-900/40 border border-white/10 hover:border-white/20 transition-all backdrop-blur-sm group flex flex-col justify-between"
+              >
+                <div>
+                  <div className="text-2xl sm:text-4xl font-black text-white font-mono tracking-tight group-hover:text-blue-400 transition-colors">
+                    {metric.value}
+                  </div>
+                  <div className="text-xs sm:text-sm font-semibold text-zinc-300 mt-1">
+                    {metric.label}
+                  </div>
+                </div>
+                <div className="text-[11px] text-zinc-400 font-mono mt-2 pt-2 border-t border-white/5 flex items-center justify-between">
+                  <span>{metric.highlight || metric.detail}</span>
+                  <span className="text-emerald-400/80">✓</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         {/* ═══ SECTION HEADER ═══ */}
