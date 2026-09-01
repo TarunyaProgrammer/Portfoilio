@@ -11,6 +11,7 @@ import { ExperienceTimeline } from "@/components/sections/ExperienceTimeline";
 import { PublicationsSection } from "@/components/sections/PublicationsSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { AnimatedGridPattern } from "@/components/ui/animated-grid-pattern";
+import { Analytics } from "@vercel/analytics/react";
 
 export function App() {
   // Initialize Lenis smooth inertial scrolling — desktop only
@@ -70,6 +71,9 @@ export function App() {
 
       {/* Floating Center macOS Dock */}
       <FloatingDock />
+
+      {/* Vercel Web Analytics */}
+      <Analytics />
     </div>
   );
 }
