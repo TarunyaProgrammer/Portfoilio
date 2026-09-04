@@ -59,7 +59,7 @@
       ]
     },
     {
-      "source": "/(favicon.svg|og-image.png|site.webmanifest|robots.txt|sitemap.xml)",
+      "source": "/(favicon.svg|og-image.png|site.webmanifest|robots.txt|sitemap.xml|llms.txt)",
       "headers": [
         {
           "key": "Cache-Control",

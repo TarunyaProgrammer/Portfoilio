@@ -49,16 +49,26 @@ export const HeroSection = () => {
       {/* ═══ SEAMLESS CORNER OVERLAYS (BLENDED ON TOP OF VIDEO) ═══ */}
       <div className="relative z-20 w-full max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6">
         {/* Bottom-Left: Restored Intro Typography Line with Live Status */}
-        <div className="flex flex-col drop-shadow-[0_2px_14px_rgba(0,0,0,0.9)] space-y-1.5">
+        <div
+          itemScope
+          itemType="https://schema.org/Person"
+          className="flex flex-col drop-shadow-[0_2px_14px_rgba(0,0,0,0.9)] space-y-1.5"
+        >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 border border-emerald-500/30 backdrop-blur-md self-start text-[11px] font-mono text-emerald-300">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
             <span>Available for High-Impact Roles &amp; Select Sprints</span>
           </div>
 
-          <h1 className="text-white font-sans font-bold text-2xl sm:text-3xl lg:text-4xl tracking-tight leading-tight">
+          <h1
+            itemProp="name"
+            className="text-white font-sans font-bold text-2xl sm:text-3xl lg:text-4xl tracking-tight leading-tight"
+          >
             {portfolioData.personal.name}
           </h1>
-          <p className="text-xs sm:text-sm text-zinc-300 font-mono tracking-wide">
+          <p
+            itemProp="jobTitle"
+            className="text-xs sm:text-sm text-zinc-300 font-mono tracking-wide"
+          >
             Full-Stack Systems Architect &bull; GSoC &apos;26 @ C2SI &bull; AI Engineer
           </p>
         </div>

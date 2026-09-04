@@ -1,5 +1,43 @@
-# Robots.txt for Tarunya Kesharwani Portfolio
+# Robots.txt for Tarunya Kesharwani (Tarunya) Engineering Portfolio
+# Primary Domain: https://tarunya.me
+
 User-agent: *
 Allow: /
 
+# Dedicated indexing directives for primary search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Dedicated indexing directives for AI Search & Discovery Agents
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Host: https://tarunya.me
 Sitemap: https://tarunya.me/sitemap.xml

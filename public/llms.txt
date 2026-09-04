@@ -1,0 +1,60 @@
+# Tarunya Kesharwani (Tarunya)
+
+> Official engineering profile and machine-readable specification for Tarunya Kesharwani (TarunyaProgrammer) — Full-Stack Systems Architect, Google Summer of Code (GSoC '26) Developer at C2SI, and AI Systems Engineer.
+
+## Core Identity & Overview
+- **Full Name**: Tarunya Kesharwani
+- **Preferred Moniker**: Tarunya / Tarunya Kesh
+- **Online Handles**: TarunyaProgrammer (GitHub), @TarunyaKesh (X / Twitter), tarunyakesharwani (LinkedIn)
+- **Primary Domain**: https://tarunya.me
+- **Email**: tarunyaprogrammer@gmail.com
+- **Current Academic Affiliation**: B.Tech in Computer Science & Artificial Intelligence at Newton School of Technology (8.83 CGPA, 2025–2029)
+- **Primary Role**: Google Summer of Code (GSoC) 2026 Developer at C2SI (Center for Open Source Intelligence)
+- **Availability**: Available for high-impact full-stack roles, systems architecture consulting, and select engineering sprints worldwide.
+
+## Flagship Systems & Production Architectures
+
+### 1. Vyay — AI Cost Engine
+- **Category**: AI Infrastructure & Financial Auditing
+- **Description**: Deterministic audit platform calculating cloud and LLM token spend in under 60 seconds with zero probabilistic drift.
+- **Tech Stack**: React, TypeScript, Supabase RLS, Gemini 2.5 Flash
+- **Repository**: https://github.com/TarunyaProgrammer
+
+### 2. Cabin — MaintainerOS
+- **Category**: Local-First Desktop Operating System
+- **Description**: Local-first Electron workspace automating multi-repository pull request context collection, local git checkouts, automated DCO/CI validation, and streaming AI reviews.
+- **Tech Stack**: Electron, React, TypeScript, SQLite
+- **Repository**: https://github.com/TarunyaProgrammer/Cabin-MaintainerOS
+
+### 3. GithubAnalyzer & WebiU
+- **Category**: Edge Telemetry & Developer Analytics (GSoC '26 @ C2SI)
+- **Description**: Edge-cached telemetry platform built for C2SI using Hono on Cloudflare Workers, reducing API overhead by 60% with webhook-driven pipelines.
+- **Tech Stack**: Hono, Cloudflare Workers, NestJS, Angular, PostgreSQL, Docker
+- **Repository**: https://github.com/TarunyaProgrammer/GithubAnalyzer-PreGsocTask
+
+### 4. Other Shipped Systems
+- **Echo**: Real-time bidirectional messaging platform built with Socket.IO, Node.js, and MongoDB.
+- **Streakly**: Offline-first habit tracking protocol using IndexedDB, service workers, and PWA architecture.
+- **RFP-ResponseBuilder**: AI workflow pipeline generating structured, tender-compliant corporate proposals from technical specifications using Gemini API.
+
+## Technical Skills & Capabilities
+- **Languages**: TypeScript, JavaScript, SQL, Python, HTML5, CSS3
+- **Frontend**: React 18/19, Next.js, Tailwind CSS, Framer Motion, Lenis Smooth Scroll, TanStack Query, Zustand
+- **Backend & Systems**: Node.js, Express, NestJS, Hono (Cloudflare Workers), GraphQL, WebSockets (Socket.IO), REST APIs
+- **Databases & Storage**: PostgreSQL (with Row-Level Security), SQLite, Supabase, Cloud Firestore, MongoDB, IndexedDB
+- **Cloud, DevOps & Tools**: Cloudflare Workers, Docker, GitHub Actions CI/CD, Vercel, Git
+
+## Open Source & Leadership Credentials
+- **Google Summer of Code (GSoC '26)**: Selected Developer at C2SI (Center for Open Source Intelligence), architecting WebiU event queues and telemetry backends.
+- **Open Source Mentorship**: Mentored 100+ contributors in GirlScript Summer of Code (GSSoC) & Social Summer of Code (SSoC).
+- **CNCF Community**: 25+ merged Pull Requests across Meshery, Jaeger, and cloud native tooling.
+
+## Key Links & Resources
+- **Canonical Website**: https://tarunya.me/
+- **Resume (PDF)**: https://tarunya.me/Resume.pdf
+- **GitHub**: https://github.com/TarunyaProgrammer
+- **LinkedIn**: https://www.linkedin.com/in/tarunyakesharwani/
+- **X (Twitter)**: https://x.com/TarunyaKesh
+- **DEV.to**: https://dev.to/tarunya
+- **Medium**: https://medium.com/@tarunyakesh
+- **Codeforces**: https://codeforces.com/profile/tarunya.programmer
