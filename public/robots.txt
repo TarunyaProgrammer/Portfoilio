@@ -39,5 +39,5 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-Host: https://tarunya.me
-Sitemap: https://tarunya.me/sitemap.xml
+Host: https://www.tarunya.me
+Sitemap: https://www.tarunya.me/sitemap.xml

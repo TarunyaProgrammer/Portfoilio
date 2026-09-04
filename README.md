@@ -108,7 +108,8 @@ npm run preview
 │   ├── hero-plates/              # 9 preloaded 60fps cinematic scene plates
 │   ├── hero-audio.m4a            # Mastered 10.0s AAC high-energy audio drop (236KB)
 │   ├── avatar.png                # Optimized portfolio profile avatar
-│   ├── og-image.png              # 1200x630 social preview card
+│   ├── og-image.jpg              # 1200x630 WhatsApp & social preview card (ultra-light 107KB)
+│   ├── og-image.png              # 1200x630 social preview card (PNG fallback)
 │   ├── sitemap.xml               # Search engine index sitemap
 │   ├── robots.txt                # Crawler directives & sitemap declaration
 │   ├── site.webmanifest          # PWA manifest
