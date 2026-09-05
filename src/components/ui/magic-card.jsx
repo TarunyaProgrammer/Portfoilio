@@ -51,7 +51,7 @@ export const MagicCard = ({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className={cn(
-        "group relative overflow-hidden rounded-2xl border border-white/10 bg-zinc-950/80 transition-all duration-300 hover:border-white/20 shadow-xl",
+        "group relative overflow-hidden rounded-2xl border border-white/10 bg-zinc-950/80 transition-[background-color,border-color,box-shadow,transform] duration-300 hover:border-white/20 shadow-xl",
         className
       )}
       {...props}

@@ -17,16 +17,16 @@ export const TechStackSection = () => {
   const smoothEase = [0.22, 1, 0.36, 1];
 
   const backendEvents = [
-    { title: "Hono Edge Worker", status: "< 5ms", tag: "Cloudflare" },
+    { title: "Hono Edge Worker", status: "Edge route", tag: "Cloudflare" },
     { title: "Webhook Dispatcher", status: "Event-Driven", tag: "GSoC '26" },
-    { title: "Octokit Caching", status: "60% Query Drop", tag: "Redis/KV" },
-    { title: "WebSocket Sync", status: "Sub-50ms", tag: "Socket.IO" },
+    { title: "Octokit Caching", status: "Fewer API calls", tag: "Redis/KV" },
+    { title: "WebSocket Sync", status: "Low-latency sync", tag: "Socket.IO" },
   ];
 
   const aiModules = [
-    { name: "Gemini 2.5 Flash", desc: "Multimodal fast inference" },
+    { name: "Gemini 2.5 Flash", desc: "Fast multimodal inference" },
     { name: "Google Antigravity SDK", desc: "Autonomous agent workflows" },
-    { name: "Deterministic RAG", desc: "Zero hallucination grounding" },
+    { name: "Grounded retrieval", desc: "Context with clear boundaries" },
     { name: "Structured JSON Output", desc: "Strict schema validation" },
   ];
 
@@ -42,21 +42,21 @@ export const TechStackSection = () => {
   ];
 
   const infraChecks = [
-    { label: "GitHub Actions CI", status: "Automated Build Passing", color: "text-emerald-400" },
-    { label: "Supabase PostgreSQL", status: "Row-Level Security Active", color: "text-blue-400" },
-    { label: "Cloudflare Workers", status: "Global Edge Caching", color: "text-amber-400" },
-    { label: "Docker Containers", status: "Immutable Production Builds", color: "text-violet-400" },
+    { label: "GitHub Actions CI", status: "Repeatable checks", color: "text-emerald-400" },
+    { label: "Supabase PostgreSQL", status: "Protected data access", color: "text-blue-400" },
+    { label: "Cloudflare Workers", status: "Edge-ready delivery", color: "text-blue-300" },
+    { label: "Docker Containers", status: "Reproducible builds", color: "text-blue-200" },
   ];
 
   const bentoFeatures = [
     // 1. Distributed Backends (col-span-1 md:col-span-2)
     {
       Icon: Server,
-      name: "Distributed Backends & Edge APIs",
+      name: "Backends that stay dependable",
       description:
-        "Architecting resilient event-driven microservices, Cloudflare edge workers, and sub-50ms WebSockets with persistent caching.",
+        "Event-driven services, edge workers, and persistent caching shaped around reliable data flow.",
       href: "#projects",
-      cta: "Explore Systems",
+      cta: "See selected work",
       className: "col-span-1 md:col-span-2 lg:col-span-2",
       background: (
         <div className="w-full h-full flex flex-col justify-center gap-2 font-mono text-[11px]">
@@ -83,11 +83,11 @@ export const TechStackSection = () => {
     // 2. Deterministic AI (col-span-1)
     {
       Icon: Cpu,
-      name: "Deterministic AI & Agentic Workflows",
+      name: "AI workflows with guardrails",
       description:
-        "Engineering autonomous agents, structured JSON output validation, and multimodal RAG pipelines.",
+        "Structured outputs, grounded retrieval, and automation that stays close to the rules of the product.",
       href: "#projects",
-      cta: "View AI Architecture",
+      cta: "View AI work",
       className: "col-span-1 md:col-span-1 lg:col-span-1",
       background: (
         <div className="w-full h-full flex items-center justify-center overflow-hidden">
@@ -113,11 +113,11 @@ export const TechStackSection = () => {
     // 3. Reactive Frontend Systems (col-span-1)
     {
       Icon: Layout,
-      name: "Reactive Frontend Architecture",
+      name: "Interfaces that feel immediate",
       description:
-        "Sub-second interactive interfaces engineered with React 19, TypeScript, Framer Motion, and Lenis momentum scrolling.",
+        "Responsive interfaces built with React and TypeScript, with motion used to clarify the experience.",
       href: "#projects",
-      cta: "Inspect Components",
+      cta: "Inspect interfaces",
       className: "col-span-1 md:col-span-1 lg:col-span-1",
       background: (
         <div className="w-full h-full flex items-center justify-center">
@@ -138,11 +138,11 @@ export const TechStackSection = () => {
     // 4. Cloud DevOps & Enterprise Storage (col-span-1 md:col-span-2)
     {
       Icon: Database,
-      name: "Cloud DevOps & Distributed Storage",
+      name: "Deployment and data foundations",
       description:
-        "Automated CI/CD pipelines, PostgreSQL with Row-Level Security, Redis edge caching, and containerized deployments.",
+        "CI/CD, protected data, edge delivery, and containerized builds that give teams a steadier path to production.",
       href: "#projects",
-      cta: "Review Infrastructure",
+      cta: "Review foundations",
       className: "col-span-1 md:col-span-2 lg:col-span-2",
       background: (
         <div className="w-full h-full grid grid-cols-1 sm:grid-cols-2 gap-2 font-mono text-xs items-center">
@@ -175,14 +175,14 @@ export const TechStackSection = () => {
         >
           <div className="space-y-2.5">
             <div className="text-xs font-mono text-zinc-500 uppercase tracking-widest flex items-center gap-2">
-              <span>02 // TECHNICAL ARSENAL &amp; SYSTEMS ARCHITECTURE</span>
+              <span>Tools behind the work</span>
               <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
-              Core Architectural Systems &amp; Capabilities.
+              The tools are chosen for the constraints.
             </h2>
             <p className="text-zinc-400 text-sm sm:text-base lg:text-lg max-w-2xl font-normal leading-relaxed">
-              Production-grade systems engineered for high throughput, sub-5ms edge routing, deterministic AI execution, and resilient zero-downtime deployments.
+              I choose tools for the problem at hand: clear interfaces, dependable data flow, and AI that stays inside useful boundaries.
             </p>
           </div>
 
@@ -190,11 +190,11 @@ export const TechStackSection = () => {
           <div className="flex flex-wrap items-center gap-2 font-mono text-xs self-start md:self-auto">
             <div className="px-3.5 py-1.5 rounded-xl bg-zinc-900/90 border border-white/10 text-zinc-300 flex items-center gap-2 shadow-sm">
               <span className="w-2 h-2 rounded-full bg-blue-400 animate-ping" />
-              <span>Sub-50ms Response SLAs</span>
+              <span>Performance-minded builds</span>
             </div>
             <div className="px-3.5 py-1.5 rounded-xl bg-zinc-900/90 border border-white/10 text-zinc-300 flex items-center gap-2 shadow-sm">
               <Check className="w-3.5 h-3.5 text-emerald-400" />
-              <span>95+ Lighthouse Speed</span>
+              <span>Production-focused delivery</span>
             </div>
           </div>
         </motion.div>
@@ -223,17 +223,19 @@ export const TechStackSection = () => {
           transition={{ duration: 0.6, delay: 0.3, ease: smoothEase }}
           className="relative overflow-hidden rounded-2xl bg-zinc-950/40 border border-white/10 py-3 mt-6"
         >
-          <Marquee pauseOnHover className="[--duration:35s]">
-            {portfolioData.skills.flatMap((s) => s.items).map((skill, i) => (
-              <div
-                key={`${skill}-${i}`}
-                className="mx-3 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-zinc-900/80 border border-white/10 text-xs text-zinc-300 font-mono shadow-sm"
-              >
-                <Code2 className="w-3.5 h-3.5 text-zinc-400" />
-                <span>{skill}</span>
-              </div>
-            ))}
-          </Marquee>
+          <div aria-hidden="true">
+            <Marquee pauseOnHover className="[--duration:35s]">
+              {portfolioData.skills.flatMap((s) => s.items).map((skill, i) => (
+                <div
+                  key={`${skill}-${i}`}
+                  className="mx-3 inline-flex items-center gap-2 rounded-xl border border-white/10 bg-zinc-900/80 px-3.5 py-1.5 text-xs font-mono text-zinc-300 shadow-sm"
+                >
+                  <Code2 className="h-3.5 w-3.5 text-zinc-400" />
+                  <span>{skill}</span>
+                </div>
+              ))}
+            </Marquee>
+          </div>
         </motion.div>
       </div>
     </section>

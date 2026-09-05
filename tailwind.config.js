@@ -19,8 +19,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
-        mono: ["Plus Jakarta Sans", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        sans: ["Outfit", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        mono: ["ui-monospace", "SFMono-Regular", "SF Mono", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"],
         signature: ["'Bonheur Royale'", "cursive"],
       },
       animation: {

@@ -29,7 +29,7 @@ export const BentoCard = ({
     <div
       className={cn(
         "group relative col-span-1 flex flex-col justify-between overflow-hidden rounded-2xl",
-        "bg-zinc-900/70 border border-white/10 p-6 sm:p-7 backdrop-blur-md transition-all duration-300 hover:border-white/25 hover:bg-zinc-900 shadow-xl",
+        "bg-zinc-900/70 border border-white/10 p-6 sm:p-7 backdrop-blur-md transition-[background-color,border-color,box-shadow,transform] duration-300 hover:border-white/25 hover:bg-zinc-900 shadow-xl",
         className
       )}
     >
@@ -43,7 +43,7 @@ export const BentoCard = ({
         <div className="space-y-2">
           <div className="flex items-center gap-2.5">
             {Icon && (
-              <div className="p-2 rounded-lg bg-zinc-800 border border-white/10 text-zinc-300 group-hover:text-white group-hover:border-white/20 transition-all">
+              <div className="p-2 rounded-lg bg-zinc-800 border border-white/10 text-zinc-300 group-hover:text-white group-hover:border-white/20 transition-[color,border-color,background-color]">
                 <Icon className="h-4 w-4" />
               </div>
             )}

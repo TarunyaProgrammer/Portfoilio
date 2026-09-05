@@ -18,13 +18,13 @@ export const ExperienceTimeline = () => {
           className="space-y-2"
         >
           <div className="text-xs font-mono text-zinc-500 uppercase tracking-widest">
-            04 // EXPERIENCE &amp; LEADERSHIP
+            Where I’ve contributed
           </div>
           <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white">
-            Experience &amp; Milestones.
+            Open source, mentorship, and systems work.
           </h2>
           <p className="text-zinc-400 text-base sm:text-lg max-w-2xl font-normal leading-relaxed">
-            Leading open source initiatives, mentoring remote engineering communities, and building enterprise architectures.
+            I work best with people who care about the details: clear decisions, useful feedback, and software that keeps getting better.
           </p>
         </motion.div>
 
@@ -46,7 +46,7 @@ export const ExperienceTimeline = () => {
               {/* Timeline Tick Line */}
               <div className="absolute -left-[25px] sm:-left-[33px] top-4 w-6 h-[1px] bg-zinc-700 group-hover:bg-zinc-300 transition-colors" />
 
-              <div className="p-6 sm:p-7 rounded-2xl bg-zinc-900/60 border border-white/10 hover:border-white/20 transition-all space-y-4 backdrop-blur-sm shadow-xl">
+              <div className="p-6 sm:p-7 rounded-2xl bg-zinc-900/60 border border-white/10 hover:border-white/20 transition-[background-color,border-color,box-shadow] space-y-4 backdrop-blur-sm shadow-xl">
                 {/* Header row */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/10 pb-4">
                   <div>

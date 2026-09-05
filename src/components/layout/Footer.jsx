@@ -24,21 +24,21 @@ const SOCIAL_LINKS = [
 
 const NAV_COLS = [
   {
-    title: "Work",
-    links: [
-      { label: "Flagship Projects",        href: "projects" },
-      { label: "Tech Stack & Skills",      href: "skills"   },
-      { label: "Experience & Timeline",    href: "experience" },
-      { label: "Publications",             href: "writing"  },
-      { label: "Contact Me",              href: "contact"  },
+      title: "Work",
+      links: [
+      { label: "Selected work",       href: "projects" },
+      { label: "Tools behind the work", href: "skills"   },
+      { label: "Contributions",        href: "experience" },
+      { label: "Writing",              href: "writing"  },
+      { label: "Start a conversation", href: "contact"  },
     ],
   },
   {
     title: "Open Source",
     links: [
-      { label: "GitHub (45+ repos)",        href: "https://github.com/TarunyaProgrammer",          ext: true },
-      { label: "GSoC '26 @ C2SI",           href: "https://summerofcode.withgoogle.com/",          ext: true },
-      { label: "Codeforces 939+",           href: "https://codeforces.com/profile/tarunya.programmer", ext: true },
+      { label: "GitHub profile",            href: "https://github.com/TarunyaProgrammer",          ext: true },
+      { label: "GSoC '26 at C2SI",            href: "https://summerofcode.withgoogle.com/",          ext: true },
+      { label: "Codeforces profile",        href: "https://codeforces.com/profile/tarunya.programmer", ext: true },
       { label: "DEV.to Articles",           href: "https://dev.to/tarunya",                        ext: true },
       { label: "Medium Blog",               href: "https://medium.com/@tarunyakesh",               ext: true },
     ],
@@ -46,10 +46,10 @@ const NAV_COLS = [
   {
     title: "Resources",
     links: [
-      { label: "Download CV (PDF)",  href: "/Resume.pdf",                         ext: true },
-      { label: "LinkedIn Profile",   href: "https://www.linkedin.com/in/tarunyakesharwani/", ext: true },
-      { label: "Multi-Agent Article",href: "https://medium.com/@tarunyakesh",    ext: true },
-      { label: "Zero-Copy Post",     href: "https://dev.to/tarunya",             ext: true },
+      { label: "Download resume (PDF)", href: "/Resume.pdf",                         ext: true },
+      { label: "Connect on LinkedIn",   href: "https://www.linkedin.com/in/tarunyakesharwani/", ext: true },
+      { label: "Browse Medium",         href: "https://medium.com/@tarunyakesh",    ext: true },
+      { label: "Browse DEV.to",         href: "https://dev.to/tarunya",             ext: true },
     ],
   },
 ];
@@ -71,7 +71,7 @@ export const Footer = () => {
 
   return (
     <footer
-      className="relative w-full bg-[#050507] border-t border-white/[0.08] overflow-hidden select-none"
+      className="relative w-full bg-[#050507] border-t border-white/[0.08] overflow-hidden"
       style={{ paddingBottom: "calc(7rem + env(safe-area-inset-bottom, 0px))" }}
     >
       {/* ── Background: subtle grid lines ── */}
@@ -124,7 +124,7 @@ export const Footer = () => {
               </span>
             </div>
             <p className="text-xs text-zinc-500 font-sans max-w-sm leading-relaxed">
-              Systems Architect · GSoC &apos;26 @ C2SI · Building from code to production.
+              Building reliable software from first commit to production.
             </p>
           </div>
 
@@ -135,7 +135,7 @@ export const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
               download="Tarunya_Kesharwani_Resume.pdf"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-900 border border-white/10 text-xs font-mono text-zinc-300 hover:text-white hover:border-white/25 transition-all"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-900 border border-white/10 text-xs font-mono text-zinc-300 hover:text-white hover:border-white/25 transition-[color,border-color,background-color]"
             >
               <FileText className="w-3.5 h-3.5 text-emerald-400" />
               Resume
@@ -143,7 +143,7 @@ export const Footer = () => {
             <button
               onClick={scrollToTop}
               aria-label="Scroll to top"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-900 border border-white/10 text-xs font-mono text-zinc-300 hover:text-white hover:border-white/25 transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-900 border border-white/10 text-xs font-mono text-zinc-300 hover:text-white hover:border-white/25 transition-[color,border-color,background-color] cursor-pointer"
             >
               <ArrowUp className="w-3.5 h-3.5" />
               Top
@@ -202,7 +202,7 @@ export const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="w-10 h-10 sm:w-9 sm:h-9 flex items-center justify-center rounded-xl bg-zinc-900/80 border border-white/10 text-zinc-500 hover:text-white hover:border-white/30 hover:bg-zinc-800 transition-all duration-200"
+                className="w-10 h-10 sm:w-9 sm:h-9 flex items-center justify-center rounded-xl bg-zinc-900/80 border border-white/10 text-zinc-500 hover:text-white hover:border-white/30 hover:bg-zinc-800 transition-[color,border-color,background-color] duration-200"
               >
                 <Icon className="w-4 h-4" />
               </a>

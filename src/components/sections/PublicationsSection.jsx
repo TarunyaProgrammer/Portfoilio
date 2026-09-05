@@ -20,13 +20,13 @@ export const PublicationsSection = () => {
         >
           <div className="space-y-2">
             <div className="text-xs font-mono text-zinc-500 uppercase tracking-widest">
-              05 // PUBLICATIONS &amp; INSIGHTS
+              Writing and notes
             </div>
             <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white">
-              Technical Writings.
+              Writing that shows how I think.
             </h2>
             <p className="text-zinc-400 text-base sm:text-lg max-w-2xl font-normal leading-relaxed">
-              In-depth architectural breakdowns, zero-copy deserialization in Rust, and multi-agent system design published on DEV.to &amp; Medium.
+              Notes on distributed systems, AI workflows, performance, and the decisions behind the software.
             </p>
           </div>
 
@@ -98,7 +98,7 @@ export const PublicationsSection = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 text-blue-400 hover:text-blue-300 transition-colors font-medium"
                   >
-                    <span>Read Article</span>
+                    <span>Browse writing</span>
                     <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                 </div>

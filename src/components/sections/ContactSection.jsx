@@ -16,7 +16,7 @@ export const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    service: "Full-Time / Contract Engineering",
+    service: "Full-time role",
     message: "",
   });
   const [status, setStatus] = useState("idle");
@@ -90,7 +90,7 @@ export const ContactSection = () => {
     const cleanMessage = formData.message.trim();
 
     if (!cleanName || !cleanEmail || !cleanMessage) {
-      setValidationError("Please fill out all required fields.");
+      setValidationError("Please add your name, email, and a short note.");
       return;
     }
 
@@ -123,17 +123,17 @@ export const ContactSection = () => {
           className="space-y-2"
         >
           <div className="text-xs font-mono text-zinc-500 uppercase tracking-widest">
-            06 // TRANSMISSION &amp; GLOBAL MOBILITY
+            Let’s talk
           </div>
           <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white">
-            Let&apos;s Build Together.
+            Have something worth building?
           </h2>
           <p className="text-zinc-400 text-base sm:text-lg max-w-2xl font-normal leading-relaxed">
-            Currently accepting new software engineering roles, high-throughput startup MVPs, and architecture consulting inquiries worldwide.
+            Tell me what you’re building, the constraint you’re facing, or the role you’re hiring for. I’m open to full-time roles, product work, and thoughtful collaborations.
           </p>
         </motion.div>
 
-        {/* ═══ 1. HIGH-IMPACT SPECIALIZED SPRINTS & DELIVERABLES (FOMO & SPEED) ═══ */}
+        {/* ═══ Ways to work together ═══ */}
         <motion.div
           initial={{ opacity: 0, y: 35 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -144,20 +144,20 @@ export const ContactSection = () => {
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div className="space-y-1.5">
               <div className="text-xs font-mono text-zinc-500 uppercase tracking-widest flex items-center gap-2">
-                <span>ENGAGEMENT PROTOCOLS &amp; DELIVERY SLAS</span>
-                <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span>Ways to work together</span>
+                <span className="inline-block w-1.5 h-1.5 rounded-full bg-blue-300" />
               </div>
               <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
-                Specialized Engineering Sprints.
+                A few ways I can help.
               </h3>
               <p className="text-xs sm:text-sm text-zinc-400 max-w-2xl font-normal leading-relaxed">
-                Need to ship before your competitors? Select a pre-scoped engineering sprint or schedule custom architecture consulting.
+                Choose a starting point below, or use the form to describe something more specific.
               </p>
             </div>
 
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 font-mono text-xs self-start sm:self-auto">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-              <span>Q3/Q4 Active Window &bull; Limited Slots</span>
+              <span className="w-2 h-2 rounded-full bg-blue-300" />
+              <span>Open to new conversations</span>
             </div>
           </div>
 
@@ -165,14 +165,16 @@ export const ContactSection = () => {
             {portfolioData.services.map((svc) => {
               const isSelected = formData.service === svc.title;
               return (
-                <div
+                <button
+                  type="button"
                   key={svc.title}
                   onClick={() => {
                     setFormData((prev) => ({ ...prev, service: svc.title }));
                     document.getElementById("contact-form-card")?.scrollIntoView({ behavior: "smooth" });
                   }}
+                  aria-pressed={isSelected}
                   className={cn(
-                    "p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between space-y-4 cursor-pointer group backdrop-blur-sm",
+                    "w-full p-5 rounded-2xl border text-left transition-[background-color,border-color,box-shadow,transform] duration-300 flex flex-col justify-between space-y-4 cursor-pointer group backdrop-blur-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950",
                     isSelected
                       ? "bg-zinc-800/90 border-blue-500/80 shadow-[0_0_25px_rgba(59,130,246,0.25)] scale-[1.02]"
                       : "bg-zinc-900/60 border-white/10 hover:border-white/25 hover:bg-zinc-900/90"
@@ -200,16 +202,16 @@ export const ContactSection = () => {
 
                   <div className="pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono">
                     <span className={isSelected ? "text-blue-400 font-semibold" : "text-zinc-500 group-hover:text-zinc-300"}>
-                      {isSelected ? "✓ Selected in Form" : "Click to Select Sprint"}
+                      {isSelected ? "Selected" : "Choose this focus"}
                     </span>
                   </div>
-                </div>
+                </button>
               );
             })}
           </div>
         </motion.div>
 
-        {/* ═══ 2. BIG IMPRESSIVE DOTTED WORLD MAP SHOWCASE ═══ */}
+          {/* ═══ Work across time zones ═══ */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -221,10 +223,10 @@ export const ContactSection = () => {
             <div className="space-y-1">
               <div className="flex items-center gap-2 text-white font-bold text-base sm:text-lg">
                 <Globe2 className="w-5 h-5 text-blue-400" />
-                <span>Global Mobility &amp; Engineering Hubs</span>
+                <span>Work across time zones</span>
               </div>
               <p className="text-xs text-zinc-400 font-sans">
-                Open to remote worldwide or on-site engineering roles across India, USA, UK, Australia, Canada, and Singapore.
+                Based in India and open to remote collaboration across India, the USA, the UK, Australia, Canada, and Singapore.
               </p>
             </div>
 
@@ -256,7 +258,7 @@ export const ContactSection = () => {
 
         {/* ═══ 3. MAIN CONTACT TRANSMISSION (SUBTLE METADATA LEFT, PROMINENT FORM RIGHT) ═══ */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          {/* Left Column: Subtle, De-emphasized Contact Metadata */}
+          {/* Left Column: Direct contact paths */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -265,15 +267,15 @@ export const ContactSection = () => {
             className="lg:col-span-4 space-y-6 pt-2"
           >
             <div className="space-y-2">
-              <h4 className="text-sm font-semibold text-white tracking-tight">Direct Inquiries</h4>
+              <h4 className="text-sm font-semibold text-white tracking-tight">Let’s make the next step easy.</h4>
               <p className="text-xs text-zinc-400 font-sans leading-relaxed">
-                Prefer direct communication? Feel free to reach out via email or connect across networks.
+                Email me directly or connect on LinkedIn with a role, product idea, or collaboration in mind.
               </p>
             </div>
 
             {/* Clean Monospace Email Line */}
             <div className="space-y-1.5 text-xs font-mono">
-              <div className="text-[11px] text-zinc-500 uppercase tracking-wider">Email Address</div>
+              <div className="text-[11px] text-zinc-500 uppercase tracking-wider">Email</div>
               <div className="flex items-center gap-2">
                 <a
                   href={`mailto:${portfolioData.personal.email}`}
@@ -283,8 +285,9 @@ export const ContactSection = () => {
                 </a>
                 <button
                   onClick={handleCopyEmail}
-                  title="Copy email to clipboard"
-                  className="p-1 rounded text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors cursor-pointer"
+                  title="Copy email address"
+                  aria-label={copied ? "Email address copied" : "Copy email address"}
+                  className="min-h-11 min-w-11 rounded-lg text-zinc-400 hover:bg-zinc-800 hover:text-white transition-[background-color,color] duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-300/80"
                 >
                   {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
                 </button>
@@ -293,7 +296,7 @@ export const ContactSection = () => {
 
             {/* Subtle Social Links */}
             <div className="space-y-2 text-xs font-mono pt-3 border-t border-white/10">
-              <div className="text-[11px] text-zinc-500 uppercase tracking-wider">Network Coordinates</div>
+              <div className="text-[11px] text-zinc-500 uppercase tracking-wider">Connect online</div>
               <div className="flex flex-wrap gap-x-4 gap-y-2 text-xs">
                 {portfolioData.socials.map((social) => (
                   <a
@@ -311,7 +314,7 @@ export const ContactSection = () => {
             </div>
           </motion.div>
 
-          {/* Right Column: Prominent, High-Readability Inquiry Sheet */}
+          {/* Right Column: Low-friction inquiry form */}
           <motion.div
             id="contact-form-card"
             initial={{ opacity: 0, x: 40 }}
@@ -322,10 +325,10 @@ export const ContactSection = () => {
           >
             <div className="space-y-1 border-b border-white/10 pb-4">
               <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-                Initiate Project Transmission
+                Start a conversation
               </h3>
               <p className="text-xs font-mono text-zinc-400">
-                Direct route to {portfolioData.personal.email}
+                A short note is enough. I’ll take it from there.
               </p>
             </div>
 
@@ -333,7 +336,7 @@ export const ContactSection = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
                   <label htmlFor="contact-name" className="text-xs font-mono text-zinc-300 font-medium">
-                    Your Name / Organization
+                    Your name or company
                   </label>
                   <input
                     id="contact-name"
@@ -345,13 +348,13 @@ export const ContactSection = () => {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="e.g. Sarah Connor / Apex Corp"
-                    className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-white/10 text-sm text-white placeholder:text-zinc-600 focus:outline-none focus:border-white/30 transition-colors font-sans"
+                    className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-white/10 text-sm text-white placeholder:text-zinc-600 focus:border-white/30 transition-colors font-sans"
                   />
                 </div>
 
                 <div className="space-y-1.5">
                   <label htmlFor="contact-email" className="text-xs font-mono text-zinc-300 font-medium">
-                    Your Email Address
+                    Your email
                   </label>
                   <input
                     id="contact-email"
@@ -363,34 +366,34 @@ export const ContactSection = () => {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="sarah@example.com"
-                    className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-white/10 text-sm text-white placeholder:text-zinc-600 focus:outline-none focus:border-white/30 transition-colors font-sans"
+                    className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-white/10 text-sm text-white placeholder:text-zinc-600 focus:border-white/30 transition-colors font-sans"
                   />
                 </div>
               </div>
 
               <div className="space-y-1.5">
                 <label htmlFor="contact-service" className="text-xs font-mono text-zinc-300 font-medium">
-                  Select Focus Area
+                  What can I help with?
                 </label>
                 <select
                   id="contact-service"
                   name="service"
                   value={formData.service}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-white/10 text-sm text-white focus:outline-none focus:border-white/30 transition-colors font-sans cursor-pointer"
+                  className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-white/10 text-sm text-white focus:border-white/30 transition-colors font-sans cursor-pointer"
                 >
-                  <option value="Full-Time / Contract Engineering">Full-Time / Contract Engineering Role</option>
-                  <option value="Startup MVP & Landing Pages">Startup MVP &amp; Landing Pages</option>
-                  <option value="Figma to Pixel-Perfect React">Figma to Pixel-Perfect React</option>
-                  <option value="Full-Stack SaaS Architecture">Full-Stack SaaS Architecture</option>
-                  <option value="Core Web Vitals & Speed Optimization">Core Web Vitals &amp; Speed Optimization</option>
-                  <option value="General Technical Consultation">General Technical Consultation</option>
+                  <option value="Full-time role">Full-time role</option>
+                  <option value="Startup MVPs & landing pages">Startup MVPs &amp; landing pages</option>
+                  <option value="Figma to production React">Figma to production React</option>
+                  <option value="Full-stack SaaS architecture">Full-stack SaaS architecture</option>
+                  <option value="Performance reviews">Performance reviews</option>
+                  <option value="General technical consultation">General technical consultation</option>
                 </select>
               </div>
 
               <div className="space-y-1.5">
                 <label htmlFor="contact-message" className="text-xs font-mono text-zinc-300 font-medium">
-                  Project Briefing / Mission Scope
+                  A few details
                 </label>
                 <textarea
                   id="contact-message"
@@ -400,28 +403,28 @@ export const ContactSection = () => {
                   maxLength={2000}
                   value={formData.message}
                   onChange={handleChange}
-                  placeholder="Outline your architectural requirements, timelines, or role details..."
-                  className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-white/10 text-sm text-white placeholder:text-zinc-600 focus:outline-none focus:border-white/30 transition-colors font-sans resize-none"
+                  placeholder="What are you building, hiring for, or trying to improve?"
+                  className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-white/10 text-sm text-white placeholder:text-zinc-600 focus:border-white/30 transition-colors font-sans resize-none"
                 />
               </div>
 
               {validationError && (
-                <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-mono text-center">
-                  ! {validationError}
+                <div role="alert" className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs font-mono text-center">
+                  {validationError}
                 </div>
               )}
 
               <button
                 type="submit"
-                className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-xl bg-white text-zinc-950 font-semibold text-sm hover:bg-zinc-200 transition-all duration-200 shadow-xl shadow-white/10 active:scale-98 cursor-pointer"
+                className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-xl bg-white text-zinc-950 font-semibold text-sm hover:bg-zinc-200 transition-[background-color,box-shadow,transform] duration-200 shadow-xl shadow-white/10 active:scale-[0.98] cursor-pointer"
               >
-                <span>Transmit Inquiry</span>
+                <span>Open email draft</span>
                 <Send className="w-4 h-4 text-zinc-950" />
               </button>
 
               {status === "success" && (
-                <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono text-center">
-                  &check; Mail client opened! Ready to send transmission.
+                <div role="status" aria-live="polite" className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-mono text-center">
+                  &check; Your email draft is ready. Review it and send when you’re ready.
                 </div>
               )}
             </form>

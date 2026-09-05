@@ -59,8 +59,8 @@ export function App() {
       <main className="relative z-10">
         <HeroSection />
         <AboutSection />
-        <TechStackSection />
         <FlagshipProjects />
+        <TechStackSection />
         <ExperienceTimeline />
         <PublicationsSection />
         <ContactSection />

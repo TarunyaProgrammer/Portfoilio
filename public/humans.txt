@@ -4,14 +4,13 @@
   GitHub: https://github.com/TarunyaProgrammer
   X / Twitter: @TarunyaKesh
   LinkedIn: https://www.linkedin.com/in/tarunyakesharwani/
-  Role: Systems Architect • GSoC '26 Developer @ C2SI
+  Role: Full-stack Engineer • GSoC '26 Developer at C2SI
   Location: India
 
 /* SITE SPECIFICATIONS */
   Standards: HTML5, CSS3, ES2024, WebP, SVG, AAC
   Architecture: React 18, Vite 6, Tailwind CSS, Framer Motion, Lenis
   Components: Lucide Icons, Canvas Confetti, Dotted Map
-  Hero Sub-Frame RAF Engine: 10.00s 144 BPM Studio Audio Synchronizer
-  Typography: Inter, Plus Jakarta Sans, Bonheur Royale
-  Design Philosophy: Modern Luxury Dark Aesthetic, Minimalist Precision, 60-120 FPS Framerate
-
+  Hero Sub-Frame RAF Engine: 10.00s studio audio synchronizer
+  Typography: Outfit, Bonheur Royale
+  Design Philosophy: Dark, precise, and human-readable systems portfolio

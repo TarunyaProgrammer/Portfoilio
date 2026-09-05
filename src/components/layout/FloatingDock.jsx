@@ -15,8 +15,8 @@ import { motion, AnimatePresence } from "framer-motion";
 const NAV_ITEMS = [
   { id: "hero",       label: "Home",       icon: Home       },
   { id: "about",      label: "Profile",    icon: User       },
-  { id: "skills",     label: "Tech",       icon: Cpu        },
   { id: "projects",   label: "Projects",   icon: FolderGit2 },
+  { id: "skills",     label: "Tech",       icon: Cpu        },
   { id: "experience", label: "Experience", icon: Briefcase  },
   { id: "writing",    label: "Writing",    icon: PenTool    },
   { id: "contact",    label: "Contact",    icon: Mail       },
@@ -77,7 +77,7 @@ const MobileNav = ({ activeSection, onNav }) => {
                   aria-label="Download Resume"
                 >
                   <div className="relative w-9 h-9 flex items-center justify-center rounded-xl transition-colors duration-150">
-                    <Icon className="w-[18px] h-[18px] text-emerald-400 transition-all duration-150" />
+                    <Icon className="w-[18px] h-[18px] text-emerald-400 transition-[color,transform] duration-150" />
                   </div>
                 </a>
               );
@@ -108,7 +108,7 @@ const MobileNav = ({ activeSection, onNav }) => {
                 {/* Icon */}
                 <div className="relative w-9 h-9 flex items-center justify-center rounded-xl transition-colors duration-150">
                   <Icon
-                    className={`w-[18px] h-[18px] transition-all duration-200 ${
+                    className={`w-[18px] h-[18px] transition-[color,transform] duration-200 ${
                       isActive ? "text-white" : "text-zinc-500 group-active:text-white"
                     }`}
                     strokeWidth={isActive ? 2.2 : 1.7}

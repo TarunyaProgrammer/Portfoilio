@@ -448,8 +448,8 @@ export const CinematicHeroEngine = forwardRef(
                 </div>
                 <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-emerald-400 transition-all duration-100"
-                    style={{ width: `${Math.min(100, (time - 4.0) * 110)}%` }}
+                    className="h-full origin-left scale-x-0 bg-emerald-400 transition-transform duration-100"
+                    style={{ transform: `scaleX(${Math.min(1, Math.max(0, (time - 4.0) * 1.1))})` }}
                   />
                 </div>
               </div>

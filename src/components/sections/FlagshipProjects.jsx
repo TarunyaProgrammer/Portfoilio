@@ -81,14 +81,14 @@ export const FlagshipProjects = () => {
         >
           <div className="space-y-2.5">
             <div className="text-xs font-mono text-zinc-500 uppercase tracking-widest flex items-center gap-2">
-              <span>03 // FLAGSHIP ENGINEERING SHOWCASE</span>
+              <span>Selected work</span>
               <span className="inline-block w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
-              Flagship Production Systems.
+              Selected work, built to hold up.
             </h2>
             <p className="text-zinc-400 text-sm sm:text-base lg:text-lg max-w-2xl font-normal leading-relaxed">
-              High-impact platforms engineered for deterministic AI financial auditing, sub-5ms serverless edge telemetry, and local-first developer infrastructure.
+              A few systems I’ve built across product, infrastructure, and AI—with the trade-offs visible in the work.
             </p>
           </div>
 
@@ -96,10 +96,10 @@ export const FlagshipProjects = () => {
             href="https://github.com/TarunyaProgrammer"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-xs font-mono font-medium text-zinc-300 hover:text-white px-4 py-2.5 rounded-xl bg-zinc-900 border border-white/10 hover:border-white/25 transition-all self-start md:self-auto shadow-sm"
+            className="inline-flex items-center gap-2 text-xs font-mono font-medium text-zinc-300 hover:text-white px-4 py-2.5 rounded-xl bg-zinc-900 border border-white/10 hover:border-white/25 transition-[color,border-color,background-color] self-start md:self-auto shadow-sm"
           >
             <Github className="w-4 h-4 text-zinc-300" />
-            <span>GitHub (45+ Repos)</span>
+            <span>View GitHub profile</span>
             <ExternalLink className="w-3.5 h-3.5" />
           </a>
         </motion.div>
@@ -178,7 +178,7 @@ export const FlagshipProjects = () => {
                         >
                           <span className="flex items-center gap-1.5">
                             <FolderTree className="w-3.5 h-3.5 text-zinc-400" />
-                            <span>Architecture Blueprint</span>
+                            <span>See the architecture</span>
                           </span>
                           {isTreeOpen ? (
                             <ChevronUp className="w-3 h-3 text-zinc-500" />
@@ -189,7 +189,7 @@ export const FlagshipProjects = () => {
 
                         {/* Expandable Tree */}
                         {isTreeOpen && (
-                          <div className="mt-2 transition-all">
+                          <div className="mt-2">
                             <Tree elements={treeData} />
                           </div>
                         )}
@@ -206,7 +206,7 @@ export const FlagshipProjects = () => {
                       className="inline-flex items-center gap-1.5 text-zinc-400 hover:text-white transition-colors"
                     >
                       <Github className="w-4 h-4 text-zinc-400" />
-                      <span>Repository</span>
+                      <span>See repository</span>
                       <ArrowUpRight className="w-3 h-3 text-zinc-500" />
                     </a>
 
@@ -214,9 +214,9 @@ export const FlagshipProjects = () => {
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white text-zinc-950 hover:bg-zinc-200 transition-all font-semibold shadow-sm text-xs"
+                      className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white text-zinc-950 hover:bg-zinc-200 transition-[background-color,box-shadow,transform] font-semibold shadow-sm text-xs"
                     >
-                      <span>Inspect</span>
+                      <span>View project</span>
                       <ArrowUpRight className="w-3 h-3" />
                     </a>
                   </div>
@@ -236,14 +236,14 @@ export const FlagshipProjects = () => {
         >
           <div className="flex items-center justify-between">
             <h3 className="text-xl font-bold text-white tracking-tight">
-              Curated Open Source Archive
+              More experiments and shipped work
             </h3>
 
             <button
               onClick={() => setShowAll(!showAll)}
               className="inline-flex items-center gap-2 text-xs font-mono text-zinc-400 hover:text-white font-medium transition-colors cursor-pointer"
             >
-              <span>{showAll ? "Collapse Archive" : "Expand All 45+ Repositories"}</span>
+              <span>{showAll ? "Collapse archive" : "Browse project archive"}</span>
               {showAll ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
             </button>
           </div>
@@ -262,7 +262,7 @@ export const FlagshipProjects = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: (aIdx % 3) * 0.08 }}
-                className="p-5 rounded-2xl bg-zinc-950/60 border border-white/10 hover:border-white/20 hover:bg-zinc-900 transition-all flex flex-col justify-between group"
+                className="p-5 rounded-2xl bg-zinc-950/60 border border-white/10 hover:border-white/20 hover:bg-zinc-900 transition-[background-color,border-color] flex flex-col justify-between group"
               >
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">

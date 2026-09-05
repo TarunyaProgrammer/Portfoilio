@@ -203,7 +203,7 @@ export const DottedMap = React.memo(
                   strokeWidth={isHovered ? "0.45" : "0.24"}
                   strokeDasharray={isHovered ? "1.4 0.6" : "0.8 0.8"}
                   opacity={isHovered ? 1 : 0.65}
-                  className="transition-all duration-300"
+                  className="transition-[fill,stroke,opacity,transform] duration-300"
                 />
               </g>
             );
@@ -229,7 +229,7 @@ export const DottedMap = React.memo(
             return (
               <g
                 key={index}
-                className="cursor-pointer transition-all duration-300"
+                className="cursor-pointer transition-[fill,stroke,opacity,transform] duration-300"
                 onMouseEnter={() => !isTouchDevice && setHoveredMarker(index)}
                 onMouseLeave={() => !isTouchDevice && setHoveredMarker(null)}
                 onClick={() => setHoveredMarker(hoveredMarker === index ? null : index)}
@@ -251,7 +251,7 @@ export const DottedMap = React.memo(
                   }
                   strokeWidth={isHovered ? "0.3" : "0.15"}
                   className={cn(
-                    "transition-all duration-300",
+                    "transition-[fill,stroke,opacity,transform] duration-300",
                     isHovered && "animate-pulse"
                   )}
                 />
@@ -270,7 +270,7 @@ export const DottedMap = React.memo(
                       ? "rgba(56, 189, 248, 0.65)"
                       : "rgba(59, 130, 246, 0.25)"
                   }
-                  className="transition-all duration-300"
+                  className="transition-[fill,stroke,opacity,transform] duration-300"
                 />
 
                 {/* Circular Flag Clip */}
@@ -287,7 +287,7 @@ export const DottedMap = React.memo(
                   height={r * 2}
                   preserveAspectRatio="xMidYMid slice"
                   clipPath={`url(#${clipId})`}
-                  className="transition-all duration-300"
+                  className="transition-[fill,stroke,opacity,transform] duration-300"
                 />
 
                 {/* Outer Flag Ring */}
@@ -298,7 +298,7 @@ export const DottedMap = React.memo(
                   fill="none"
                   stroke={isHovered ? "#60a5fa" : "#ffffff"}
                   strokeWidth={isHovered ? "0.35" : "0.22"}
-                  className="transition-all duration-300"
+                  className="transition-[fill,stroke,opacity,transform] duration-300"
                 />
 
                 {/* Interactive Location Badge Pill */}
@@ -321,7 +321,7 @@ export const DottedMap = React.memo(
                       : "rgba(255, 255, 255, 0.2)"
                   }
                   strokeWidth={isHovered ? "0.28" : "0.18"}
-                  className="transition-all duration-300"
+                  className="transition-[fill,stroke,opacity,transform] duration-300"
                 />
 
                 {/* Status Dot inside Pill */}
@@ -341,7 +341,7 @@ export const DottedMap = React.memo(
                   fontFamily="Plus Jakarta Sans, sans-serif"
                   fontWeight={isHovered ? "700" : "600"}
                   fill={isHovered ? "#ffffff" : "rgba(255, 255, 255, 0.9)"}
-                  className="transition-all duration-300"
+                  className="transition-[fill,stroke,opacity,transform] duration-300"
                 >
                   {label}
                 </text>

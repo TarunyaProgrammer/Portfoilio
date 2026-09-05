@@ -67,11 +67,11 @@ export const AboutSection = () => {
           <div className="flex items-center justify-between px-1 text-[11px] font-mono text-zinc-500">
             <span className="flex items-center gap-1.5 text-zinc-400">
               <Github className="w-3.5 h-3.5 text-zinc-300" />
-              <span>Telemetry &amp; Open Source Metrics</span>
+              <span>Proof in the work</span>
             </span>
             <span className="inline-flex items-center gap-1.5 text-zinc-400">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span>{isLiveSynced ? "Live GitHub Synced" : "Verified Metrics"} (6h Cron Cache)</span>
+              <span>{isLiveSynced ? "Updated from GitHub" : "Portfolio baseline"}</span>
             </span>
           </div>
 
@@ -83,7 +83,7 @@ export const AboutSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.5, delay: idx * 0.1, ease: smoothEase }}
-                className="p-5 sm:p-6 rounded-2xl bg-zinc-900/40 border border-white/10 hover:border-white/20 transition-all backdrop-blur-sm group flex flex-col justify-between"
+                className="p-5 sm:p-6 rounded-2xl bg-zinc-900/40 border border-white/10 hover:border-white/20 transition-[background-color,border-color] backdrop-blur-sm group flex flex-col justify-between"
               >
                 <div>
                   <div className="text-2xl sm:text-4xl font-black text-white font-mono tracking-tight group-hover:text-blue-400 transition-colors">
@@ -111,13 +111,13 @@ export const AboutSection = () => {
           className="space-y-3"
         >
           <div className="text-xs font-mono text-zinc-500 uppercase tracking-widest">
-            01 // PROFILE &amp; PHILOSOPHY
+            How I work
           </div>
           <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white">
-            Engineering for Reliability.
+            I build systems people can trust.
           </h2>
           <p className="text-zinc-400 text-base sm:text-lg max-w-2xl font-normal leading-relaxed">
-            I specialize in full-stack architecture, real-time event-driven systems, and deterministic AI applications that thrive under production load.
+            I work across product interfaces, backend systems, and AI workflows—turning ambiguity into software that is fast, understandable, and maintainable.
           </p>
         </motion.div>
 
@@ -143,9 +143,9 @@ export const AboutSection = () => {
                 Pursuing <strong className="text-white font-semibold">B.Tech in Computer Science &amp; Artificial Intelligence</strong> at Newton School of Technology (8.83 CGPA). My focus bridges system design, low-latency APIs, and human-centric developer experiences.
               </p>
               <p>
-                I thrive in the messy reality of engineering—unclear edge cases, evolving data pipelines, and building software that feels{" "}
+                I thrive in the messy reality of engineering—unclear edge cases, evolving data pipelines, and software that feels{" "}
                 <Highlighter action="underline" color="#60a5fa">
-                  deterministic, instant, and impossible to break
+                  clear, responsive, and dependable
                 </Highlighter>.
               </p>
             </div>
@@ -196,7 +196,7 @@ export const AboutSection = () => {
           className="space-y-4 pt-4"
         >
           <div className="text-xs font-mono uppercase tracking-widest text-zinc-400">
-            Key Credentials &amp; Honors
+            A few signals of trust
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -213,26 +213,26 @@ export const AboutSection = () => {
                   className="h-full"
                 >
                   <SpotlightCard
-                    spotlightColor="rgba(245, 158, 11, 0.22)"
+                    spotlightColor="rgba(96, 165, 250, 0.18)"
                     className={cn(
                       "h-full p-6 rounded-2xl bg-gradient-to-b from-zinc-900/70 to-zinc-950/90",
-                      "border border-white/10 hover:border-amber-500/45 hover:shadow-[0_14px_35px_-8px_rgba(245,158,11,0.25)]",
-                      "transition-all duration-300 flex flex-col justify-between space-y-4 group cursor-default backdrop-blur-md"
+                      "border border-white/10 hover:border-blue-300/45 hover:shadow-[0_14px_35px_-8px_rgba(96,165,250,0.22)]",
+                      "transition-[background-color,border-color,box-shadow,transform] duration-300 flex flex-col justify-between space-y-4 group cursor-default backdrop-blur-md"
                     )}
                   >
                     <div>
                       {/* Top Header Row: Icon on left, Score Badge on right */}
                       <div className="flex items-center justify-between gap-2 mb-4">
-                        <div className="p-2 rounded-xl bg-amber-500/10 border border-amber-500/20 group-hover:bg-amber-500/20 group-hover:border-amber-500/40 transition-all duration-300 shrink-0">
-                          <Icon className="w-4 h-4 text-amber-400 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 drop-shadow-[0_0_8px_rgba(245,158,11,0.6)]" />
+                        <div className="p-2 rounded-xl bg-blue-400/10 border border-blue-300/20 group-hover:bg-blue-400/20 group-hover:border-blue-300/40 transition-[background-color,border-color] duration-300 shrink-0">
+                          <Icon className="w-4 h-4 text-blue-200 group-hover:scale-110 group-hover:rotate-6 transition-[transform,color] duration-300 drop-shadow-[0_0_8px_rgba(96,165,250,0.5)]" />
                         </div>
-                        <span className="px-2.5 py-1 rounded-md bg-amber-500/10 border border-amber-500/30 text-amber-300 font-mono font-bold text-xs shrink-0 shadow-sm group-hover:bg-amber-500/25 group-hover:border-amber-400/60 group-hover:text-amber-100 group-hover:shadow-[0_0_14px_rgba(245,158,11,0.4)] transition-all duration-300">
+                        <span className="px-2.5 py-1 rounded-md bg-blue-400/10 border border-blue-300/30 text-blue-100 font-mono font-bold text-xs shrink-0 shadow-sm group-hover:bg-blue-400/20 group-hover:border-blue-200/60 group-hover:text-white group-hover:shadow-[0_0_14px_rgba(96,165,250,0.32)] transition-[background-color,border-color,color,box-shadow] duration-300">
                           {item.score}
                         </span>
                       </div>
 
                       {/* Title: Unconstrained full-width */}
-                      <h4 className="text-base font-semibold text-white font-sans tracking-tight group-hover:text-amber-100 transition-colors leading-snug">
+                        <h4 className="text-base font-semibold text-white font-sans tracking-tight group-hover:text-blue-100 transition-colors leading-snug">
                         {item.org}
                       </h4>
 
@@ -245,7 +245,7 @@ export const AboutSection = () => {
                     {/* Subtle bottom tag */}
                     <div className="pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-zinc-500 group-hover:text-zinc-400">
                       <span>{item.tag}</span>
-                      <span className="text-amber-500/40 group-hover:text-amber-400 transition-colors">Verified</span>
+                      <span className="text-blue-300/50 group-hover:text-blue-200 transition-colors">Evidence</span>
                     </div>
                   </SpotlightCard>
                 </motion.div>
